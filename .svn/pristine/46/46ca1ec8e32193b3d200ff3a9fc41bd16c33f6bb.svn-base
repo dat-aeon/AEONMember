@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_main_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:theme="@style/ToolbarTheme">
+
+            <include
+                android:id="@+id/toolbar_new_main"
+                layout="@layout/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/service_unavailable_sq"
+        layout="@layout/service_unavailable"
+        android:visibility="gone"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/form_layout"
+            android:layout_margin="@dimen/margin_medium_x"
+            android:padding="@dimen/margin_medium_2"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/conf_info_form_title"
+                    android:text="@string/forgot_pwd_confirm_info"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_regular_3x"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reset_phone"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/register_phoneno_label"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/verify_err_ph"
+                    android:visibility="gone"
+                    android:textColor="@color/red"
+                    android:text="Error dob"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/txt_phone"
+                    android:height="@dimen/edit_text_height"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:maxLength="11"
+                    android:inputType="phone"
+                    android:textColorHint="@color/grayLight"
+                    android:hint="@string/register_phoneno_holder"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/edit_text_style"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reset_nrc_no"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/register_nrc_label"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/verify_err_nrc"
+                    android:visibility="gone"
+                    android:textColor="@color/red"
+                    android:text="Error Nrc"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/nrc_layout_height"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinner_div_code"
+                        android:layout_weight="0.1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:padding="@dimen/margin_small"
+                        android:gravity="center"
+                        android:layout_marginRight="@dimen/margin_small"
+                        android:background="@drawable/edit_text_style"/>
+
+                    <AutoCompleteTextView
+                        android:id="@+id/auto_comp_twsp_code2"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_weight="0.7"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="@dimen/margin_medium_2"
+                        android:paddingRight="@dimen/margin_medium_2"
+                        android:layout_marginRight="@dimen/margin_small"
+                        android:longClickable="false"
+                        android:singleLine="true"
+                        android:textAlignment="center"
+                        android:maxLength="10"
+                        android:textSize="@dimen/text_regular"
+                        android:gravity="center"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:background="@drawable/edit_text_style"/>
+
+                    <Spinner
+                        android:id="@+id/spinner_nrc_type"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="0.1"
+                        android:padding="@dimen/margin_small"
+                        android:gravity="center"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginRight="@dimen/margin_small"
+                        android:background="@drawable/edit_text_style"/>
+
+                    <EditText
+                        android:layout_width="@dimen/nrc_code_width"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:id="@+id/txt_reset_reg_no"
+                        android:layout_weight="0.1"
+                        android:paddingLeft="@dimen/margin_small"
+                        android:paddingRight="@dimen/margin_small"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grayLight"
+                        android:inputType="numberDecimal"
+                        android:maxLength="6"
+                        android:textAlignment="center"
+                        android:hint="123456"
+                        android:gravity="center"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:background="@drawable/edit_text_style"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/btn_next"
+                        android:textColor="@color/white"
+                        android:enabled="false"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:background="@drawable/button_border"
+                        android:text="@string/secquestconfirm_confrim_button"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_medium_2"
+        android:background="@null"/>
+
+</LinearLayout>

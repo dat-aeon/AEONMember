@@ -1,0 +1,1215 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">AEONMember_DA</string>
+    <string name="def_tool_bar_title">AEON</string>
+
+    <!--TERMS AND CONDITION AGREEMENTS-->
+    <string name="terms_title">Terms and Conditions</string>
+    <string name="terms_accept">Accept</string>
+    <string name="terms_agree">OK</string>
+    <string name="terms_text">The Company was incorporated in Myanmar on 2 November 2012 under Registration No. 176FC of 2012-2013 issued by the Directorate of Investment and Company Administration. On 8 February 2013, the Company obtained its license No.0132/2013 as a micro-finance institution from the Myanmar Microfinance Supervisory Enterprise and we are operating Microfinance business within (44) townships in Yangon Division and (7) townships in Mandalay Division. The Company is wholly-owned by AEON Thana Sinsap (Thailand) Public Company Limited, a company registered in Thailand. The ultimate parent company is AEON Financial Service Co., Ltd., a company registered in Japan and listed on the Tokyo Stock Exchange. AEON Financial Service Co., Ltd currently has more than 30 million card members and it is one of the biggest credit card issuers and a leading consumer credit provider in Japan.For AEON Group consists of more than 180 subsidiaries and affiliated companies. AEON Group operates not only in Japan but also in Southeast Asia and China.</string>
+
+    <!--Phone Request screen-->
+    <string name="phone_request_text">Please input your Phone Number to contact with AEON.</string>
+    <string name="txt_clear">Clear</string>
+    <!--HOME Screen--><!---->
+    <string name="menu_level_one">Lv.1 : Application User</string>
+    <string name="menu_level_two">Lv.2 : Login User</string>
+    <string name="menu_level_three">Lv.3 : Member User</string>
+
+    <string name="home_login_button">LOGIN</string>
+    <string name="home_register_button">REGISTER</string>
+
+    <string name="home_aboutus_button">ABOUT US</string>
+    <string name="home_faq_button">FAQ</string>
+    <string name="home_version_label">Version</string>
+
+    <string name="main_freechat_title">Contact Us</string>
+    <string name="main_contactus_title">Contact Us</string>
+    <string name="main_calculator_title">Loan Calculator</string>
+    <string name="main_findus_title">Find Us</string>
+    <string name="main_news_title">Good News</string>
+
+    <string name="main_ourservice_title">Our Service</string>
+    <string name="main_facebook_title">Facebook</string>
+    <string name="main_help_title">FAQ</string>
+    <string name="main_announce_title">Announcement</string>
+
+    <string name="main_video_title">How to use</string>
+    <string name="main_share_title">Share</string>
+
+    <string name="main_membership">Membership</string>
+    <string name="main_info_update">Information Update</string>
+
+    <string name="welcome_loan_app_title">LOAN Application</string>
+    <string name="welcome_membership_title">Membership</string>
+    <string name="welcome_agent_channel_title">Ask Product</string>
+    <string name="welcome_info_update_title">Information\nUpdate</string>
+
+    <!--LOGIN Screen-->
+    <string name="login_title">LOGIN</string>
+    <string name="login_phoneno_holder">Phone No.</string>
+    <string name="login_password_holder">Password</string>
+    <string name="login_login_btn">LOGIN</string>
+    <string name="login_forgotpassword_link">Forgot Password?</string>
+    <!--Form Format-->
+    <string name="login_phoneno_err_msg">Please enter Login Phone No.</string>
+    <string name="login_phoneno_format_err_msg">Phone No. is not mobile number.</string>
+    <string name="login_password_err_msg">Please enter Password.</string>
+    <string name="login_password_format_err_msg">Length of Password must between 6 to 16.</string>
+    <!--Dialog-->
+    <string name="login_in_progress">Logging in ...</string>
+    <string name="login_success">Login Success.</string>
+    <string name="login_invalid">Phone No. or Password is wrong.</string>
+    <string name="login_unavailable">Login Service Unavailable!</string>
+    <string name="login_on_failure">Login Failed!</string>
+    <string name="bio_login_invalid">Your biometric data is failed to login. Do you want to register again?</string>
+    <!--biometric-->
+    <string name="biometric_auth_failed">Biometric Authentication Failed!</string>
+    <string name="biometric_auth_error">Biometric Error!</string>
+
+    <!--SECURITYQUESTION CONFIRMATION Screen-->
+    <string name="secquestconfirm_title">SECURITY QUESTION CONFIRMATION</string>
+    <string name="secquestconfirm_confrim_button">CONFIRM</string>
+    <string name="sec_qa_reg_title">SECURITY QUESTION REGISTRATION</string>
+
+    <!--RESET PASSWORD Screen--><!---->
+    <string name="resetpass_title">RESET PASSWORD</string>
+    <string name="resetpass_newpass_label">New Password *</string>
+    <string name="resetpass_conpass_label">Confirm New Password *</string>
+    <string name="resetpass_hint">minimum 6 characters</string>
+    <string name="resetpass_reset_button">RESET PASSWORD</string>
+    <!--Error-->
+    <string name="resetpass_newpass_err">Please Enter your password</string>
+    <string name="resetpass_conpass_err">Confirm New Password *</string>
+    <string name="resetpass_conpass_err2">Password and Confirmed Passwords must be same.</string>
+
+    <string name="resetpass_sq_wrong">Question and answer are not matched.</string>
+    <string name="resetpass_sq_nrc_ph_not_exist">NRC or Phone No does not exist.</string>
+
+    <!--REGISTER Screen--><!---->
+    <string name="register_title">REGISTRATION</string>
+    <string name="register_caption">SELF REGISTRATION</string>
+    <string name="register_name_label">Name *</string>
+    <string name="register_name_holder">Name</string>
+    <string name="register_company_name_holder">Company Name</string>
+    <string name="register_relation_with_other_holder">Description</string>
+    <string name="register_dob_label">Date Of Birth *</string>
+    <string name="register_dob_holder">yyyy-MM-dd</string>
+    <string name="register_nrc_label">NRC No. *</string>
+    <string name="register_nrc_holder">Code</string>
+    <string name="register_phoneno_label">Phone No. *</string>
+    <string name="register_phoneno_holder">09xxxxxxxxx</string>
+    <string name="register_password_label">Password *</string>
+    <string name="register_password_holder">6 to 16 characters.</string>
+    <string name="register_conpassword_label">Confirm Password *</string>
+    <string name="register_stay_year">Year</string>
+    <string name="register_stay_month">Month</string>
+    <string name="register_save_button">SAVE</string>
+
+    <!--Form Format-->
+    <string name="register_name_err">Please enter Name.</string>
+    <string name="register_dob_err">Please enter Date Of Birth.</string>
+    <string name="register_nrc_err">Please enter NRC No.</string>
+    <string name="register_nrc_format_err">NRC(No) must be 6 numbers only.</string>
+    <string name="register_phoneno_err">Please enter Phone No.</string>
+    <string name="register_tel_no_err">Please enter Tel No.</string>
+    <string name="register_password_err">Please enter Password.</string>
+    <string name="register_conpassword_err">Please enter Confirm Password.</string>
+    <string name="register_pwd_format_err_msg">Length of Password must between 6 and 16.</string>
+    <string name="register_confpwd_format_err_msg">Password and Confirmed Passwords must be same.</string>
+    <string name="register_phoneno_format_err_msg">Phone No. is not mobile number.</string>
+    <string name="register_tel_no_format_err_msg">Phone No. is not mobile number.</string>
+    <string name="register_pwd_strength_err_msg">Password is not strong. Number, Character and Special Character should be included.</string>
+    <string name="register_reg_code">123456</string>
+    <string name="register_age_limit">(Age must be 18 years and above.)</string>
+    <string name="register_pwd_limit">*Password shall be from 6 to 16 digits.</string>
+    <string name="register_name_format_err">Please Enter Name in english characters.</string>
+    <!--Dialog-->
+    <string name="register_nrc_dup">NRC is duplicated.</string>
+    <string name="register_ph_no_dup">Phone No. is duplicated.</string>
+    <string name="register_duplicate">Your data is already registered.</string>
+    <string name="register_duplicate_core">Date of Birth does not match with AEON data.</string>
+    <string name="register_imp_phone_no_duplicate">Your phone number is already registered by other member.</string>
+    <string name="register_failed">Registration Failed!</string>
+
+    <!--CUSTOMERTYPE Screen-->
+    <string name="customertype_title">Customer Type</string>
+    <string name="customertype_oldcustomer_button">Upgrade to Member</string>
+
+    <!--SECURITYQUESTION REGISTER Screen-->
+    <string name="secquest_title">Security Question</string>
+    <string name="secquest_question_label">Q :</string>
+    <string name="secquest_answer_label">A :</string>
+    <string name="secquest_save_button">SAVE</string>
+    <string name="secquest_err_ans_blank">Please enter all security answers.</string>
+    <string name="secquest_err_ans_length">Length of password must be less than 50.</string>
+    <string name="secquest_err_que_same">Questions are same.</string>
+    <string name="secquest_ans_err">Answer allow english characters and numbers.</string>
+
+    <!--VERIFICATION Screen--><!---->
+    <string name="verify_title">VERIFICATION MEMBER</string>
+    <string name="verify_agreementno_label">Agreement No. *</string>
+    <string name="verify_agreementno_holder">XXXX-X-XXXXXXXXXX-X</string>
+    <string name="verify_dob_label">Date Of Birth *</string>
+    <string name="verify_dob_holder">dd/MM/yyyy</string>
+    <string name="verify_nrc_label">NRC No. *</string>
+    <string name="verify_callnow_notice">If you forgot \"Agreement No.\", please contact to AEON Customer Service.</string>
+    <string name="verify_security_question_title">VERIFY SECURITY QUESTION</string>
+    <string name="verify_callnow_button">CALL NOW</string>
+    <string name="verify_verify_button">VERIFY</string>
+    <!--Err-->
+    <string name="verify_agreementno_err">Please enter Agreement No.</string>
+    <string name="verify_agreementno_err_format">Agreement No. format is incorrect.</string>
+    <string name="verify_err_invalid">Member Information is incorrect.</string>
+    <string name="verify_dob_err">Please enter Date Of Birth.</string>
+    <string name="verify_nrc_err">Please enter NRC No.</string>
+
+    <!--PHOTO UPLOAD Screen--><!---->
+    <string name="photoupload_title">PHOTO UPLOAD</string>
+    <string name="photoupload_announce_label">Your picture will be taken to issue the member card.</string>
+    <string name="photoupload_notice1_label">Member card can use only for your AEON Service with this picture information.</string>
+    <string name="photoupload_notice2_label">This picture </string>
+    <string name="photoupload_notice3_label">1. Save in your mobile phone and don\'t share to others.</string>
+    <string name="photoupload_notice4_label">2. Not change until you reinstall this application again.</string>
+    <string name="photoupload_notice5_label">This picture is to secure and verify your member card when you lost your phone.</string>
+    <string name="photoupload_upload_button">Setup Face Photo</string>
+    <string name="photoupload_update_button">Update Face Photo</string>
+
+    <!--PHOTO CONFIRMATION Screen--><!---->
+    <string name="photoconfirm_title">Confirmation</string>
+    <string name="photoconfirm_confirm_title">Use this photo in member card?</string>
+    <string name="photoconfirm_confirm_confirm">Confirm</string>
+    <string name="photoconfirm_confirm_retry">Retry</string>
+
+    <!--MEMBERSHIP Screen-->
+    <string name="membership_title">MEMBERSHIP</string>
+    <string name="membership_card2_photo_label">This photo can use for securing your Member Card.</string>
+    <string name="membership_tab_card1">Card Info 1</string>
+    <string name="membership_tab_card2">Card Info 2</string>
+    <string name="last_received_day">Last Received Day : </string>
+    <string name="received_day_warning_text">If you have any concerned about last received day, please contact to AEON.</string>
+
+    <!--INFORMATION UPDATE Screen-->
+    <string name="infoupdate_title">Information Update</string>
+    <string name="infoupdate_tab1_title">SECURITY QUESTION UPDATE</string>
+    <string name="infoupdate_tab2_title">CUSTOMER INFO UPDATE</string>
+    <string name="infoupdate_update_button">UPDATE</string>
+
+    <!--FREE CHAT Screen-->
+    <string name="free_chat_introduction">Welcome From AEON service!\n This chat room message will not save in your device and will not show old message.</string>
+
+    <!--Error-->
+    <string name="infoupdate_err_pwd">Please enter password.</string>
+    <string name="infoupdate_err_pwd_invalid">Password is invalid.</string>
+    <string name="infoupdate_err_upd_success">Security Answer Updated.</string>
+
+    <!--APPLY AEON SERVICE -->
+    <string name="da_application_form_button">Loan Apply</string>
+    <string name="da_application_enquiry_button">Loan Application Status</string>
+
+    <string name="da_application_form_title">APPLICATION FORM</string>
+    <string name="da_application_data_title">Application Data</string>
+    <string name="da_occupation_title">Occupation Data</string>
+    <string name="da_emergency_title">Emergency Contact</string>
+    <string name="da_guarantor_title">Guarantor Data</string>
+    <string name="da_loanConfirm_title">Loan Confirmation</string>
+    <string name="da_applicant_name">Name *</string>
+    <string name="da_applicant_dob">Date Of Birth *</string>
+    <string name="da_applicant_nrc">NRC No. *</string>
+    <string name="da_applicant_father">Father\'s Name *</string>
+    <string name="da_applicant_education">Education *</string>
+    <string name="da_applicant_nationality">Nationality *</string>
+    <string name="da_applicant_gender">Gender *</string>
+    <string name="da_applicant_marital">Marital Status *</string>
+    <string name="da_applicant_currAddress">Current Address *</string>
+    <string name="da_applicant_perAddress">Permanent Address</string>
+    <string name="da_applicant_residenceType">Type of Residence *</string>
+    <string name="da_applicant_livingWith">Living With *</string>
+    <string name="da_applicant_yearStay">Year of Stay *</string>
+    <string name="da_applicant_mobileNo">Mobile No. *</string>
+    <string name="da_applicant_residentNo">Resident Tel No. </string>
+    <string name="da_applicant_otherPhone">Other Phone No.</string>
+    <string name="da_applicant_email">Email</string>
+    <string name="da_applicant_next_btn">NEXT</string>
+    <string name="da_applicant_save_btn">SAVE</string>
+
+    <string name="da_applicant_apartment_no">Building No</string>
+    <string name="da_applicant_room_no">Room No</string>
+    <string name="da_applicant_floor_no">Floor No</string>
+    <string name="da_applicant_street">Street *</string>
+    <string name="da_applicant_quarter">Quarter *</string>
+    <string name="da_applicant_permanent_quarter">Quarter</string>
+    <string name="da_applicant_township">Township *</string>
+    <string name="da_applicant_city">City *</string>
+
+    <string name="da_app_data_street">Street</string>
+    <string name="da_app_data_township">Township</string>
+    <string name="da_app_data_city">City</string>
+    <string name="da_app_data_quarter">Quarter</string>
+
+    <string name="da_occupation_companyName">Company Name *</string>
+    <string name="da_occupation_companyAdd">Company Address *</string>
+    <string name="da_occupation_companyTelNo">Company Tel No. *</string>
+    <string name="da_occupation_contactTime">Contact Time </string>
+    <string name="da_occupation_department">Department *</string>
+    <string name="da_occupation_position">Position *</string>
+    <string name="da_occupation_serviceyear">Year of Service *</string>
+    <string name="da_occupation_companyStatus">Company Status *</string>
+    <string name="da_occupation_basicIncome">Monthly Basic Income *</string>
+    <string name="da_occupation_otherIncome">Other Income</string>
+    <string name="da_occupation_totalIncome">Total Income *</string>
+    <string name="da_occupation_salaryDate">Salary Day *</string>
+
+    <string name="da_emergency_name">Name *</string>
+    <string name="da_emergency_relationship">Relationship with Applicant *</string>
+    <string name="da_emergency_currAddress">Current Address *</string>
+    <string name="da_emergency_mobileNo">Mobile No. *</string>
+    <string name="da_emergency_residentTelNo">Resident Tel No.</string>
+    <string name="da_emergency_otherPhoneNo">Other Phone No.</string>
+
+    <string name="da_guarantor_name">Name *</string>
+    <string name="da_guarantor_dob">Date Of Birth *</string>
+    <string name="da_guarantor_nrc">NRC No. *</string>
+    <string name="da_guarantor_nationality">Nationality *</string>
+    <string name="da_guarantor_mobileNo">Mobile No. *</string>
+    <string name="da_guarantor_residentTelNo">Resident Tel No. </string>
+    <string name="da_guarantor_relationship">Relationship with Applicant *</string>
+    <string name="da_guarantor_currAddress">Current Address *</string>
+    <string name="da_guarantor_residenceType">Type of Residence *</string>
+    <string name="da_guarantor_livingWith">Living With *</string>
+    <string name="da_guarantor_gender">Gender *</string>
+    <string name="da_guarantor_marital">Marital Status *</string>
+    <string name="da_guarantor_yearStay">Year of Stay *</string>
+    <string name="da_guarantor_companyName">Company Name *</string>
+    <string name="da_guarantor_companyTelNo">Company Tel No.*</string>
+    <string name="da_guarantor_companyAdd">Company Address</string>
+    <string name="da_guarantor_department">Department *</string>
+    <string name="da_guarantor_position">Position *</string>
+    <string name="da_guarantor_stay_year">Year</string>
+    <string name="da_guarantor_stay_month">Month</string>
+    <string name="da_guarantor_service_year">Year</string>
+    <string name="da_guarantor_service_month">Month</string>
+    <string name="da_guarantor_serviceyear">Year of Service *</string>
+    <string name="da_guarantor_basicIncome">Monthly Basic Income *</string>
+    <string name="da_guarantor_totalIncome">Total Income *</string>
+
+    <string name="da_loanconfirm_loanType">Type *</string>
+    <string name="da_loanconfirm_category">Product Category *</string>
+    <string name="da_loanconfirm_description">Product Description *</string>
+    <string name="da_loanconfirm_financeAmount">Finance Amount *</string>
+    <string name="da_loanconfirm_financeTerm">Term of Finance *</string>
+    <string name="da_loanconfirm_processFee">Processing Fee</string>
+    <string name="da_loanconfirm_compulsory">Compulsory Saving</string>
+    <string name="da_loanconfirm_totalRepayAmount">Total Repayment Amount</string>
+    <string name="da_loanconfirm_firstRepayAmount">First Repayment Amount</string>
+    <string name="da_loanconfirm_monthlyRepayAmount">Monthly Repayment Amount</string>
+    <string name="da_loanconfirm_lastpayment">Last Payment</string>
+    <string name="da_loanconfirm_nrcFront">NRC Front *</string>
+    <string name="da_loanconfirm_nrcBack">NRC Back *</string>
+    <string name="da_loanconfirm_incomeProof">Income Proof Attachment *</string>
+    <string name="da_loanconfirm_residentProof">Resident Proof Attachment *</string>
+    <string name="da_loanconfirm_GuaNrcFront">Guarantor NRC Front *</string>
+    <string name="da_loanconfirm_GuaNrcBack">Guarantor NRC Back *</string>
+    <string name="da_loanconfirm_household">Household or Criminal Clearance *</string>
+    <string name="da_loanconfirm_applicantPhoto">Applicant Photo *</string>
+    <string name="da_loanconfirm_signature">Customer Signature Attachment *</string>
+    <string name="da_loanconfirm_guar_signature">Guarantor Signature Attachment *</string>
+    <string name="da_loanconfirm_aeonTermsCons">AEON TERMS AND CONDITIONS</string>
+    <string name="da_loanconfirm_agree_btn">I AGREE AND SUBMIT</string>
+    <string name="da_loanconfirm_MMK"> MMK</string>
+    <string name="da_loanconfirm_Months"> Months</string>
+    <string name="da_preview_btn">Preview</string>
+
+    <string name="btn_search">Search</string>
+
+    <!--Inquiry-->
+    <string name="da_in_application_no">Application No.</string>
+    <string name="da_in_application_date">Application Date</string>
+    <string name="da_in_member_card_no">Member Card No</string>
+
+    <string name="da_in_app_data_name">Name</string>
+    <string name="da_in_app_data_dob">Date of Birth</string>
+    <string name="da_in_app_data_nrc_no">NRC No.</string>
+    <string name="da_in_app_data_father_name">Father\'s Name</string>
+    <string name="da_in_app_data_education">Education</string>
+    <string name="da_in_app_data_nationality">Nationality</string>
+    <string name="da_in_app_data_gender">Gender</string>
+    <string name="da_in_app_data_marital_status">Marital Status</string>
+    <string name="da_in_app_data_current_address">Current Address</string>
+    <string name="da_in_app_data_permanent_address">Permanent Address</string>
+    <string name="da_in_app_data_type_of_residence">Type of Residence</string>
+    <string name="da_in_app_data_living_with">Living With</string>
+    <string name="da_in_app_data_year_of_stay">Year of Stay</string>
+    <string name="da_in_app_data_mobile_no">Mobile No.</string>
+    <string name="da_in_app_data_resident_tel_no">Resident Tel No.</string>
+    <string name="da_in_app_data_other_phone_no">Other Phone No.</string>
+    <string name="da_in_app_data_email">Email</string>
+
+    <string name="da_in_occu_company_name">Company Name</string>
+    <string name="da_in_occu_company_address">Company Address</string>
+    <string name="da_in_occu_company_tel_no">Company Tel No.</string>
+    <string name="da_in_occu_contact_time">Contact Time</string>
+    <string name="da_in_occu_department">Department</string>
+    <string name="da_in_occu_position">Position</string>
+    <string name="da_in_occu_year_of_service">Year of Service</string>
+    <string name="da_in_occu_company_status">Company Status</string>
+    <string name="da_in_occu_monthly_basic_income">Monthly Basic Income</string>
+    <string name="da_in_occu_other_income">Other Income</string>
+    <string name="da_in_occu_total_income">Total Income</string>
+    <string name="da_in_occu_salary_date">Salary Day</string>
+
+    <string name="da_in_eme_name">Name</string>
+    <string name="da_in_eme_relationship_with_applier">Relationship With Applicant</string>
+    <string name="da_in_eme_current_address">Current Address</string>
+    <string name="da_in_eme_mobile_no">Mobile No.</string>
+    <string name="da_in_eme_resident_tel_no">Resident Tel No.</string>
+    <string name="da_in_eme_other_phone_no">Other Phone No.</string>
+
+    <string name="da_in_gur_name">Name</string>
+    <string name="da_in_gur_dob">Date of Birth</string>
+    <string name="da_in_gur_nrc_no">NRC No.</string>
+    <string name="da_in_gur_nationality">Nationality</string>
+    <string name="da_in_gur_mobile_no">Mobile No.</string>
+    <string name="da_in_gur_resident_tel_no">Resident Tel No.</string>
+    <string name="da_in_gur_relationship_with_applier">Relationship With Applicant</string>
+    <string name="da_in_gur_current_address">Current Address</string>
+    <string name="da_in_gur_type_of_resident">Type of Resident</string>
+    <string name="da_in_gur_living_with">Living With</string>
+    <string name="da_in_gur_gender">Gender</string>
+    <string name="da_in_gur_marital_status">Marital Status</string>
+    <string name="da_in_gur_year_of_stay">Year of Stay</string>
+    <string name="da_in_gur_company_name">Company Name</string>
+    <string name="da_in_gur_company_address">Company Address</string>
+    <string name="da_in_gur_company_tel_no">Company Tel No.</string>
+    <string name="da_in_gur_department">Department</string>
+    <string name="da_in_gur_position">Position</string>
+    <string name="da_in_gur_year_of_service">Year of Service</string>
+    <string name="da_in_gur_monthly_basic_income">Monthly Basic Income</string>
+    <string name="da_in_gur_total_income">Total Income</string>
+
+    <string name="da_in_loanConfirm_status">Status</string>
+    <string name="da_in_loanConfirm_loan_type">Type</string>
+    <string name="da_in_loanConfirm_product_cat">Product Category</string>
+    <string name="da_in_loanConfirm_product_des">Product Description</string>
+    <string name="da_in_loanConfirm_finance_amount">Finance Amount</string>
+    <string name="da_in_loanConfirm_approve_amount">Approved Amount</string>
+    <string name="da_in_loanConfirm_term_of_finance">Term of Finance</string>
+    <string name="da_in_loanConfirm_processing_fee">Processing Fee</string>
+    <string name="da_in_loanConfirm_compulsory_saving">Compulsory Saving</string>
+    <string name="da_in_loanConfirm_total_repayment_amount">Total Repayment Amount</string>
+    <string name="da_in_loanConfirm_first_repayment_amount">First Repayment Amount</string>
+    <string name="da_in_loanConfirm_monthly_repayment_amount">Monthly Repayment Amount</string>
+    <string name="da_in_loanConfirm_last_payment">Last Payment</string>
+
+    <!--Purchase Detail-->
+    <string name="purchase_title">Purchase Detail</string>
+    <string name="purchase_product_category">Product Category</string>
+    <string name="purchase_product_description">Product Description</string>
+    <string name="purchase_location">Purchase Location</string>
+    <string name="purchase_outlet_name">Outlet Name</string>
+    <string name="purchase_loan_type">Loan Type</string>
+    <string name="purchase_product_code">Product Code</string>
+    <string name="purchase_product_name">Product Name</string>
+    <string name="purchase_brand">Brand</string>
+    <string name="purchase_model">Model</string>
+    <string name="purchase_price">Price</string>
+    <string name="purchase_cashdown_amount">Cashdown Amount</string>
+    <string name="purchase_date">Purchase Date</string>
+    <string name="purchase_invoice_no">Invoice No.</string>
+    <string name="purchase_agreement_no">Agreement No.</string>
+    <string name="purchase_finance_amount">Finance Amount</string>
+    <string name="purchase_term_of_finance">Term of Finance</string>
+    <string name="purchase_processing_fees">Processing Fees</string>
+    <string name="purchase_compulsory_saving">Compulsory Saving</string>
+    <string name="purchase_settlement_amount">Settlement Amount</string>
+    <string name="purchase_img_member_card">Member Card</string>
+    <string name="purchase_img_invoice">Invoice</string>
+    <string name="purchase_img_agreement">Agreement Letter</string>
+    <string name="purchase_img_uloan">ULoan</string>
+    <string name="purchase_img_cashReceipt">Cash Receipt</string>
+    <string name="purchase_img_other">Others</string>
+
+    <string name="app_cancel_title">Cancel the application?</string>
+    <string name="app_cancel_message">If you want to cancel the application, please contact to AEON.</string>
+
+    <!--Apply Aeon Service-->
+    <string name="da_err_street">Please enter Street.</string>
+    <string name="da_err_township">Please enter Township.</string>
+    <string name="da_err_city">Please enter City.</string>
+    <string name="da_err_quarter">Please enter Quarter.</string>
+
+    <string name="da_mesg_blank"></string>
+    <string name="da_fatherName_require_err">Please enter Father\'s Name.</string>
+    <string name="da_fatherName_format_err">Father\'s name is invalid.</string>
+    <string name="da_nationality_require_err">Please enter Nationality.</string>
+    <string name="da_gender_require_err">Please select Gender.</string>
+    <string name="da_marital_require_err">Please select Marital Status.</string>
+    <string name="da_currAddress_require_err">Please enter Current Address.</string>
+    <string name="da_perAddress_require_err">Please enter Permanent Address.</string>
+    <string name="da_residentType_require_err">Please enter Other type of residence.</string>
+    <string name="da_living_require_err">Please enter other descriptions.</string>
+    <string name="da_yearStay_require_err">Please choose Year of Stay.</string>
+    <string name="da_yearStayMonth_require_err">Please enter Month.</string>
+    <string name="da_yearStayMonth_exceed_err">Month should be less than 12.</string>
+    <string name="da_residentTelNo_require_err">Please enter Resident Tel No.</string>
+    <string name="da_residentTelNo_format_err">Resident Tel No. is not telephone number.</string>
+    <string name="da_MobileNo_require_err">Please enter Mobile No.</string>
+    <string name="da_MobileNo_format_err">Mobile No. is not valid.</string>
+    <string name="da_otherPhoneNo_require_err">Please enter Other Phone No.</string>
+    <string name="da_otherPhoneNo_format_err">Other Phone No. is not mobile number.</string>
+    <string name="da_email_require_err">Please enter Email.</string>
+    <string name="da_email_format_err">Email format is wrong.</string>
+
+    <string name="da_companyName_require_err">Please enter Company Name.</string>
+    <string name="da_companyAddress_require_err">Please enter Company Address.</string>
+    <string name="da_companyTelNo_require_err">Please enter Company Tel No.</string>
+    <string name="da_companyTelNo_format_err">Company Tel No. is not phone number.</string>
+    <string name="da_contactTime_require_err">Please enter Contact Time.</string>
+    <string name="da_contactTimeAM_require_err">Please enter Contact Time(AM).</string>
+    <string name="da_contactTimePM_require_err">Please enter Contact Time(PM).</string>
+    <string name="da_department_require_err">Please enter Department.</string>
+    <string name="da_position_require_err">Please enter Position.</string>
+    <string name="da_serviceYear_require_err">Please choose Year of Service.</string>
+    <string name="da_companyStatus_require_err">Please enter Company Status.</string>
+    <string name="da_companyStatusOther_require_err">Please enter Other Company Status.</string>
+    <string name="da_basicIncome_require_err">Please enter Monthly Basic Income.</string>
+    <string name="da_totalIncome_require_err">Please enter Total Income.</string>
+    <string name="da_salaryDate_require_err">Please enter Salary Date.</string>
+    <string name="da_relationship_require_err">Please enter Relationship.</string>
+    <string name="da_productDescription_require_err">Please enter Product Description.</string>
+    <string name="da_financeAmt_require_err">Please enter Finance Amount.</string>
+    <string name="da_financeAmt_invalid_err">Finance Amount must be between 50,000 and 2,000,000.</string>
+    <string name="da_financeTerm_require_err">Please enter Term of Finance.</string>
+    <string name="da_nrcfront_require_err">Please choose NRC Front Photo.</string>
+    <string name="da_nrcback_require_err">Please choose NRC Back Photo.</string>
+    <string name="da_incomeProof_require_err">Please choose Income Proof Photo.</string>
+    <string name="da_residentProof_require_err">Please choose Resident Proof Photo.</string>
+    <string name="da_guaNrcfront_require_err">Please choose Guarantor NRC Front Photo.</string>
+    <string name="da_guaNrcback_require_err">Please choose Guarantor NRC Back Photo.</string>
+    <string name="da_household_require_err">Please choose Household or Criminal Clearance Photo.</string>
+    <string name="da_applicantPhoto_require_err">Please choose Applicant\'s Photo.</string>
+    <string name="da_signature_require_err">Please choose Customer Signature Photo.</string>
+    <string name="da_guarantor_sign_require_err">Please choose Guarantor Signature Photo.</string>
+
+    <string name="da_password_wrong_err">Password is wrong.</string>
+    <string name="da_financeAmt_exceed_err">Finance Amount is exceed two times of Basic income.</string>
+    <string name="da_application_exceed_err">You have two payment ongoing application forms.</string>
+    <string name="da_successful_info">Application form is successfully uploaded.</string>
+
+    <!--Events and News-->
+    <string name="event_news_tab1">GOOD\nNEWS</string>
+    <string name="event_news_tab2">AEON\nANNOUNCES</string>
+    <string name="event_news_tab3">GIFTS</string>
+    <string name="event_news_tab4">NEAR ME</string>
+    <string name="no_gift">No Gift Available!</string>
+
+    <string name="coupon_invalid">Gift is invalid now.</string>
+    <string name="invalid_coupon_pwd">Password is wrong.</string>
+    <string name="no_coupon_pwd">Please Enter Password.</string>
+
+    <!--Find Nearby-->
+    <string name="near_by_tab1">Map</string>
+    <string name="near_by_tab2">Outlet List</string>
+
+    <!--CONTACTUS Screen-->
+    <string name="contactus_title">Contact Us</string>
+    <string name="contactus_tab1_title">HOTLINE PHONE</string>
+    <string name="contactus_tab2_title">MESSAGING</string>
+    <string name="contactus_callnow__button">CALL NOW</string>
+
+    <!--FAQ Screen-->
+    <string name="faq_title">FAQ</string>
+    <string name="faq_tab1_title">FAQ</string>
+    <string name="faq_tab2_title">TERMS &amp; CONDITIONS</string>
+    <string name="faq_terms_cond_title">Terms and Conditions of AEON Microfinance (Myanmar) Mobile Application</string>
+
+    <!--Logout-->
+    <string name="logout_title">LOGOUT</string>
+    <string name="logout_in_progress">Logging out ...</string>
+    <string name="logout_success">Logout</string>
+    <string name="logout_unsuccess">Logout Unsuccess.</string>
+    <string name="logout_unavailable">Logout Service Unavailable!</string>
+    <string name="logout_on_failure">Logout Failed!</string>
+    <string name="logout_alert_in_back">Double BACK click is to logout.</string>
+
+    <!--NAV MENUS-->
+    <string name="nav_home">Home</string>
+    <string name="nav_membership">Membership</string>
+    <string name="nav_info_update">Information Update</string>
+    <string name="nav_aeon_service">Apply AEON Services</string>
+    <string name="nav_aeon_service_da"> - Application Form</string>
+    <string name="nav_aeon_service_enquiry"> - Application Inquiry</string>
+    <string name="nav_loan_calculator">Loan\nCalculator</string>
+    <string name="nav_events_news">Events &amp; News</string>
+    <string name="nav_near_outlet">Find Nearby</string>
+    <string name="nav_contact_us">Contact Us</string>
+    <string name="nav_faq">FAQ</string>
+    <string name="nav_shopping">Agent Channel</string>
+    <string name="nav_logout">Logout</string>
+    <string name="nav_mem_title">Membership</string>
+
+    <string name="aeon_service_da_title"> Application Form</string>
+    <string name="aeon_service_enquiry_title"> Application Inquiry</string>
+
+    <string name="membership_member_card">Member Card</string>
+
+    <!--AEON Welcom-->
+    <string name="menu_welcome">WELCOME TO</string>
+
+    <!--ABOUT US-->
+    <string name="aboutus_title">ABOUT US</string>
+    <string name="aboutus_content_title">About AEON Microfinance Myanmar</string>
+    <string name="aboutus_all_now_button">CALL NOW</string>
+
+    <string name="coming_soon">Coming Soon ...</string>
+
+    <!--alert mes-->
+    <string name="reg_sq_conf_ok">OK</string>
+    <string name="reg_sq_conf_call">Call Now</string>
+    <string name="reg_sq_conf_title">Information</string>
+    <string name="reg_sq_conf_info">For Membership process, OTP code will be sent to your
+        registered phone no. (09xxxxxxxxyyy). Click \"OK\" if your phone number
+        has no changes.</string>
+    <string name="reg_sq_conf_info2">If your phone number has any changes, please contact to AEON.</string>
+
+    <!-- Networking Messages-->
+    <string name="msg_networing_error"></string>
+    <string name="msg_unsuccess_response"></string>
+    <string name="msg_server_disable"></string>
+    <string name="msg_server_error"></string>
+
+    <string name="msg_load_nrc">Loading Nrc No ...</string>
+    <string name="msg_load_sec_qa">Loading Security Questions ...</string>
+    <string name="msg_load_about_us"></string>
+    <string name="msg_load_faq"></string>
+
+    <string name="mem_card_amt_unit">Ks.</string>
+    <string name="mem_card_fin_term">months</string>
+
+    <!--BIOMETRIC REGISTRATION-->
+    <string name="reg_bio_title">Biometric Registration</string>
+    <string name="upd_bio_title">Biometric Update</string>
+    <string name="reg_bio_phone_label">Phone No. *</string>
+    <string name="reg_bio_phone_hint">09xxxxxxxxx</string>
+    <string name="reg_bio_pwd_label">Password *</string>
+    <string name="reg_bio_pwd_hint">at least 6 characters</string>
+    <string name="reg_bio_btn">Register</string>
+    <string name="reg_bio_submit_btn">Submit</string>
+    <string name="reg_bio_warning_title">Warning!</string>
+    <string name="reg_bio_warning_content">AEONMember application will use your all of biometric data to login to your account.So,you will not let other people to save biometric data in your device.</string>
+
+    <!--BiOMETRIC dialog message-->
+    <string name="reg_bio_success_msg">Fingerprint Registration Success!</string>
+
+    <!--Check BIOMETRIC-->
+    <string name="biometric_not_support">Your device does not support fingerprint authentication.</string>
+    <string name="biometric_not_enrolled">You are not enrolled fingerprint authentication.</string>
+
+    <!--BIO-REG-ERR-->
+    <string name="reg_bio_phone_err">Please Enter Login Phone No.</string>
+    <string name="reg_bio_pwd_err">Please Enter Password.</string>
+    <string name="reg_bio_phone_format_err">Phone No. format invalid.</string>
+    <string name="reg_bio_pwd_format_err">Password format invalid.</string>
+
+    <!--PATTERN REGISTRATION-->
+    <string name="reg_pattern_title">Pattern Registration</string>
+    <string name="upd_pattern_title">Pattern Update</string>
+    <string name="reg_pattern_phone_label">Phone No. *</string>
+    <string name="reg_pattern_phone_hint">09xxxxxxxxx</string>
+    <string name="reg_pattern_pwd_label">Password *</string>
+    <string name="reg_pattern_pwd_hint">at least 6 characters</string>
+    <string name="reg_pattern_btn">Register</string>
+    <string name="reg_pattern_submit_btn">Submit</string>
+    <string name="reg_pattern_warning_title">Warning!</string>
+    <string name="reg_pattern_warning_content">AEONMember application will use your pattern data to login to your account.So,you will not let other people to save data in your device.</string>
+
+    <!--PATTERN dialog message-->
+    <string name="reg_pattern_success_msg">Pattern Registration Success!</string>
+
+    <!--Check PATTERN-->
+    <string name="pattern_not_support">Your device does not support fingerprint authentication.</string>
+    <string name="pattern_not_enrolled">You are not enrolled fingerprint authentication.</string>
+
+    <!--PATTERN-REG-ERR-->
+    <string name="reg_pattern_phone_err">Please Enter Login Phone No.</string>
+    <string name="reg_pattern_pwd_err">Please Enter Password.</string>
+    <string name="reg_pattern_phone_format_err">Phone No. format invalid.</string>
+    <string name="reg_pattern_pwd_format_err">Password format invalid.</string>
+
+    <!--VIDEO PLAY SCREEN-->
+    <string name="video_play_title">How to use AEON Member App</string>
+    <string name="video_play_warning_title">Note!</string>
+    <string name="video_play_warning">You can learn how to use AEON Member app from this video.</string>
+
+    <!--OTP-->
+    <string name="otp_title">OTP Confirmation</string>
+    <string name="otp_code_label">OTP Code *</string>
+    <string name="otp_code_hint">Enter OTP Code</string>
+    <string name="otp_code_err_msg">OTP Code invalid.</string>
+    <string name="otp_btn_ok">OK</string>
+    <string name="otp_btn_resend">RESEND OTP AGAIN</string>
+
+    <string name="otp_err_blank">Please enter OTP code.</string>
+    <string name="otp_err_length">Length of OTP must be 4.</string>
+    <string name="otp_err_invalid">Please enter OTP code.</string>
+    <string name="otp_err_wrong">Your OTP is wrong.</string>
+    <string name="otp_err_expired">OTP is invalid. Please click resend button.</string>
+
+    <!--Camera View-->
+    <string name="camera_view_label">Please do not have glass on your face during photo shot.</string>
+
+    <!--Info Dialog Box-->
+    <string name="dialog_title_info">Information !</string>
+    <string name="dialog_title_warning">Warning !</string>
+    <string name="dialog_title_success">Success !</string>
+    <string name="dialog_title_error">Error !</string>
+    <string name="dialog_title_biometric_error">Login Failed</string>
+
+    <!--Loading Dialog-->
+    <string name="dialog_loading_nrc">NRC Township Info ...</string>
+    <string name="dialog_loading_faq">Loading FAQ ...</string>
+    <string name="dialog_loading_sq">Loading Security Questions ...</string>
+    <string name="dialog_loading_about_us">Loading About Us ...</string>
+
+    <string name="reg_sec_ans_blank">Please enter all security answers.</string>
+
+    <!--NRC Info-->
+    <string-array name="nrc_type">
+        <item>(N)</item>
+        <item>(P)</item>
+        <item>(E)</item>
+    </string-array>
+
+    <string-array name="div_code">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+
+    <!--Loan Confirmation Term and Condition-->
+    <string name="termandcon_title">ချေးငွေသဘောတူကတိစာချုပ်၏ စည်းကမ်းချက်များ</string>
+    <string name="termandcon_p000">ဤသဘောတူကတိစာချုပ်၏ စည်းကမ်းချက်များအရ AEON ၏ Small Loan ရယူသူကိုနောင်တွင် “Cutstomer” အားအာမခံပေးသူရှိလျှင်နောင်တွင် “Guarantor” ဟုလည်းကောင်း၊ AEON Microfinance (Myanmar) Company Limited ကိုယ်စား Customer များသို့ AEON ၏ Small Loan ထောက်ပံ့ရာတွင် လွယ်ကူမှုရှိစေရန် ကူညီဆောင်ရွက်ပေးသူ AEON’s Agent ကို နောင်တွင် “Agent” ဟုလည်းကောင်း၊ AEON Microfinance (Myanmar) Company Limited ကို နောင်တွင် “Finance Provider” ဟုလည်းကောင်း ရည်ညွှန်းခေါ်ဆိုရေးသားမည်ဖြစ်သည်။ Customer, Guarantor, Agent နှင့် Finance Provider တို့သည် အောက်ဖော်ပြပါစည်းကမ်းချက်များကို အသီးသီးလိုက်နာဆောင်ရွက်ကြရန် သဘောတူညီကြပါသည်။</string>
+    <string name="termandcon_p001">၁။	Finance Provider သည် Customer သို့အသေးစားချေးငွေထောက်ပံ့ပေးရန်သဘောတူသည်။ ထိုအသေးစားချေးငွေအား Customer နှင့် Agent တို့ သဘောတူညီမှုရယူထားသည့်အတွက် Customer မှ Agent သို့ ပေးချေရမည့်ကျသင့်ငွေကြေးအဖြစ် Finance Provider သည် Agent မှတဆင့်ပေးချေရန် သဘောတူသည်။ ထိုသို့ Finance Provider မှ Agent မှတဆင့်ပေးချေသော ငွေကြေးပမာဏကို Customer သည် Finance Provider ထံမှ ချေးငွေရယူမှုအဖြစ်မှတ်ယူရမည်ဖြစ်သည်။</string>
+    <string name="termandcon_p002">၂။	Agent ထံမှအသေးစားချေးငွေ (Small Loan) ကိုလက်ခံရရှိပြီးနောက် Customer သည် သဘောတူစာချုပ်ပါအပြီးသတ်အတည်ပြုချက်စာတိုင်းတွင်လက်မှတ်ရေးထိုးပေးရမည့်အပြင်ငွေရင်း၊အတိုးနှင့် အခြားစရိတ်စကများပါဝင်သောချေးငွေကို Finance Provider သို့အပြည့်အဝပြန်လည်ပေးဆပ်ရန်ကိုလည်းသဘောတူညီသည်။ Customer သည်သဘောတူညီချက်ပါစည်းကမ်းချက်များကိုအပြည့်အဝလိုက်နာဆောင်ရွက်ရန်ကိုလည်းသဘောတူညီသည်။ ချေးငွေပြန်လည်ပေးဆပ်မှုကို Finance Provider သတ်မှတ်သည့် ၎င်း၏ရုံးခွဲ (သို့မဟုတ်) ငွေလွဲှဌာန (သို့မဟုတ်) ဘဏ်တို့တွင် သတ်မှတ်ထားသည့်နည်းလမ်းများအတိုင်း Customer ကပေးဆပ်ရမည်ဖြစ်ပါသည်။ ချေးငွေ ပြန်ပေးဆပ်ရမည့်နည်းလမ်းနှင့် စည်ကမ်းချက်များကို ချေးငွေပြန်ဆပ်သည့်စာရင်းဇယားတွင် Finance Provider ကသတ်မှတ်ပြဌာန်းထားပါသည်။ သဘောတူစာချုပ်တွင် သတ်မှတ်ထားသော ပထမဆုံးအရစ်ကျငွေပြန်ဆပ်ရန်စေ့ရောက်သည့်အချိန်တွင်လစဉ်ပြန်ဆပ်ငွေကို Customer ကအချိန်မီ ပေးဆပ်ရမည်။ ထို့ပြင် နောက်ထပ်ချေးငွေပြန်ဆပ်ရမည့်အချိန်စေ့ရောက်တိုင်းလစဉ်ပြန်ဆပ်ငွေကို ပေးဆပ်ရမည်။ ထိုသို့ လစဉ်ပေးချေမှုကိုချေးငွေပြေကျေသည့်အထိအောက်တွင်ဖော်ပြထားသည့် စည်းကမ်းချက်များနှင့် အစီအစဉ်အတိုင်း ပေးဆပ်ရမည်။
+    \n၂.၁။ ။ ချေးငွေပြန်ဆပ်သည့် စာရင်းဇယားပေါ်အခြေပြု၍ လစဉ်(၂)ရက်နေ့တိုင်းတွင် Finance Provider  သို့ချေးငွေပြန်ဆပ်ခြင်းကို ချေးငွေပြေကျသည့်အထိ လစဉ်ပြုရမည်။
+    \n၂.၂။  ။ မြန်မာကျပ်ငွေဖြင့်သာ ချေးငွေအားလုံးကိုပြန်ဆပ်ရမည်။ မြန်မာနိုင်ငံအသေးစားငွေရေးကြေးရေး ဥပဒေအရ နှစ်စဉ်အမှန်ထိရောက် အတိုးနှုန်း (Annual effective interest rate – Not more than 30%) ၃၀%ထက်မပိုသောအတိုးနှုန်းဖြင့်တွက်ချက်ပါသည်။
+    \n၂.၃။ ။ Finance Provider ၏မူဝါဒအပေါ်အခြေခံ၍ စာချုပ်ချုပ်ဆိုသည့်နေ့တွင် ကျသင့်သည့် စာချုပ်ချုပ်ခ၊ ဝန်ဆောင်စရိတ်နှင့် အခြားကုန်ကျစရိတ်များကို Customer မှ Finance Provider (သို့မဟုတ်) Agent မှတစ်ဆင့်ပေးချေရမည်။ မြန်မာနိုင်ငံအသေးစားငွေရေးကြေးရေး ဥပဒေအရ ချေးငွေပမာဏ၏ ၅% ထက်မပိုသော မဖြစ်မနေစုဆောင်းငွေ (Compulsory Saving) ကို Customer မှ Finance Provider (သို့မဟုတ်) Agent မှ တဆင့်အပ်နှံရပါမည်။ နှစ်စဉ်အတိုးနှုန်း ၁၅% ဖြင့်တွက်ချက်ပေးပါမည်။
+    \n၂.၄။    ။ သဘောတူစာချုပ် ချုပ်ဆိုသည့်နေ့ရက်မှ (၇) ရက်အတွင်း Customer သည် Finance Provider နှင့် Agent တို့၏ကြိုတင်သဘောတူညီချက်ဖြင့် စာချုပ်ကို ပယ်ဖျက်နိုင်သည်။ထိုသို့ပယ်ဖျက်ပါက Finance Provider နှင့် Agent တို့ထံ Customer ကပေးသွင်းထားသည့် စာရွက်စာတမ်းစရိတ်များကို Customer သို့ပြန်လည်ထုတ်ပေးရမည်။
+    \n၂.၅။    ။ ငွေပေးချေမှုကို Finance Provider ၏ရုံးခွဲ(သို့) Finance Provider ၏ဘဏ်စာရင်းသို့ပေးသွင်းနိုင်သည်။ ထိုပေးချေမှုနှင့် စပ်လျဉ်းသည့်စာရိတ်စကများကို Customer က ကျခံရမည်။
+    \n၂.၆။     ။ Finance Provider ၏ရုံးခွဲသို့ပေးဆပ်မှုအတွက် စရိတ်ကျခံရန်မလိုပါ။</string>
+    <string name="termandcon_p003">၃။	ချေးငွေပြန်ဆပ်ရက်ကျော်လွန်ခြင်းကြောင့် ဆောင်ရွက်ရမည့်ကိစ္စများနှင့် တရားစွဲဆိုရ၍ ကုန်ကျစရိတ်များ(သို့မဟုတ်) အထက်ပါကဲ့သို့သော အခြေအနေဖြစ်ရပ်များကြောင့် Finance Provider ၏ကုန်ကျစရိတ် အဝဝအတွက် Customer တွင်တာဝန်ရှိစေရမည်။
+        \n၃.၁။     ။ ငွေပေးဆပ်ရန် စေ့ရောက်သည့်နေ့ရက်အတွင်း Customer သည် ချေးငွေပေးဆပ်ရန်ပျက်ကွက်လျှင် Finance Provider ၏ မူဝါဒနှင့်အညီ နောက်ကျကြေးကို ပေးဆပ်ရန် Customer ကသဘောတူညီသည်။ သို့ရာတွင် Customer အနေဖြင့် နောက်ကျပေးသွင်းနိုင်သည်ဟူသော အဓိပ္ပာယ် မသက်ရောက်စေရ။
+        \n၃.၂။     ။ Customer မှ ချေးငွေအချိန်မီပေးဆပ်ရန်ပျက်ကွက်မှုရှိလာလျှင် Finance Provider ၏မူဝါဒနှင့်အညီ အိမ်တိုင်ရာရောက်ကွင်းဆင်းကောက်ခံမှုအတွက် ကုန်ကျစရိတ် အဝဝကို Customer ကပေးချေရန်သဘောတူညီသည်။
+        \n၃.၃။     ။ ချက်လက်မှတ်ဖြင့် ငွေပေးချေရာ ယင်းချက်လက်မှတ်သည်အကြောင်းကြောင်းကြောင့် တရားဝင်ခိုင်မြဲမှုမရှိသည့် အခြေအနေတွင် အဆိုပါချက်လက်မှတ်နှင့် ပတ်သက်သည့် စရိတ်စကများကို Customer က Finance Provider သို့ ပေးချေရမည်။</string>
+    <string name="termandcon_p004">၄။	Customer သည်စာချုပ်ကို သက်တမ်းမကုန်ဆုံးမီ ရပ်စဲလိုပါက Finance Provider က သတ်မှတ်ထားသည့်အတိုင်း ကြိုတင်ငွေပေးချေမှုပြုလုပ်၍ ရပ်စဲနိုင်သည်။</string>
+    <string name="termandcon_p005">၅။	Customer သည်ဤသဘောတူစာချုပ်တွင် အရစ်ကျငွေအသီးသီးပြန်ဆပ်ရန်အတွက် အသုံးပြုရန်ဖော်ပြထားသည့် ဘဏ်စာရင်း (သို့မဟုတ်) လုပ်ငန်းဌာန (သို့မဟုတ်)နေရပ်လိပ်စာ စသည့်တို့ကိုပြောင်းလဲလိုလျှင် ထိုသို့ပြောင်းလဲသည့်နေ့ရက်မှ (၇) ရက်ထက်နောက်မကျဘဲ Finance Provider ထံကြိုတင်အကြောင်းကြားစာကို ပေးပို့ရမည်။</string>
+    <string name="termandcon_p006">၆။	Finance Provider သည် အောက်ပါကိစ္စရပ်များအတွက် သဘောတူစာချုပ်ကို စာဖြင့် ရေးသားအကြောင်းကြား၍ ရပ်စဲခွင့်ရှိသည်။
+    \n၆.၁။     ။ Customer သည်ချေးငွေပြန်ဆပ်မှုကို နှစ်လဆက်တိုက်ပေးဆပ်ရန် ပျက်ကွက်သည့်အခါ (သို့မဟုတ်)
+    \n၆.၂။     ။ Customer သည် လူမွဲစာရင်းဝင်ဖြစ်သွားသောအခါ (သို့မဟုတ်) တရားရုံးတစ်ရုံးမှ ၎င်းအားလူမွဲဖြစ်ကြောင်းစီရင် ဆုံးဖြစ်သောအခါ (သို့မဟုတ်) ၎င်း၏ပစ္စည်းဥစ္စာများကို သိမ်းဆည်းခံရသောအခါ (သို့မဟုတ်)
+    \n၆.၃။    ။ ဤသဘောတူစာချုပ်နှင့် ပတ်သက်၍သော်လည်းကောင်း၊ ဤသဘောတူမှုအတွက် အဓိကကျသောအချက်အလက်နှင့် ပတ်သတ်၍သော်လည်းကောင်း၊ Customer သည်မမှန်မကန် (သို့မဟုတ်) ဖြစ်ရပ်မှန်ကိုဖုံးကွယ်၍ဖော်ပြချုပ်ဆိုသည့်အခါ (သို့မဟုတ်)
+    \n၆.၄။    ။ ဤသဘောသူစာချုပ်ပါစည်းကမ်းချက်များကို Customer သည်လိုက်နာဆောင်ရွက်ခြင်းမပြုသည့်အခါ</string>
+    <string name="termandcon_p007">၇။	Finance Provider သည်ဤသဘောတူစာချုပ်တွင်ပါရှိသော ပုဂ္ဂိုလ်ရေးအချက်အလက်များအပါအဝင် Customer ၏သတင်းအချက်အလက်များကိုကြွေးဝယ်ကတ်ထုတ်ပေးခြင်း၊အသက်အာမခံ၊ အာမခံကိစ္စရပ်များ၊ချေးငွေပေးဆပ်မှုကိစ္စရပ်များ(သို့မဟုတ်)နောင်တွင်ဆောင်ရွက်မည့် Finance Provider၊ ၎င်းနှင့်ဆက်စပ်မှုရှိသောလုပ်ငန်းများ၏ ဝန်ဆောင်မှုကိစ္စရပ်များအတွက်သိမ်းဆည်းခြင်း၊ဖလှယ်ခြင်း၊အသုံးပြုခြင်းပြုနိုင်သည်။ Customer သည်မိမိ၏ သတင်းအချက်အလက်များအတွက် ထိုသို့သဘောတူမှုကို မည့်သည့်ကိစ္စတွင်မှ ပယ်ဖျက်ခြင်းမရှိစေရ။ ထို့ပြင် Customer သည် Finance Provider ထံမှ ဖြစ်စေ၊အခြားပုဂ္ဂိုလ်တစ်ဦးဦးထံမှဖြစ်စေ၊ သတင်းအချက်အလက်များ တရားဝင်ရယူထားသော အခြားပုဂ္ဂိုလ်များထံမှ ဖြစ်စေ နစ်နာကြေး၊ လျော်ကြေးတစ်စုံတစ်ရာ တောင်းဆိုခြင်းမရှိစေရ။ ထို့ပြင် Customer ၏သတင်းအချက်တစ်စုံတစ်ရာပြောင်းလဲမှုရှိပါက Customer သည် Finance Provider ထံချက်ချင်းအကြောင်းကြားရမည်။</string>
+    <string name="termandcon_p008">၈။	ဤသဘောတူညီချက်တွင် ဖော်ပြပါရှိသောအတိုးနှုန်း၊ဝန်ဆောင်ခ၊ကုန်ကျစရိတ်များအပါအဝင် ဤစာချုပ်ပါပဋိညာဉ် စည်းကမ်းချက်များကို Finance Provider ကစိစစ်ပြောင်းလဲခွင့်ရှိကြောင်း Customer ကသဘောတူညီသည်။ Finance Provider သည် အသိပေးအကြောင်းကြားခြင်းမရှိဘဲ ချေးငွေနှင့် ပတ်သတ်သောစာရွက်စာတမ်းများကို Customer သို့ပြန်လည်ပေးဆပ်ခြင်းမပြုဘဲ အများဆုံးချေးယူရှိသော ချေးငွေပမဏကန့်သတ်ချက်ကိုပြုပြင်ပြောင်းလဲနိုင်ရန် (သို့မဟုတ်) ချေးငွေထုတ်ချေးပေးခြင်းအား ငြင်းဆန်နိုင်ရန်အခွင့်အာဏာရှိသည်။</string>
+    <string name="termandcon_p009">Finance Provider တွင်ကြွေးမြီးများကောက်ခံရန် ကိုယ်စားလှယ်လွှဲနိုင်သည့် အခွင့်အာဏာရှိစေရမည်။</string>
+    <string name="termandcon_p010">၁၀။	Customer သည်ချေးငွေပြန်ဆပ်ရန်ပျက်ကွက်ပါက ကြွေးမြီးကို Customer ထံမှဦးစွာတောင်းခံခြင်းပြုရန်မလိုဘဲ Customer ပေးရန်ကျန်ရှိသည့်ငွေရင်း၊အတိုး၊စရိတ်စကနှင့်အခြားအခကြေးငွေများ အပါအဝင် အကြွေးကျန်အားလုံးကို Guarantor က Finance Provider သို့ပေးဆပ်ရန်သဘောတူညီသည်။</string>
+    <string name="termandcon_p011">၁၁။	Customer သည်သဘောတူစာချုပ်ပါစည်းကမ်းချက်များကို ဖောက်ဖျက်သည်ဟုယုံကြည်နိုင်လောက်သောအခါတွင် Finance Provider သည်ဤသဘောတူညီစာချုပ်ပါအခွင့်အာဏာများအတိုင်းရေးယူခြင်း (သို့မဟုတ်) စည်းကမ်းချက်များဖြစ်စေ၊ ချွင်းချက်မဲ့ဖြင့်ဖြစ်စေ သက်ညှာပေးခြင်း၊လျှော့ပေါ့ပေးခြင်းကိုပြုနိုင်သည်။ Finance Provider သည် Customer ကိုအရေးမယူဘဲ သက်ညှာပေးခြင်းကိုလည်း ထိုမှနှောင်တွင် အချိန်မရွေး ပြန်လည်ပယ်ဖျက်ကာ အရေးယူနိုင်သည်။</string>
+    <string name="termandcon_p012">၁၂။	ဤသဘောတူညီချက်ပါ ပြဋ္ဌန်းချက်အားလုံးသည် သီးခြားစီသက်ရောက်မှုရှိသည်။ ဤသဘောတူညီချက်ပါ ပြဋ္ဌန်းချက်အချို့သည် ဥပဒေနှင့်မညီခြင်း၊ ခိုင်မာမှုမရှိခြင်း၊ ဥပဒေနှင့်အညီဆောင်ရွက်ရန် အာနိသင်မရှိခြင်းတို့ဖြစ်ပေါ်လျှင် ယင်းပြဋ္ဌန်းချက်သာလျှင် ပျက်ပြယ်မည်ဖြစ်ပြီး ကျန်ပြဋ္ဌန်းချက်များသည် ဥပဒေအရခိုင်မာမှု၊ တည်မြဲမှု၊ အကျိုးသက်ရောက်မှုရှိကြောင်း သဘောတူညီကြပါသည်။</string>
+    <string name="termandcon_p013">၁၃။	ဤသဘောတူစာချုပ်သည် မြန်မာနိုင်ငံရှိ ဥပဒေများနှင့်အညီ သက်ရောက်မှုရှိသည်။ ဤသဘောတူညီချက်ပါ ကိစ္စတစ်ရပ်ရပ်နှင့် စည်းကမ်းချက်တစ်ရပ်ရပ်နှင့် စပ်လျဉ်း၍ ပေါ်ပေါက်ဖြစ်ပွားသော အငြင်းပွားမှုများကို စာချုပ်တွင် ပါဝင်လက်မှတ်ရေးထိုးထား သူတို့က အခင်အမင်မပျက် မိတ်ဆွေကောင်းပီသစွာဖြင့် ညှိနှိုင်းဖြေရှင်းကြရန် သဘောတူညီကြသည်။ ယင်းအငြင်းပွားမှုကို တစ်လအတွင်းဖြေရှင်း၍ ပြေလည်မှုမရှိပါက တစ်ဦးဦးက မြန်မာနိုင်ငံရှိ သက်ဆိုင်ရာတရားရုံးများတွင် တင်ပြတရားစွဲဆိုနိုင်သည်။</string>
+    <string name="termandcon_p014">၁၄။	ဤသဘောတူညီချက်သည်စာချုပ်ပါသက်ဆိုင်ရာပုဂ္ဂိုလ်များသာမက၎င်းတို့၏အမွေခံများ၊ ကိုယ်စားလှယ်များ၊ လွှဲအပ်ထားသူများနှင့်ဆက်ခံသူအားလုံးတို့အပေါ်တွင်လည်း စည်းနှောင်အကျိုးသက်ရောက်မှုရှိစေရမည်။ Finance Provider သည် Customer ထံသို့ကြိုတင်အကြောင်းကြားစာရေးသားပေးပို့ကာ ဤသဘောတူချက်အရ Finance Provider ၏လုပ်ပိုင်ခွင့်များ၊ အကျိုးခံစားခွင့်များ၊ လိုက်နာရမည့်စည်းကမ်းချက်များကို တစ်စိတ်တစ်ပိုင်းသော်လည်းကောင်း၊ အားလုံးသော်လည်းကောင်း ကိုယ်စားလှယ်လွှဲအပ်ခြင်း၊ လွှဲပြောင်းပေးအပ်ခြင်းမရှိစေရ။</string>
+    <string name="termandcon_p015">၁၅။	ချေးငွေပေးဆပ်မှုဇယားနှင့် Finance Provider ၏မူဝါဒတို့သည် ဤသဘောတူချက်၏ အစိတ်အပိုင်းများအဖြစ် ပါဝင်ရမည်။</string>
+
+    <string name="tac_001">1. General Information of the Service
+AEON Microfinance (Myanmar) Mobile Application for the customer of AEON Microfinance (Myanmar) Company Limited ("AEON") to verify account information as well as execute transactions via application on mobile phone and tablet (“Application”) or website of AEON (“Website”).</string>
+    <string name="tac_002">2. Agreement on Service Usage
+In using the online service, the customer hereby acknowledges, agrees and accepts as follows:
+\n2.1 The customer agrees to abide by and be liable to AEON under the terms and conditions prescribed herein, on Application and Website including the terms and conditions to be further prescribed or amended by AEON as it deems appropriate, which shall form part of these terms and conditions.
+\n2.2 The customer agrees that any transaction made via the online service after logging in using Username, Password specifically granted to the customer, including customer verification of identifying identity and confirming transaction of the customer shall be deemed as correctly and validly made by the customer. Upon confirming the transaction, the transaction shall be legally binding on the customer and can be cited as evidence without any other evidence bearing the customer’s signature required. In this regard, the customer waives the right to object or challenge AEON against any such transaction executed via the online service and the accuracy thereof.
+\n2.3 AEON reserves the right to provide all or some features of the mobile application during the service hours announced on Website or Application. The mobile application’s features available on Website and Application may be different. AEON may consider to configure, remove or add any features at any time as it deems appropriate.
+\n2.4 The customer agrees and acknowledges that AEON may not be able to provide the online service in the event of breakdown, malfunction, improvement or reparation of the computer system, component, telecommunication system and relevant network system or any force majeure events.
+\n2.5 AEON reserves the right to suspend or stop the online service temporarily or permanently at any time with notice to the customer as necessary or on reasonable basis.</string>
+    <string name="tac_003">3. Conditions of Use
+For security in using the Online Service, the customer agrees:
+\n3.1 To ensure that the computer terminal, equipment and other electronic communication devices, connection to internet network and/or web browser used to access the Online Service have adequate capacity and have been installed with protection against computer viruses, malwares and any other deceptive programs designed to destroy or restrict accession to data and other threats, as well as meet the standard specifications set by AEON.
+\n3.2 To be careful in accessing to and filling out information concerning member card, personal information and other information of the customer.
+\n3.3 To protect and keep confidential personal information, the Username, Password as assigned to the customer by AEON and those changed afterwards.
+\n3.4 Not to leave the computer terminal, equipment and /or other electronic communication devices which are logged in unattended and to log off the online service every time after use.
+\n3.5 In the event that the customer accesses to the mobile application using shared computers, shared electronic communication devices and/or public internet network the customer agrees to be responsible for all damages incurred by the customer, AEON and any other person should there be any unauthorized access to or any transaction being executed through the mobile application, or personal information of the customer or other AEON’s customers being revealed. In this regard, AEON reserves the right to suspend the mobile application, whether in whole or in part, for so long as and in the event that the customer accesses to the mobile application in such manner or through such or other connection AEON deems unsecured.
+\n3.6 If the Password of the customer is lost, stolen or if the customer suspects that other person may know or be able to guess them, the customer shall promptly change the Password by the method as prescribed by AEON. It shall be sole responsibility of the customer to do so. Failure to do so will result in liability to the customer for all transactions and all losses and damages occurred.
+\n3.7 In the event of error while using or transacting via the Online Service, the customer shall inform AEON in writing within 7 days from the date of such error, otherwise it shall be deemed that the transaction executed is correct and valid.
+In reporting error, the customer shall prepare and send to AEON a letter informing at least the following details:
+\n3.7.1 Date and time of the transaction;
+\n3.7.2 Location of the computer terminal, equipment or the electronic communication devices used and type of internet network connection;
+\n3.7.3 16-digit number of member card, name and contactable telephone number of the customer;
+\n3.7.4 Type of transaction; and
+\n3.7.5 Description of the error and reference code (if any)</string>
+    <string name="tac_004">4. Protection of Customer Security
+        AEON reserves the right to suspend the Online Service if repeatedly entered wrong Username, Password over the number of times allowed by AEON. In such case, transaction on process shall be immediately cancelled and the customer shall not be able to claim for any damages which may arise therefrom. To resume the Online Service, the customer can Call Center of AEON at [phone_no] during working days and hours.</string>
+    <string name="tac_005">5. No Warranty
+The information and materials contained in Application and Website, including text, graphics, links or other items are provided on "as is" and "as available" basis. AEON does not warrant the accuracy, adequacy or completeness of the information and materials, and expressly disclaims liability for errors or omissions in providing information and materials. No warranty of any kind, implied, expressed or statutory including but not limited to the warranties of non-infringement of third party rights and title, merchantability, fitness for a particular purpose and freedom from computer virus, is given in conjunction therewith.</string>
+    <string name="tac_006">6. Exemption of Liability
+In no event shall AEON be liable for any losses, damages including without limitation direct, indirect, special, incidental or consequential damages or difficulties incurred by the customer from using or transacting via the Online Service including in the following cases:
+\n6.1 The customer discloses his/her Username, Password to other person so as to allow such other person to login and execute transactions on his/her behalf, including to use the Online Service for illegal purpose.
+\n6.2 Any cause attributable to deliberate act or negligence on the part of the customer.
+\n6.3 Non-compliance by the customer with the terms and conditions of the Online Service including manuals and guidelines for using the Online Service issued by AEON, or any applicable laws and regulations.
+\n6.4 Any error occurred from change or cancellation of the instruction and/or information transmitted to the Online Service or failure of performance, error, omission, interruption, defect, delay in operation or transmission of the system and/or web browser and/or the internet service provider or telephone network provider of the customer or AEON.
+\n6.5 Cyber intrusion and/or attack by any person or group of person on any hardware, software and/or components relating to the Online Service, including release of program that may be harmful to system such as Virus, Trojan Horses and Worms which may affect the operation of the Online Service.
+\n6.6 Damage and/or inability to use the system, program and/or equipment for using the Online Service whether it be of AEON or other person, including but not limited to damage and/or error of the system, program, computer server system, electricity supply system, telecommunication devices, electricity devices, telephone line and/or telecommunication network system and/or any part of electronic system occurs.
+\n6.7 Any loss of data in the course of transmission whether via the Online Service system or other system of AEON or other system of the customer or internet service provider.
+\n6.8 Any damage caused by fire, earthquake, flood, accidents, riots, protests, civil disturbances, war, closure of business or strikes, disruption of electricity or services provided by the internet service provider, or other force majeure beyond the control of AEON and AEON is prevented from providing the Online Service.
+In those cases under clauses 6.1 – 6.3, the customer agrees to be responsible for any and all damages suffered by AEON and any other persons.</string>
+    <string name="tac_007">7. Service Fees
+The customer agrees to pay service fees, charges and other expenses for the Online Service usage at the rates prescribed by AEON (at present, the Online Service is provided free-of-charge).</string>
+    <string name="tac_008">8. Information
+\n8.1 The customer agrees that AEON may contact, inquire, maintain, collect, disclose and use any or all information concerning the customer as necessary and appropriate or as AEON deems beneficial to the customer in receiving information on other products and/or services.
+\n8.2 In case that AEON is required to disclose financial information or transaction or other information related to  the Online Service usage of the customer to any agencies pursuant to the provisions of laws, orders, or rules and regulations issued by any competent or regulating authorities  or disclosure is made for the benefit of the Online Service provision or for such other purpose as AEON deems appropriate, the customer agrees and consents AEON to disclose and/or report information and transaction of the customer in all respects, and agrees that such consent shall continue to be valid regardless of the customer’s terminating subscription to the Online Service, the Online Service account, or loan account or credit card account has been closed.</string>
+    <string name="tac_009">9. Communication
+AEON may contact the customer via mobile phone, address or email given or last informed to AEON.
+The customer agrees to allow AEON to contact via mobile phone, email, Website, Application, SMS and postage including for the purpose of advertising and marketing products and services of AEON and other persons/entities, which shall be deemed that the customer is duly notified by AEON.</string>
+    <string name="tac_010">10. Service Cancellation
+\n10.1 AEON has the right to cancel the Online Service without notifying the customer in the following events:
+\n(1) the customer has not logged in the Online Service for more than 1 year from the subscription date or from the date last logged in.
+\n(2) the customer breaches any terms and conditions of the Online Service including failure to pay service fee, charges or expenses in relation to any services of AEON for whatsoever reasons.
+\n10.2 AEON has the right to cancel any features of the Online Service without prior notice.
+\n10.3 The customer may cancel the Online Service by notifying AEON in the prescribed manner. Upon cancellation, any transaction in process shall be cancelled immediately. </string>
+    <string name="tac_011">11. Other Conditions
+\n11.1 If any terms and conditions contained herein is invalid, contrary to law or becomes unenforceable, the invalidity, contradiction and unenforceability of such part shall not affect or prejudice the validity and enforceability of the remaining terms and conditions.
+\n11.2 In the course of the Online Service usage, if there is any agreement on supplementary service of any kind between AEON and the customer, the customer agrees that the supplementary service shall be part of the Online Service. These terms and conditions shall be applied to the Online Service and terms and conditions of the supplementary service shall be regarded as additional terms and conditions and form part of these terms and conditions. In case of conflict, these terms and conditions shall prevail with respect to the Online Service and the terms and conditions for supplementary service shall prevail with respect to the supplementary service.
+\n11.3 The customer may print out the transaction confirmation page for his/her own record.
+\n11.4 In case these terms and conditions differ from the terms and conditions of other services provided by AEON, these terms and conditions shall be prevailed for the Online Service only.
+\n11.5 No delay, omission or waiver of exercising any rights or remedies as conferred by laws and these terms and conditions by AEON shall impair such rights or remedies or constitute a waiver thereof, nor shall any single or partial delay, omission or waiver of exercising of such rights or remedies preclude any other or further exercise thereof or the exercise of any other rights or remedies or be regarded as waiver or consent by AEON for the customer to proceed with any actions.
+\n11.6 The customer and AEON agree that these terms and conditions shall be subject to and be interpreted in accordance with and governed by the laws of Myanmar and that Myanmar court shall have exclusive jurisdiction over disputes arisen from the Online Service and its supplementary services.</string>
+
+    <string name="service_unavailable">Service is temporarily unavailable.</string>
+    <string name="network_connection_err">Network Connection does not exist. Please check internet connection.</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!--messaging-->
+    <string name="btn_send">SEND</string>
+    <string name="hint_msg">Enter Message</string>
+
+    <!--Account Unlock Check.-->
+    <string name="acc_unlock_check_title">FORGOT PASSWORD</string>
+    <string name="btn_next">NEXT</string>
+    <string name="forgot_pwd_confirm_info">PASSWORD CHANGE CONFIRMATION</string>
+    <string name="pwd_update_success">Your password is successfully changed. Please login again.</string>
+
+    <!--Force Reset Password-->
+    <string name="force_resetpass_title">Force Reset Password</string>
+    <string name="verified_ph_no_alert">Upgrade to Member process is success.\nPlease login with Phone No. [phoneNo] which registered at AEON.\nPlease update your biometric login id with this Phone No.</string>
+    <string name="verified_ph_no_alert_biometric_not_ok">Upgrade to Member process is success.\nPlease login with Phone No. [phoneNo] which registered at AEON.</string>
+    <string name="sec_ans_update">SECURITY QUESTION UPDATE</string>
+    <string name="bio_dialog_reg">Would you register Fingerprint Login?</string>
+    <string name="read_more">read more</string>
+    <string name="session_time_out_msg">Your session is expired.</string>
+    <string name="new_version_msg">New version is available on Play Store. \n\nUpdated features are \n(1) News \n(2) Announcement \n(3) Messenger \n\nEnjoy new features!</string>
+
+    <!--check account lock-->
+    <string name="no_acc_info">Your information does not exist.</string>
+
+    <!--upd secuiry ans msg-->
+    <string name="count_upd_msg">Length of answer must be at most [count].</string>
+    <string name="title_activity_main_menu_drawer">MainMenuActivityDrawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_profile_photo_update">ProfilePhotoUpdateActivity</string>
+    <string name="title_activity_profile_photo_update_verify">ProfilePhotoUpdateVerifyActivity</string>
+    <string name="msg_account_locked">Your account has locked!</string>
+
+    <string name="img_destroy_snackbar_info">The image have been destroyed !</string>
+    <string name="lbl_loan_term">Loan Term</string>
+    <string name="lbl_motor_cycle_loan">Motor Cycle</string>
+    <string name="btn_calculate">CALCULATE</string>
+    <string name="lbl_processing_fee">Processing Fee</string>
+    <string name="lbl_total_repayment_amount">Total Repayment Amount</string>
+    <string name="lbl_first_repayment_amount">First Repayment Amount</string>
+    <string name="lbl_monthly_repayment_amount">Monthly Repayment Amount</string>
+    <string name="lbl_last_payment">Last Payment</string>
+    <string name="lbl_compulsory_saving">Compulsory Saving</string>
+    <string name="lbl_total_compulsory_saving">Total Compulsory Saving\nWithdrawal Amount</string>
+    <string name="hint_loan_amount">Loan Amount</string>
+
+    <!--Loan Calculator-->
+    <string name="warning_msg_high_amount">Maximum Loan Amount is 2,000,000 Kyats!</string>
+    <string name="warning_msg_low_amount">Minimum Loan Amount is 50,000 Kyats!</string>
+    <string name="warning_mloan_msg_low_amount">Minimum Motor Cycle Loan Amount is 350,000 Kyats!</string>
+    <string name="error_invlid_loan_term">Invalid Loan Term.</string>
+    <string name="error_require_loan_term">Please select Loan Term.</string>
+    <string name="error_require_loan_amount">Please Enter your loan amount!</string>
+
+    <string-array name="low_loan_term">
+        <item>6</item>
+        <item>9</item>
+        <item>12</item>
+        <item>18</item>
+    </string-array>
+
+    <string-array name="high_loan_term">
+        <item>9</item>
+        <item>12</item>
+        <item>18</item>
+    </string-array>
+
+    <string-array name="m_loan_term">
+        <item>12</item>
+        <item>18</item>
+        <item>24</item>
+    </string-array>
+
+    <string-array name="micro_loan_term">
+        <item>6</item>
+    </string-array>
+
+    <string name="progress_loading">Loading ...</string>
+    <string name="message_call_not_available">Call not available!</string>
+    <string name="message_check_lock_failed">Check Account Lock Failed.</string>
+    <string name="ph_nrc_input_required">Input Phone No. or NRC No. required.</string>
+    <string name="progress_account_check">Checking Your Account...</string>
+    <string name="message_password_failed">Password is reset failed.</string>
+    <string name="message_get_coupon_info_failed">Get Coupon Info Failed.</string>
+    <string name="message_coupon_info_unavailable">Coupon Info Unavailable.</string>
+    <string name="message_no_fingerprint_config">No fingerprint configured.</string>
+    <string name="message_sec_scrren_unavailable">Secure lock screen not enabled.</string>
+    <string name="message_logout_failed">Logout info update failed.</string>
+    <string name="logout_info_updated">Logout info updated.</string>
+    <string name="message_back_click">Please click BACK again to exit</string>
+    <string name="message_permission_deniled">Permissions not granted by the user.</string>
+    <string name="progress_checking_member">Checking Member ...</string>
+    <string name="progress_otp_request">OTP Requesting ...</string>
+    <string name="init_timer_text">00:00</string>
+    <string name="opt_request_failed">OTP Code Request Failed.</string>
+    <string name="message_back_disable">Back is disable!</string>
+    <string name="progress_registering">Registering ...</string>
+    <string name="message_pwd_reset_failed">Password is reset failed.</string>
+    <string name="progress_load_news">Loading in news ...</string>
+    <string name="progress_loading_message">Loading messages...</string>
+    <string name="progress_update_sq_ans">Please wait ...</string>
+    <string name="message_sq_update_un_success">Update Unsuccessful.</string>
+    <string name="progress_loading_outlet">Loading Outlets ...</string>
+    <string name="message_gmap_not_support">GoogleMap does not support.</string>
+    <string name="message_cur_post">Current Position</string>
+    <string name="progress_loading_nrc">Loading Nrc No. ...</string>
+    <string name="progress_check_to_verify">Checking to verify ...</string>
+    <string name="message_verify_failed">Verify Failed!</string>
+    <string name="progress_verify">Verifying...</string>
+    <string name="registration_done">Registration Done!</string>
+    <string name="progress_loading_announcement">Loading in announcements ...</string>
+    <string name="msg_g_play_not_support">GooglePlay does not support.</string>
+    <string name="ver_upd_status_unavailable">Version Update Status Unavailable.</string>
+    <string name="ver_upd_status_failed">Version Update Status Check Failed.</string>
+    <string name="progress_ver_checking">Version Checking...</string>
+    <string name="msg_popup_new_ver">New Version!</string>
+    <string name="msg_password_check_failed">Password Check Failed.</string>
+    <string name="title_conf_pwd">Confirm Your Password</string>
+    <string name="progress_confirming">Confirming...</string>
+
+    <!-- Shopping Messages -->
+    <string name="at_add_text_err">Please enter Addition Text.</string>
+    <string name="at_location_err">Please enter Current Location.</string>
+
+    <!-- Sent -->
+    <string name="buy_send_01_format">Hello!\nI want to buy <b>%1$s %2$s</b>.</string>
+    <string name="buy_send_02_format">My Location : <b>%1$s</b>.</string>
+    <string name="buy_send_03_format"><b>%1$s</b></string>
+
+    <!-- Received -->
+    <string name="buy_receive_01_format">Dear Customer,\nWe are <b>%1$s</b>. We have <b>%2$s %3$s</b> as your wish.</string>
+    <string name="buy_receive_02_format">Price is <b>%1$s</b> MMK.</string>
+    <string name="buy_receive_04_format">If you interest our information, please contact us : <b>%1$s</b>.</string>
+    <string name="buy_receive_05_format"><b><u>%1$s</u></b></string>
+
+    <!--Dialog string-->
+    <string name="agent_channel_category">Category :</string>
+    <string name="agent_channel_brand">Brand :</string>
+    <string name="agent_channel_addText">Addtional Text :</string>
+    <string name="agent_channel_location">Current Location :</string>
+    <string name="agent_channel_btn">SEND TO AGENT</string>
+
+    <!-- Init Message -->
+    <string name="init_buy_message">Welcome to AEON Purchase Box.</string>
+    <string name="btn_purchase_detail">Purchase Detail</string>
+    <string name="btn_attachment_edit">Attachment Edit</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="lbl_application_no">Application No</string>
+    <string name="lbl_agreement_no">Agreement No</string>
+    <string name="lbl_apply_date">Apply Date \t\t\t</string>
+    <string name="lbl_loan_amount">Loan Amount</string>
+    <string name="lbl_approve_amount">Approved Amount</string>
+    <string name="lbl_approve_term">Approved Term</string>
+    <string name="btn_approved">APPROVED</string>
+    <string name="lbl_detail">DETAIL</string>
+    <string name="login_alert_dialog_message">Another Login Occurred!</string>
+    <string name="login_alert_dialog_title">Alert!</string>
+
+    <string-array name="applicant_resident_type">
+        <item>Owner</item>
+        <item>Parental</item>
+        <item>Rental</item>
+        <item>Relative</item>
+        <item>Hostel/Other</item>
+        <!--<item>Other</item>-->
+    </string-array>
+
+    <string-array name="applicant_living_with">
+        <item>Parent</item>
+        <item>Spouse</item>
+        <item>Relative</item>
+        <item>Friend</item>
+        <item>Alone</item>
+        <!--<item>Other</item>-->
+    </string-array>
+
+    <string-array name="occupation_company_status">
+        <item>Public Company</item>
+        <item>Factory</item>
+        <item>Police</item>
+        <item>Private Company</item>
+        <item>SME Owner</item>
+        <item>Government Office</item>
+        <item>Taxi Owner</item>
+        <item>Specialist</item>
+        <item>SME Officer</item>
+        <item>Military</item>
+        <item>NGO</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="applicant_relation">
+        <item>Parent</item>
+        <item>Spouse</item>
+        <item>Relative</item>
+        <!--<item>Family</item>-->
+        <item>Friend</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="guarantor_relation">
+        <item>Parent</item>
+        <item>Spouse</item>
+        <item>Relative</item>
+        <item>Friend</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="guarantor_livingWith">
+        <item>Parent</item>
+        <item>Spouse</item>
+        <item>Relative</item>
+        <item>Friend</item>
+        <item>Alone</item>
+    </string-array>
+
+    <string-array name="confirm_product_category">
+        <item>Smart Phone</item>
+        <item>IT</item>
+        <item>Furniture</item>
+        <item>Aircon</item>
+        <item>Refrigerator</item>
+    </string-array>
+
+    <string-array name="loan_type_array">
+        <item>All</item>
+        <item>Mobile Loan</item>
+        <item>Non-mobile Loan</item>
+    </string-array>
+
+    <integer-array name="loan_type_id_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+
+    <string-array name="application_status_array">
+        <item>All</item>
+        <item>New</item>
+        <item>Index</item>
+        <item>Upload Finished</item>
+        <item>Document Followup Waiting</item>
+        <item>Document Followup Applicant Updated</item>
+        <item>Document Followup Checked</item>
+        <item>Cancel</item>
+        <item>Rejected</item>
+        <item>Approved</item>
+        <item>Purchase Cancel</item>
+        <item>Purchase Initial</item>
+        <item>Purchase Confirm Waiting</item>
+        <item>Purchase Confirm</item>
+        <item>Purchase Complete</item>
+        <item>Settlement Upload Finish</item>
+        <item>Settlement Pending</item>
+    </string-array>
+
+    <string-array name="day_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+    </string-array>
+
+    <string-array name="year_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+        <item>52</item>
+        <item>53</item>
+        <item>54</item>
+        <item>55</item>
+        <item>56</item>
+        <item>57</item>
+        <item>58</item>
+        <item>59</item>
+        <item>60</item>
+        <item>61</item>
+        <item>62</item>
+        <item>63</item>
+        <item>64</item>
+        <item>65</item>
+        <item>66</item>
+        <item>67</item>
+        <item>68</item>
+        <item>69</item>
+        <item>70</item>
+        <item>71</item>
+        <item>72</item>
+        <item>73</item>
+        <item>74</item>
+        <item>75</item>
+        <item>76</item>
+        <item>77</item>
+        <item>78</item>
+        <item>79</item>
+        <item>80</item>
+        <item>81</item>
+        <item>82</item>
+        <item>83</item>
+        <item>84</item>
+        <item>85</item>
+        <item>86</item>
+        <item>87</item>
+        <item>88</item>
+        <item>89</item>
+        <item>90</item>
+        <item>91</item>
+        <item>92</item>
+        <item>93</item>
+        <item>94</item>
+        <item>95</item>
+        <item>96</item>
+        <item>97</item>
+        <item>98</item>
+        <item>99</item>
+    </string-array>
+
+    <string-array name="month_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+    </string-array>
+
+    <string-array name="applicant_education">
+        <item>High School</item>
+        <item>University</item>
+        <item>Graduated</item>
+    </string-array>
+
+</resources>

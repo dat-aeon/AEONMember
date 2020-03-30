@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/margin_medium"
+    android:theme="@style/AppTheme"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/margin_large">
+
+        <RelativeLayout
+            android:layout_width="@dimen/image_profile"
+            android:layout_height="@dimen/image_profile"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true">
+
+            <ImageView
+                android:id="@+id/profileImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/nav_header_desc"
+                app:srcCompat="@drawable/no_profile_image" />
+
+            <ImageView
+                android:layout_width="@dimen/ic_regular"
+                android:layout_height="@dimen/ic_regular"
+                android:id="@+id/ic_edit_bg"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_edit_img_bg"/>
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:id="@+id/ic_edit_camera"
+                android:layout_marginRight="@dimen/margin_small_2x"
+                android:layout_marginBottom="@dimen/margin_small_2x"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_photo_camera_black_24dp"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="@dimen/image_profile"
+            android:layout_height="@dimen/image_profile"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/nav_header_desc"
+            app:srcCompat="@drawable/aeon_logo_white" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/user_name"
+        android:text="Customer Name"
+        android:textAllCaps="true"
+        android:textSize="@dimen/text_regular_2x"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/margin_small"
+        android:fontFamily="@font/pyidaungsu_bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@color/white"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/customer_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_regular"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_small"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:fontFamily="@font/pyidaungsu_bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="Customer Number" />
+
+</LinearLayout>

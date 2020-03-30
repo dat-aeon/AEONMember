@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_medium"
+    android:background="@color/white">
+<!--
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:id="@+id/img_qr_code"
+        android:scaleType="fitXY"
+        android:layout_centerHorizontal="true"/>
+-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_loan_info"
+        android:layout_alignParentTop="true">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/warn_text"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/text_regular_2x"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="Warning : "
+            android:layout_below="@+id/layout_contract"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

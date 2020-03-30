@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/relativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/grid_layout_border"
+    android:backgroundTint="@color/free_chat_color"
+    android:padding="5dp">
+
+    <ImageView
+        android:layout_height="50dp"
+        android:id="@+id/imageView1"
+        android:layout_width="50dp"
+        android:src="@drawable/agent_channel_icon_512"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+    </ImageView>
+
+    <TextView
+        android:text="@string/main_freechat_title"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_free_chat"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="@dimen/margin_tiny_plus"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/main_view_font_size"
+        android:textAlignment="center"
+        android:fontFamily="@font/pyidaungsu_regular"
+        android:textColor="@color/dark_blue"
+        android:ellipsize="marquee"/>
+
+</RelativeLayout>

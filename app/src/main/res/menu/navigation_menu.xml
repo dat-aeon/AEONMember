@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/home"
+            android:checked="true"
+            android:orderInCategory="1"
+            android:icon="@drawable/ic_home_black_nav_24dp"
+            android:title="@string/nav_home" />
+
+        <item android:id="@+id/membership"
+            android:orderInCategory="2"
+            android:icon="@drawable/ic_person_black_nav_24dp"
+            android:title="@string/nav_membership"
+            android:titleCondensed="@string/nav_membership"/>
+
+        <item android:id="@+id/info_update"
+            app:showAsAction="withText"
+            android:orderInCategory="3"
+            android:icon="@drawable/ic_update_black_24dp"
+            android:title="@string/nav_info_update"
+            android:titleCondensed="@string/nav_info_update"/>
+
+        <item android:id="@+id/aeon_service_header"
+            android:title="@string/nav_aeon_service"
+            android:icon="@drawable/ic_account_balance_black_24dp"
+            android:orderInCategory="4">
+            <menu>
+                <item android:id="@+id/digital_application"
+                    android:title="Digital Application"
+                    android:icon="@drawable/ic_chevron_right_black_24dp"/>
+                <item android:id="@+id/application_enquiry"
+                    android:title="Application Enquiry"
+                    android:icon="@drawable/ic_chevron_right_black_24dp"/>
+            </menu>
+        </item>
+
+        <item android:id="@+id/loan_calculation"
+            android:orderInCategory="5"
+            android:icon="@drawable/loan_calculator"
+            android:title="@string/nav_loan_calculator"
+            android:titleCondensed="@string/nav_loan_calculator"/>
+
+        <item android:id="@+id/events_news"
+            android:orderInCategory="6"
+            android:icon="@drawable/ic_event_note_black_24dp"
+            android:title="@string/nav_events_news"
+            android:titleCondensed="@string/nav_events_news"/>
+
+        <item android:id="@+id/near_outlet"
+            android:orderInCategory="7"
+            android:icon="@drawable/ic_location_on_black_24dpx"
+            android:title="@string/nav_near_outlet"
+            android:titleCondensed="@string/nav_near_outlet"/>
+
+        <item android:id="@+id/contact_us"
+            android:orderInCategory="8"
+            android:icon="@drawable/ic_contact_phone_black_24dp"
+            android:title="@string/nav_contact_us"
+            app:actionLayout="@layout/menu_counter"/>
+
+        <item android:id="@+id/faq"
+            android:orderInCategory="9"
+            android:icon="@drawable/ic_question_answer_black_nav_24dp"
+            android:title="@string/nav_faq"/>
+
+        <item android:id="@+id/shopping"
+            android:orderInCategory="10"
+            android:icon="@drawable/ic_shopping_cart_black_24dp"
+            android:title="@string/nav_shopping"
+            app:actionLayout="@layout/menu_counter"/>
+
+        <item android:id="@+id/logout"
+            android:orderInCategory="11"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="@string/nav_logout"/>
+
+    </group>
+
+</menu>

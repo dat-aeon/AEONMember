@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="@dimen/margin_xlarge_2"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_cloud_off_black_24dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/service_unavailable_label"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textSize="@dimen/text_regular_3x"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:gravity="center_horizontal"
+            android:textColor="@color/color_disable"
+            android:text="@string/service_unavailable"/>
+    </LinearLayout>
+</LinearLayout>
+

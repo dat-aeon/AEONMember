@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:padding="@dimen/margin_medium"
+    android:background="@drawable/dialog_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="0.1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/news_detail_back"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_close"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ver_scroll_view"
+        android:scrollbars="none"
+        android:layout_weight="0.9">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/news_detail_title"
+                    android:textColor="@color/news_color"
+                    android:textSize="@dimen/text_regular_3x"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="Events and News Title."/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:id="@+id/news_detail_published_date"
+                    android:textColor="@color/color_disable"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="dd-MM-yyyy hh:mm"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/news_detail_content"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Events and News title."/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/news_link"
+                    android:textSize="@dimen/text_small"
+                    android:autoLink="web"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:textColorLink="@color/color_url_link"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:gravity="center_vertical"
+                    android:typeface="serif"/>
+
+                <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/news_detail_image"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"/>
+
+                <mm.com.aeon.vcsaeon.views.customviews.MyMapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="@dimen/image_detail_height"
+                    android:layout_marginTop="@dimen/margin_medium"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

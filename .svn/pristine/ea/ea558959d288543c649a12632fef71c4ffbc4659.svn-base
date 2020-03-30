@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/camera_root_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
+    tools:context=".activities.CameraxActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/finder_scroll_view"
+        android:layout_centerInParent="true"
+        android:scrollbars="none">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/layout_camera_view"
+                    android:layout_centerInParent="true">
+
+                    <TextureView
+                        android:id="@+id/view_finder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </HorizontalScrollView>
+
+    </ScrollView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:src="@drawable/camera_detect"
+        android:scaleType="fitCenter"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/layout_capture">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/imgCapture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            app:borderWidth="0dp"
+            android:backgroundTint="@color/grayLight"
+            android:src="@drawable/ic_camera_black_24dp"/>
+
+        <TextView
+            android:id="@+id/camera_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgCapture"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/margin_medium_3"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/camera_view_label"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_regular" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+<!--
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_disable"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+
+        android:background="@color/color_disable"
+        android:layout_below="@id/line1"/>-->
+
+    <LinearLayout
+        android:id="@+id/main_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:padding="8dp"
+            android:layout_weight="0.5">
+
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1.7"
+                android:weightSum="3">
+                <include
+                    android:id="@+id/include_login"
+                    layout="@layout/grid_view_content_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:layout_margin="@dimen/margin_small" />
+
+                <include
+                    android:id="@+id/include_register"
+                    layout="@layout/grid_view_content_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/margin_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="2.3"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:weightSum="2">
+
+                    <include
+                        android:id="@+id/include_free_chat"
+                        layout="@layout/grid_view_content_freechat"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_small"
+                        android:layout_weight="1" />
+
+                    <include
+                        android:id="@+id/include_calculator"
+                        layout="@layout/grid_view_content_loancalculator"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/margin_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:weightSum="2">
+                    <include
+                        android:id="@+id/include_news"
+                        layout="@layout/grid_view_content_news"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/margin_small" />
+
+                    <include
+                        android:id="@+id/include_nearby"
+                        layout="@layout/grid_view_content_nearby"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/margin_small" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/grid_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_disable"/>
+
+        <View
+            android:id="@+id/grid_line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/color_disable"/>
+
+        <LinearLayout
+            android:id="@+id/grid_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_small_2x"
+            android:layout_marginLeft="@dimen/margin_small_2x"
+            android:layout_marginRight="@dimen/margin_small_2x"
+            android:layout_weight="0.5"
+            android:weightSum="3">
+
+            <!--<androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_small_2x"
+                app:cardCornerRadius="4dp"
+                android:layout_weight="1"
+                app:cardElevation="@dimen/margin_tiny"
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@color/share_view">
+                <include
+                    android:id="@+id/include_ourservice"
+                    layout="@layout/grid_view_content_ourservice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_tiny" />
+
+            </androidx.cardview.widget.CardView>-->
+            <include
+                android:id="@+id/include_ourservice"
+                layout="@layout/grid_view_content_ourservice"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_small_2x"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/include_announce"
+                layout="@layout/grid_view_content_announce_main_screen"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_small_2x"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/include_howToUse"
+                layout="@layout/grid_view_content_video"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/margin_small_2x" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/grid_layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_small_2x"
+            android:layout_marginRight="@dimen/margin_small_2x"
+            android:weightSum="2"
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/include_facebook"
+                layout="@layout/grid_view_content_facebook"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_small_2x"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/include_share"
+                layout="@layout/grid_view_content_share"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/margin_small_2x" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/version_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/text_version_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/home_version_label"
+            android:textColor="@color/background"
+            android:textSize="@dimen/text_regular" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  " />
+
+        <TextView
+            android:id="@+id/text_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:textColor="@color/background"
+            android:textSize="@dimen/text_regular" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/layout_loading">
+        <ImageView
+            android:layout_width="@dimen/loading_animation_side"
+            android:layout_height="@dimen/loading_animation_side"
+            android:layout_centerInParent="true"
+            android:id="@+id/img_loading"
+            android:src="@drawable/loading"/>
+    </RelativeLayout>
+
+</RelativeLayout>

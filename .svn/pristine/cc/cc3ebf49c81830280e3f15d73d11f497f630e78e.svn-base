@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar_login"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/margin_small"
+        android:theme="@style/ToolbarTheme"/>-->
+<!--
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:theme="@style/ToolbarTheme">
+
+        <include
+            android:id="@+id/toolbar_new_main"
+            layout="@layout/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.appcompat.widget.Toolbar>
+-->
+<!--
+
+    <LinearLayout
+        android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/margin_medium_3"
+        android:paddingBottom="@dimen/margin_medium_3"
+        android:background="@color/amdp_white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/aeon_logo_side"
+            android:layout_height="@dimen/aeon_logo_side"
+            android:src="@drawable/aeon_logo_white"/>
+
+    </LinearLayout>
+-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:padding="@dimen/margin_medium"
+            android:background="@null"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingLeft="@dimen/margin_xlarge"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/login_err_phone"
+                    android:textColor="@color/red"
+                    android:text="@string/login_phoneno_err_msg"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:visibility="gone"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_3"
+                android:background="@null"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/ic_regular"
+                    android:layout_height="@dimen/ic_regular"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:src="@drawable/ic_person_black_24dp"/>
+
+                <EditText
+                    android:id="@+id/txt_phone_no"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="36dp"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:textSize="@dimen/text_regular"
+                    android:focusable="false"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grayLight"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/edit_text_style"
+                    android:hint="@string/login_phoneno_holder"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingLeft="@dimen/margin_xlarge"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/login_err_pwd"
+                    android:textColor="@color/red"
+                    android:visibility="gone"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/login_password_err_msg"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/ic_regular"
+                    android:layout_height="@dimen/ic_regular"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:src="@drawable/password"/>
+
+                <EditText
+                    android:id="@+id/txt_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:textColorHint="@color/grayLight"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:maxLength="16"
+                    android:layout_weight="0.9"
+                    android:focusable="false"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/edit_text_style"
+                    android:hint="@string/login_password_holder"/>
+
+                <ImageView
+                    android:layout_width="@dimen/ic_regular_2x"
+                    android:layout_height="@dimen/ic_regular_2x"
+                    android:id="@+id/img_paw_visible"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_remove_red_eye_black_24dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_login"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/button_border"
+                    android:backgroundTint="@color/login_color"
+                    android:text="@string/login_login_btn"/>
+
+                <ImageView
+                    android:layout_width="160dp"
+                    android:layout_height="90dp"
+                    android:clickable="true"
+                    android:id="@+id/btn_biometric"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/biometric_800"/>
+<!--
+                <ImageView
+                    android:layout_width="160dp"
+                    android:layout_height="90dp"
+                    android:clickable="true"
+                    android:id="@+id/btn_pattern"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/pattern_200"/>-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="180dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/btn_forgot_pwd"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimary"
+                        android:background="@null"
+                        android:text="@string/login_forgotpassword_link"
+                        android:fontFamily="@font/pyidaungsu_regular"/>
+
+                </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

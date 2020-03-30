@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_medium_2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_title"
+                android:textColor="@color/our_service_color"
+                android:layout_margin="@dimen/margin_medium"
+                android:textSize="@dimen/text_regular_3x"
+                android:textStyle="bold"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:text="@string/faq_terms_cond_title"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_text1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_margin="@dimen/margin_medium"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="@string/tac_001"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_text2"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_margin="@dimen/margin_medium"
+                android:lineSpacingExtra="@dimen/margin_tiny"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="@string/tac_002"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_text3"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_margin="@dimen/margin_medium"
+                android:lineSpacingExtra="@dimen/margin_tiny"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="@string/tac_003"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_text4"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_margin="@dimen/margin_medium"
+                android:lineSpacingExtra="@dimen/margin_tiny"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="@string/tac_004"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_text5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_margin="@dimen/margin_medium"
+                android:lineSpacingExtra="@dimen/margin_tiny"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="@string/tac_005"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_text6"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_margin="@dimen/margin_medium"
+                android:lineSpacingExtra="@dimen/margin_tiny"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="@string/tac_006"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_text7"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_margin="@dimen/margin_medium"
+                android:lineSpacingExtra="@dimen/margin_tiny"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="@string/tac_007"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_text8"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_margin="@dimen/margin_medium"
+                android:lineSpacingExtra="@dimen/margin_tiny"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="@string/tac_008"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_text9"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_margin="@dimen/margin_medium"
+                android:lineSpacingExtra="@dimen/margin_tiny"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="@string/tac_009"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_text10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_margin="@dimen/margin_medium"
+                android:lineSpacingExtra="@dimen/margin_tiny"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="@string/tac_010"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/faq_terms_cond_text11"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_margin="@dimen/margin_medium"
+                android:lineSpacingExtra="@dimen/margin_tiny"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="@string/tac_011"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

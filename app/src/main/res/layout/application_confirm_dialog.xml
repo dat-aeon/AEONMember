@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="@drawable/alert_dialog_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_message"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_regular_3x"
+            android:padding="@dimen/margin_medium_2"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:text="Application Confirmation"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/faq_terms_cond_title"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="@dimen/margin_medium"
+            android:textSize="@dimen/text_regular_2x"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:text="@string/termandcon_title"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p000"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p001"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p002"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p003"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p004"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p005"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p006"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p007"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p008"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p009"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p010"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p011"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p012"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p013"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p014"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_margin="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/termandcon_p015"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/err_term_accept"
+            android:textColor="@color/red"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:textSize="@dimen/text_small"
+            android:text="Please accept terms and conditions."
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/confirmation_checkbox_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="@string/terms_accept"
+            android:theme="@style/CheckBoxTheme"
+            android:textColor="@color/black"
+            android:fontFamily="@font/pyidaungsu_regular"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/err_conf_pwd"
+            android:textColor="@color/red"
+            android:layout_marginLeft="70dp"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:textSize="@dimen/text_small"
+            android:text="Please Enter Password."
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/ic_regular"
+                android:layout_height="@dimen/ic_regular"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/margin_small"
+                android:src="@drawable/password"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:id="@+id/txt_user_pwd"
+                android:paddingLeft="@dimen/margin_medium"
+                android:textSize="@dimen/text_regular_2x"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grayLight"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:hint="Password"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:background="@drawable/edit_text_style"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="240dp"
+            android:layout_height="@dimen/button_height"
+            android:textSize="@dimen/text_regular"
+            android:width="120dp"
+            android:id="@+id/btn_app_submit"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginBottom="@dimen/margin_medium_3"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="@drawable/button_border"
+            android:textColor="@color/white"
+            android:text="Submit"/>
+
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

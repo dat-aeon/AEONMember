@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar_agreements"
+        android:layout_width="match_parent"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/margin_small"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_medium_2"
+        android:gravity="center_horizontal"
+        android:weightSum="1"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="@string/faq_terms_cond_title"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_regular_3x" />
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_text1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:lineSpacingExtra="@dimen/margin_tiny"
+                    android:text="@string/tac_001"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular" />
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_text2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:lineSpacingExtra="@dimen/margin_tiny"
+                    android:text="@string/tac_002"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_text3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:lineSpacingExtra="@dimen/margin_tiny"
+                    android:text="@string/tac_003"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_text4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:lineSpacingExtra="@dimen/margin_tiny"
+                    android:text="@string/tac_004"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_text5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:lineSpacingExtra="@dimen/margin_tiny"
+                    android:text="@string/tac_005"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_text6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:lineSpacingExtra="@dimen/margin_tiny"
+                    android:text="@string/tac_006"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_text7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:lineSpacingExtra="@dimen/margin_tiny"
+                    android:text="@string/tac_007"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_text8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:lineSpacingExtra="@dimen/margin_tiny"
+                    android:text="@string/tac_008"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_text9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:lineSpacingExtra="@dimen/margin_tiny"
+                    android:text="@string/tac_009"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_text10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:lineSpacingExtra="@dimen/margin_tiny"
+                    android:text="@string/tac_010"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <TextView
+                    android:id="@+id/faq_terms_cond_text11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:lineSpacingExtra="@dimen/margin_tiny"
+                    android:text="@string/tac_011"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_accept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_gravity="left"
+                    android:text="@string/terms_accept"
+                    android:theme="@style/CheckBoxTheme"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_agreement"
+            android:layout_weight="0.0"
+            android:textColor="@color/white"
+            android:enabled="false"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:background="@drawable/disable_button_border"
+            android:text="@string/terms_agree"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="11dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

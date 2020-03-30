@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/action_myFlag"
+        android:orderInCategory="300"
+        android:title="my"
+        android:icon="@drawable/mm_flag"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item
+        android:id="@+id/action_engFlag"
+        android:orderInCategory="300"
+        android:title="eng"
+        android:icon="@drawable/en_flag"
+        app:showAsAction="ifRoom">
+    </item>
+
+</menu>

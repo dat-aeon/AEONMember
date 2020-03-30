@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edit_text_height"
+        android:layout_alignParentTop="true"
+        android:id="@+id/layout_detail_back"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:id="@+id/purchase_detail_back"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:src="@drawable/ic_arrow_back_black_detail_24dp"/>
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_detail_back">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/text_small">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/edit_text_height"
+                android:id="@+id/lbl_purchase_title"
+                android:text="Purchase Detail"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textSize="@dimen/text_medium"
+                android:textColor="@color/black"/>
+
+            <View
+                android:id="@+id/separator_detail"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/lbl_purchase_title"
+                android:background="@color/colorPrimary"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:id="@+id/lbl_purchase_product_one"
+                android:layout_below="@+id/separator_detail"
+                android:text="Product - 1"
+                android:gravity="center_vertical"
+                android:background="@color/grayLight"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textSize="@dimen/text_regular"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:id="@+id/layout_product_category"
+                android:layout_below="@+id/lbl_purchase_product_one">
+
+                <TextView
+                    android:id="@+id/product_category_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Product Category"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/product_category_val"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_product_desc"
+                android:layout_below="@+id/layout_product_category">
+
+                <TextView
+                    android:id="@+id/product_description_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Product Description"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/product_description_val"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_brand"
+                android:layout_below="@+id/layout_product_desc">
+
+                <TextView
+                    android:id="@+id/brand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Brand"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lbl_brand_val"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_model"
+                android:layout_below="@+id/layout_brand">
+
+                <TextView
+                    android:id="@+id/model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Model"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_model_val"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:id="@+id/layout_price"
+                android:layout_below="@+id/layout_model">
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Price"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_price_val"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/product_two_layout"
+                android:layout_below="@+id/layout_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <View
+                android:id="@+id/separator_detail_1"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/layout_price"
+                android:background="@color/colorPrimary"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:id="@+id/lbl_purchase_product_two"
+                android:text="Product - 2"
+                android:gravity="center_vertical"
+                android:background="@color/grayLight"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textSize="@dimen/text_regular"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:id="@+id/layout_product_category_2"
+                android:layout_below="@+id/lbl_purchase_product_two">
+
+                <TextView
+                    android:id="@+id/product_category_txt_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Product Category"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/product_category_val_2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_product_desc_2"
+                android:layout_below="@+id/layout_product_category_2">
+
+                <TextView
+                    android:id="@+id/product_description_txt_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Product Description"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/product_description_val_2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_brand_2"
+                android:layout_below="@+id/layout_product_desc_2">
+
+                <TextView
+                    android:id="@+id/brand_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Brand"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lbl_brand_val_2"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_model_2"
+                android:layout_below="@+id/layout_brand_2">
+
+                <TextView
+                    android:id="@+id/model_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Model"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_model_val_2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:id="@+id/layout_price_2"
+                android:layout_below="@+id/layout_model_2">
+
+                <TextView
+                    android:id="@+id/price_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Price"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_price_val_2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+
+            </LinearLayout>
+
+            <!--<View
+                android:id="@+id/separator_detail_1"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/layout_price"
+                android:background="@color/colorPrimary"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:id="@+id/lbl_purchase_product_two"
+                android:layout_below="@+id/separator_detail_1"
+                android:text="Product - 2"
+                android:gravity="center_vertical"
+                android:background="@color/grayLight"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textSize="@dimen/text_regular"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:id="@+id/layout_product_category_2"
+                android:layout_below="@+id/lbl_purchase_product_two">
+
+                <TextView
+                    android:id="@+id/product_category_txt_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Product Category"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/product_category_val_2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_product_desc_2"
+                android:layout_below="@+id/layout_product_category_2">
+
+                <TextView
+                    android:id="@+id/product_description_txt_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Product Description"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/product_description_val_2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_brand_2"
+                android:layout_below="@+id/layout_product_desc_2">
+
+                <TextView
+                    android:id="@+id/brand_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Brand"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lbl_brand_val_2"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_model_2"
+                android:layout_below="@+id/layout_brand_2">
+
+                <TextView
+                    android:id="@+id/model_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Model"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_model_val_2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:id="@+id/layout_price_2"
+                android:layout_below="@+id/layout_model_2">
+
+                <TextView
+                    android:id="@+id/price_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Price"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_price_val_2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>-->
+
+            <View
+                android:id="@+id/separator_detail_2"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/product_two_layout"
+                android:background="@color/colorPrimary"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:id="@+id/layout_outlet_name"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_below="@+id/separator_detail_2">
+
+                <TextView
+                    android:id="@+id/outlet_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Outlet Name"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lbl_outlet_name"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:id="@+id/layout_location"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_below="@+id/layout_outlet_name">
+
+                <TextView
+                    android:id="@+id/location_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Purchase Location"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/location_val"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_cashdown"
+                android:layout_below="@+id/layout_location">
+
+                <TextView
+                    android:id="@+id/cashdown_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Cashdown Amount"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_cash_down_val"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_purchase_date"
+                android:layout_below="@+id/layout_cashdown">
+
+                <TextView
+                    android:id="@+id/purchase_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Purchase Date"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_purchase_date"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_invoice_no"
+                android:layout_below="@+id/layout_purchase_date">
+
+                <TextView
+                    android:id="@+id/invoice_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Invoice No."/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_invoice_val"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_agreement_no"
+                android:layout_below="@+id/layout_invoice_no">
+
+                <TextView
+                    android:id="@+id/agreement_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Agreement No."/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_agg_no_val"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_finance_amt"
+                android:layout_below="@+id/layout_agreement_no">
+
+                <TextView
+                    android:id="@+id/finance_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Finance Amount"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lbl_finance_amt"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_finance_term"
+                android:layout_below="@+id/layout_finance_amt">
+
+                <TextView
+                    android:id="@+id/term_of_finance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Term of Finance"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_finance_term"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_processing_fee"
+                android:layout_below="@+id/layout_finance_term">
+
+                <TextView
+                    android:id="@+id/processing_fees"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Processing Fees"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_processing_fee_val"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_comp_saving"
+                android:layout_below="@+id/layout_processing_fee">
+
+                <TextView
+                    android:id="@+id/compulsory_saving"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Compulsory Saving"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_com_saving_val"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/layout_sett_amt"
+                android:layout_below="@+id/layout_comp_saving">
+
+                <TextView
+                    android:id="@+id/settlement_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/places_ui_default_primary_dark"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Settlement Amount"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:id="@+id/lbl_sett_amt_val"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="-"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:id="@+id/layout_member_card"
+                android:visibility="gone"
+                android:layout_below="@+id/layout_sett_amt">
+
+                <TextView
+                    android:id="@+id/lbl_img_member_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Member Card"/>
+
+                <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+                    android:layout_width="192dp"
+                    android:layout_height="128dp"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/img_member_card"
+                    android:src="@drawable/aeon_logo"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:id="@+id/layout_invoice"
+                android:visibility="gone"
+                android:layout_below="@+id/layout_member_card">
+
+                <TextView
+                    android:id="@+id/lbl_img_invoice_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Invoice"/>
+
+                <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+                    android:layout_width="192dp"
+                    android:layout_height="128dp"
+                    android:id="@+id/img_invoice_view"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/aeon_logo"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:visibility="gone"
+                android:id="@+id/layout_cash_receipt"
+                android:layout_below="@+id/layout_invoice">
+
+                <TextView
+                    android:id="@+id/lbl_img_cash_receipt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Cash Receipt"/>
+
+                <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+                    android:layout_width="192dp"
+                    android:layout_height="128dp"
+                    android:id="@+id/img_cash_receipt"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/aeon_logo"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:id="@+id/layout_agreement"
+                android:visibility="gone"
+                android:layout_below="@+id/layout_cash_receipt">
+
+                <TextView
+                    android:id="@+id/lbl_img_agreement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Agreement Letter"/>
+
+                <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+                    android:layout_width="192dp"
+                    android:layout_height="128dp"
+                    android:id="@+id/img_agreement"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/aeon_logo"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:id="@+id/layout_uloan"
+                android:visibility="gone"
+                android:layout_below="@+id/layout_agreement">
+
+                <TextView
+                    android:id="@+id/lbl_img_uloan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Agreement"/>
+
+                <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+                    android:layout_width="192dp"
+                    android:layout_height="128dp"
+                    android:id="@+id/img_uloan"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/aeon_logo"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:id="@+id/layout_others_info"
+                android:visibility="gone"
+                android:layout_below="@+id/layout_uloan">
+
+                <TextView
+                    android:id="@+id/lbl_others_attach"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Others"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rv_others_attach"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

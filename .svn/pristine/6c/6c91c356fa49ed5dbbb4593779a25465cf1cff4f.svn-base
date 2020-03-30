@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar_bio_reg"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/margin_small"
+        android:theme="@style/ToolbarTheme"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:padding="@dimen/margin_medium"
+            android:background="@null"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pattern_reg_form_title"
+                    android:text="@string/reg_bio_title"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_regular_3x"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_pattern_ph"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/reg_bio_phone_label"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_pattern_ph_err"
+                    android:visibility="gone"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/reg_bio_phone_err"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/text_reg_pattern_ph"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grayLight"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:hint="@string/reg_bio_phone_hint"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/edit_text_style"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_pattern_pwd"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/reg_pattern_pwd_label"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pattern_reg_pwd_err"
+                    android:visibility="gone"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/reg_bio_pwd_err"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/text_reg_pattern_pwd"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grayLight"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:hint="@string/register_password_holder"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/edit_text_style"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_warning"
+                    android:textColor="@color/red"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:text="@string/reg_bio_warning_title"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:textSize="@dimen/text_regular_2x" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pattern_warning_text"
+                    android:textColor="@color/red"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/reg_bio_warning_content"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <com.andrognito.patternlockview.PatternLockView
+                    android:id="@+id/patternView"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:background="@android:color/holo_blue_dark"
+                    app:correctStateColor="@color/colorCorrectLine"
+                    app:dotCount="3"
+                    app:dotNormalSize="14dp"
+                    app:dotSelectedSize="16dp"
+                    app:normalStateColor="@color/colorNormalLine"
+                    app:pathWidth="8dp"
+                    app:wrongStateColor="@color/colorWrongLine" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_reg_pattern"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/button_border"
+                    android:text="@string/reg_bio_submit_btn"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_medium_2"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

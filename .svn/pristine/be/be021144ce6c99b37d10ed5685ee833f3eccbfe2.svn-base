@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:id="@+id/layout_1"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:hint="Application No."
+                android:id="@+id/text_application_no"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_regular"
+                android:background="@drawable/edit_text_style"
+                android:padding="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_weight="1"/>
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_01"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:background="@drawable/edit_text_style"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:layout_weight="1"
+                    android:hint="Applied Date"
+                    android:id="@+id/text_applied_date"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/text_regular"
+                    android:padding="@dimen/margin_medium"
+                    android:focusable="false"
+                    android:drawableRight="@drawable/ic_date_range_black_24dp"/>
+
+            </LinearLayout>-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_01"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_weight="1"
+                android:hint="Applied Date"
+                android:id="@+id/text_applied_date"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_regular"
+                android:padding="@dimen/margin_medium"
+                android:focusable="false"
+                android:drawableRight="@drawable/ic_date_range_black_24dp"/>
+
+        </LinearLayout>
+
+        <!--<Spinner
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height"
+            android:id="@+id/spinner_loan_type"
+            android:background="@drawable/edit_text_style"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_weight="1"
+            android:gravity="center"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_keyboard_arrow_down_black_24dp"/>-->
+    </LinearLayout>
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_tiny"
+        android:id="@+id/layout_2"
+        android:layout_below="@id/layout_1"
+        android:padding="@dimen/margin_tiny"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/id_searched_label"
+            android:text="-"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:textSize="@dimen/text_regular"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_02"
+        android:layout_below="@+id/layout_1"
+        android:gravity="center|left"
+        android:layout_margin="@dimen/margin_medium">
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/button_border"
+            android:backgroundTint="@color/da_button__color"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="Search"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_regular" />
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_02"
+        android:id="@+id/rv_application_list"
+        android:layout_margin="@dimen/margin_medium"/>
+
+</RelativeLayout>

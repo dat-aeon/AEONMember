@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="@drawable/alert_dialog_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/margin_large_2"
+    android:layout_marginLeft="@dimen/margin_large_2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_error_black_24dp_n"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_title"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_regular_3x"
+            android:paddingLeft="@dimen/margin_small"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:layout_gravity="center_vertical"
+            android:text="@string/dialog_title_biometric_error"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_message"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular_2x"
+        android:padding="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_small"
+        android:gravity="center_horizontal"
+        android:fontFamily="@font/pyidaungsu_regular"
+        android:text="Please update the app to continue and access new features."/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_small"
+            android:textSize="@dimen/text_medium"
+            android:width="120dp"
+            android:id="@+id/btn_skip"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="@drawable/button_border"
+            android:textColor="@color/white"
+            android:text="CANCEL"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:textSize="@dimen/text_medium"
+            android:width="120dp"
+            android:id="@+id/btn_upgrade"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="@drawable/button_border"
+            android:textColor="@color/white"
+            android:text="OK"/>
+
+    </LinearLayout>
+
+</LinearLayout>

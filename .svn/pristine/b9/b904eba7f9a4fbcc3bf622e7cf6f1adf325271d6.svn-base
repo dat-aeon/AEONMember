@@ -1,0 +1,3546 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/layout_enquiry_detail">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/enquiry_title"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:padding="@dimen/margin_medium"
+                    android:textColor="@color/black"
+                    android:background="@color/grayLight"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="Application Inquiries Detail"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_application_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Application No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_application_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_application_date"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Application Date"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_application_date"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_member_card_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Member Card No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_member_card_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/layout_enquiry_detail"
+                android:id="@+id/layout_application_data">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:padding="@dimen/margin_medium"
+                    android:textColor="@color/black"
+                    android:background="@color/grayLight"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="Application Data"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_name"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Name"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_name"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_dob"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Date of Birth"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_dob"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_nrc_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="NRC No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_nrc_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_father_name"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Father's Name"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_father_name"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_education"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Education"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_education"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_Nationality"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Nationality"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_nationality"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gender"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Gender"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gender"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_marital_status"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Marital Status"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_marital_status"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Current Address"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_current_buildingNo"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_apartment_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_current_buildingNo"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_current_room_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_room_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_current_room_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_current_floor_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_floor_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_current_floor_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_current_street"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_street"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_current_street"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_current_quarter"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_quarter"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_current_quarter"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_current_township"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_township"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_current_township"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_current_city"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_city"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_current_city"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Permanent Address"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_permanent_buildingNo"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_apartment_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_permanent_buildingNo"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_permanent_room_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_room_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_permanent_room_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_permanent_floor_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_floor_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_permanent_floor_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_permanent_street"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_street"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_permanent_street"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_permanent_quarter"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_quarter"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_permanent_quarter"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_permanent_township"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_township"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_permanent_township"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_permanent_city"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_city"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_permanent_city"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_type_of_resident"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Type of Residence"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_type_of_resident"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_living_with"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Living With"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_living_with"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_year_of_stay"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Year of Stay"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_year_of_stay"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_mobile_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Mobile No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_mobile_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_resident_tel_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Resident Tel No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_resident_tel_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_other_ph_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Other Phone No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_other_ph_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_email"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Email"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_email"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/layout_application_data"
+                android:id="@+id/layout_occupation_data">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:padding="@dimen/margin_medium"
+                    android:textColor="@color/black"
+                    android:background="@color/grayLight"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="Occupation Data"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_company_name"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Company Name"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_company_name"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_occupation_buildingNo"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_apartment_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_occupation_buildingNo"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_occupation_room_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_room_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_occupation_room_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_occupation_floor_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_floor_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_occupation_floor_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_occupation_street"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_street"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_occupation_street"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_occupation_quarter"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_quarter"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_occupation_quarter"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_occupation_township"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_township"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_occupation_township"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_occupation_city"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_city"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_occupation_city"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_company_tel_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Company Tel No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_company_tel_no"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_contact_time"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Contact Time"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_contact_time"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_department"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Department"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_department"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_position"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Position"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_position"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_year_of_service"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Year of Service"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_year_of_service"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_company_status"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Company Status"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_company_status"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_monthly_basic_income"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Monthly Basic Income"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_monthly_basic_income"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_other_income"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Other Income"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_other_income"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_total_income"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Total Income"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_total_income"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_salary_date"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Salary Day"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_salary_date"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/layout_occupation_data"
+                android:id="@+id/layout_emergency_contact">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:padding="@dimen/margin_medium"
+                    android:textColor="@color/black"
+                    android:background="@color/grayLight"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="Emergency Contact"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_eme_name"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Name"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_eme_name"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_eme_relation_with"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Relationship With Applier"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_eme_relationship_with"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_emergency_buildingNo"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_apartment_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_emergency_buildingNo"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_emergency_room_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_room_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_emergency_room_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_emergency_floor_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_floor_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_emergency_floor_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_emergency_street"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_street"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_emergency_street"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_emergency_quarter"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_quarter"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_emergency_quarter"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_emergency_township"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_township"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_emergency_township"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_emergency_city"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_city"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_emergency_city"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_eme_mobile_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Mobile No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_eme_mobile_no"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_eme_resident_tel_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Resident Tel No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_eme_resident_tel_no"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_eme_other_ph_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Other Phone No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_eme_other_ph_no"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/layout_emergency_contact"
+                android:id="@+id/layout_guarantor">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:padding="@dimen/margin_medium"
+                    android:text="Guarantor"
+                    android:textColor="@color/black"
+                    android:background="@color/grayLight"
+                    android:textSize="@dimen/text_regular_2x" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_name"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Name"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_name"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_dob"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Date of Birth"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_dob"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_nrc_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="NRC No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_nrc_no"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_nationality"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Nationality"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_nationality"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_mobile_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Mobile No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_mobile_no"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_resident_tel_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Resident Tel No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_resident_tel_no"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_relation_with"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Relationship With Applier"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_relation_with"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Current Address"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_buildingNo"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_apartment_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_buildingNo"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_room_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_room_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_room_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_floor_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_floor_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_floor_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_street"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_street"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_street"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_quarter"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_quarter"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_quarter"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_township"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_township"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_township"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_city"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_city"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_city"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_type_of_resident"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Type of Resident"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_type_of_resident"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_live_with"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Living With"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_live_with"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_gender"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Gender"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_gender"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_marital_status"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Marital Status"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_marital_status"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_year_of_stay"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Year of Stay"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_year_of_stay"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_company_name"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Company Name"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_company_name"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="Company Address"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_company_buildingNo"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_apartment_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_company_buildingNo"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_company_room_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_room_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_company_room_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_company_floor_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_floor_no"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_company_floor_no"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_company_street"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_street"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_company_street"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_company_quarter"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_quarter"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_company_quarter"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_company_township"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_township"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_company_township"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_guarantor_company_city"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"
+                        android:text="@string/da_applicant_city"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_guarantor_company_city"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_company_tel_no"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Company Tel No."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_company_tel"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_department"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Department"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_company_department"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_position"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Position"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_position"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_year_of_service"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Year of Service"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_year_of_service"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_monthly_basic_income"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Monthly Basic Income"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_monthly_basic_income"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_gur_total_income"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Total Income"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_gur_total_income"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/layout_guarantor"
+                android:id="@+id/layout_loan_confirmation">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:padding="@dimen/margin_medium"
+                    android:textColor="@color/black"
+                    android:background="@color/grayLight"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="Loan Confirmation"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_status"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Status"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_status"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_loan_type"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Loan Type"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_loan_type"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>-->
+
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_product_category"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Product Category"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_product_category"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>-->
+
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_product_description"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Product Description"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_product_desc"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_finance_amt"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Finance Amount"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_finance_amt"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_approved_amt"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Finance Amount"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_approved_amt"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_finance_term"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Term of Finance"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_finance_term"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_approve_finance_term"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Approved Term"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_approve_finance_term"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_processing_fee"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Processing Fee"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_processing_fee"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_comp_saving"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Compulsory Saving"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_comp_saving"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_total_pay_amt"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Total Repayment Amount"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_total_amt"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_first_repay_amt"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="First Repayment Amount"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_first_repay_amt"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_monthly_repay_amt"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Monthly Repayment Amount"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_month_repay_amt"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:id="@+id/lbl_lc_last_repay"
+                        android:padding="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Last Payment"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:id="@+id/val_lc_last_repay"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="-"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:layout_below="@+id/layout_loan_confirmation">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:padding="@dimen/margin_medium"
+                    android:textColor="@color/black"
+                    android:background="@color/grayLight"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="Attachments"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rv_attach_img"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fab_detail_close"
+        android:layout_margin="@dimen/margin_small"
+        android:backgroundTint="@color/colorPrimary"
+        app:elevation="@dimen/cv_elevation"
+        app:fabSize="mini"
+        app:backgroundTint="@color/white"
+        android:src="@drawable/ic_clear_black_24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

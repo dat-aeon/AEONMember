@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/root_confirm_profile"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppBarOverlay">
+
+        <!--<androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimaryDark"
+            android:theme="@style/ToolbarTheme"
+            app:popupTheme="@style/PopupOverlay" />-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:theme="@style/ToolbarTheme">
+
+            <include
+                android:id="@+id/toolbar_new_main"
+                layout="@layout/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/form_layout"
+            android:layout_margin="@dimen/margin_medium"
+            android:padding="@dimen/margin_medium"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/security_qa_layout_fp"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:id="@+id/verify_photo"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/verify_text"
+                    android:textSize="@dimen/text_regular"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/photoconfirm_confirm_title"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:weightSum="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/verify_confirm"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/button_border"
+                    android:layout_weight="0.5"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:text="@string/photoconfirm_confirm_confirm"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/verify_retry"
+                    android:textColor="@color/white"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/button_border"
+                    android:text="@string/photoconfirm_confirm_retry"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

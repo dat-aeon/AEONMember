@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--DA common color-->
+    <color name="da_label_color">#f77f07</color>
+    <color name="da_err_msg_color">#ff0000</color>
+    <color name="da_value_color">#000000</color>
+    <color name="da_spiner_value_color">#000000</color>
+    <color name="da_radio_button_color">#ff8a65</color>
+    <color name="da_radio_value_color">#ff8a65</color>
+    <color name="da_button__color">#ff8a65</color>
+
+    <color name="colorPrimary">#b70081</color>
+    <color name="colorPrimaryDark">#99036c</color>
+    <color name="statusBar">#7a0156</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="background">#b70081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="grayLight">#eaecef</color>
+    <color name="red">#ff0000</color>
+    <color name="light">#f9f6f4</color>
+    <color name="yellow">#ffcc00</color>#fcfae1
+    <color name="lightYellow">#fcfae1</color>
+    <color name="color_disable">#827b80</color>
+    <color name="transparent">#80000000</color>
+    <color name="newsheader">#35379e</color>
+    <color name="message_sent">#800080</color>
+    <color name="green">#1e6618</color>
+    <color name="dark_green">#2e7d32</color>
+    <color name="pale_green">#29ba13</color>
+    <color name="orange">#FF8C00</color>
+    <color name="blue">#1E90FF</color>
+    <color name="pink">#ed8ee5</color>
+    <color name="faq">#F5ECF4</color>
+    <color name="drawer_item_bg">#f5f5f5</color>
+    <color name="color_url_link">#551A8B</color>
+    <color name="gray">#D9DADB</color>
+    <color name="violet">#7e57c2</color>
+    <color name="light_violet">#977E57C2</color>
+    <color name="news_color">#4db6ac</color>
+    <color name="dark_blue">#3f51b5</color>
+    <color name="light_orange">#99FFC107</color>
+    <color name="share_view">#B2DFDB</color>
+
+    <color name="colorCorrectLine">#008000</color>
+    <color name="colorNormalLine">#FFFF</color>
+    <color name="colorWrongLine">#FF0000</color>
+    
+    <color name="pink1">#fccde2</color>
+    <color name="pink2">#fc5c9c</color>
+    <color name="blue1">#a1eafb</color>
+    <color name="cyan1">#39bdc8</color>
+    <color name="violet1">#caa5f1</color>
+
+    <!--grid layout color-->
+
+    <color name="login_color">#ffa45c</color>
+    <color name="register_color">#86a6df</color>
+    <color name="free_chat_color">#dbe9b7</color>
+    <color name="calculator_color">#F56697</color>
+    <color name="good_news_color">#39bdc8</color>
+    <color name="find_us_color">#99FFC107</color>
+    <color name="our_service_color">#39bdc8</color>
+    <color name="announcement_color">#99FFC107</color>
+    <color name="how_to_use_color">#86a6df</color>
+    <color name="facebook_color">#2d6cdf</color>
+    <color name="share_color">#F56697</color>
+    <color name="info_update_color">#3d6cb9</color>
+    <color name="loan_application_color">#ff8a65</color>
+    <color name="membership_color">#3d6cb9</color>
+    <color name="ask_product_color">#FF80AB</color>
+    <color name="customer_service_color">#86a6df</color>
+
+</resources>

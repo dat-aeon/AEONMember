@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="1dp"
+    android:layout_height="220dp">
+
+    <LinearLayout
+        android:id="@+id/l_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/coupon_template"
+        android:weightSum="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/l_1_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:background="@color/red">
+
+            <TextView
+                android:id="@+id/text_special_event"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_small"
+                android:text="Special Events : "
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_smaller"
+                android:textStyle="bold"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:typeface="monospace" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_weight="0.8"
+            android:weightSum="1"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium">
+
+            <LinearLayout
+                android:id="@+id/layout_middle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="190dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1">
+
+                    <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+                        android:id="@+id/img_coupon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/info_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="0.9"
+                    android:paddingLeft="@dimen/margin_small">
+
+                    <TextView
+                        android:id="@+id/coupon_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="Fried Chicken 1 pic promo."
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/pyidaungsu_bold"/>
+
+                    <LinearLayout
+                        android:id="@+id/l_1_2_1_1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txt_goods_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="16000"
+                            android:textColor="@color/yellow"
+                            android:textSize="22dp"
+                            android:includeFontPadding="false"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/pyidaungsu_bold"/>
+
+                        <TextView
+                            android:id="@+id/text_goods_price_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="3dp"
+                            android:gravity="center_vertical"
+                            android:text="mmk"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/yellow"
+                            android:textSize="@dimen/text_regular_2x"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/pyidaungsu_bold"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/layout_2"
+                            android:visibility="visible"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lbl_end_of_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical|right"
+                                android:paddingRight="@dimen/margin_medium"
+                                android:text="End of"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/red"
+                                android:textSize="@dimen/text_regular_2x"/>
+
+                            <TextView
+                                android:id="@+id/expired_date_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="@dimen/margin_medium"
+                                android:gravity="center_vertical|right"
+                                android:text="26-03-2019"
+                                android:textColor="@color/red"
+                                android:textSize="@dimen/text_regular_2x"
+                                android:includeFontPadding="false"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/pyidaungsu_bold"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/coupon_amt_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:text="99999"
+                                    android:textColor="@color/yellow"
+                                    android:textSize="@dimen/text_big"
+                                    android:textStyle="bold"
+                                    android:fontFamily="@font/pyidaungsu_bold"
+                                    android:includeFontPadding="false"/>
+
+                                <TextView
+                                    android:id="@+id/coupon_amt_unit_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:text="mmk"
+                                    android:layout_marginLeft="@dimen/margin_tiny"
+                                    android:textColor="@color/yellow"
+                                    android:textSize="@dimen/text_regular_2x"
+                                    android:textStyle="bold"
+                                    android:fontFamily="@font/pyidaungsu_bold"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/coupon_amt_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="0dp"
+                            android:text="10"
+                            android:textColor="@color/yellow"
+                            android:textSize="100dp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:includeFontPadding="false"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/lbl_end_of_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical|right"
+                                android:paddingRight="@dimen/margin_medium"
+                                android:text="End of"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:textColor="@color/red"
+                                android:textSize="18dp"/>
+
+                            <TextView
+                                android:id="@+id/expired_date_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="@dimen/margin_medium"
+                                android:gravity="center_vertical|right"
+                                android:text="26-03-2019"
+                                android:textColor="@color/red"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/pyidaungsu_bold"/>
+
+                            <TextView
+                                android:id="@+id/coupon_amt_unit_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/margin_tiny"
+                                android:gravity="center_vertical"
+                                android:paddingBottom="@dimen/margin_small"
+                                android:text="mmk"
+                                android:textColor="@color/yellow"
+                                android:textSize="24dp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:includeFontPadding="false"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/used_img"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/l_1_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_weight="0.1"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:background="@color/red">
+
+            <TextView
+                android:id="@+id/text_desc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_small"
+                android:text="Note: "
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:typeface="monospace" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

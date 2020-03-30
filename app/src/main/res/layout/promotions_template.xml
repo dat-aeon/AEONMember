@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    card_view:cardBackgroundColor="@color/white"
+    android:layout_width="match_parent"
+    android:id="@+id/card_view"
+    android:layout_marginRight="@dimen/margin_small"
+    android:layout_marginLeft="@dimen/margin_small"
+    android:layout_height="180dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardMaxElevation="@dimen/margin_tiny"
+    card_view:cardCornerRadius="@dimen/margin_small">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_small"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/promotions_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:ellipsize="end"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:lines="2"
+            android:text="Promotion Title"
+            android:textColor="@color/login_color"
+            android:textSize="@dimen/text_regular_2x"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_margin="@dimen/margin_small"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_weight="0.9"
+                android:weightSum="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/promotions_published_date"
+                    android:textColor="@color/color_disable"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="dd-MM-yyyy hh:mm"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/promotions_content"
+                    android:layout_weight="0.9"
+                    android:textSize="@dimen/text_regular"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/black"
+                    android:text="Promotion content."
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/promotions_read_more"
+                    android:layout_weight="0.1"
+                    android:textColor="@color/newsheader"
+                    android:textSize="@dimen/text_regular"
+                    android:layout_margin="@dimen/margin_tiny"
+                    android:text="@string/read_more"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+            </LinearLayout>
+
+            <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:id="@+id/promotions_img"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.1"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

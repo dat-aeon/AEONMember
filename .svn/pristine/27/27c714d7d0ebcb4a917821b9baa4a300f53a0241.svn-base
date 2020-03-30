@@ -1,0 +1,1346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/stepview_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/edit_text_style"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_medium"
+            android:visibility="gone">
+
+            <io.canner.stepsview.StepsView xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/stepsView_2"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                custom:circleRadius="20"
+                custom:labelSize="10" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/occu_data_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:id="@+id/back_app_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/left_sign_32" />
+
+                    <TextView
+                        android:id="@+id/da_app_data_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:padding="1dp"
+                        android:text="@string/da_application_data_title"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/go_to_emergency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:id="@+id/da_emer_data_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_weight="0.9"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:padding="1dp"
+                        android:text="@string/da_emergency_title"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/right_sign_32" />
+
+                </LinearLayout>
+            </LinearLayout>-->
+
+            <com.kofigyan.stateprogressbar.StateProgressBar
+                android:id="@+id/occu_stepped_bar"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:spb_currentStateNumber="two"
+                app:spb_maxStateNumber="five"
+                app:spb_stateBackgroundColor="@color/color_disable"
+                app:spb_stateForegroundColor="@color/da_button__color"
+                app:spb_stateNumberBackgroundColor="@color/white"
+                app:spb_stateNumberForegroundColor="@color/white"
+                app:spb_currentStateDescriptionColor="@color/da_button__color"
+                app:spb_stateDescriptionColor="@color/color_disable"
+                app:spb_animateToCurrentProgressState="true"
+                app:spb_checkStateCompleted="false"
+                app:spb_stateDescriptionSize="12sp"
+                app:spb_descriptionTopSpaceIncrementer="2dp"/>
+
+            <TextView
+                android:id="@+id/da_occu_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/da_occupation_title"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/da_label_color"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textSize="@dimen/text_regular_3x"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/occupation_scroll"
+            android:layout_above="@+id/button_layout"
+            android:layout_below="@+id/occu_data_banner"
+            android:layout_marginBottom="15dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:background="@null"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_medium">
+
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_medium_2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/reg_form_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="Occupation Data"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_regular_3x"
+                        android:textStyle="bold" />
+
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/occupation_text_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Company Name *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/occupation_err_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Company Name is required."
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/occupation_input_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint="Company Name"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:maxLength="256"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/company_current_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Company Address"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_medium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+                        <TextView
+                            android:id="@+id/company_txt_apartment_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_apartment_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/company_apartment_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="100"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+
+                        <TextView
+                            android:id="@+id/company_txt_room_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_room_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/company_room_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+
+                        <TextView
+                            android:id="@+id/company_txt_floor_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_floor_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/company_floor_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/occupation_err_street"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/company_txt_street"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_street"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/company_street"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:hint=""
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:maxLength="100"
+                                android:paddingLeft="@dimen/margin_medium"
+                                android:singleLine="true"
+                                android:textColor="@color/da_value_color"
+                                android:textColorHint="@color/grayLight"
+                                android:textSize="@dimen/text_regular" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/occupation_err_quarter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/company_txt_quarter"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_quarter"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/company_quarter"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:hint=""
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:maxLength="100"
+                                android:paddingLeft="@dimen/margin_medium"
+                                android:singleLine="true"
+                                android:textColor="@color/da_value_color"
+                                android:textColorHint="@color/grayLight"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/occupation_err_city"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/company_txt_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_city"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <AutoCompleteTextView
+                                android:id="@+id/company_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginRight="@dimen/margin_tiny"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:maxLength="100"
+                                android:gravity="center"
+                                android:longClickable="false"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:singleLine="true"
+                                android:textAlignment="center"
+                                android:textColor="@color/da_value_color"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/occupation_err_township"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/company_txt_township"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_township"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <AutoCompleteTextView
+                                android:id="@+id/company_township"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginRight="@dimen/margin_tiny"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:maxLength="100"
+                                android:gravity="center"
+                                android:longClickable="false"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:singleLine="true"
+                                android:textAlignment="center"
+                                android:textColor="@color/da_value_color"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/occu_com_tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Company Tel No. "
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/occupation_err_companyTel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Company Tel No. is required."
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/occupation_comapnyTel"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint="@string/register_phoneno_holder"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/occu_contact_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Contact Time *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/occupation_err_contactTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Contact Time is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <EditText
+                            android:id="@+id/occupation_contact_am"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/edit_text_style"
+                            android:focusable="false"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:hint="h:mm"
+                            android:inputType="number"
+                            android:maxLength="256"
+                            android:singleLine="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+
+                        <TextView
+                            android:id="@+id/occu_am"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:layout_weight="0.5"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="AM"
+                            android:textAlignment="center"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/occupation_contact_pm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/edit_text_style"
+                            android:focusable="false"
+                            android:hint="h:mm"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:inputType="number"
+                            android:maxLength="256"
+                            android:singleLine="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+
+                        <TextView
+                            android:id="@+id/occu_pm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:layout_weight="0.5"
+                            android:focusable="false"
+                            android:text="PM"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textAlignment="center"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/occu_com_dept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Department *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/occupation_err_companyDept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Department Name is required."
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/occupation_company_dept"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint="Company Department"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:maxLength="256"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/occu_com_pos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Position *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/occupation_err_companyPos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Position is required."
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/occupation_company_pos"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint="Position"
+                        android:maxLength="256"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/occu_service_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Year of Service *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/occupation_err_serviceYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Year of Service is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1"
+                            android:layout_weight="0.5">
+
+                            <Spinner
+                                android:id="@+id/occu_spinner_service_year"
+                                android:layout_width="match_parent"
+                                android:layout_weight="0.3"
+                                android:paddingLeft="@dimen/margin_small"
+                                android:paddingRight="@dimen/margin_small"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:background="@drawable/spinner_drop_arrow"/>
+
+                            <TextView
+                                android:id="@+id/lbl_occu_stay_year"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.7"
+                                android:layout_gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="@string/register_stay_year"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:fontFamily="@font/pyidaungsu_bold"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1"
+                            android:layout_weight="0.5">
+
+                            <Spinner
+                                android:id="@+id/occu_spinner_service_month"
+                                android:layout_width="match_parent"
+                                android:layout_weight="0.3"
+                                android:layout_marginLeft="@dimen/margin_tiny"
+                                android:paddingLeft="@dimen/margin_small"
+                                android:paddingRight="@dimen/margin_small"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:background="@drawable/spinner_drop_arrow"/>
+
+                            <TextView
+                                android:id="@+id/lbl_occu_stay_month"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.7"
+                                android:layout_gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="@string/register_stay_month"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:fontFamily="@font/pyidaungsu_bold"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_tiny"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text_company_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Company Status *"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/occupation_err_companyStatus_auto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Description is required."
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autocomplete_company_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_marginRight="@dimen/margin_tiny"
+                            android:background="@drawable/mandatroy_edit_text_style"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:gravity="center"
+                            android:longClickable="false"
+                            android:paddingLeft="@dimen/margin_medium_2"
+                            android:paddingRight="@dimen/margin_medium_2"
+                            android:singleLine="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/da_value_color"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textSize="@dimen/text_regular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/occupation_err_companyStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Description is required."
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <EditText
+                            android:id="@+id/company_status_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:background="@drawable/mandatroy_edit_text_style"
+                            android:hint="Description"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="256"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/occu_monthly_income"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Monthly Basic Income *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/occupation_err_basicIncome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Basic Income is required."
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/occupation_Basic_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint="Basic Income"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                    <!--   <com.warkiz.widget.IndicatorSeekBar
+                           android:id="@+id/monthly_seekbar"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           app:isb_indicator_color="@color/gray"
+                           app:isb_indicator_text_color="@color/colorAccent"
+                           app:isb_indicator_text_size="18sp"
+                           app:isb_min="5"
+                           app:isb_max="200"
+                           app:isb_only_thumb_draggable="false"
+                           app:isb_progress="1"
+                           app:isb_seek_smoothly="true"
+                           app:isb_show_indicator="none"
+                           app:isb_show_tick_marks_type="oval"
+                           app:isb_show_tick_texts="false"
+                           app:isb_thumb_color="@color/colorPrimary"
+                           app:isb_thumb_size="20dp"
+                           app:isb_tick_marks_size="13dp"
+                           app:isb_tick_texts_color="@color/colorPrimary"
+                           app:isb_tick_texts_size="15sp"
+                           app:isb_ticks_count="2"
+                           app:isb_track_background_color="@color/gray"
+                           app:isb_track_background_size="2dp"
+                           app:isb_track_progress_color="@color/colorPrimary"
+                           app:isb_track_progress_size="4dp" />
+   -->
+                    <!-- <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal">
+
+                         <TextView
+                             android:id="@+id/start"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:text="50,000"
+                             android:fontFamily="@font/pyidaungsu_bold"
+                             android:textColor="@color/colorPrimary"
+                             android:layout_weight="1"/>
+
+                         <TextView
+                             android:id="@+id/end"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:text="2,000,000"
+                             android:fontFamily="@font/pyidaungsu_bold"
+                             android:textColor="@color/colorPrimary"
+                             android:layout_weight="1"
+                             android:textAlignment="textEnd"/>
+
+                     </LinearLayout>
+ -->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/occu_other_income"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Other Income"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/occupation_other_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/edit_text_style"
+                        android:hint="Other Income"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                    <!-- <com.warkiz.widget.IndicatorSeekBar
+                         android:id="@+id/other_seekbar"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="15dp"
+                         app:isb_indicator_color="@color/gray"
+                         app:isb_indicator_text_color="@color/colorAccent"
+                         app:isb_indicator_text_size="18sp"
+                         app:isb_min="0"
+                         app:isb_max="200"
+                         app:isb_only_thumb_draggable="false"
+                         app:isb_progress="1"
+                         app:isb_seek_smoothly="true"
+                         app:isb_show_indicator="none"
+                         app:isb_show_tick_marks_type="oval"
+                         app:isb_show_tick_texts="false"
+                         app:isb_thumb_color="@color/colorPrimary"
+                         app:isb_thumb_size="20dp"
+                         app:isb_tick_marks_size="13dp"
+                         app:isb_tick_texts_color="@color/colorPrimary"
+                         app:isb_tick_texts_size="15sp"
+                         app:isb_ticks_count="2"
+                         app:isb_track_background_color="@color/gray"
+                         app:isb_track_background_size="2dp"
+                         app:isb_track_progress_color="@color/colorPrimary"
+                         app:isb_track_progress_size="4dp" />
+ -->
+                    <!-- <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal">
+
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:text="0"
+                             android:fontFamily="@font/pyidaungsu_bold"
+                             android:textColor="@color/colorPrimary"
+                             android:layout_weight="1"/>
+
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:text="2,000,000"
+                             android:fontFamily="@font/pyidaungsu_bold"
+                             android:textColor="@color/colorPrimary"
+                             android:layout_weight="1"
+                             android:textAlignment="textEnd"/>
+
+                     </LinearLayout>-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <!--<TextView
+                        android:id="@+id/occupation_err_totalIncome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Total Income is required."
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/occu_total_income"
+                            android:layout_width="150dp"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Total Income *"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text=" : "
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/occupation_total_income"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_value_color"
+                            android:text="0"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <!--<EditText
+                        android:id="@+id/occupation_total_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:focusable="false"
+                        android:hint="Total Income"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_x"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/occu_salary_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Salary Day *"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!--<TextView
+                            android:id="@+id/occupation_err_salaryDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Salary Date is required."
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />-->
+
+                        <Spinner
+                            android:id="@+id/occu_spinner_salary_date"
+                            android:layout_width="match_parent"
+                            android:paddingLeft="@dimen/margin_small"
+                            android:paddingRight="@dimen/margin_small"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:background="@drawable/spinner_drop_arrow"/>
+
+                        <!--<EditText
+                            android:id="@+id/occupation_salary_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.9"
+                            android:height="40dp"
+                            android:background="@drawable/edit_text_style"
+                            android:focusable="false"
+                            android:hint="@string/register_dob_holder"
+                            android:inputType="text"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />-->
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_occudata_save"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.5"
+                android:background="@drawable/button_border"
+                android:backgroundTint="@color/da_button__color"
+                android:text="Save"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_occupation_next"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.5"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:background="@drawable/button_border"
+                android:backgroundTint="@color/da_button__color"
+                android:text="Next"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

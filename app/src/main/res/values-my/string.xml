@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">AEONMember_DA</string>
+    <string name="def_tool_bar_title">AEON</string>
+
+    <!--TERMS AND CONDITION AGREEMENTS-->
+    <string name="terms_title">စည်းမျဉ်းနှင့်စည်းကမ်းများ</string>
+    <string name="terms_accept">လက်ခံမည်</string>
+    <string name="terms_agree">အတည်ပြုမည်</string>
+    <string name="terms_text">အီရွန်မိုက်ခရိုဖိုင်းနက် (စ်) မြန်မာကုမ္ပဏီလီမိတက်သည် ၂၀၁၂ ခုနှစ် နိုဝင်ဘာလ (၂) ရက် နေ့တွင် ကုမ္ပဏီ မှတ်ပုံတင်အမှတ် ၁၇၆ / FC ဖြင့်မြန်မာနိုင်ငံ ရင်းနှီးမြှုပ်နှံမှုနှင့် ကုမ္ပဏီများညွှန်ကြားမှုတွင် မှတ်ပုံတင်ရရှိခဲ့ပြီး အသေးစားငွေရေးကြေးရေးလုပ်ငန်း လုပ်ကိုင်ခွင့် လိုင်စင်အမှတ် ၀၁၃၂/၂၀၁၃ ရက်စွဲ ၈-၀၂-၂၀၁၃ ဖြင့်လုက်ကိုင်ခွင့် ရရှိပြီး အသေးစား ငွေရေးကြေးရေး လုပ်ငန်းကို ရန်ကုန်တိုင်းဒေသကြီးအတွင်းရှိ (၄၄) မြို့နယ်အတွင်း နှင့် မန္တလေးတိုင်း ဒေသကြီး အတွင်းရှိ (၇) မြို့နယ်အတွင်း လုပ်ကိုင်ခဲ့ပါသည်။ အီရွန်မိုက်ခရိုဖိုင်းနက် (စ်) မြန်မာကုမ္ပဏီလီမိတက်၏ ရင်းနှီးမတည်ငွေ နှင့်အများဆုံးသော ရှယ်ယာများကို လည်း AEON Thana Sinsap (Thailand) Public Co., Ltd မှထည့်သွင်းပိုင်ဆိုင် ထားပါသည်။ AEON Thana Sinsap (Thailand) Public Co., Ltd ၏ မိခင်ကုမ္ပဏီမှာ ဂျပန်နိုင်ငံတွင် စတင်တည်ထောင်ခဲ့သော ကုမ္ပဏီ တစ်ခုဖြစ်သည့် AEON Financial Services ဖြစ်ပြီး ဂျပန်နိုင်ငံ၏ stock share တွင် စာရင်းဝင် ကုမ္ပဏီ တစ်ခုဖြစ်ပါသည်။ ယခုအခါတွင် AEON Financial Co., Ltd သည် ဝန်ထမ်းပေါင်းသုံးသိန်းကျော် ဖြင့် ဂျပန်နိုင်ငံ၏ နံပါတ်တစ်ထိပ်တန်း Credit Card ကို ထုတ်ဝေနေသော ကုမ္ပဏီ တစ်ခုအဖြစ် ရပ်တည်နေပြီး ပေါင်းစည်းဆက်နွယ်ထားသော ကုမ္ပဏီပေါင်း ၁၈၀ ပါဝင်ဖွဲ့စည်းထားသည့် ဦးပိုင် holding ကုမ္ပဏီ တစ်ခုလည်း ဖြစ်ပါသည်။ ဂျပန်နိုင်ငံ တွင်သာမက အရှေ့တောင်အာရှ နှင့်တရုတ်နိုင်ငံ တွင်လည်း ရင်းနှီးမြှုပ်နှံလျှက် စီးပွားရေးလုပ်ငန်းများနှင့် ငွေရေးကြေးရေး လုပ်ငန်းများအား လုပ်ကိုင်လျှက် ရှိပါသည်။</string>
+
+    <!--Phone Request screen-->
+    <string name="phone_request_text">AEONနှင့်ဆက်သွယ်ရန် ဖုန်းနံပါတ်ထည့်ပေးပါ။</string>
+
+    <!--HOME Screen--><!---->
+    <string name="menu_level_one">Lv.1 : Application User</string>
+    <string name="menu_level_two">Lv.2 : Login User</string>
+    <string name="menu_level_three">Lv.3 : Member User</string>
+
+    <string name="home_login_button">ဝင်မည်</string>
+    <string name="home_register_button">မှတ်ပုံတင်မည်</string>
+
+    <string name="home_aboutus_button">ကျွန်ုပ်တို့\nအ‌ကြောင်း</string>
+    <string name="home_faq_button">မေးလေ့ရှိသော\nမေးခွန်းများ</string>
+    <string name="home_version_label">ဗားရှင်း</string>
+
+    <string name="main_freechat_title">AEON အား\nဆက်သွယ်ရန်</string>
+    <string name="main_contactus_title">AEON အား\nဆက်သွယ်ရန်</string>
+    <string name="main_calculator_title">ချေးငွေ\nတွက်ချက်ခြင်း</string>
+    <string name="main_findus_title">ဆိုင်များ</string>
+    <string name="main_news_title">သတင်း</string>
+
+    <string name="main_announce_title">ကြေညာချက်</string>
+    <string name="main_ourservice_title">AEON မှ\nဝန်ဆောင်မှုများ</string>
+    <string name="main_facebook_title">Facebook</string>
+    <string name="main_help_title">Help</string>
+
+    <string name="main_video_title">အသုံးပြုနည်း</string>
+    <string name="main_share_title">မျှဝေမည်</string>
+
+    <string name="main_membership">အဖွဲ့ဝင်</string>
+    <string name="main_info_update">အချက်အလက်များ\nပြင်ဆင်ခြင်း</string>
+
+    <string name="welcome_loan_app_title">ချေးငွေ\nလျှောက်လွှာ</string>
+    <string name="welcome_membership_title">အဖွဲ့ဝင်</string>
+    <string name="welcome_agent_channel_title">ပစ္စည်းမေးရန်</string>
+    <string name="welcome_info_update_title">အချက်အလက်\nပြင်ဆင်ခြင်း</string>
+
+    <!--LOGIN Screen--><!---->
+    <string name="login_title">ဝင်မည်</string>
+    <string name="login_phoneno_holder">ဖုန်းနံပါတ်</string>
+    <string name="login_password_holder">လျှို့ဝှက်ကုဒ်</string>
+    <string name="login_login_btn">ဝင်မည်</string>
+    <string name="login_forgotpassword_link">လျှို့ဝှက်ကုဒ်မေ့နေပါသလား?</string>
+    <!--Error-->
+    <string name="login_phoneno_err_msg">ဖုန်းနံပါတ်ထည့်ပါ။</string>
+    <string name="login_phoneno_format_err_msg">ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
+    <string name="login_password_err_msg">လျှို့ဝှက်ကုဒ်ထည့်ပါ။</string>
+    <string name="login_password_format_err_msg">Password ID စာလုံး ၆လုံး ဖြစ်ရမည်။</string>
+    <!--Dialog-->
+    <string name="login_in_progress">Loggin in ...</string>
+    <string name="login_success">Login Success.</string>
+    <string name="login_invalid">ဖုန်းနံပါတ် သို့မဟုတ် လျှို့ဝှက်ကုဒ် မှားနေသည်။</string>
+    <string name="login_unavailable">login ဝန်ဆောင်မှုမရနိုင်ပါ။</string>
+    <string name="login_on_failure">Login မအောင်မြင်ပါ‌။</string>
+    <string name="bio_login_invalid">သင်၏ Biometric အချက်အလက်ဖြင့် ဝင်မရတော့ပါ။ နောက်တစ်ကြိမ်ထည့်သွင်းလိုပါသလား?</string>
+    <!--biometric-->
+    <string name="biometric_auth_failed">လက်‌ဗွေစနစ်ဖြင့် ဝင်ရောင်ခြင်း မ‌‌အောင်မြင်ပါ။</string>
+    <string name="biometric_auth_error">Biometric Error!</string>
+
+    <!--SECURITYQUESTION CONFIRMATION Screen-->
+    <string name="secquestconfirm_title">လုံခြုံရေးမေးခွန်းများကို အတည်ပြုခြင်း</string>
+    <string name="secquestconfirm_confrim_button">အတည်ပြုမည်</string>
+    <string name="sec_qa_reg_title">လုံခြုံရေးမေးခွန်းများ ထည့်သွင်းရန်</string>
+    <string name="txt_clear">ရှင်းလင်းမည်</string>
+
+    <!--RESET PASSWORD Screen--><!---->
+    <string name="resetpass_title">လျှို့ဝှက်ကုဒ်အား ပြင်ဆင်ခြင်း</string>
+    <string name="resetpass_newpass_label">လျှို့ဝှက်ကုဒ်အသစ်*</string>
+    <string name="resetpass_conpass_label">လျှို့ဝှက်ကုဒ်အသစ်အတည်ပြုခြင်း</string>
+    <string name="resetpass_hint">Password</string>
+    <string name="resetpass_reset_button">ပြင်ဆင်မည်</string>
+    <!--Error-->
+    <string name="resetpass_newpass_err">လျှို့ဝှက်ကုဒ်အသစ်ထည့်ပါ။</string>
+    <string name="resetpass_conpass_err">အတည်ပြုလျှို့ဝှက်ကုဒ်ထည့်ပါ။</string>
+    <string name="resetpass_conpass_err2">လျှို့ဝှက်ကုဒ်များ မတူညီပါ။</string>
+
+    <string name="resetpass_sq_wrong">မေးခွန်းနှင့်အဖြေများ မကိုက်ညီပါ။</string>
+    <string name="resetpass_sq_nrc_ph_not_exist">NRC or Phone No does not exist.</string>
+
+    <!--REGISTER Screen--><!---->
+    <string name="register_title">အသစ်မှတ်ပုံတင်မည်</string>
+    <string name="register_caption">အသစ်မှတ်ပုံတင်ခြင်း</string>
+    <string name="register_name_label">နာမည်*</string>
+    <string name="register_name_holder">နာမည်...</string>
+    <string name="register_company_name_holder">Company Name</string>
+    <string name="register_relation_with_other_holder">Description</string>
+    <string name="register_dob_label">မွေးနေ့*</string>
+    <string name="register_dob_holder">နှစ်-လ-ရက်</string>
+    <string name="register_nrc_label">မှတ်ပုံတင်နံပါတ်*</string>
+    <string name="register_nrc_holder">Code</string>
+    <string name="register_phoneno_label">ဖုန်းနံပါတ်*</string>
+    <string name="register_phoneno_holder">09xxxxxxxxx</string>
+    <string name="register_password_label">လျှို့ဝှက်ကုဒ်*</string>
+    <string name="register_password_holder">စကားလုံး ၆လုံး မှ ၁၆လုံး</string>
+    <string name="register_conpassword_label">လျှို့ဝှက်ကုဒ် အတည်ပြုခြင်း*</string>
+    <string name="register_stay_year">နှစ်</string>
+    <string name="register_stay_month">လ</string>
+    <string name="register_save_button">သိမ်းမည်</string>
+    <!--Err-->
+    <string name="register_name_err">နာမည်ထည့်ပါ။</string>
+    <string name="register_dob_err">မွေးနေ့ထည့်ပါ။</string>
+    <string name="register_nrc_err">မှတ်ပုံတင်နံပါတ်ထည့်ပါ။</string>
+    <string name="register_nrc_format_err">မှတ်ပုံတင်နံပါတ် ၆ လုံးဖြစ်ရမည်။</string>
+    <string name="register_phoneno_err">ဖုန်းနံပါတ်ထည့်ပါ။</string>
+    <string name="register_tel_no_err">ဖုန်းနံပါတ်ထည့်ပါ။</string>
+    <string name="register_password_err">လျှို့ဝှက်ကုဒ်ထည့်ပါ။</string>
+    <string name="register_conpassword_err">အတည်ပြုလျှို့ဝှက်ကုဒ်ထည့်ပါ။</string>
+    <string name="register_pwd_format_err_msg">လျှို့ဝှက်ကုဒ်သည် ၆လုံး မှ ၁၆လုံးထိရှိသင့်သည်။</string>
+    <string name="register_confpwd_format_err_msg">လျှို့ဝှက်ကုဒ်များမတူညီပါ။</string>
+    <string name="register_phoneno_format_err_msg">ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
+    <string name="register_tel_no_format_err_msg">ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
+    <string name="register_pwd_strength_err_msg">လျှို့ဝှက်ကုဒ်သည်မလုံလောက်ပါ။ နံပါတ် ၊အက္ခရာ နှင့် အထူးအက္ခရာ များ ပါဝင်သင့်ပါသည်။</string>
+    <string name="register_reg_code">123456</string>
+    <string name="register_age_limit">(အသက်သည် ၁၈နှစ်နှင့်အထက်ဖြစ်ရပါမည်)</string>
+    <string name="register_pwd_limit">*လျှို့ဝှက်ကုဒ်သည် ၆လုံး မှ ၁၆လုံး အတွင်းရှိရမည် ဖြစ်ပါသည်။</string>
+    <string name="register_name_format_err">English စာဖြင့် ရိုက်ထည့်ရန်။</string>
+    <!--Dialog-->
+    <string name="register_nrc_dup">မှတ်ပုံတင်နံပါတ် ထပ်နေပါသည်။</string>
+    <string name="register_ph_no_dup">ဖုန်းနံပါတ် ထပ်နေပါသည်။</string>
+    <string name="register_duplicate">သင်၏အချက်အလက်သည်ထည့်သွင်းပြီးဖြစ်သည်။</string>
+    <string name="register_duplicate_core">Date of Birth does not match with AEON data.</string>
+    <string name="register_imp_phone_no_duplicate">သင့်ဖုန်းနံပါတ်ဖြင့် မှတ်ပုံတင်ထားပြီးသား ရှိနေပါသည်။</string>
+    <string name="register_failed">မှတ်ပုံတင်ခြင်း မအောင်မြင်ပါ။</string>
+
+
+    <!--CUSTOMERTYPE Screen-->
+    <string name="customertype_title">Customer Type</string>
+    <string name="customertype_oldcustomer_button">Member အဖြစ်အဆင့်မြှင့်မည်</string>
+
+    <!--SECURITYQUESTION REGISTER Screen-->
+    <string name="secquest_title">လုံခြုံရေးမေးခွန်းများထည့်ရန်</string>
+    <string name="secquest_question_label">မေး :</string>
+    <string name="secquest_answer_label">ဖြေ :</string>
+    <string name="secquest_save_button">သိမ်းမည်</string>
+    <string name="secquest_err_ans_blank">လုံခြုံရေးအဖြေအားလုံးထည့်ပါ။</string>
+    <string name="secquest_err_ans_length">Length of password must be less than 50.</string>
+    <string name="secquest_err_que_same">မေးခွန်းများတူနေသည်။</string>
+    <string name="secquest_ans_err">အဖြေသည် Englishအက္ခရာနှင့်နံပါတ်များသာခွင့်ပြုသည်။</string>
+
+    <!--VERIFICATION Screen--><!---->
+    <string name="verify_title">Memberအချက်အလက်များစိစစ်ခြင်း</string>
+    <string name="verify_agreementno_label">Agreement No. *</string>
+    <string name="verify_agreementno_holder">XXXX-X-XXXXXXXXXX-X</string>
+    <string name="verify_dob_label">မွေးနေ့*</string>
+    <string name="verify_dob_holder">နှစ်-လ-ရက်</string>
+    <string name="verify_nrc_label">မှတ်ပုံတင်နံပါတ်*</string>
+    <string name="verify_callnow_notice">Agreement No. အား မမှတ်မိပါက AEON Customer Service သို့ဆက်သွယ်ပါ။</string>
+    <string name="verify_security_question_title">လုံခြုံရေးမေးခွန်းများ စိစစ်ခြင်း</string>
+    <string name="verify_callnow_button">ဖုန်းခေါ်မည်</string>
+    <string name="verify_verify_button">စိစစ်မည်</string>
+    <!--Err-->
+    <string name="verify_agreementno_err">Agreement No. ထည့်ပါ။</string>
+    <string name="verify_agreementno_err_format">Agreement No ပုံစံမမှန်ပါ။</string>
+    <string name="verify_err_invalid">Member အချက်အလက်များမမှန်ကန်ပါ။</string>
+    <string name="verify_dob_err">မွေးနေ့ထည့်ပါ။</string>
+    <string name="verify_nrc_err">မှတ်ပုံတင်နံပါတ် ထည့်ပါ။</string>
+
+    <!--PHOTO UPLOAD Screen--><!---->
+    <string name="photoupload_title">ဓာတ်ပုံအားအတည်ပြုခြင်း</string>
+    <string name="photoupload_announce_label">သင့်၏ပုံသည် Member Card ထုတ်ရန်အတွက်ဖြစ်သည်။</string>
+    <string name="photoupload_notice1_label">Member Card သည်ဤဓာတ်ပုံအချက်အလက် နှင့်သာ AEON ဝန်ဆောင်မှုများအတွက်အသုံးပြုနိုင်သည်။</string>
+    <string name="photoupload_notice2_label">ဤဓာတ်ပုံသည်</string>
+    <string name="photoupload_notice3_label">၁။ သင့်ရဲ့ဖုန်းအတွင်းတွင်သာသိမ်းထားမည်ဖြစ်သည်။</string>
+    <string name="photoupload_notice4_label">၂။ သင်သည်နောက်တစ်ကြိမ် ဤ application အား install လုပ်သည်အထိမပြောင်းလဲပါ။</string>
+    <string name="photoupload_notice5_label">ဤဓာတ်ပုံသည် သင်၏ဖုန်းပျောက်ဆုံးသည့်အခါ သင့်၏ Member Card လုံခြုံရန် နှင့် အတည်ပြုရန်ဖြစ်သည်။</string>
+    <string name="photoupload_upload_button">မျက်နှာအားဓာတ်ပုံရိုက်မည်</string>
+    <string name="photoupload_update_button">ဓာတ်ပုံပြောင်းမည်</string>
+
+    <!--PHOTO CONFIRMATION Screen--><!---->
+    <string name="photoconfirm_title">ဓာတ်ပုံအတည်ပြုခြင်း</string>
+    <string name="photoconfirm_confirm_title">Member card အတွက်ဤပုံကိုအသုံးပြုပါမည်လား?</string>
+    <string name="photoconfirm_confirm_confirm">သုံးမည်</string>
+    <string name="photoconfirm_confirm_retry">ပြန်ရိုက်မည်</string>
+
+    <!--MEMBERSHIP Screen-->
+    <string name="membership_title">MEMBERSHIP</string>
+    <string name="membership_card2_photo_label">ဤဓာတ်ပုံကို သင့် Member Card လုံခြုံရေးအတွက်သုံးနိုင်သည်။</string>
+    <string name="membership_tab_card1">ပထမကဒ်</string>
+    <string name="membership_tab_card2">ဒုတိယကဒ်</string>
+    <string name="last_received_day">နောက်ဆုံးငွေပေးချေမှုရက်စွဲ : </string>
+    <string name="received_day_warning_text">သင်၏နောက်ဆုံးငွေပေးချေမှုရက်စွဲနှင့် ပတ်သက်၍ ကွဲလွဲမှုများရှိပါက AEONသို့ဆက်သွယ်ပါ။</string>
+
+    <!--INFORMATION UPDATE Screen-->
+    <string name="infoupdate_title">သတင်းအချက်အလက်ပြန်လည်ပြင်ဆင်ခြင်း</string>
+    <string name="infoupdate_tab1_title">လုံခြုံရေးမေးခွန်းများ ပြန်လည်ပြင်ဆင်ခြင်း</string>
+    <string name="infoupdate_tab2_title">သင့်အချက်အလက်များ ပြန်လည်ပြင်ဆင်ခြင်း</string>
+    <string name="infoupdate_update_button">ပြင်ဆင်မည်</string>
+
+    <!--FREE CHAT Screen-->
+    <string name="free_chat_introduction">Welcome From AEON service!\n This chat room message will not save in your device and will not show old message.</string>
+
+    <!--Err msg-->
+    <string name="infoupdate_err_pwd">လျှို့ဝှက်ကုဒ်ထည့်ပါ။</string>
+    <string name="infoupdate_err_pwd_invalid">လျှို့ဝှက်ကုဒ်မမှန်ကန်ပါ။</string>
+    <string name="infoupdate_err_upd_success">အချက်အလက် ပြင်ဆင်ခြင်းအောင်မြင်ပါသည်။</string>
+
+    <!--APPLY AEON SERVICE -->
+    <string name="da_application_form_button">ချေးငွေလျှောက်ထားမည်</string>
+    <string name="da_application_enquiry_button">ချေးငွေလျှောက်လွှာအခြေအနေ</string>
+
+    <string name="da_application_form_title">လျှောက်လွှာပုံစံ</string>
+    <string name="da_application_data_title">လျှောက်ထားသူအချက်အလက်</string>
+    <string name="da_occupation_title">အလုပ်အကိုင်အချက်အလက်</string>
+    <string name="da_emergency_title">တစ်ဆင့်ဆက်သွယ်နိုင်မည့်သူ</string>
+    <string name="da_guarantor_title">အာမခံသူအချက်အလက်</string>
+    <string name="da_loanConfirm_title">ချေးငွေအတည်ပြုချက်</string>
+    <string name="da_applicant_name">နာမည် *</string>
+    <string name="da_applicant_dob">မွေးနေ့ *</string>
+    <string name="da_applicant_nrc">မှတ်ပုံတင်နံပါတ် *</string>
+    <string name="da_applicant_father">ဖခင်အမည် *</string>
+    <string name="da_applicant_education">ပညာအရည်အချင်း *</string>
+    <string name="da_applicant_nationality">လူမျိုး *</string>
+    <string name="da_applicant_gender">ကျား/မ *</string>
+    <string name="da_applicant_marital">အိမ်ထောင်ရှိ/မရှိ *</string>
+    <string name="da_applicant_currAddress">လက်ရှိလိပ်စာ *</string>
+    <string name="da_applicant_perAddress">အမြဲတမ်းလိပ်စာ</string>
+    <string name="da_applicant_residenceType">အိမ်အမျိုးအစား *</string>
+    <string name="da_applicant_livingWith">အတူနေထိုင်သူ *</string>
+    <string name="da_applicant_yearStay">နေထိုင်သည့်နှစ် *</string>
+    <string name="da_applicant_mobileNo">ဖုန်းနံပါတ် *</string>
+    <string name="da_applicant_residentNo">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ် </string>
+    <string name="da_applicant_otherPhone">အခြားဖုန်းနံပါတ် </string>
+    <string name="da_applicant_email">အီးမေးလိပ်စာ </string>
+    <string name="da_applicant_next_btn">ရှေ့သို့</string>
+    <string name="da_applicant_save_btn">သိမ်းမည်</string>
+
+    <string name="da_occupation_companyName">ကုမ္ပဏီအမည် *</string>
+    <string name="da_occupation_companyAdd">ကုမ္ပဏီလိပ်စာ *</string>
+    <string name="da_occupation_companyTelNo">ကုမ္ပဏီဖုန်းနံပါတ် *</string>
+    <string name="da_occupation_contactTime">ဆက်သွယ်နိုင်မည့်အချိန် </string>
+    <string name="da_occupation_department">ဌာန *</string>
+    <string name="da_occupation_position">ရာထူး *</string>
+    <string name="da_occupation_serviceyear">လုပ်သက်နှစ် *</string>
+    <string name="da_occupation_companyStatus">ကုမ္ပဏီအမျိုးအစား *</string>
+    <string name="da_occupation_basicIncome">လစဉ်အခြေခံဝင်ငွေ *</string>
+    <string name="da_occupation_otherIncome">အခြားဝင်ငွေ</string>
+    <string name="da_occupation_totalIncome">စုစုပေါင်းဝင်ငွေ *</string>
+    <string name="da_occupation_salaryDate">လခထုတ်ရက်*</string>
+
+    <string name="da_emergency_name">နာမည်*</string>
+    <string name="da_emergency_relationship">လျှောက်ထားသူနှင့်တော်ဆက်မှု *</string>
+    <string name="da_emergency_currAddress">လက်ရှိလိပ်စာ *</string>
+    <string name="da_emergency_mobileNo">ဖုန်းနံပါတ် *</string>
+    <string name="da_emergency_residentTelNo">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်</string>
+    <string name="da_emergency_otherPhoneNo">အခြားဖုန်းနံပါတ်</string>
+
+    <string name="da_guarantor_name">နာမည် *</string>
+    <string name="da_guarantor_dob">မွေးနေ့ *</string>
+    <string name="da_guarantor_nrc">မှတ်ပုံတင်နံပါတ် *</string>
+    <string name="da_guarantor_nationality">လူမျိုး *</string>
+    <string name="da_guarantor_mobileNo">ဖုန်းနံပါတ် *</string>
+    <string name="da_guarantor_residentTelNo">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ် </string>
+    <string name="da_guarantor_relationship">လျှောက်ထားသူနှင့်တော်ဆက်မှု *</string>
+    <string name="da_guarantor_currAddress">လက်ရှိလိပ်စာ *</string>
+    <string name="da_guarantor_residenceType">အိမ်အမျိုးအစား *</string>
+    <string name="da_guarantor_livingWith">အတူနေထိုင်သူ *</string>
+    <string name="da_guarantor_gender">ကျား/မ *</string>
+    <string name="da_guarantor_marital">အိမ်ထောင်ရှိ/မရှိ *</string>
+    <string name="da_guarantor_yearStay">နေထိုင်သည့်နှစ် *</string>
+    <string name="da_guarantor_companyName">ကုမ္ပဏီအမည် *</string>
+    <string name="da_guarantor_companyTelNo">ကုမ္ပဏီဖုန်းနံပါတ် *</string>
+    <string name="da_guarantor_companyAdd">ကုမ္ပဏီလိပ်စာ </string>
+    <string name="da_guarantor_department">ဌာန *</string>
+    <string name="da_guarantor_position">ရာထူး *</string>
+    <string name="da_guarantor_stay_year">နှစ်</string>
+    <string name="da_guarantor_stay_month">လ</string>
+    <string name="da_guarantor_service_year">နှစ်</string>
+    <string name="da_guarantor_service_month">လ</string>
+    <string name="da_guarantor_serviceyear">လုပ်သက်နှစ် *</string>
+    <string name="da_guarantor_basicIncome">လစဉ်အခြေခံဝင်ငွေ *</string>
+    <string name="da_guarantor_totalIncome">စုစုပေါင်းဝင်ငွေ *</string>
+
+    <string name="da_loanconfirm_loanType">ချေးငွေအမျိုးအစား *</string>
+    <string name="da_loanconfirm_category">ပစ္စည်းအမျိုးအစား *</string>
+    <string name="da_loanconfirm_description">ကုန်ပစ္စည်းအကြောင်းအရာ *</string>
+    <string name="da_loanconfirm_financeAmount">ချေးငွေပမာဏ *</string>
+    <string name="da_loanconfirm_financeTerm">ချေးငွေကာလ *</string>
+    <string name="da_loanconfirm_processFee">ဝန်ဆောင်ခ</string>
+    <string name="da_loanconfirm_compulsory">မဖြစ်မနေစုငွေ</string>
+    <string name="da_loanconfirm_totalRepayAmount">ပြန်လည်ပေးဆပ်ရမည့်ပမာဏ \n(စုစုပေါင်း)</string>
+    <string name="da_loanconfirm_firstRepayAmount">ပထမအရစ် ပေးဆပ်ရမည့်ပမာဏ</string>
+    <string name="da_loanconfirm_monthlyRepayAmount">လစဉ်ပြန်လည်ပေးဆပ်ရမည့်ပမာဏ</string>
+    <string name="da_loanconfirm_lastpayment">နောက်ဆုံးပေးဆပ်ရမည့်ပမာဏ</string>
+    <string name="da_loanconfirm_nrcFront">မှတ်ပုံတင်ကဒ် အရှေ့ဘက်ပုံ *</string>
+    <string name="da_loanconfirm_nrcBack">မှတ်ပုံတင်ကဒ် အနောက်ဘက်ပုံ *</string>
+    <string name="da_loanconfirm_incomeProof">ဝင်ငွေအထောက်အထားပူးတွဲပုံ *</string>
+    <string name="da_loanconfirm_residentProof">နေထိုင်ကြောင်းထောက်ခံစာပုံ *</string>
+    <string name="da_loanconfirm_GuaNrcFront">အာမခံသူ၏မှတ်ပုံတင်ကဒ် အရှေ့ဘက်ပုံ *</string>
+    <string name="da_loanconfirm_GuaNrcBack">အာမခံသူ၏မှတ်ပုံတင်ကဒ် အနောက်ဘက်ပုံ *</string>
+    <string name="da_loanconfirm_household">အိမ်ထောင်စုစာရင်း(သို့)ရဲစခန်းထောက်ခံစာပုံ *</string>
+    <string name="da_loanconfirm_applicantPhoto">လျှောက်ထားသူ၏ဓာတ်ပုံ *</string>
+    <string name="da_loanconfirm_signature">လျှောက်ထားသူ၏လက်မှတ်ပုံ *</string>
+    <string name="da_loanconfirm_guar_signature">အာမခံသူ၏လက်မှတ်ပုံ *</string>
+    <string name="da_loanconfirm_aeonTermsCons">AEON စည်းမျဉ်းနှင့်စည်းကမ်းများ</string>
+    <string name="da_loanconfirm_agree_btn">လျှောက်လွှာတင်မည်</string>
+    <string name="da_loanconfirm_MMK">ကျပ်</string>
+    <string name="da_loanconfirm_Months"> လ</string>
+    <string name="btn_search">ရှာမည်</string>
+
+    <!--Inquiry-->
+    <string name="da_in_application_no">လျှောက်လွှာနံပါတ်</string>
+    <string name="lbl_agreement_no">သဘောတူညီမှုနံပါတ်</string>
+    <string name="da_in_application_date">လျှောက်လွှာတင်ခဲ့သည့် နေ့စွဲ</string>
+    <string name="da_in_member_card_no">Member Card နံပါတ်</string>
+
+    <string name="da_in_app_data_name">နာမည်</string>
+    <string name="da_in_app_data_dob">မွေးနေ့</string>
+    <string name="da_in_app_data_nrc_no">မှတ်ပုံတင်နံပါတ်</string>
+    <string name="da_in_app_data_father_name">ဖခင်အမည်</string>
+    <string name="da_in_app_data_education">ပညာအရည်အချင်း</string>
+    <string name="da_in_app_data_nationality">လူမျိုး</string>
+    <string name="da_in_app_data_gender">ကျား/မ</string>
+    <string name="da_in_app_data_marital_status">အိမ်ထောင်ရှိ/မရှိ</string>
+    <string name="da_in_app_data_current_address">လက်ရှိလိပ်စာ</string>
+    <string name="da_in_app_data_permanent_address">အမြဲတမ်းလိပ်စာ</string>
+    <string name="da_in_app_data_type_of_residence">အိမ်အမျိုးအစား</string>
+    <string name="da_in_app_data_living_with">အတူနေထိုင်သူ</string>
+    <string name="da_in_app_data_year_of_stay">နေထိုင်သည့်နှစ်</string>
+    <string name="da_in_app_data_mobile_no">ဖုန်းနံပါတ်</string>
+    <string name="da_in_app_data_resident_tel_no">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်</string>
+    <string name="da_in_app_data_other_phone_no">အခြားဖုန်းနံပါတ်</string>
+    <string name="da_in_app_data_email">အီးမေးလိပ်စာ</string>
+
+    <string name="da_in_occu_company_name">ကုမ္ပဏီအမည်</string>
+    <string name="da_in_occu_company_address">ကုမ္ပဏီလိပ်စာ</string>
+    <string name="da_in_occu_company_tel_no">ကုမ္ပဏီဖုန်းနံပါတ်</string>
+    <string name="da_in_occu_contact_time">ဆက်သွယ်ရန်အချိန်</string>
+    <string name="da_in_occu_department">ဌာန</string>
+    <string name="da_in_occu_position">ရာထူး</string>
+    <string name="da_in_occu_year_of_service">လုပ်သက်နှစ်</string>
+    <string name="da_in_occu_company_status">ကုမ္ပဏီအမျိုးအစား</string>
+    <string name="da_in_occu_monthly_basic_income">လစဉ်အခြေခံဝင်ငွေ</string>
+    <string name="da_in_occu_other_income">အခြားဝင်ငွေ</string>
+    <string name="da_in_occu_total_income">စုစုပေါင်းဝင်ငွေ</string>
+    <string name="da_in_occu_salary_date">လခထုတ်ရက်</string>
+
+    <string name="da_in_eme_name">နာမည်</string>
+    <string name="da_in_eme_relationship_with_applier">လျှောက်ထားသူနှင့်တော်ဆက်မှု</string>
+    <string name="da_in_eme_current_address">လက်ရှိလိပ်စာ</string>
+    <string name="da_in_eme_mobile_no">ဖုန်းနံပါတ်</string>
+    <string name="da_in_eme_resident_tel_no">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်</string>
+    <string name="da_in_eme_other_phone_no">အခြားဖုန်းနံပါတ်</string>
+
+    <string name="da_in_gur_name">နာမည်</string>
+    <string name="da_in_gur_dob">မွေးနေ့</string>
+    <string name="da_in_gur_nrc_no">မှတ်ပုံတင်နံပါတ်</string>
+    <string name="da_in_gur_nationality">နိုင်ငံသား</string>
+    <string name="da_in_gur_mobile_no">ဖုန်းနံပါတ်</string>
+    <string name="da_in_gur_resident_tel_no">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်</string>
+    <string name="da_in_gur_relationship_with_applier">လျှောက်ထားသူနှင့်တော်ဆက်မှု </string>
+    <string name="da_in_gur_current_address">လက်ရှိလိပ်စာ </string>
+    <string name="da_in_gur_type_of_resident">အိမ်အမျိုးအစား </string>
+    <string name="da_in_gur_living_with">အတူနေထိုင်သူ</string>
+    <string name="da_in_gur_gender">ကျား/မ</string>
+    <string name="da_in_gur_marital_status">အိမ်ထောင်ရှိ/မရှိ</string>
+    <string name="da_in_gur_year_of_stay">နေထိုင်သည့်နှစ်</string>
+    <string name="da_in_gur_company_name">ကုမ္ပဏီအမည်</string>
+    <string name="da_in_gur_company_address">ကုမ္ပဏီလိပ်စာ</string>
+    <string name="da_in_gur_company_tel_no">ကုမ္ပဏီဖုန်းနံပါတ်</string>
+    <string name="da_in_gur_department">ဌာန</string>
+    <string name="da_in_gur_position">ရာထူး</string>
+    <string name="da_in_gur_year_of_service">လုပ်သက်နှစ်</string>
+    <string name="da_in_gur_monthly_basic_income">လစဉ်အခြေခံဝင်ငွေ</string>
+    <string name="da_in_gur_total_income">စုစုပေါင်းဝင်ငွေ</string>
+
+    <string name="da_in_loanConfirm_status">လျှောက်ထားမှုအခြေအနေ</string>
+    <string name="da_in_loanConfirm_loan_type">ချေးငွေအမျိုးအစား</string>
+    <string name="da_in_loanConfirm_product_cat">ပစ္စည်းအမျိုးအစား </string>
+    <string name="da_in_loanConfirm_product_des">ကုန်ပစ္စည်းအကြောင်းအရာ</string>
+    <string name="da_in_loanConfirm_finance_amount">ချေးငွေပမာဏ</string>
+    <string name="da_in_loanConfirm_approve_amount">ရရှိသည့်ချေးငွေပမာဏ</string>
+    <string name="da_in_loanConfirm_term_of_finance">ချေးငွေကာလ</string>
+    <string name="da_in_loanConfirm_processing_fee">ဝန်ဆောင်ခ</string>
+    <string name="da_in_loanConfirm_compulsory_saving">မဖြစ်မနေစုငွေ</string>
+    <string name="da_in_loanConfirm_total_repayment_amount">ပြန်လည်ပေးဆပ်ရမည့်ပမာဏ(စုစုပေါင်း)</string>
+    <string name="da_in_loanConfirm_first_repayment_amount">ပထမအရစ် ပေးဆပ်ရမည့်ပမာဏ</string>
+    <string name="da_in_loanConfirm_monthly_repayment_amount">လစဉ်ပြန်လည်ပေးဆပ်ရမည့်ပမာဏ</string>
+    <string name="da_in_loanConfirm_last_payment">နောက်ဆုံးပေးဆပ်ရမည့်ပမာဏ</string>
+
+    <!--Purchase Detail-->
+    <string name="purchase_title">ဝယ်ယူမှု အသေးစိတ်</string>
+    <string name="purchase_product_category">ပစ္စည်းအမျိုးအစား</string>
+    <string name="purchase_product_description">ပစ္စည်းအမည်</string>
+    <string name="purchase_outlet_name">ဆိုင်အမည်</string>
+    <string name="purchase_loan_type">ချေးငွေအမျိုးအစား</string>
+    <string name="purchase_product_code">ကုဒ်</string>
+    <string name="purchase_product_name">ပစ္စည်းအမည်</string>
+    <string name="purchase_brand">အမှတ်တံဆိပ်</string>
+    <string name="purchase_model">မော်ဒယ်</string>
+    <string name="purchase_location">ဝယ်ယူသည့်လိပ်စာ</string>
+    <string name="purchase_price">ဈေးနှုန်း</string>
+    <string name="purchase_cashdown_amount">လက်ငင်းပေးချေသည့် ပမာဏ</string>
+    <string name="purchase_date">ဝယ်သည့်နေ့စွဲ</string>
+    <string name="purchase_invoice_no">ဘောင်ချာနံပါတ်</string>
+    <string name="purchase_agreement_no">သဘောတူညီမှုနံပါတ်</string>
+    <string name="purchase_finance_amount">ချေးငွေပမာဏ</string>
+    <string name="purchase_term_of_finance">ချေးငွေကာလ</string>
+    <string name="purchase_processing_fees">ဝန်ဆောင်ခ</string>
+    <string name="purchase_compulsory_saving">မဖြစ်မနေစုငွေ</string>
+    <string name="purchase_settlement_amount">နားလည်မှုယူထားသည့် ပမာဏ</string>
+
+    <string name="purchase_img_member_card">အသင်းဝင်ကဒ်</string>
+    <string name="purchase_img_invoice">ဘောင်ချာ</string>
+    <string name="purchase_img_agreement">သဘောတူညီမှုစာချုပ်</string>
+    <string name="purchase_img_uloan">ULoan</string>
+    <string name="purchase_img_cashReceipt">ငွေလက်ခံဖြတ်ပိုင်း</string>
+    <string name="purchase_img_other">အခြား</string>
+    <string name="da_app_data_quarter">ရပ်ကွက်</string>
+
+    <string name="app_cancel_title">လျှောက်လွှာပယ်ဖျက်ခြင်း</string>
+    <string name="app_cancel_message"> Application ပယ်ဖျက်လိုလျှင် AEON သို့ဆက်သွယ်ပါ</string>
+
+    <!--Apply Aeon Service-->
+    <string name="da_mesg_blank"></string>
+    <string name="da_fatherName_require_err">ဖခင်၏အမည်ထည့်ပါ။</string>
+    <string name="da_fatherName_format_err">ဖခင်၏အမည်မမှန်ကန်ပါ။</string>
+    <string name="da_nationality_require_err">လူမျိုးထည့်ပါ။</string>
+    <string name="da_gender_require_err">ကျားမရွေးပါ။</string>
+    <string name="da_marital_require_err">အိမ်ထောင်ရေးအခြေအနေကိုရွေးချယ်ပါ။</string>
+    <string name="da_currAddress_require_err">လက်ရှိလိပ်စာထည့်ပါ။</string>
+    <string name="da_perAddress_require_err">အမြဲတမ်းလိပ်စာထည့်ပါ။</string>
+    <string name="da_residentType_require_err">အိမ်အမျိုးအစားထည့်ပါ။ </string>
+    <string name="da_living_require_err">အခြားအတူနေထိုင်သူထည့်ပါ။</string>
+    <string name="da_yearStay_require_err">နေထိုင်သည့်နှစ်ထည့်ပါ။</string>
+    <string name="da_yearStayMonth_require_err">နေထိုင်သည့်လထည့်ပါ။</string>
+    <string name="da_yearStayMonth_exceed_err">နေထိုင်သည့်လသည် ၁၂ လထက်နည်းသင့်သည်။</string>
+    <string name="da_residentTelNo_require_err">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်ထည့်ပါ။</string>
+    <string name="da_residentTelNo_format_err">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်သည်ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
+    <string name="da_MobileNo_require_err">ဖုန်းနံပါတ်ထည့်ပါ။</string>
+    <string name="da_MobileNo_format_err">ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
+    <string name="da_otherPhoneNo_require_err">အခြားဖုန်းနံပါတ်ထည့်ပါ။</string>
+    <string name="da_otherPhoneNo_format_err">အခြားဖုန်းနံပါတ်သည်ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
+    <string name="da_email_require_err">အီးမေးလ်လိပ်စာထည့်ပါ။</string>
+    <string name="da_email_format_err">အီးမေးလ်ပုံစံမှားနေသည်။</string>
+
+    <string name="da_applicant_apartment_no">တိုက်အမှတ်</string>
+    <string name="da_applicant_room_no">အခန်းအမှတ်</string>
+    <string name="da_applicant_floor_no">အလွှာ</string>
+    <string name="da_applicant_street">လမ်းသွယ်/လမ်း *</string>
+    <string name="da_applicant_quarter">ရပ်ကွက် *</string>
+    <string name="da_applicant_permanent_quarter">ရပ်ကွက်</string>
+    <string name="da_applicant_township">မြို့နယ် *</string>
+    <string name="da_applicant_city">မြို့ *</string>
+
+    <string name="da_app_data_street">လမ်းသွယ်/လမ်း</string>
+    <string name="da_app_data_township">မြို့နယ်</string>
+    <string name="da_app_data_city">မြို့</string>
+    <string name="da_err_quarter">ရပ်ကွက် အမည်ထည့်ပါ။</string>
+
+    <string name="da_err_street">လမ်းသွယ်/လမ်း အမည်ထည့်ပါ။</string>
+    <string name="da_err_township">မြို့နယ် အမည်ထည့်ပါ။</string>
+    <string name="da_err_city">မြို့ အမည်ထည့်ပါ။</string>
+
+    <string name="da_companyName_require_err">ကုမ္ပဏီအမည်ထည့်ပါ။</string>
+    <string name="da_companyAddress_require_err">ကုမ္ပဏီလိပ်စာထည့်ပါ။</string>
+    <string name="da_companyTelNo_require_err">ကုမ္ပဏီဖုန်းနံပါတ်ထည့်ပါ။</string>
+    <string name="da_companyTelNo_format_err">ကုမ္ပဏီဖုန်းနံပါတ်သည်ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
+    <string name="da_contactTime_require_err">ဆက်သွယ်ရန်အချိန်ထည့်ပါ။</string>
+    <string name="da_contactTimeAM_require_err">ဆက်သွယ်ရန်အချိန်(နံနက်)ထည့်ပါ။</string>
+    <string name="da_contactTimePM_require_err">ဆက်သွယ်ရန်အချိန်(ညနေ)ထည့်ပါ။</string>
+    <string name="da_department_require_err">ဌာနထည့်ပါ။</string>
+    <string name="da_position_require_err">ရာထူးထည့်ပါ။</string>
+    <string name="da_serviceYear_require_err">လုပ်သက်နှစ်ထည့်ပါ။</string>
+    <string name="da_companyStatus_require_err">ကုမ္ပဏီအမျိုးအစားထည့်ပါ။</string>
+    <string name="da_companyStatusOther_require_err">အခြားကုမ္ပဏီအမျိုးအစားထည့်ပါ။</string>
+    <string name="da_basicIncome_require_err">လစဉ်အခြေခံဝင်ငွေထည့်ပါ။</string>
+    <string name="da_totalIncome_require_err">စုစုပေါင်းဝင်ငွေထည့်ပါ။</string>
+    <string name="da_salaryDate_require_err">လခထုတ်ရက်ထည့်ပါ။</string>
+
+    <string name="da_relationship_require_err">လျှောက်ထားသူနှင့်တော်ဆက်မှုထည့်ပါ။</string>
+
+    <string name="da_productDescription_require_err">ကုန်ပစ္စည်းအကြောင်းအရာထည့်ပါ။</string>
+    <string name="da_financeAmt_require_err">ချေးငွေပမာဏထည့်ပါ။</string>
+    <string name="da_financeAmt_invalid_err">ချေးငွေပမာဏသည် ၅၀,၀၀၀ ကျပ်နှင့် ၂,၀၀၀,၀၀၀ ကျပ်ကြားအတွင်း ဖြစ်ရမည်။</string>
+    <string name="da_financeTerm_require_err">ချေးငွေကာလထည့်ပါ။</string>
+    <string name="da_nrcfront_require_err">မှတ်ပုံတင်ကဒ် အရှေ့ဘက်ပုံထည့်ပါ။</string>
+    <string name="da_nrcback_require_err">မှတ်ပုံတင်ကဒ် အနောက်ဘက်ပုံထည့်ပါ။</string>
+    <string name="da_incomeProof_require_err">ဝင်ငွေအထောက်အထားပူးတွဲပုံထည့်ပါ။</string>
+    <string name="da_residentProof_require_err">နေထိုင်ကြောင်းထောက်ခံစာပုံထည့်ပါ။</string>
+    <string name="da_guaNrcfront_require_err">အာမခံသူ၏မှတ်ပုံတင်ကဒ် အရှေ့ဘက်ပုံထည့်ပါ။</string>
+    <string name="da_guaNrcback_require_err">အာမခံသူ၏မှတ်ပုံတင်ကဒ် အနောက်ဘက်ပုံထည့်ပါ။</string>
+    <string name="da_household_require_err">ရပ်ကွက်ထောက်ခံစာ(သို့)ရဲစခန်းထောက်ခံစာပုံထည့်ပါ။</string>
+    <string name="da_applicantPhoto_require_err">လျှောက်ထားသူ၏ဓာတ်ပုံထည့်ပါ။</string>
+    <string name="da_signature_require_err">လျှောက်ထားသူ၏လက်မှတ်ပုံထည့်ပါ။</string>
+    <string name="da_guarantor_sign_require_err">အာမခံသူ၏လက်မှတ်ပုံထည့်ပါ။</string>
+
+    <string name="da_password_wrong_err">လျှို့ဝှက်ကုဒ်မှားနေသည်။</string>
+    <string name="da_financeAmt_exceed_err">အများဆုံးချေးငွေပမာဏထက် များနေသည်။</string>
+    <string name="da_application_exceed_err">သင့်တွင် လုပ်ဆောင်ဆဲ ချေးငွေလျှောက်လွှာနှစ်ခု ရှိနေသည်။</string>
+    <string name="da_successful_info">လျှောက်လွှာကိုအောင်မြင်စွာတင်ပြီးပါပြီ။</string>
+
+    <string name="da_preview_btn">အချက်အလက်ပြန်စစ်မည်။</string>
+
+    <!--Events and News-->
+    <string name="event_news_tab1">သတင်း</string>
+    <string name="event_news_tab2">ကြေငြာချက်များ</string>
+    <string name="event_news_tab3">လက်ဆောင်များ</string>
+    <string name="event_news_tab4">NEAR ME-M</string>
+    <string name="no_gift">No Gift Available.</string>
+
+    <string name="coupon_invalid">Gift is invalid now.</string>
+    <string name="invalid_coupon_pwd">လျှို့ဝှက်ကုဒ် မှားနေသည်။</string>
+    <string name="no_coupon_pwd">လျှို့ဝှက်ကုဒ်ထည့်ပါ။</string>
+
+    <!--Find Nearby-->
+    <string name="near_by_tab1">မြေပုံ</string>
+    <string name="near_by_tab2">ဆိုင်စာရင်း</string>
+
+    <!--CONTACTUS Screen-->
+    <string name="contactus_title">AEON အားဆက်သွယ်ရန်</string>
+    <string name="contactus_tab1_title">HOTLINE ဖုန်း</string>
+    <string name="contactus_tab2_title">မက်ဆေ့ပို့ရန်</string>
+    <string name="contactus_callnow__button">ဆက်သွယ်ရန်</string>
+
+    <!--FAQ Screen-->
+    <string name="faq_title">မေးလေ့ရှိသောမေးခွန်းများ</string>
+    <string name="faq_tab1_title">မေးလေ့ရှိသောမေးခွန်းများ</string>
+    <string name="faq_tab2_title">စည်းကမ်းချက််များ</string>
+    <string name="faq_terms_cond_title">AEON Microfinance (Myanmar) Mobile Application သုံးစွဲခြင်းဆိုင်ရာစည်းကမ်းချက်များ</string>
+
+    <!--Logout-->
+    <string name="logout_title">ထွက်မည်</string>
+    <string name="logout_in_progress">Logging out ...</string>
+    <string name="logout_success">Logout.</string>
+    <string name="logout_unsuccess">Logout Unsuccess.</string>
+    <string name="logout_unavailable">Logout Service Unavailable!</string>
+    <string name="logout_on_failure">Logout Failed!</string>
+    <string name="logout_alert_in_back">Double BACK click is to logout.</string>
+
+    <!--NAV MENUS-->
+    <string name="nav_home">မူလစာမျက်နှာ</string>
+    <string name="nav_membership">အဖွဲ့ဝင်</string>
+    <string name="nav_info_update">မိမိအချက်အလက်များ ပြင်ဆင်ခြင်း</string>
+    <string name="nav_aeon_service">AEON မှ ဝန်ဆောင်မှုများ</string>
+    <string name="nav_aeon_service_da"> - လျှောက်လွှာပုံစံ</string>
+    <string name="nav_aeon_service_enquiry"> - လျှောက်လွှာစစ်ဆေးခြင်း</string>
+    <string name="nav_loan_calculator">ချေးငွေပမာဏ တွက်ချက်ခြင်း</string>
+    <string name="nav_events_news">အစီအစဉ် နှင့်သတင်းများ</string>
+    <string name="nav_near_outlet">အနီးအနား ဆိုင်များ ရှာရန်</string>
+    <string name="nav_contact_us">AEON အား ဆက်သွယ်ရန်</string>
+    <string name="nav_faq">မေးလေ့ရှိသော မေးခွန်းများ</string>
+    <string name="nav_shopping">Agent Channel</string>
+    <string name="nav_logout">ထွက်မည်</string>
+    <string name="nav_mem_title">အဖွဲ့ဝင် အချက်အလက်</string>
+
+    <string name="aeon_service_da_title">လျှောက်လွှာပုံစံ</string>
+    <string name="aeon_service_enquiry_title">လျှောက်လွှာစစ်ဆေးခြင်း</string>
+
+    <!--Member Card-->
+    <string name="membership_member_card">အဖွဲ့ဝင်က</string>
+
+    <!--AEON Welcom-->
+    <string name="menu_welcome">ကြိုဆိုပါ၏</string>
+
+    <!--ABOUT US-->
+    <string name="aboutus_title">ကျွန်ုပ်တို့အ‌‌‌‌‌‌ကြောင်း</string>
+    <string name="aboutus_content_title">AEON Microfinance Myanmar</string>
+    <string name="aboutus_all_now_button">ဖုန်းခေါ်မည်</string>
+
+    <string name="coming_soon">မကြာမီလာမည်။</string>
+
+    <!--alert mes-->
+    <string name="reg_sq_conf_ok">OK</string>
+    <string name="reg_sq_conf_call">Call Now</string>
+    <string name="reg_sq_conf_title">Information</string>
+    <string name="reg_sq_conf_info">အဖွဲ့ဝင်ခြင်းလုပ်ငန်းဆက်လက်လုပ်ဆောင်ရန် ဖုန်းနံပါတ် (09xxxxxxxxyyy)အား OTP code ပေးပို့ပါ့မည်။ ဤဖုန်းနံပါတ်မှန်ကန်ပါက \"OK\" ကိုနှိပ်ပါ။</string>
+    <string name="reg_sq_conf_info2">သင်၏ဖုန်းနံပါတ် ပြောင်းလဲမှုရှိပါက AEON ကို ဆက်သွယ်ပါ။</string>
+
+    <!-- Networking Messages-->
+    <string name="msg_networing_error"></string>
+    <string name="msg_unsuccess_response"></string>
+    <string name="msg_server_disable"></string>
+    <string name="msg_server_error"></string>
+
+    <string name="msg_load_nrc">Loading Nrc No ...</string>
+    <string name="msg_load_sec_qa">Loading Security Questions ...</string>
+    <string name="msg_load_about_us"></string>
+    <string name="msg_load_faq"></string>
+
+    <string name="mem_card_amt_unit">ကျပ်</string>
+    <string name="mem_card_fin_term">လ</string>
+
+    <!--BIOMETRIC REGISTRATION-->
+    <string name="reg_bio_title">Biometric ထည့်သွင်းခြင်း</string>
+    <string name="upd_bio_title">Biometric ပြုပြင်ခြင်း</string>
+    <string name="reg_bio_phone_label">ဖုန်းနံပါတ် *</string>
+    <string name="reg_bio_phone_hint">09xxxxxxxxx</string>
+    <string name="reg_bio_pwd_label">လျှို့ဝှက်ကုဒ် *</string>
+    <string name="reg_bio_pwd_hint">လျှို့ဝှက်ကုဒ်</string>
+    <string name="reg_bio_btn">ထည့်သွင်းမည်</string>
+    <string name="reg_bio_submit_btn">ထည့်သွင်းမည်</string>
+    <string name="reg_bio_warning_title">သတိပေးချက်*</string>
+    <string name="reg_bio_warning_content">AEONMember application သည် သင်၏ဖုန်းတွင်ရှိသော biometric data အားလုံးကိုအသုံးပြုကာ သင်၏ account ကို login ဝင်မည်ဖြစ်သည်။ ဒါကြောင့် သင်၏ဖုန်းတွင်တ ခြားသူ၏ biometric data ကိုမထည့်သွင်းမိစေဖို့ သတိပြုပေးပါရန်။</string>
+    <!--BiOMETRIC dialog message-->
+    <string name="reg_bio_success_msg">Fingerprint Registration Success!</string>
+    <!--Check BIOMETRIC-->
+    <string name="biometric_not_support">သင်၏ဖုန်းတွင် လက်ဗွေစနစ် အသုံးပြုခြင်း အထောက်အပံ့ မပေးထားပါ။</string>
+    <string name="biometric_not_enrolled">သင်၏ဖုန်းတွင် လက်ဗွေစနစ် မှတ်ပုံတင်ထားခြင်း မရှိပါ။</string>
+
+    <!--BIO-REG-ERR-->
+    <string name="reg_bio_phone_err">ဖုန်းနံပါတ်ထည့်ပါ။</string>
+    <string name="reg_bio_pwd_err">လျှို့ဝှက်ကုဒ်ထည့်ပါ။</string>
+    <string name="reg_bio_phone_format_err">ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
+    <string name="reg_bio_pwd_format_err">စာ ၆လုံး မှ ၁၆လုံး ဖြစ်ရမည်။</string>
+
+    <string name="camera_view_label">ဓာတ်ပုံရိုက်နေစဉ်အတွင်း မျက်မှန်မတပ်ရ။</string>
+
+    <!--PATTERN REGISTRATION-->
+    <string name="reg_pattern_title">Pattern Registration</string>
+    <string name="upd_pattern_title">Pattern Update</string>
+    <string name="reg_pattern_phone_label">Phone No. *</string>
+    <string name="reg_pattern_phone_hint">09xxxxxxxxx</string>
+    <string name="reg_pattern_pwd_label">Password *</string>
+    <string name="reg_pattern_pwd_hint">at least 6 characters</string>
+    <string name="reg_pattern_btn">Register</string>
+    <string name="reg_pattern_submit_btn">Submit</string>
+    <string name="reg_pattern_warning_title">Warning!</string>
+    <string name="reg_pattern_warning_content">AEONMember application will use your pattern data to login to your account.So,you will not let other people to save data in your device.</string>
+
+    <!--PATTERN dialog message-->
+    <string name="reg_pattern_success_msg">Pattern Registration Success!</string>
+
+    <!--Check PATTERN-->
+    <string name="pattern_not_support">Your device does not support fingerprint authentication.</string>
+    <string name="pattern_not_enrolled">You are not enrolled fingerprint authentication.</string>
+
+    <!--PATTERN-REG-ERR-->
+    <string name="reg_pattern_phone_err">Please Enter Login Phone No.</string>
+    <string name="reg_pattern_pwd_err">Please Enter Password.</string>
+    <string name="reg_pattern_phone_format_err">Phone No. format invalid.</string>
+    <string name="reg_pattern_pwd_format_err">Password format invalid.</string>
+
+    <!--VIDEO PLAY SCREEN-->
+    <string name="video_play_title">AEON Member App အသုံးပြုနည်း</string>
+    <string name="video_play_warning_title">Note!</string>
+    <string name="video_play_warning">ဤဗီဒီယိုမှ AEON Member App မည်သို့အသုံးပြုရမည်ကိုသင်ယူနိုင်ပါသည်။</string>
+
+    <!--OTP-->
+    <string name="otp_title">OTPနံပါတ် ပို့မည်</string>
+    <string name="otp_code_label">OTP Code*</string>
+    <string name="otp_code_hint">Enter OTP Code</string>
+    <string name="otp_code_err_msg">OTP Code invalid.</string>
+    <string name="otp_btn_ok">OTP Code ပို့မည်</string>
+    <string name="otp_btn_resend">OTPနံပါတ်ပြန်ပို့ပေးပါ</string>
+
+    <string name="otp_err_blank">OTPနံပါတ်ထည့်ပါ။</string>
+    <string name="otp_err_length">OTPနံပါတ်သည်၄လုံးရှိသင့်သည်။</string>
+    <string name="otp_err_invalid">သင်၏ OTPနံပါတ်မှားနေသည်။</string>
+    <string name="otp_err_expired">OTPနံပါတ်အသုံးပြု၍မရတော့ပါ။ \'OTPနံပါတ်ပြန်ပို့ပေးပါ\' ခလုတ်အားနှိပ်ပါ။</string>
+    <string name="otp_err_wrong">သင်၏ OTPနံပါတ်မှားနေသည်။</string>
+
+    <!--Info Dialog Box-->
+    <string name="dialog_title_info">Information</string>
+    <string name="dialog_title_warning">Warning</string>
+    <string name="dialog_title_success">Success !</string>
+    <string name="dialog_title_error">Error</string>
+    <string name="dialog_title_biometric_error">Login Failed</string>
+
+    <!--Loading Dialog-->
+    <string name="dialog_loading_nrc">Loading Nrc ...</string>
+    <string name="dialog_loading_faq">Loading FAQ ...</string>
+    <string name="dialog_loading_sq">Loading Security Questions ...</string>
+    <string name="dialog_loading_about_us">Loading About Us ...</string>
+
+
+    <string name="reg_sec_ans_blank">လုံခြုံရေးအဖြေအားလုံးထည့်ပါ။</string>
+
+    <!--NRC Info-->
+    <string-array name="nrc_type">
+        <item>(N)</item>
+        <item>(P)</item>
+        <item>(E)</item>
+    </string-array>
+
+    <string-array name="div_code">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+
+    <!--Loan Confirmation Term and Condition-->
+    <string name="termandcon_title">ချေးငွေသဘောတူကတိစာချုပ်၏ စည်းကမ်းချက်များ</string>
+    <string name="termandcon_p000">ဤသဘောတူကတိစာချုပ်၏စည်းကမ်းချက်များအရ AEON ၏ Small Loan ရယူသူကိုနောင်တွင် “Cutstomer” အားအာမခံပေးသူရှိလျှင်နောင်တွင် “Guarantor” ဟုလည်းကောင်း၊ AEON Microfinance (Myanmar) Company Limited ကိုယ်စား Customer များသို့ AEON ၏ Small Loan ထောက်ပံ့ရာတွင် လွယ်ကူမှုရှိစေရန် ကူညီဆောင်ရွက်ပေးသူ AEON’s Agent ကို နောင်တွင် “Agent” ဟုလည်းကောင်း၊ AEON Microfinance (Myanmar) Company Limited ကို နောင်တွင် “Finance Provider” ဟုလည်းကောင်း ရည်ညွှန်းခေါ်ဆိုရေးသားမည်ဖြစ်သည်။ Customer, Guarantor, Agent နှင့် Finance Provider တို့သည် အောက်ဖော်ပြပါစည်းကမ်းချက်များကို အသီးသီးလိုက်နာဆောင်ရွက်ကြရန် သဘောတူညီကြပါသည်။</string>
+    <string name="termandcon_p001">၁။	Finance Provider သည် Customer သို့အသေးစားချေးငွေထောက်ပံ့ပေးရန် သဘောတူသည်။ ထိုအသေးစားချေးငွေအား Customer နှင့် Agent တို့ သဘောတူညီမှုရယူထားသည့်အတွက် Customer မှ Agent သို့ ပေးချေရမည့်ကျသင့်ငွေကြေးအဖြစ် Finance Provider သည် Agent မှတဆင့်ပေးချေရန် သဘောတူသည်။ ထိုသို့ Finance Provider မှ Agent မှတဆင့်ပေးချေသော ငွေကြေးပမာဏကို Customer သည် Finance Provider ထံမှ ချေးငွေရယူမှုအဖြစ်မှတ်ယူရမည်ဖြစ်သည်။</string>
+    <string name="termandcon_p002">၂။	Agent ထံမှ အသေးစားချေးငွေ (Small Loan) ကိုလက်ခံရရှိပြီးနောက် Customer သည် သဘောတူစာချုပ်ပါ အပြီးသတ်အတည်ပြုချက်စာတိုင်းတွင် လက်မှတ်ရေးထိုးပေးရမည့်အပြင် ငွေရင်း၊အတိုးနှင့် အခြားစရိတ်စကများပါဝင်သော ချေးငွေကို Finance Provider သို့အပြည့်အဝပြန်လည်ပေးဆပ်ရန်ကိုလည်း သဘောတူညီသည်။ Customer သည် သဘောတူညီချက်ပါ စည်းကမ်းချက်များကို အပြည့်အဝလိုက်နာဆောင်ရွက်ရန်ကိုလည်း သဘောတူညီသည်။ ချေးငွေပြန်လည်ပေးဆပ်မှုကို Finance Provider သတ်မှတ်သည့် ၎င်း၏ရုံးခွဲ (သို့မဟုတ်) ငွေလွဲှဌာန (သို့မဟုတ်) ဘဏ်တို့တွင် သတ်မှတ်ထားသည့် နည်းလမ်းများအတိုင်း Customer က ပေးဆပ်ရမည်ဖြစ်ပါသည်။ ချေးငွေ ပြန်ပေးဆပ်ရမည့်နည်းလမ်းနှင့် စည်ကမ်းချက်များကို ချေးငွေပြန်ဆပ်သည့်စာရင်းဇယားတွင် Finance Provider က သတ်မှတ်ပြဌာန်းထားပါသည်။ သဘောတူစာချုပ်တွင် သတ်မှတ်ထားသော ပထမဆုံး အရစ်ကျငွေပြန်ဆပ်ရန် စေ့ရောက်သည့်အချိန်တွင် လစဉ်ပြန်ဆပ် ငွေ ကို Customer က အချိန်မီ ပေးဆပ်ရမည်။ ထို့ပြင် နောက်ထပ်ချေးငွေပြန်ဆပ်ရမည့် အချိန်စေ့ရောက်တိုင်း လစဉ်ပြန်ဆပ်ငွေကို ပေးဆပ်ရမည်။ ထိုသို့ လစဉ်ပေးချေမှုကို ချေးငွေ ပြေကျေသည့်အထိ အောက်တွင်ဖော်ပြထားသည့် စည်းကမ်းချက်များနှင့် အစီအစဉ်အတိုင်း ပေးဆပ်ရမည်။
+    \n၂.၁။ ။ ချေးငွေပြန်ဆပ်သည့် စာရင်းဇယားပေါ်အခြေပြု၍ လစဉ်(၂)ရက်နေ့တိုင်းတွင် Finance Provider  သို့ ချေးငွေပြန်ဆပ်ခြင်းကို ချေးငွေပြေကျသည့်အထိ လစဉ်ပြုရမည်။
+    \n၂.၂။  ။ မြန်မာကျပ်ငွေဖြင့်သာ ချေးငွေအားလုံးကို ပြန်ဆပ်ရမည်။ မြန်မာနိုင်ငံအသေးစားငွေရေးကြေးရေး ဥပဒေအရ နှစ်စဉ်အမှန်ထိရောက် အတိုးနှုန်း (Annual effective interest rate – Not more than 30%) ၃၀%ထက်မပိုသော အတိုးနှုန်းဖြင့် တွက်ချက်ပါသည်။
+    \n၂.၃။ ။ Finance Provider ၏ မူဝါဒအပေါ်အခြေခံ၍ စာချုပ်ချုပ်ဆိုသည့်နေ့တွင် ကျသင့်သည့် စာချုပ်ချုပ်ခ၊ ဝန်ဆောင်စရိတ်နှင့် အခြားကုန်ကျစရိတ်များကို Customer မှ Finance Provider (သို့မဟုတ်) Agent မှ တစ်ဆင့်ပေးချေရမည်။ မြန်မာနိုင်ငံအသေးစားငွေရေးကြေးရေး ဥပဒေအရ ချေးငွေပမာဏ၏ ၅% ထက်မပိုသော မဖြစ်မနေစုဆောင်းငွေ (Compulsory Saving) ကို Customer မှ Finance Provider (သို့မဟုတ်) Agent မှ တဆင့်အပ်နှံရပါမည်။ နှစ်စဉ်အတိုးနှုန်း ၁၅% ဖြင့် တွက်ချက်ပေးပါမည်။
+    \n၂.၄။    ။ သဘောတူစာချုပ် ချုပ်ဆိုသည့်နေ့ရက်မှ (၇) ရက်အတွင်း Customer သည် Finance Provider နှင့် Agent တို့၏ကြိုတင်သဘောတူညီချက်ဖြင့် စာချုပ်ကို ပယ်ဖျက်နိုင်သည်။ ထိုသို့ပယ်ဖျက်ပါက Finance Provider နှင့် Agent တို့ထံ Customer က ပေးသွင်းထားသည့် စာရွက်စာတမ်းစရိတ်များကို Customer သို့ပြန်လည်ထုတ်ပေးရမည်။
+    \n၂.၅။    ။ ငွေပေးချေမှုကို Finance Provider ၏ရုံးခွဲ(သို့) Finance Provider ၏ဘဏ်စာရင်းသို့ ပေးသွင်းနိုင်သည်။ ထိုပေးချေမှုနှင့် စပ်လျဉ်းသည့်စာရိတ်စကများကို Customer က ကျခံရမည်။
+    \n၂.၆။     ။ Finance Provider ၏ရုံးခွဲသို့ ပေးဆပ်မှုအတွက် စရိတ်ကျခံရန်မလိုပါ။</string>
+    <string name="termandcon_p003">၃။	ချေးငွေပြန်ဆပ်ရက်ကျော်လွန်ခြင်းကြောင့် ဆောင်ရွက်ရမည့်ကိစ္စများနှင့် တရားစွဲဆိုရ၍ ကုန်ကျစရိတ်များ(သို့မဟုတ်) အထက်ပါကဲ့သို့သော အခြေအနေဖြစ်ရပ်များကြောင့် Finance Provider ၏ ကုန်ကျစရိတ် အဝဝအတွက် Customer တွင် တာဝန်ရှိစေရမည်။
+        \n၃.၁။     ။ ငွေပေးဆပ်ရန် စေ့ရောက်သည့်နေ့ရက်အတွင်း Customer သည် ချေးငွေပေးဆပ်ရန်ပျက်ကွက်လျှင် Finance Provider ၏ မူဝါဒနှင့်အညီ နောက်ကျကြေးကို ပေးဆပ်ရန် Customer ကသဘောတူညီသည်။ သို့ရာတွင် Customer အနေဖြင့် နောက်ကျပေးသွင်းနိုင်သည်ဟူသော အဓိပ္ပာယ် မသက်ရောက်စေရ။
+        \n၃.၂။     ။ Customer မှ ချေးငွေအချိန်မီပေးဆပ်ရန်ပျက်ကွက်မှုရှိလာလျှင် Finance Provider ၏မူဝါဒနှင့်အညီ အိမ်တိုင်ရာရောက်ကွင်းဆင်းကောက်ခံမှုအတွက် ကုန်ကျစရိတ် အဝဝကို Customer က ပေးချေရန် သဘောတူညီသည်။
+        \n၃.၃။     ။ ချက်လက်မှတ်ဖြင့် ငွေပေးချေရာ ယင်းချက်လက်မှတ်သည် အကြောင်းကြောင်းကြောင့် တရားဝင်ခိုင်မြဲမှုမရှိသည့် အခြေအနေတွင် အဆိုပါချက်လက်မှတ်နှင့် ပတ်သက်သည့် စရိတ်စကများကို Customer က Finance Provider သို့ ပေးချေရမည်။</string>
+    <string name="termandcon_p004">၄။	Customer သည် စာချုပ်ကို သက်တမ်းမကုန်ဆုံးမီ ရပ်စဲလိုပါက Finance Provider က သတ်မှတ်ထားသည့်အတိုင်း ကြိုတင်ငွေပေးချေမှုပြုလုပ်၍ ရပ်စဲနိုင်သည်။</string>
+    <string name="termandcon_p005">၅။	Customer သည် ဤသဘောတူစာချုပ်တွင် အရစ်ကျငွေအသီးသီးပြန်ဆပ်ရန်အတွက် အသုံးပြုရန်ဖော်ပြထားသည့် ဘဏ်စာရင်း (သို့မဟုတ်) လုပ်ငန်းဌာန (သို့မဟုတ်)နေရပ်လိပ်စာ စသည့်တို့ကိုပြောင်းလဲလိုလျှင် ထိုသို့ ပြောင်းလဲသည့်နေ့ရက်မှ (၇) ရက်ထက်နောက်မကျဘဲ Finance Provider ထံ ကြိုတင်အကြောင်းကြားစာကို ပေးပို့ရမည်။</string>
+    <string name="termandcon_p006">၆။	Finance Provider သည် အောက်ပါကိစ္စရပ်များအတွက် သဘောတူစာချုပ်ကို စာဖြင့် ရေးသားအကြောင်းကြား၍ ရပ်စဲခွင့်ရှိသည်။
+    \n၆.၁။     ။ Customer သည်ချေးငွေပြန်ဆပ်မှုကို နှစ်လဆက်တိုက်ပေးဆပ်ရန် ပျက်ကွက်သည့်အခါ (သို့မဟုတ်)
+    \n၆.၂။     ။ Customer သည် လူမွဲစာရင်းဝင်ဖြစ်သွားသောအခါ (သို့မဟုတ်) တရားရုံးတစ်ရုံးမှ ၎င်းအားလူမွဲဖြစ်ကြောင်း စီရင် ဆုံးဖြစ်သောအခါ (သို့မဟုတ်) ၎င်း၏ပစ္စည်းဥစ္စာများကို သိမ်းဆည်းခံရသောအခါ (သို့မဟုတ်)
+    \n၆.၃။    ။ ဤသဘောတူစာချုပ်နှင့် ပတ်သက်၍သော်လည်းကောင်း၊ ဤသဘောတူမှုအတွက် အဓိကကျသောအချက်အလက်နှင့် ပတ်သတ်၍သော်လည်းကောင်း၊ Customer သည် မမှန်မကန် (သို့မဟုတ်) ဖြစ်ရပ်မှန်ကိုဖုံးကွယ်၍ဖော်ပြချုပ်ဆိုသည့်အခါ (သို့မဟုတ်)
+    \n၆.၄။    ။ ဤသဘောသူစာချုပ်ပါစည်းကမ်းချက်များကို Customer သည် လိုက်နာဆောင်ရွက်ခြင်းမပြုသည့်အခါ</string>
+    <string name="termandcon_p007">၇။	Finance Provider သည် ဤသဘောတူစာချုပ်တွင်ပါရှိသော ပုဂ္ဂိုလ်ရေးအချက်အလက်များအပါအဝင် Customer ၏ သတင်းအချက်အလက်များကို ကြွေးဝယ်ကတ်ထုတ်ပေးခြင်း၊ အသက်အာမခံ၊ အာမခံကိစ္စရပ်များ၊ ချေးငွေပေးဆပ်မှုကိစ္စရပ်များ (သို့မဟုတ်) နောင်တွင် ဆောင်ရွက်မည့် Finance Provider၊ ၎င်းနှင့်ဆက်စပ်မှုရှိသောလုပ်ငန်းများ၏ ဝန်ဆောင်မှု ကိစ္စရပ်များအတွက် သိမ်းဆည်းခြင်း၊ ဖလှယ်ခြင်း၊ အသုံးပြုခြင်းပြုနိုင်သည်။ Customer သည် မိမိ၏ သတင်းအချက်အလက်များအတွက် ထိုသို့ သဘောတူမှုကို မည့်သည့်ကိစ္စတွင်မှ ပယ်ဖျက်ခြင်းမရှိစေရ။ ထို့ပြင် Customer သည် Finance Provider ထံမှ ဖြစ်စေ၊ အခြားပုဂ္ဂိုလ်တစ်ဦးဦးထံမှ ဖြစ်စေ၊ သတင်းအချက်အလက်များ တရားဝင်ရယူထားသော အခြားပုဂ္ဂိုလ်များထံမှ ဖြစ်စေ နစ်နာကြေး၊ လျော်ကြေးတစ်စုံတစ်ရာ တောင်းဆိုခြင်းမရှိစေရ။ ထို့ပြင် Customer ၏ သတင်းအချက်တစ်စုံတစ်ရာပြောင်းလဲမှုရှိပါက Customer သည် Finance Provider ထံချက်ချင်းအကြောင်းကြားရမည်။</string>
+    <string name="termandcon_p008">၈။	ဤသဘောတူညီချက်တွင် ဖော်ပြပါရှိသောအတိုးနှုန်း၊ ဝန်ဆောင်ခ၊ ကုန်ကျစရိတ်များအပါအဝင် ဤစာချုပ်ပါပဋိညာဉ် စည်းကမ်းချက်များကို Finance Provider ကစိစစ်ပြောင်းလဲခွင့်ရှိကြောင်း Customer က သဘောတူညီသည်။ Finance Provider သည် အသိပေးအကြောင်းကြားခြင်းမရှိဘဲ ချေးငွေနှင့် ပတ်သတ်သောစာရွက်စာတမ်းများကို Customer သို့ပြန်လည်ပေးဆပ်ခြင်းမပြုဘဲ အများဆုံးချေးယူရှိသော ချေးငွေပမဏကန့်သတ်ချက်ကို ပြုပြင်ပြောင်းလဲနိုင်ရန် (သို့မဟုတ်) ချေးငွေထုတ်ချေးပေးခြင်းအား ငြင်းဆန်နိုင်ရန်အခွင့်အာဏာရှိသည်။</string>
+    <string name="termandcon_p009">Finance Provider တွင်ကြွေးမြီးများကောက်ခံရန် ကိုယ်စားလှယ်လွှဲနိုင်သည့် အခွင့်အာဏာ ရှိစေရမည်။</string>
+    <string name="termandcon_p010">၁၀။	Customer သည်ချေးငွေပြန်ဆပ်ရန်ပျက်ကွက်ပါက ကြွေးမြီးကို Customer ထံမှဦးစွာတောင်းခံခြင်းပြုရန်မလိုဘဲ Customer ပေးရန်ကျန်ရှိသည့်ငွေရင်း၊ အတိုး၊ စရိတ်စကနှင့်အခြားအခကြေးငွေများ အပါအဝင် အကြွေးကျန်အားလုံးကို Guarantor က Finance Provider သို့ ပေးဆပ်ရန် သဘောတူညီသည်။</string>
+    <string name="termandcon_p011">၁၁။	Customer သည် သဘောတူစာချုပ်ပါစည်းကမ်းချက်များကို ဖောက်ဖျက်သည်ဟု ယုံကြည်နိုင်လောက်သောအခါတွင် Finance Provider သည်ဤသဘောတူညီစာချုပ်ပါအခွင့်အာဏာများအတိုင်းရေးယူခြင်း (သို့မဟုတ်) စည်းကမ်းချက်များဖြစ်စေ၊ ချွင်းချက်မဲ့ဖြင့်ဖြစ်စေ သက်ညှာပေးခြင်း၊ လျှော့ပေါ့ပေးခြင်းကိုပြုနိုင်သည်။ Finance Provider သည် Customer ကိုအရေးမယူဘဲ သက်ညှာပေးခြင်းကိုလည်း ထိုမှနှောင်တွင် အချိန်မရွေး ပြန်လည်ပယ်ဖျက်ကာ အရေးယူနိုင်သည်။</string>
+    <string name="termandcon_p012">၁၂။	ဤသဘောတူညီချက်ပါ ပြဋ္ဌန်းချက်အားလုံးသည် သီးခြားစီသက်ရောက်မှုရှိသည်။ ဤသဘောတူညီချက်ပါ ပြဋ္ဌန်းချက်အချို့သည် ဥပဒေနှင့်မညီခြင်း၊ ခိုင်မာမှုမရှိခြင်း၊ ဥပဒေနှင့်အညီဆောင်ရွက်ရန် အာနိသင်မရှိခြင်းတို့ဖြစ်ပေါ်လျှင် ယင်းပြဋ္ဌန်းချက်သာလျှင် ပျက်ပြယ်မည်ဖြစ်ပြီး ကျန်ပြဋ္ဌန်းချက်များသည် ဥပဒေအရခိုင်မာမှု၊ တည်မြဲမှု၊ အကျိုးသက်ရောက်မှုရှိကြောင်း သဘောတူညီကြပါသည်။</string>
+    <string name="termandcon_p013">၁၃။	ဤသဘောတူစာချုပ်သည် မြန်မာနိုင်ငံရှိဥပဒေများနှင့်အညီ သက်ရောက်မှုရှိသည်။ ဤသဘောတူညီချက်ပါ ကိစ္စတစ်ရပ်ရပ်နှင့် စည်းကမ်းချက်တစ်ရပ်ရပ်နှင့် စပ်လျဉ်း၍ ပေါ်ပေါက်ဖြစ်ပွားသော အငြင်းပွားမှုများကို စာချုပ်တွင် ပါဝင်လက်မှတ်ရေးထိုးထားသူတို့က အခင်အမင်မပျက် မိတ်ဆွေကောင်းပီသစွာဖြင့် ညှိနှိုင်းဖြေရှင်းကြရန် သဘောတူညီကြသည်။ ယင်းအငြင်းပွားမှုကို တစ်လအတွင်း ဖြေရှင်း၍ ပြေလည်မှုမရှိပါက တစ်ဦးဦးက မြန်မာနိုင်ငံရှိ သက်ဆိုင်ရာတရားရုံးများတွင် တင်ပြတရားစွဲဆိုနိုင်သည်။</string>
+    <string name="termandcon_p014">၁၄။	ဤသဘောတူညီချက်သည် စာချုပ်ပါသက်ဆိုင်ရာပုဂ္ဂိုလ်များသာမက ၎င်းတို့၏အမွေခံများ၊ ကိုယ်စားလှယ်များ၊ လွှဲအပ်ထားသူများနှင့် ဆက်ခံသူအားလုံးတို့အပေါ်တွင်လည်း စည်းနှောင်အကျိုးသက်ရောက်မှုရှိစေရမည်။ Finance Provider သည် Customer ထံသို့ ကြိုတင်အကြောင်းကြားစာရေးသားပေးပို့ကာ ဤသဘောတူချက်အရ Finance Provider ၏လုပ်ပိုင်ခွင့်များ၊ အကျိုးခံစားခွင့်များ၊ လိုက်နာရမည့်စည်းကမ်းချက်များကို တစ်စိတ်တစ်ပိုင်းသော်လည်းကောင်း၊ အားလုံးသော်လည်းကောင်း ကိုယ်စားလှယ်လွှဲအပ်ခြင်း၊ လွှဲပြောင်းပေးအပ်ခြင်းမရှိစေရ။</string>
+    <string name="termandcon_p015">၁၅။	ချေးငွေပေးဆပ်မှုဇယားနှင့် Finance Provider ၏ မူဝါဒတို့သည် ဤသဘောတူချက်၏ အစိတ်အပိုင်းများအဖြစ် ပါဝင်ရမည်။</string>
+
+    <string name="tac_001">(၁) ဝန်ဆောင်မှုနှင့်ဆက်စပ်သောအထွေထွေ သတင်းအချက်အလက်များ
+AEON Microfinance (Myanmar) Co.Ltd. (AEON) ၏ Customer များအတွက် AEON Microfinance (Myanmar) Mobile Application သည် Customer ၏အချက်အလက်များအား မိုဘိုင်းဖုန်း၊တက်ဘလက်နှင့် အီရွန်ဝက်ဆိုဒ်မှ တဆင့် လျှောက်ထားမှု.များကို စစ်ဆေးရန်နှင့် အခြားသောဝန်ဆောင်မှုများကိုလည်း ဆောင်ရွက်နိုင်ရန်ဖြစ်ပါသည်။</string>
+    <string name="tac_002">(၂) ဝန်ဆောင်မှုအသုံးပြုခြင်းဆိုင်ရာ သဘောတူညီမှု
+Online Services အား အသုံးပြုခြင်းဖြင့် Customerသည် အောက်ပါအချက်အလက်များအား သိရှိ နားလည် သဘောတူ လက်ခံပါသည်။
+\n၂.၁ ) Customer သည် Application ပေါ်တွင်လည်းကောင်း၊ Website ပေါ်တွင်လည်းကောင်း Company မှ နောင်တွင် အခါအားလျော်စွာ ပြင်ဆင်မည့် သင့်လျော်သည့် စည်းကမ်းချက်များကို လည်း ယခု ဖော်ပြထားသော စည်းကမ်းချက်များ၏ အစိတ်အပိုင်းတစ်ခုအနေဖြင့် ဆက်လက် တည်ရှိနေမည် ဖြစ်ကြောင်း သဘောတူညီပါသည််။
+\n၂.၂) Customerသည် မည်သည့် ဆောင်ရွက်ချက်မှုမျိုးကိုမဆို လုပ်ဆောင်ရန် ၎င်းအား ပေးအပ်ထားသော User Name, Password ဖြင့် Online Service သို့ ဝင်ရောက် ဆောင်ရွက် ချက်များအား ကိုယ်တိုင် ကိုယ်ပိုင်သဘောဆန္ဒဖြင့်ဆောင်ရွက်ခြင်းဖြစ်သည်ဟုသတ်မှတ်ပါသည်။
+ဆောင်ရွက်မှှု.များအား အတည်ပြုပြီးပါက Customer၏ ဆောင်ရွက်မှု.များအား တရားဝင် သက်သေ အထောက်ထားအဖြစ် သတ်မှတ်ထားခြင်းဖြစ်သဖြင့် Customer၏ ထိုးမြဲလက်မှတ်အား ရယူရန် မလိုအပ်တော့ပါ။
+ဤအကြောင်းအရာနှင့် ပတ်သတ်၍ Customer သည် Online Services အသုံးပြုသော မည်သည့်ဝန်ဆောင်မှုနှင့်ပတ်သတ်၍ AEON အား ကန့်ကွက်ခြင်း တရားစွဲဆိုခွင့် မရှိစေရပါ။
+\n၂.၃) AEON သည် ဝန်ဆောင်မှု့ ပေးသည့် အချိန်အတွင်း Mobile Application (သို့) ဝဘ်ဆိုဒ်၏ ဝန်ဆောင်မှု အားလုံး (သို့) အချို့ အစိတ်အပိုင်းများအား ပြင်ဆင်စီစဉ် ဆောင်ရွက်နိုင်ခွင့် ရှိသည်။
+Mobile Applicationတွင် ပါဝင်သော ဝန်ဆောင်မှုများနှင့် ဝဘ်ဆိုဒ်တွင်ပါဝင်သော ဝန်ဆောင်မှုများ အကြားတစ်ခါတရံ ကွဲလွဲမှုများရှိနိုင်ပါသည်။ AEONသည် မည်သည့်အချိန်တွင်မဆို ဝန်ဆောင်မှု များအား သင့်တော်သလို အသစ်ထည့်သွင်းခြင်း၊ ပယ်ဖျက်ခြင်း၊ ပြင်ဆင်ခြင်းများအား ပြုလုပ်နိုင် ပါသည်။
+\n၂.၄) ကွန်ပျူတာစနစ်ချို.ယွင်းမှု.၊ ဆက်သွယ်ရေးဆိုင်ရာချို.ယွင်းမှု.၊ ကွန်ယက်ပိုင်းဆိုင်ရာ ချို.ယွင်းမှု.၊ အခြားသော သဘာဝဘေးအန္တရာယ်များကြောင့် Online Service အလုပ်မလုပ်ခြင်း များရှိပါက  Customer အနေဖြင့် နားလည် ခွင့်လွတ်ရန် သဘောတူပါသည်။
+\n၂.၅) AEON သည် Customer အား ကြိုတင်အသိပေးရန်လိုအပ်ပါက အသိပေးပြီး Online Service ကို ယာယီသော်လည်းကောင်း၊ အမြဲတမ်းသော်လည်းကောင်း ရပ်ဆိုင်းနိုင်ခွင့်ရှိပါသည်။</string>
+    <string name="tac_003">၃) မိုဘိုင်းအသုံးပြုခြင်းဆိုင်ရာ သတ်မှတ်ချက်များ
+Mobile Application အသုံးပြုရာတွင် လုံခြုံရေးအလို့ငှာ အောက်ပါအချက်များအား Customer မှ လိုက်နာဆောင်ရွက်ရန် သဘောတူညီပါသည်။
+\n၃.၁) Online Service အား အသုံးပြုရာတွင် အသုံးပြုသော ဆက်သွယ်ရေးစက်ပစ္စည်းများ၊ ကွန်ပျူတာများ၊ ကွန်ယက်များ၊ ဝဘ်ဘရောက်ဇာများသည် ဗိုင်းရပ်စ်များနှင့် အခြားသော အချက်အလက်အားနှောက်ယှက်ဖောက်ထွင်းနိုင်သည့် ပရိုဂရမ်များမှ အကာအကွယ်ရရှိအောင် ဆောင်ရွက်ထားရန်လိုအပ်ပြီး AEON ၏သတ်မှတ်စံနှုန်းများနှင့်လည်း ကိုက်ညီရပါမည်။
+\n၃.၂) Customer ၏ အဖွဲ့ဝင်ကဒ်၊ ကိုယ်ရေးကိုယ်တာနှင့် အခြားသောအချက်အလက်များအား ဖြည့်စွက်ခြင်း၊ ရယူခြင်းများပြုလုပ်ရာတွင် ဂရုပြုဆောင်ရွက်ရန် လိုအပ်ပါသည်။
+\n၃.၃) AEON မှ Customer သို့ပေးအပ်ထားသော Username, Password နှင့် ပြင်ဆင် ပြောင်းလဲလိုက်သော Password များအား လုံခြုံစွာ ထိန်းသိမ်းထားရပါမည်။
+\n၃.၄) အသုံးပြုသောဆက်သွယ်ရေးစက်ပစ္စည်းများ၊ ကွန်ပျူတာများအားLogin ဝင်ရောက်လျက် အနေအထားဖြင့် ထွက်ခွာခြင်း မပြုလုပ်ရန်နှင့် Mobile Application အား အသုံးပြုပြီးတိုင်း Log out ပြုလုပ်ရပါမည်။
+\n၃.၅) မျှဝေ၍ အသုံးပြုသော ဆက်သွယ်ရေးစက်ပစ္စည်းများ၊ ကွန်ပျူတာများ၊ အများသုံး အင်တာနက် ကွန်ယက်များ အသုံးပြုခြင်းအတွက် Customer, AEON, အခြားသူ တစ်ဦးဦးကြောင့် ဖြစ်ပေါ်လာသော ခွင့်ပြုချက်မရှိသည့် ဝန်ဆောင်မှု အသုံးချ ဆောင်ရွက်ခြင်း၊ Customer၏ ကိုယ်ရေးအချက်အလက် ပေါက်ကြားခြင်း၊ အခြားသော AEON Customerများ၏ အချက် အလက်များ ပေါက်ကြားခြင်း စသည့် မည်သည့် ထိခိုက်နစ်နာမှု.မျိုးကိုမဆို Customer မှ အပြည့်အဝ တာဝန်ယူရန် သဘောတူညီပါသည်။ ဤအကြောင်းအရာနှင့် ဆက်စပ်၍ လုံခြုံမှုမရှိဟု ယူဆရသော ချိတ်ဆက်မှုနှင့် Customer၏ Mobile Application အသုံးချခွင့်အား တစ်စိတ်တစ်ပိုင်းသော်လည်းကောင်း၊ အပြည့်အဝသော်လည်းကောင်း ရပ်ဆိုင်းရန် AEON တွင် အခွင့် ရှိပါသည်။
+\n၃.၆) အကယ်၍ Customer ၏ Password သည် ပျောက်ဆုံးခြင်း၊ အခိုးခံရခြင်း၊ အခြားသူတစ်ဦးက သိရှိခြင်း (သို့) ခန့်မှန်းနိင်သည်ဟု ယူဆရပါက AEON မှညွှန်ကြားထားသည့် နည်းလမ်းအတိုင်း Password အား ချက်ခြင်း ပြောင်းလဲရပါမည်။ ထိုသို့ ပြုလုပ်ရန်မှာ Customer ၏ တာဝန်သာ ဖြစ်ပါသည်။ ထိုသို့ ပြုလုပ်ရန် ပျက်ကွက်ပါက Customer အတွက် ဆုံးရှုုံးမှု.နှင့် ထိခိုက်နစ်နာမှုများ အတွက် Customer တွင်သာ တာဝန်ရှိပါမည်။
+\n၃.၇) Online Service အသုံးပြု၍ ဝန်ဆောင်မှုများအား ဆောင်ရွက်ရာတွင် အမှားအယွင်း တစုံတရာဖြစ်ပေါ်လာပါက Customer အနေဖြင့် ဖြစ်ပွားသည့်နေ့မှ (၇)ရက်အတွင်း AEON သို့ စာဖြင့် အကြောင်းကြားရပါမည်။ ထိုသို့မဟုတ်ပါက ဆောင်ရွက်မှုအား မှန်ကန် အကျုံးဝင်သည်ဟု ယူဆဆောင်ရွက်သွားပါမည်။
+အကြောင်းကြားစာတွင် အောက်ပါ အသေးစိတ် အချက်များ ပါဝင်ရပါမည်။
+\n၃.၇.၁)    ဝန်ဆောင်မှု ဆောင်ရွက်သည့် နေ့စွဲ နှင့် အချိန်
+\n၃.၇.၂) အသုံးပြုသော ဆက်သွယ်ရေးစက်ပစ္စည်းများ၊ ကွန်ပျူတာများ၏ တည်နေရာနှင့်  ချိတ်ဆက်သော အင်တာနက် ကွန်ယက်အမျိုးအစား
+\n၃.၇.၃)    အဖွဲ့ဝင်၏ ဂဏန်း၁၆လုံးပါ အဖွဲ.ဝင်ကတ်ပြားနံပါတ်၊ အမည်၊ ဆက်သွယ်ရန်ဖုန်း
+\n၃.၇.၄)    ဆောင်ရွက်ခဲ့သည့် ဝန်ဆောင်မှု အမျိုးအစား
+\n၃.၇.၅)    အမှားအယွင်းဖြစ်ပွားစဉ် ဖော်ပြခဲ့သောစာသားနှင့် အညွှန်းကုဒ် (ပါရှိပါက)</string>
+    <string name="tac_004">၄) Customer ၏ လုံခြုံရေးအတွက် အကာအကွယ်များ
+AEONမှ ခွင့်ပြုထားသော Username မှားယွင်းအသုံးပြုခြင်းနှင့်ခွင့်ပြုထားသော အကြိမ်အရေ အတွက်ထက် ပို၍ Password အား ဆက်တိုက်ဖြည့်စွက်ပါက Online Service အား AEON မှ ရပ်ဆိုင်းပိုင်ခွင့်ရှိပါသည်။ထိုသို.ရပ်ဆိုင်းမှု.များအတွက် Customerတွင်ထိခိုက်မှု.ရှိပါကCustomer  အနေဖြင့် AEONသို. တောင်းဆိုပိုင်ခွင့် မရှိပါ။
+Online Service အား ပြန်လည် အသုံးပြုနိုင်ရန် Customer အနေဖြင့် AEON ၏ Call Center ဖုန်းနံပါတ် [phone_no] သို့ အလုပ်ချိန်အတွင်း ဆက်သွယ်နိုင်ပါသည်။</string>
+    <string name="tac_005">၅) တာဝန်ခံမှု.မှ ကင်းလွတ်ခြင်း
+Mobile Application နှင့် ဝဘ်ဆိုဒ်တွင်ပါရှိသော စာသား၊ပုံ၊လင့်ခ်နှင့် အခြားသော အချက် အလက်များမှာ အရှိအတိုင်းရရှိနိုင်မည့် အတိုင်းအတာအထိသာ ဖော်ပြထားသည်ဖြစ်ရာ  တိကျသေချာမှု၊ ပြည့်စုံလုံလောက်မှုနှင့် ပတ်သက်၍ AEON မှ အာမ မခံ၊ တာဝန်မယူသလို ၎င်းဖော်ပြပါ အချက်အလက် ပါဝင်မှုများနှင့်ပတ်သက်၍ မှားယွင်းခြင်း ပျက်ကွက်ခြင်းများ အတွက်လည်း AEON တွင်တာဝန်မရှိပါ။</string>
+    <string name="tac_006">၆)တာဝန်မရှိခြင်းနှင့် တာဝန်ယူမှု.မှ ကင်းလွတ်ခြင်း။
+အောက်ပါကိစ္စရပ်များ အပါအဝင် customerမှ တိုက်ရိုက်သော်လည်းကောင်း၊ သွယ်ဝိုက်၍ သော်လည်းကောင်း တမင်ရည်ရွယ်၍သော်လည်းကောင်း မရည်ရွယ်ပဲ မတော်တဆသော် လည်းကောင်း၊ အွန်လိုင်းဝန်ဆောင်မှုအား အသုံးပြု၍ ဆောင်ရွက်မှုကြောင့် ဖြစ်ပေါ်လာသည့် နောက်ဆက်တွဲ ပျက်စီးမည့် မည်သည့် ဆုံးရှုံးမှု၊ ထိခိုက်မှု၊ နစ်နာမှု များအတွက် AEON တွင် တာဝန်မရှိစေရပါ-
+\n၆.၁) Customer သည် ၎င်း၏ Username, Password တို့အား အခြားသူ တစ်ဦးဦးအား ဖော်ပြသဖြင့် ၎င်းမှ Customer ၏ ကိုယ်စား ဝန်ဆောင်မှုများအား တရားဥပဒေနှင့် မလွတ်ကင်းသော ကိစ္စရပ်များအား ရည်ရွယ်ချက်ဖြင့် ဆောင်ရွက်ခြင်း။
+\n၆.၂) Customer ၏ တမင်သက်သက်သော်လည်းကောင်း ပေါ့ပျက်စွာသော်လည်းကောင်း လုပ်ဆောင်မှုကြောင့်ဖြစ်ပျက်သော မည်သည့် အကြောင်းကိစ္စရပ်များမဆို။
+\n၆.၃) AEON မှ ထုတ်ဝေထားသော အွန်လိုင်းဝန်ဆောင်မှုအတွက် လက်စွဲနှင့် လမ်းညွှန်ချက်များ၊ စည်းမျဉ်းနှင့် သတ်မှတ်ချက်များကို Customer မှ လိုက်နာရန် ပျက်ကွက်ခြင်း များကြောင့် ဖြစ်ပေါ်လာသော ပြဌာန်းထားသည့် ဥပဒေများ၊ စည်းမျဉ်းများနှင့် မကိုက်ညီသော ကိစ္စရပ်များ။
+\n၆.၄) လမ်းညွှန်ချက်များပြောင်းလဲခြင်း၊ ပယ်ဖျက်ခြင်း(သို.မဟုတ်) ၊ Online Servcie အလုပ် မလုပ်ခြင်း အမှားနှင့် ကျန်ခဲ့ခြင်းများ၊ နှောင့်ယှက်မှု.များ ကြန်.ကြာမှု.များ အတွက် တာဝန်မရှိပါ။
+\n၆.၅) အွန်လိုင်းအသုံးပြုသည့် Hardware, Software များအားပြင်ပ ပုဂိိိုလ်တစ်ဦး(သို.) ပုဂိုလ်တစ်စုမှ တိုက်ခိုက်ခြင်းကြောင့် ဖြစ်ပေါ်လာမည့် ထိခိုက်မှု.များ။
+\n၆.၆) အွန်လိုင်းအသုံးပြုရာတွင် ကွန်ပျူတာချို.ယွင်းခြင်း၊ လျှပ်စစ်စနစ်ချို.ယွင်းခြင်း၊ ဆက်သွယ်ရေး စနစ်ချို.ယွင်းခြင်း၊ လျှပ်စစ်ပစ္စည်းများ ချို.ယွင်းခြင်း၊ တယ်လီဖုန်းဆက်သွယ်ရေး လိုင်းများ ချို.ယွင်းခြင်းကြောင့် ဖြစ်ပေါ်လာနိုင်သည့် ဆုံးရှုံးမှု.များ။</string>
+    <string name="tac_007">၇)ဝန်ဆောင်ခ
+အွန်လိုင်းဝန်ဆောင်မှုအား အသုံးပြုရာတွင် AEON မှ သတ်မှတ်ထားသော  ဝန်ဆောင်ခနှင့် အခြားသော ကုန်ကျစရိတ်များ ပေးဆောင်ရန် Customer မှ သဘောတူပါသည်။(လက်ရှိတွင် အွန်လိုင်း ဝန်ဆောင်ခ ပေးရန်မလိုပါ။)</string>
+    <string name="tac_008">၈)သတင်းအချက်အလက်များအသုံးပြုခြင်း။
+\n၈.၁)  Customer နှင့် ပတ်သက်ဆက်စပ်သော အချက်အလက်များမှ သင့်တော်သလို၊ လိုအပ်သလို (သို့) အားလုံးအား အဆက်အသွယ်လုပ်ခြင်း၊ ထိန်းသိမ်းခြင်း၊ စုဆောင်းခြင်း၊ ဖော်ပြခြင်းနှင့် Customer အတွက် အကျိုးရှိမည်ဟု AEON မှယူဆသော အခြား ထုတ်ကုန်နှင့် ဝန်ဆောင်မှုများတွင် အသုံးချခြင်းအား Customer မှ သဘောတူညီပါသည်။
+\n၈.၂) ဥပဒေအရသော်လည်းကောင်း၊ အွန်လိုင်းဝန်ဆောင်မှုအတွက် အကျိုးရှိသည်ဟု ယူဆ၍သော် လည်းကောင်း၊ Customer ၏ အချက်အလက်များနှင့်တကွ ဝန်ဆောင်မှုအား အသုံးပြုထားသည့် ဆောင်ရွက်မှုများအား AEON မှ လိုအပ်ပါက ထုတ်ဖော်ပြသရန် Customer မှ သဘောတူညီ ပါသည်။ </string>
+    <string name="tac_009">၉)ဆက်သွယ်ဆောင်ရွက်ခြင်းများ
+AEON သည် Customer မှ နောက်ဆုံးသတင်းပေးထားသော ဖုန်းနံပါတ်၊ လိပ်စာ၊ အီးမေးလ် စသည်တို့ဖြင့် ဆက်သွယ်နိုင်ပါသည်။ AEON မှ ဖုန်း၊ အီးမေးလ်၊ ဝဘ်ဆိုဒ်၊ ဆော့ဝဲလ်၊ SMS၊ စာတိုက်မှတဆင့် စာပို့ခြင်းတို့အား AEON မှ Customer သို.အသိပေးသည်ဟုယူဆ၍ AEON (သို့) အခြားသူများ၊ အဖွဲ့အစည်းများ၏ ကြော်ငြာများ၊ ဝန်ဆောင်မှုများနှင့်ထုတ်ကုန်များ ဈေးကွက် မြှင့်တင်ခြင်းအလို့ငှာ ဆက်သွယ်ဆောင်ရွက်ခြင်းများအား Customer မှ ခွင့်ပြု သဘောတူပါသည်။</string>
+    <string name="tac_010">၁၀)ဝန်ဆောင်မှုအား ပယ်ဖျက်ခြင်း
+\n၁၀.၁)အောက်ပါ အခြေအနေများတွင် AEONသည် Customerအား ကြိုတင်အသိပေး သဘော တူညီမှု.မရယူပဲ မည်သည့် အစိတ်အပိုင်းမဆို အသိမပေးပဲ အွန်လိုင်း ဝန်ဆောင်မှုအား ပယ်ဖျက် နိုင်ခွင့်ရှိသည်-
+\nက) Customerသည် မှတ်ပုံတင်သည့်နေ့ (သို့) နောက်ဆုံးဝင်ရောက်သည့်နေ့မှ အွန်လိုင်း ဝန်ဆောင်မှုအား တနှစ်ကျော်အသုံးမပြုခြင်း။
+\nခ ) မည်သည့် အကြောင်းပြချက်နှင့်မဆို AEON အားပေးချေရမည့် ဝန်ဆောင်မှု အဖိုးအခများနှင့် အခြားကုန်ကျစားရိတ်များ မပေးသွင်းခြင်းအပါအဝင် အွန်လိုင်းဝန်ဆောင်မှု၏ စည်းမျဉ်း စည်းကမ်း ချက်များအား Customer မှ လိုက်နာရန်ပျက်ကွက်ခြင်း။
+\n၁၀.၂) အွန်လိုင်းဝန်ဆောင်မှုမှ မည်သည့် ဝန်ဆောင်မှု အစိတ်အပိုင်းကိုမဆို ကြိုတင် အကြောင်း မကြားပဲ AEON မှပယ်ဖျက် နိုင်ခွင့်ရှိသည်။
+\n၁၀.၃) Customerသည် AEON အား သတ်မှတ်ထားသောနည်းလည်းများနှင့်အညီ အကြောင်းကြား ပါက အွန်လိုင်းဝန်ဆောင်မှုအား ပယ်ဖျက်၊ ရပ်စဲနိုင်ပါသည်။ </string>
+    <string name="tac_011">၁၁)အခြား အခြေအနေများ
+\n၁၁.၁) ဤစည်းကမ်းချက်များထဲတွင်ပါဝင်သော စည်းကမ်းချက်တစ်ခုခုသည် မှန်ကန်မှု.မရှိခြင်း၊ ဥပဒေနှင့် ညီညွှတ်မှု.မရှိခြင်း (သို့) ဆောင်ရွက်ရန် အဆင်မပြေဖြစ်လာခြင်းများ ရှိလာပါကလည်း၊ ၎င်း စည်းကမ်းချက် အစိတ်အပိုင်းသည် ကျန်ရှိသည့် စည်းကမ်းချက်များ၏ မှန်ကန်မှုနှင့် ဆောင်ရွက်နိုင်မှုတို့အား သက်ရောက်နိုင်စေခြင်းမရှိစေရပါ။
+\n၁၁.၂)အွန်လိုင်းဝန်ဆောင်မှုအား အသုံးပြုနေစဉ် AEON နှင့် Customer အကြား သဘောတူညီမှု တခုခုအရ  ထပ်ဆောင်းဝန်ဆောင်မှုပေးရာတွင် ၎င်းထပ်ဆောင်းဝန်ဆောင်မှုသည် အွန်လိုင်း ဝန်ဆောင်မှု၏ အစိတ်အပိုင်းတစ်ခုအနေအဖြင့် Customer မှ သဘောတူညီပါသည်။အငြင်းပွားမှု တစုံတရာဖြစ်ပွားလာပါက မူလအွန်လိုင်းဝန်ဆောင်မှုနှင့် ပတ်သက်လျင် အွန်လိုင်းဝန်ဆောင်မှု၏ စည်းကမ်းချက်သည် အတည်ဖြစ်ပြီး ထပ်တိုးဝန်ဆောင်မှုနှင့်ပတ်သက်လျင် ထပ်တိုးဝန်ဆောင်မှု၏ စည်းကမ်းချက်သည် အတည်ဖြစ်ပါသည်။
+\n၁၁.၃) Customerသည် ၎င်း၏ ဝန်ဆောင်မှု ဆောင်ရွက်သည့်အတွက် အတည်ပြု မှတ်တမ်းများအား ပုံနှိပ်၍ သိမ်းဆည်းထားနိုင်ပါသည်။
+\n၁၁.၄)အကယ်၍ ဤစည်းကမ်းချက်များသည် AEON၏ အခြားသော ဝန်ဆောင်မှုများ၏ စည်းကမ်းချက်များနှင့် ကွဲပြားမှုများရှိပါက ဤစည်းကမ်းချက်များသည် အွန်လိုင်းဝန်ဆောင်မှု အတွက်သာ သီးသန်.ဖြစ်ရပါမည်။
+\n၁၁.၅) အငြင်းပွားမှုတစုံတရာ ဖြစ်ပွားပါက AEON အနေဖြင့် Customer နှင့် ပတ်သက်၍ အရေးယူဆောင်ရွက်မှု တစုံတရာပြုလုပ်ရာတွင် ဥပဒေအရ ခွင့်ပြုထားသော မည်သည့် အခွင့်အရေး၊ ကုစားမှုများကြောင့်မျှ နှောင့်နှေးခြင်း၊ ပျက်ကွက်ခြင်း၊ ပယ်ဖျက်ခြင်းမရှိပဲ AEON ၏ ဤ ဖော်ပြပါ စည်းကမ်းချက်များအတိုင်းသာ ဆောင်ရွက်နိုင်ပါမည်။
+\n၁၁.၆) အွန်လိုင်းဝန်ဆောင်မှုနှင့် ၎င်း၏ ထပ်တိုးဝန်ဆောင်မှုများမှ ဖြစ်ပေါ်လာနိုင်သည့် အငြင်းပွားမှုများ အပေါ်တွင် မြန်မာနိုင်ငံ၏ ဥပဒေများနှင့်အညီ မြန်မာနိုင်ငံအတွင်းရှိ တရားရုံးများတွင်သာ ဤစည်းကမ်းချက်များအရ တရားစီရင်မှု.ကို Customer နှင့် AEON မှ သဘောတူညီပါသည်။</string>
+
+
+    <string name="service_unavailable">Service is temporarily unavailable.</string>
+    <string name="network_connection_err">ဆက်သွယ်မှုပြတ်တောက်သွားပါသည်။\nသင်၏ Internet Connection အားစစ်ဆေးပါ။</string>
+
+    <string name="title_activity_maps">မြေပုံ</string>
+
+    <!--messaging-->
+    <string name="btn_send">ပို့မည်</string>
+    <string name="hint_msg">စာသားများရိုက်ထည့်ရန်</string>
+
+    <!--Account Unlock Check.-->
+    <string name="acc_unlock_check_title">FORGOT PASSWORD</string>
+    <string name="btn_next">ရှေ့သို့</string>
+    <string name="forgot_pwd_confirm_info">လျှို့ဝှက်ကုဒ်ပြင်ဆင်ရန် အတည်ပြုခြင်း</string>
+    <string name="pwd_update_success">Your password is successfully changed. Please login again.</string>
+
+    <!--Force Reset Password-->
+    <string name="force_resetpass_title">Force Reset Password</string>
+
+    <string name="verified_ph_no_alert">Memberအဖြစ်အဆင့်မြင့်ခြင်းအောင်မြင်ပါသည်။ \nသင်၏ဖုန်းနံပါတ်တွင်ထည့်သွင်းထားသော [phoneNo] ဖြင့်ဝင်ရမည်ဖြစ်သည်။ Biometric အချက်အလက်ကိုယခုနံပါတ်ဖြင့်ပြင်ဆင်ပေးပါ။</string>
+    <string name="verified_ph_no_alert_biometric_not_ok">Memberအဖြစ်အဆင့်မြင့်ခြင်းအောင်မြင်ပါသည်။ \nသင်၏ဖုန်းနံပါတ်တွင်ထည့်သွင်းထားသော [phoneNo] ဖြင့်ဝင်ရမည်ဖြစ်သည်။</string>
+
+    <string name="sec_ans_update">လုံခြုံရေးမေးခွန်းများပြန်လည်ပြင်ဆင်ခြင်း</string>
+
+    <string name="bio_dialog_reg">Biometricအချက်အလက် ဖြင့်Login ဝင်လိုပါသလား?</string>
+
+    <string name="read_more">ဆက်လက်ဖတ်ရှုရန်</string>
+
+    <string name="session_time_out_msg">သင်၏session ကုန်ဆုံးသွားပါပြီ။</string>
+
+    <string name="new_version_msg">New version is available on Play Store. \n\nUpdated features are \n(1) News \n(2) Announcement \n(3) Messenger \n\nEnjoy new features!</string>
+
+    <!--check account lock-->
+    <string name="no_acc_info">သင်၏အချက်အလက် များမရှိပါ။</string>
+
+    <!--upd secuiry ans msg-->
+    <string name="count_upd_msg">အဖြေသည် အများဆုံး [count] လုံးရှိသင့်သည်။</string>
+    <string name="title_activity_main_menu_drawer">MainMenuActivityDrawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_profile_photo_update">ProfilePhotoUpdateActivity</string>
+    <string name="title_activity_profile_photo_update_verify">ProfilePhotoUpdateVerifyActivity</string>
+    <string name="msg_account_locked">သင်၏ အကောင့် ပိတ်ထားပါသည်။</string>
+
+    <string name="img_destroy_snackbar_info">The image have been destroyed !</string>
+
+    <string name="lbl_loan_term">ချေးငွေကာလ</string>
+    <string name="lbl_motor_cycle_loan">Motor Cycle</string>
+    <string name="btn_calculate">တွက်ချက်ရန်</string>
+    <string name="lbl_processing_fee">ဝန်ဆောင်ခ</string>
+    <string name="lbl_total_repayment_amount">ပြန်လည်ပေးဆပ်ရမည့်ပမာဏ(စုစုပေါင်း)</string>
+    <string name="lbl_first_repayment_amount">ပထမအရစ် ပေးဆပ်ရမည့်ပမာဏ</string>
+    <string name="lbl_monthly_repayment_amount">လစဉ်ပြန်လည်ပေးဆပ်ရမည့်ပမာဏ</string>
+    <string name="lbl_last_payment">နောက်ဆုံးပေးဆပ်ရမည့်ပမာဏ</string>
+    <string name="lbl_compulsory_saving">မဖြစ်မနေစုငွေ</string>
+    <string name="lbl_total_compulsory_saving">စုစုပေါင်း မဖြစ်မနေစုငွေ</string>
+    <string name="hint_loan_amount">ချေးငွေပမာဏ</string>
+
+    <string name="warning_msg_high_amount">အများဆုံးချေးငွေပမာဏသည်  ၂,၀၀၀,၀၀၀ ကျပ် ဖြစ်သည်။</string>
+    <string name="warning_msg_low_amount">အနည်းဆုံးချေးငွေပမာဏသည်  ၅၀,၀၀၀ ကျပ် ဖြစ်သည်။</string>
+    <string name="warning_mloan_msg_low_amount">အနည်းဆုံး Motor Cycle ချေးငွေပမာဏသည် ၃၅၀,၀၀၀ ကျပ် ဖြစ်သည်။</string>
+    <string name="error_invlid_loan_term">ချေးငွေကာလ မမှန်ကန်ပါ။</string>
+    <string name="error_require_loan_term">ချေးငွေကာလတစ်ခုကို ရွေးခြယ်ပေးပါ။</string>
+    <string name="error_require_loan_amount">ချေးငွေပမာဏ ထည့်သွင်းပေးပါ။</string>
+
+    <string-array name="low_loan_term">
+        <item>6</item>
+        <item>9</item>
+        <item>12</item>
+        <item>18</item>
+    </string-array>
+
+    <string-array name="high_loan_term">
+        <item>9</item>
+        <item>12</item>
+        <item>18</item>
+    </string-array>
+
+    <string-array name="m_loan_term">
+        <item>12</item>
+        <item>18</item>
+        <item>24</item>
+    </string-array>
+
+    <string-array name="micro_loan_term">
+        <item>6</item>
+    </string-array>
+
+    <string name="progress_loading">Loading ...</string>
+    <string name="message_call_not_available">Call not available!</string>
+    <string name="message_check_lock_failed">Check Account Lock Failed.</string>
+    <string name="ph_nrc_input_required">Input Phone No. or NRC No. required.</string>
+    <string name="progress_account_check">Checking Your Account...</string>
+    <string name="message_password_failed">Password is reset failed.</string>
+    <string name="message_get_coupon_info_failed">Get Coupon Info Failed.</string>
+    <string name="message_coupon_info_unavailable">Coupon Info Unavailable.</string>
+    <string name="message_no_fingerprint_config">No fingerprint configured.</string>
+    <string name="message_sec_scrren_unavailable">Secure lock screen not enabled.</string>
+    <string name="message_logout_failed">Logout info update failed.</string>
+    <string name="logout_info_updated">Logout info updated.</string>
+    <string name="message_back_click">Please click BACK again to exit</string>
+    <string name="message_permission_deniled">Permissions not granted by the user.</string>
+    <string name="progress_checking_member">Checking Member ...</string>
+    <string name="progress_otp_request">OTP Requesting ...</string>
+    <string name="init_timer_text">00:00</string>
+    <string name="opt_request_failed">OTP Code Request Failed.</string>
+    <string name="message_back_disable">Back is disable!</string>
+    <string name="progress_registering">Registering ...</string>
+    <string name="message_pwd_reset_failed">Password is reset failed.</string>
+    <string name="progress_load_news">Loading in news ...</string>
+    <string name="progress_loading_message">Loading messages...</string>
+    <string name="progress_update_sq_ans">Please wait ...</string>
+    <string name="message_sq_update_un_success">Update Unsuccessful.</string>
+    <string name="progress_loading_outlet">Loading Outlets ...</string>
+    <string name="message_gmap_not_support">GoogleMap does not support.</string>
+    <string name="message_cur_post">Current Position</string>
+    <string name="progress_loading_nrc">Loading Nrc No. ...</string>
+    <string name="progress_check_to_verify">Checking to verify ...</string>
+    <string name="message_verify_failed">Verify Failed!</string>
+    <string name="progress_verify">Verifying...</string>
+    <string name="registration_done">Registration Done!</string>
+    <string name="progress_loading_announcement">Loading in announcements ...</string>
+    <string name="msg_g_play_not_support">GooglePlay does not support.</string>
+    <string name="ver_upd_status_unavailable">Version Update Status Unavailable.</string>
+    <string name="ver_upd_status_failed">Version Update Status Check Failed.</string>
+    <string name="progress_ver_checking">Version Checking...</string>
+    <string name="msg_popup_new_ver">New Version!</string>
+    <string name="msg_password_check_failed">Password Check Failed.</string>
+    <string name="title_conf_pwd">သင်၏စကားဝှက်ကိုအတည်ပြုပါ</string>
+    <string name="progress_confirming">Confirming...</string>
+
+    <!-- Shopping Messages -->
+    <string name="at_add_text_err">အပိုဆောင်းစာသားထည့်ပါ။</string>
+    <string name="at_location_err">လက်ရှိတည်နေရာထည့်ပါ။</string>
+
+    <!--Dialog string-->
+    <string name="agent_channel_category">အမျိုးအစား :</string>
+    <string name="agent_channel_brand">အမှတ်တံဆိပ် :</string>
+    <string name="agent_channel_addText">အပိုဆောင်းစာသား :</string>
+    <string name="agent_channel_location">လက်ရှိတည်နေရာ :</string>
+    <string name="agent_channel_btn">အေးဂျင့်ထံသို့ပို့မည်</string>
+
+    <!-- Sent -->
+    <string name="buy_send_01_format">Hello!\nI want to buy <b>%1$s %2$s</b>.</string>
+    <string name="buy_send_02_format">My Location : <b>%1$s</b>.</string>
+    <string name="buy_send_03_format"><b>%1$s</b></string>
+
+    <!-- Received -->
+    <string name="buy_receive_01_format">Dear Customer,\nWe are <b>%1$s</b>. We have <b>%2$s %3$s</b> as your wish.</string>
+    <string name="buy_receive_02_format">Price is <b>%1$s</b> MMK.</string>
+    <string name="buy_receive_04_format">If you interest our information, please contact us : <b>%1$s</b>.</string>
+    <string name="buy_receive_05_format"><b><u>%1$s</u></b></string>
+
+    <!-- Init Message -->
+    <string name="init_buy_message">Welcome to AEON Purchase Box.</string>
+    <string name="btn_purchase_detail">ဝယ်ယူမှုအသေးစိတ်</string>
+    <string name="btn_attachment_edit">တွဲစာပြင်မည်</string>
+    <string name="btn_cancel">ပယ်ဖျက်မည်</string>
+    <string name="lbl_application_no">လျှောက်လွှာနံပါတ်</string>
+    <string name="lbl_apply_date">လျှောက်ထားသော</string>
+    <string name="lbl_loan_amount">ချေးငွေပမာဏ</string>
+    <string name="lbl_approve_amount">ရရှိသည့်ချေးငွေပမာဏ</string>
+    <string name="lbl_approve_term">ရရှိသည့်ချေးငွေကာလ</string>
+    <string name="btn_approved">APPROVED-M</string>
+    <string name="lbl_detail">အသေးစိတ်ကြည့်မည်</string>
+
+</resources>

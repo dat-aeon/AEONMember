@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/relativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/button_border"
+    android:backgroundTint="@color/membership_color"
+    android:padding="5dp">
+
+    <ImageView
+        android:layout_height="50dp"
+        android:id="@+id/memeber_image"
+        android:layout_width="50dp"
+        android:src="@drawable/member_round_icon"
+        android:layout_marginLeft="5dp"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:text="@string/welcome_membership_title"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_memebership"
+        android:layout_width="match_parent"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/main_view_font_size"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/memeber_image"
+        android:fontFamily="@font/pyidaungsu_regular"
+        android:textColor="@color/white"
+        android:ellipsize="marquee"/>
+
+</RelativeLayout>

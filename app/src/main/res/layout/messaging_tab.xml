@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.MainMenuActivityDrawer">
+
+    <LinearLayout
+        android:id="@+id/contact_view"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:background="@color/customer_service_color"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/admin_phone"
+            android:layout_weight="0.9"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:layout_gravity="center_vertical|left"
+            android:textColor="@color/white"
+            android:padding="8dp"
+            android:textSize="21dp"
+            android:text="09xxxxxxxxx"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_admin_call"
+            android:layout_weight="0.1"
+            android:padding="4dp"
+            android:layout_gravity="center_vertical|right"
+            android:src="@drawable/call_now"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reyclerview_message_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="57dp"
+        android:layout_below="@+id/contact_view"/>
+
+    <LinearLayout
+        android:id="@+id/layout_chatbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:maxHeight="45dp"
+        android:minHeight="45dp"
+        android:layout_weight="0.3"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:id="@+id/img_capture"
+            android:padding="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="left|center_vertical"
+            android:src="@drawable/ic_camera_alt_black_24dp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:id="@+id/img_browse"
+            android:padding="3dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="left|center_vertical"
+            android:src="@drawable/ic_crop_original_black_24dp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:id="@+id/img_send"
+            android:padding="3dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="left|center_vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_crop_original_black_24dp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:id="@+id/img_add"
+            android:padding="3dp"
+            android:layout_gravity="left|center_vertical"
+            android:src="@drawable/ic_add_circle_black_24dp"
+            android:visibility="visible"/>
+
+        <EditText
+            android:id="@+id/edittext_chatbox"
+            android:background="@drawable/edit_text_style"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/quantum_grey"
+            android:backgroundTint="@color/grayLight"
+            android:hint="Enter message"
+            android:paddingLeft="8dp"
+            android:textSize="14dp"
+            android:maxLines="6"
+            android:paddingRight="5dp"
+            android:fontFamily="@font/pyidaungsu_regular"/>
+
+        <Button
+            android:id="@+id/button_chatbox_send"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/button_border"
+            android:backgroundTint="@color/customer_service_color"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="SEND"
+            android:textColor="#ffffff"
+            android:textSize="14dp"
+            android:fontFamily="@font/pyidaungsu_regular"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

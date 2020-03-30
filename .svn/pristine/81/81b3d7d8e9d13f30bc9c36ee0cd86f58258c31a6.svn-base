@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    card_view:cardBackgroundColor="@color/grayLight"
+    android:layout_width="match_parent"
+    android:id="@+id/card_view"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_small"
+    android:layout_marginTop="@dimen/margin_small"
+    android:layout_marginLeft="@dimen/margin_medium"
+    android:layout_marginRight="@dimen/margin_medium"
+    android:layout_marginBottom="@dimen/margin_small"
+    card_view:cardCornerRadius="@dimen/margin_small">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_small">
+
+        <ImageView
+            android:layout_width="@dimen/ic_regular_2x"
+            android:layout_height="@dimen/ic_regular_2x"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/img_navigation"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_location_on_black_24dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_name_loc"
+            android:layout_toRightOf="@+id/img_navigation"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="92dp"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_regular_2x"
+                android:textStyle="bold"
+                android:id="@+id/outlet_name"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Outlet Name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_small"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:id="@+id/outlet_address"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Outlet Address"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="64dp"
+            android:layout_height="32dp"
+            android:text="0.0 m"
+            android:textColor="@color/red"
+            android:gravity="center"
+            android:id="@+id/outlet_distance"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:background="@drawable/edit_text_style"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/img_detail"
+            android:layout_marginLeft="@dimen/margin_small"/>
+
+
+        <ImageView
+            android:layout_width="@dimen/ic_regular"
+            android:layout_height="@dimen/ic_regular"
+            android:id="@+id/img_detail"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

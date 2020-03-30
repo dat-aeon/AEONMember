@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_gravity="center_horizontal"
+    android:textSize="@dimen/text_regular_2x"
+    android:ellipsize="marquee"
+    android:singleLine="false"
+    android:gravity="left"
+    android:paddingLeft="@dimen/margin_medium"
+    android:textColor="@color/colorPrimary"
+    android:paddingTop="@dimen/margin_medium"
+    android:textStyle="bold"
+    android:paddingBottom="@dimen/margin_medium"
+    android:fontFamily="@font/pyidaungsu_bold"/>

@@ -1,0 +1,2118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/stepview_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_style"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_medium"
+            android:layout_alignParentTop="true"
+            android:visibility="gone">
+
+            <io.canner.stepsview.StepsView xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/stepsView_4"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                custom:circleRadius="20"
+                custom:labelSize="10" />
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/service_unavailable_guarantor"
+            layout="@layout/service_unavailable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_below="@id/stepview_layout"/>
+
+        <LinearLayout
+            android:id="@+id/gua_data_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:id="@+id/back_emer_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/left_sign_32" />
+
+                    <TextView
+                        android:id="@+id/da_emer_data_title"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/da_emergency_title"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:layout_weight="0.9"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/go_to_loan_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:id="@+id/da_loan_data_title"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/da_loanConfirm_title"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:layout_gravity="end"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/da_label_color"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:layout_weight="0.9"/>
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/right_sign_32" />
+
+                </LinearLayout>
+            </LinearLayout>-->
+
+            <com.kofigyan.stateprogressbar.StateProgressBar
+                android:id="@+id/guar_stepped_bar"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:spb_currentStateNumber="four"
+                app:spb_maxStateNumber="five"
+                app:spb_stateBackgroundColor="@color/color_disable"
+                app:spb_stateForegroundColor="@color/da_button__color"
+                app:spb_stateNumberBackgroundColor="@color/white"
+                app:spb_stateNumberForegroundColor="@color/white"
+                app:spb_currentStateDescriptionColor="@color/da_button__color"
+                app:spb_stateDescriptionColor="@color/color_disable"
+                app:spb_animateToCurrentProgressState="true"
+                app:spb_checkStateCompleted="false"
+                app:spb_stateDescriptionSize="12sp"
+                app:spb_descriptionTopSpaceIncrementer="2dp"/>
+
+            <TextView
+                android:id="@+id/da_gua_data_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/da_guarantor_title"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/da_label_color"
+                android:textSize="@dimen/text_regular_3x"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/guarator_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_below="@id/gua_data_banner"
+            android:layout_above="@id/button_layout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:background="@null"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_medium">
+
+                <!-- <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center_vertical"
+                     android:layout_marginBottom="@dimen/margin_medium_2"
+                     android:orientation="vertical">
+
+                     <TextView
+                         android:id="@+id/guarantor_title"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:gravity="center_horizontal"
+                         android:text="Guarantor"
+                         android:textColor="@color/colorPrimary"
+                         android:textSize="@dimen/text_regular_3x"
+                         android:textStyle="bold" />
+                 </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guarantor_text_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="@string/register_name_label"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <!--Name error field-->
+                    <TextView
+                        android:id="@+id/guarantor_err_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Name is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/guarantor_input_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint="@string/register_name_holder"
+                        android:inputType="textCapCharacters"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:maxLength="256"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/guarantor_text_dob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/register_dob_label"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <!--Dob Age Limitation-->
+                        <TextView
+                            android:id="@+id/applicant_dob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="@string/register_age_limit"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_small" />
+
+                    </LinearLayout>
+
+                    <!--DOB Error Field-->
+                    <TextView
+                        android:id="@+id/guarantor_err_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Date of Birth is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/guarantor_input_dob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.9"
+                            android:height="40dp"
+                            android:background="@drawable/mandatroy_edit_text_style"
+                            android:focusable="false"
+                            android:hint="@string/register_dob_holder"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:inputType="text"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guarantor_text_nrc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="@string/register_nrc_label"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <!--To check applicant NRC Error-->
+                    <TextView
+                        android:id="@+id/guarantor_err_nrc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Nrc is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/nrc_layout_height"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <Spinner
+                            android:id="@+id/guarantor_div_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_marginRight="@dimen/margin_tiny"
+                            android:layout_weight="0.1"
+                            android:background="@drawable/edit_text_style"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_small" />
+
+                        <AutoCompleteTextView
+                            android:id="@+id/guarantor_twsp_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_marginRight="@dimen/margin_tiny"
+                            android:layout_weight="0.7"
+                            android:background="@drawable/mandatroy_edit_text_style"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:gravity="center"
+                            android:longClickable="false"
+                            android:maxLength="10"
+                            android:paddingLeft="@dimen/margin_medium_2"
+                            android:paddingRight="@dimen/margin_medium_2"
+                            android:singleLine="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/da_value_color"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textSize="@dimen/text_regular" />
+
+                        <Spinner
+                            android:id="@+id/guarantor_nrc_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_marginRight="@dimen/margin_tiny"
+                            android:layout_weight="0.1"
+                            android:background="@drawable/edit_text_style"
+                            android:gravity="center"
+                            android:padding="@dimen/margin_small" />
+
+                        <EditText
+                            android:id="@+id/guarantor_nrc_no"
+                            android:layout_width="@dimen/nrc_code_width"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.1"
+                            android:background="@drawable/mandatroy_edit_text_style"
+                            android:gravity="center"
+                            android:hint="123456"
+                            android:inputType="numberDecimal"
+                            android:maxLength="6"
+                            android:paddingLeft="@dimen/margin_small"
+                            android:paddingRight="@dimen/margin_small"
+                            android:textAlignment="center"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textSize="@dimen/text_regular" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/guarantor_nationality"
+                            android:layout_width="120dp"
+                            android:layout_height="match_parent"
+                            android:paddingTop="6dp"
+                            android:text="Nationality *"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:id="@+id/guar_radioNationality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/guar_radioMyanmar"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/da_label_color"
+                                android:checked="true"
+                                android:text="Myanmar"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:textColor="@color/da_label_color" />
+
+                            <RadioButton
+                                android:id="@+id/guar_radioOther"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/da_label_color"
+                                android:text="Other"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:textColor="@color/da_label_color" />
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_nationality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Description is required."
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <EditText
+                            android:id="@+id/guarantor_nationality_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:background="@drawable/mandatroy_edit_text_style"
+                            android:hint="Description"
+                            android:maxLength="256"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guarantor_text_mobile_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Mobile No. *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/guarantor_err_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Mobile No. is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/guarantor_input_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:hint="@string/register_phoneno_holder"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guar_resident_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Resident Tel No."
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/guarantor_err_resident_tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Mobile No. is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/guarantor_residentTel"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/edit_text_style"
+                        android:hint="@string/register_phoneno_holder"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_tiny"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text_relation_with"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Relationship with Applicant *"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/spinner_relation_with"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.1"
+                            android:background="@drawable/spinner_drop_arrow"
+                            android:gravity=""
+                            android:paddingLeft="@dimen/margin_small"
+                            android:paddingRight="@dimen/margin_small" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_relation_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Description is required."
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <EditText
+                            android:id="@+id/guarantor_relation_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:background="@drawable/mandatroy_edit_text_style"
+                            android:hint="Description"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="256"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guarantor_address_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Current Address"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_medium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+                        <TextView
+                            android:id="@+id/guar_txt_apartment_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_apartment_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/guar_apartment_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+
+                        <TextView
+                            android:id="@+id/guar_txt_room_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_room_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/guar_room_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+
+                        <TextView
+                            android:id="@+id/guar_txt_floor_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_floor_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/guar_floor_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_street"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/guar_txt_street"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_street"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/guar_street"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:hint=""
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:maxLength="100"
+                                android:paddingLeft="@dimen/margin_medium"
+                                android:singleLine="true"
+                                android:textColor="@color/da_value_color"
+                                android:textColorHint="@color/grayLight"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_quarter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/guar_txt_quarter"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_quarter"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/guar_quarter"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:hint=""
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:maxLength="100"
+                                android:paddingLeft="@dimen/margin_medium"
+                                android:singleLine="true"
+                                android:textColor="@color/da_value_color"
+                                android:textColorHint="@color/grayLight"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_city"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/guar_txt_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_city"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <AutoCompleteTextView
+                                android:id="@+id/guar_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginRight="@dimen/margin_tiny"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:maxLength="100"
+                                android:gravity="center"
+                                android:longClickable="false"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:singleLine="true"
+                                android:textAlignment="center"
+                                android:textColor="@color/da_value_color"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_township"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/guar_txt_township"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_township"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <AutoCompleteTextView
+                                android:id="@+id/guar_township"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginRight="@dimen/margin_tiny"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:maxLength="100"
+                                android:gravity="center"
+                                android:longClickable="false"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:singleLine="true"
+                                android:textAlignment="center"
+                                android:textColor="@color/da_value_color"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_tiny"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guar_resident_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Type of Residence *"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/guarantor_spinner_resident_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.1"
+                            android:background="@drawable/spinner_drop_arrow"
+                            android:gravity=""
+                            android:paddingLeft="@dimen/margin_small"
+                            android:paddingRight="@dimen/margin_small" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_residentType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Description is required."
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <EditText
+                            android:id="@+id/guarantor_resident_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:background="@drawable/mandatroy_edit_text_style"
+                            android:hint="Description"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="256"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_tiny"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guar_living_with"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Living With *"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/guarantor_spinner_living_with"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.1"
+                            android:background="@drawable/spinner_drop_arrow"
+                            android:gravity=""
+                            android:paddingLeft="@dimen/margin_small"
+                            android:paddingRight="@dimen/margin_small" />
+
+                    </LinearLayout>
+
+                    <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_living_With"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Description is required."
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <EditText
+                            android:id="@+id/guarantor_living_with_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:background="@drawable/mandatroy_edit_text_style"
+                            android:hint="Description"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="256"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+                    </LinearLayout>-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/guarandor_gender"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:paddingTop="6dp"
+                        android:text="Gender *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/guar_radioGender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/guar_radioMale"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/da_label_color"
+                            android:checked="true"
+                            android:text="Male"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color" />
+
+                        <RadioButton
+                            android:id="@+id/guar_radioFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/da_label_color"
+                            android:text="Female"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/guar_marital_status"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:paddingTop="6dp"
+                        android:text="Marital Status *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/guar_radioMariage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/guar_radioSingle"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/da_label_color"
+                            android:checked="true"
+                            android:text="Single"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color" />
+
+                        <RadioButton
+                            android:id="@+id/guar_radioMarried"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/da_label_color"
+                            android:text="Married"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guarantor_stay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Year of Stay *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/guarantor_err_stay_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="@string/register_nrc_err"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1"
+                            android:layout_weight="0.5">
+
+                            <Spinner
+                                android:id="@+id/guar_spinner_stay_year"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.3"
+                                android:background="@drawable/spinner_drop_arrow"
+                                android:paddingLeft="@dimen/margin_small"
+                                android:paddingRight="@dimen/margin_small" />
+
+                            <TextView
+                                android:id="@+id/lbl_guar_stay_year"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.7"
+                                android:layout_gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="@string/da_guarantor_stay_year"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:fontFamily="@font/pyidaungsu_bold"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1"
+                            android:layout_weight="0.5">
+
+                            <Spinner
+                                android:id="@+id/guar_spinner_stay_month"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginLeft="@dimen/margin_tiny"
+                                android:layout_weight="0.3"
+                                android:background="@drawable/spinner_drop_arrow"
+                                android:paddingLeft="@dimen/margin_small"
+                                android:paddingRight="@dimen/margin_small" />
+
+                            <TextView
+                                android:id="@+id/lbl_guar_stay_month"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.7"
+                                android:layout_gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="@string/da_guarantor_stay_month"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:fontFamily="@font/pyidaungsu_bold"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guar_company_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Company Name *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/guarantor_err_company_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Company Name is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/guarantor_company_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint="@string/register_company_name_holder"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:maxLength="256"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guar_company_Tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Company Tel No. "
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/guarantor_err_companyTel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Company Tel. No. is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/guarantor_company_Tel"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint="@string/register_phoneno_holder"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guarantor_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Company Address"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_medium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+                        <TextView
+                            android:id="@+id/guar_com_txt_apartment_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_apartment_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/guar_com_apartment_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+
+                        <TextView
+                            android:id="@+id/guar_com_txt_room_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_room_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/guar_com_room_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+
+                        <TextView
+                            android:id="@+id/guar_com_txt_floor_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_floor_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/guar_com_floor_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_com_street"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/guar_com_txt_street"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_street"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/guar_com_street"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:hint=""
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:maxLength="100"
+                                android:paddingLeft="@dimen/margin_medium"
+                                android:singleLine="true"
+                                android:textColor="@color/da_value_color"
+                                android:textColorHint="@color/grayLight"
+                                android:textSize="@dimen/text_regular" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_com_quarter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/guar_com_txt_quarter"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_quarter"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/guar_com_quarter"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:hint=""
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:maxLength="100"
+                                android:paddingLeft="@dimen/margin_medium"
+                                android:singleLine="true"
+                                android:textColor="@color/da_value_color"
+                                android:textColorHint="@color/grayLight"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_com_city"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/guar_com_txt_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_city"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <AutoCompleteTextView
+                                android:id="@+id/guar_com_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginRight="@dimen/margin_tiny"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:maxLength="100"
+                                android:gravity="center"
+                                android:longClickable="false"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:singleLine="true"
+                                android:textAlignment="center"
+                                android:textColor="@color/da_value_color"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/guarantor_err_com_township"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/guar_com_txt_township"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_township"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <AutoCompleteTextView
+                                android:id="@+id/guar_com_township"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginRight="@dimen/margin_tiny"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:maxLength="100"
+                                android:gravity="center"
+                                android:longClickable="false"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:singleLine="true"
+                                android:textAlignment="center"
+                                android:textColor="@color/da_value_color"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guar_department"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Department *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/guarantor_err_department"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Department is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/guarantor_department"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint=""
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:maxLength="256"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guar_position"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Position *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/guarantor_err_position"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Guarantor Position is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/guarantor_position"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint=""
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:maxLength="256"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guar_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Year of Service *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/guarantor_err_service_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Service Year is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1"
+                            android:layout_weight="0.5">
+
+                            <Spinner
+                                android:id="@+id/guar_spinner_service_year"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.3"
+                                android:background="@drawable/spinner_drop_arrow"
+                                android:paddingLeft="@dimen/margin_small"
+                                android:paddingRight="@dimen/margin_small" />
+
+                            <TextView
+                                android:id="@+id/lbl_guar_service_year"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.7"
+                                android:layout_gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="@string/da_guarantor_service_year"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:fontFamily="@font/pyidaungsu_bold"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1"
+                            android:layout_weight="0.5">
+
+                            <Spinner
+                                android:id="@+id/guar_spinner_service_month"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginLeft="@dimen/margin_tiny"
+                                android:layout_weight="0.3"
+                                android:background="@drawable/spinner_drop_arrow"
+                                android:paddingLeft="@dimen/margin_small"
+                                android:paddingRight="@dimen/margin_small" />
+
+                            <TextView
+                                android:id="@+id/lbl_guar_service_month"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.7"
+                                android:layout_gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="@string/da_guarantor_service_month"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:fontFamily="@font/pyidaungsu_bold"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/guar_monthly_income"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Monthly Basic Income *"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/guarantor_err_basic_inocme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Basic Income is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/guarantor_basic_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint="Monthly Basic Income"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                    <!-- <com.warkiz.widget.IndicatorSeekBar
+                         android:id="@+id/gua_monthly_seekbar"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="15dp"
+                         app:isb_indicator_color="@color/gray"
+                         app:isb_indicator_text_color="@color/colorAccent"
+                         app:isb_indicator_text_size="18sp"
+                         app:isb_min="0"
+                         app:isb_max="200"
+                         app:isb_only_thumb_draggable="false"
+                         app:isb_progress="1"
+                         app:isb_seek_smoothly="true"
+                         app:isb_show_indicator="none"
+                         app:isb_show_tick_marks_type="oval"
+                         app:isb_show_tick_texts="false"
+                         app:isb_thumb_color="@color/colorPrimary"
+                         app:isb_thumb_size="20dp"
+                         app:isb_tick_marks_size="13dp"
+                         app:isb_tick_texts_color="@color/colorPrimary"
+                         app:isb_tick_texts_size="15sp"
+                         app:isb_ticks_count="2"
+                         app:isb_track_background_color="@color/gray"
+                         app:isb_track_background_size="2dp"
+                         app:isb_track_progress_color="@color/colorPrimary"
+                         app:isb_track_progress_size="4dp" />-->
+
+                    <!--  <LinearLayout
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal">
+
+                          <TextView
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="0"
+                              android:fontFamily="@font/pyidaungsu_bold"
+                              android:textColor="@color/colorPrimary"
+                              android:layout_weight="1"/>
+
+                          <TextView
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="2,000,000"
+                              android:fontFamily="@font/pyidaungsu_bold"
+                              android:textColor="@color/colorPrimary"
+                              android:layout_weight="1"
+                              android:textAlignment="textEnd"/>
+
+                      </LinearLayout>-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <!--<TextView
+                        android:id="@+id/guarantor_err_total_inocme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Total Income is required."
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/guar_total_income"
+                            android:layout_width="150dp"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="Total Income *"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text=" : "
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/guarantor_total_income"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_value_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_guardata_save"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.5"
+                android:backgroundTint="@color/da_button__color"
+                android:background="@drawable/button_border"
+                android:text="Save"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_guarantor_next"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:layout_weight="0.5"
+                android:backgroundTint="@color/da_button__color"
+                android:background="@drawable/button_border"
+                android:text="Next"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

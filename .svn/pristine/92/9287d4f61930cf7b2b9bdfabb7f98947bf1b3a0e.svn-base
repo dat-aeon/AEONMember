@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppBarOverlay"
+        android:background="?attr/colorPrimary">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_main_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:theme="@style/ToolbarTheme">
+
+            <include
+                android:id="@+id/toolbar_new_main"
+                layout="@layout/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_disable"/>
+
+
+    <include android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/service_unavailable_sq"
+        layout="@layout/service_unavailable"
+        android:visibility="gone"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:padding="@dimen/margin_medium"
+            android:background="@null"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_form_title"
+                    android:text="@string/register_caption"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_regular_3x"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_text_name"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/register_name_label"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_err_name"
+                    android:visibility="gone"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/register_name_err"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/txt_name"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:textSize="@dimen/text_regular"
+                    android:capitalize="characters"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grayLight"
+                    android:maxLength="256"
+                    android:hint="@string/register_name_holder"
+                    android:singleLine="true"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/edit_text_style"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_3"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/reg_text_dob"
+                        android:textColor="@color/colorPrimary"
+                        android:text="@string/register_dob_label"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:textSize="@dimen/text_regular" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_dob"
+                        android:textColor="@color/red"
+                        android:layout_marginLeft="@dimen/margin_small"
+                        android:text="@string/register_age_limit"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:textSize="@dimen/text_small"
+                        android:fontFamily="@font/pyidaungsu_regular"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_err_dob"
+                    android:visibility="gone"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/register_dob_err"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:id="@+id/txt_dob"
+                        android:height="40dp"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grayLight"
+                        android:inputType="text"
+                        android:layout_weight="0.9"
+                        android:focusable="false"
+                        android:hint="@string/register_dob_holder"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:background="@drawable/edit_text_style"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_text_nrc"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/register_nrc_label"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_err_nrc"
+                    android:visibility="gone"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/register_nrc_err"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/nrc_layout_height"
+                    android:weightSum="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinner_div_code"
+                        android:layout_weight="0.1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:padding="@dimen/margin_small"
+                        android:gravity="center"
+                        android:layout_marginRight="@dimen/margin_tiny"
+                        android:background="@drawable/edit_text_style"/>
+
+                    <AutoCompleteTextView
+                        android:id="@+id/auto_comp_twsp_code"
+                        android:layout_weight="0.7"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="@dimen/margin_medium_2"
+                        android:paddingRight="@dimen/margin_medium_2"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginRight="@dimen/margin_tiny"
+                        android:longClickable="false"
+                        android:singleLine="true"
+                        android:textAlignment="center"
+                        android:maxLength="10"
+                        android:textSize="@dimen/text_regular"
+                        android:gravity="center"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:background="@drawable/edit_text_style"/>
+
+                    <Spinner
+                        android:id="@+id/spinner_nrc_type"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="0.1"
+                        android:padding="@dimen/margin_small"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginRight="@dimen/margin_tiny"
+                        android:background="@drawable/edit_text_style"/>
+
+                    <EditText
+                        android:layout_width="@dimen/nrc_code_width"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:id="@+id/txt_reg_reg_no"
+                        android:layout_weight="0.1"
+                        android:paddingLeft="@dimen/margin_small"
+                        android:paddingRight="@dimen/margin_small"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grayLight"
+                        android:inputType="numberDecimal"
+                        android:maxLength="6"
+                        android:textAlignment="center"
+                        android:hint="123456"
+                        android:gravity="center"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:background="@drawable/edit_text_style"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_text_phone"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/register_phoneno_label"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_err_phone"
+                    android:visibility="gone"
+                    android:textColor="@color/red"
+                    android:text="@string/register_phoneno_err"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/txt_phone_no"
+                    android:height="@dimen/edit_text_height"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:textColorHint="@color/grayLight"
+                    android:hint="@string/register_phoneno_holder"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/edit_text_style"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_text_pwd"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/register_password_label"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_err_pwd"
+                    android:visibility="gone"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/register_password_err"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/txt_pwd"
+                    android:height="@dimen/edit_text_height"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:textSize="@dimen/text_regular"
+                    android:maxLength="16"
+                    android:imeOptions="flagForceAscii"
+                    android:textColor="@color/black"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/grayLight"
+                    android:hint="@string/register_password_holder"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/edit_text_style"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_text_conf_pwd"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/register_conpassword_label"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_err_conf_pwd"
+                    android:visibility="gone"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/register_conpassword_err"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/txt_conf_pwd"
+                    android:height="40dp"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:maxLength="16"
+                    android:imeOptions="flagForceAscii"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/grayLight"
+                    android:hint="@string/register_password_holder"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/edit_text_style"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_pwd"
+                    android:textColor="@color/red"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="@string/register_pwd_limit"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_save_registration"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:background="@drawable/button_border"
+                    android:textStyle="bold"
+                    android:enabled="false"
+                    android:text="@string/register_save_button"/>
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_medium_3"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

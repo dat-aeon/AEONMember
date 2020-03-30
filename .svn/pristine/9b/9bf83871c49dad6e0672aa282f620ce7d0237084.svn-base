@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/m_loan_card_view"
+    android:layout_height="wrap_content"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardCornerRadius="@dimen/margin_small"
+    card_view:cardElevation="@dimen/margin_tiny">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_medium">
+
+        <Button
+            android:id="@+id/btn_enquiry_status"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:background="@drawable/button_border"
+            android:backgroundTint="@color/green"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:gravity="center"
+            android:textSize="@dimen/text_regular"
+            android:padding="@dimen/margin_small"
+            android:textColor="@color/white"
+            card_view:cornerRadius="@dimen/margin_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:text="DETAIL"
+            android:id="@+id/lbl_view_detail"
+            android:padding="@dimen/margin_small"
+            android:textSize="@dimen/text_small"
+            android:textColor="@color/white"
+            android:background="@color/da_button__color"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_aplication_number"
+            android:layout_width="140dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/btn_enquiry_status"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:gravity="center|left"
+            android:text="@string/lbl_application_no"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_agg_no"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@+id/btn_enquiry_status"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_toEndOf="@+id/lbl_apply_date"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:gravity="center|left"
+            android:text=": --"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_apply_date"
+            android:layout_width="140dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/lbl_agg_no"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:gravity="center|left"
+            android:text="@string/lbl_apply_date"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_apply_date_val"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@+id/lbl_agg_no"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_toEndOf="@+id/lbl_apply_date"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:gravity="center|left"
+            android:text=": --"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_loan_amt"
+            android:layout_width="140dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/lbl_apply_date"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:gravity="center|left"
+            android:text="@string/lbl_loan_amount"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_loan_amt_val"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@+id/lbl_apply_date"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_toEndOf="@+id/lbl_apply_date"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:gravity="center|left"
+            android:text=": --"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_approve_amt"
+            android:layout_width="140dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/lbl_loan_amt"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:gravity="center|left"
+            android:text="@string/lbl_loan_amount"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_approve_amt_val"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@+id/lbl_loan_amt"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_toEndOf="@+id/lbl_apply_date"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:gravity="center|left"
+            android:text=": --"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_loan_term"
+            android:layout_width="140dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/lbl_approve_amt"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:gravity="center|left"
+            android:text="@string/lbl_loan_term"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_loan_term_val"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@+id/lbl_approve_amt"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_toEndOf="@+id/lbl_apply_date"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:gravity="center|left"
+            android:text=": --"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_approve_loan_term"
+            android:layout_width="140dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/lbl_loan_term"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:gravity="center|left"
+            android:text="@string/lbl_approve_term"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lbl_approve_loan_term_val"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@+id/lbl_loan_term_val"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_toEndOf="@+id/lbl_apply_date"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:gravity="center|left"
+            android:text=": --"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_approve_loan_term"
+            android:layout_marginTop="@dimen/margin_small"
+            android:orientation="horizontal"
+            android:gravity="center|left">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:id="@+id/btn_purchase_detail"
+                android:layout_marginRight="@dimen/margin_small"
+                android:padding="@dimen/margin_small"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:background="@drawable/button_border"
+                android:backgroundTint="@color/da_button__color"
+                android:text="@string/btn_purchase_detail"
+                android:textAllCaps="false"
+                android:textSize="@dimen/text_small" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:id="@+id/btn_edit_attachment"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:textColor="@color/white"
+                android:padding="@dimen/margin_small"
+                android:gravity="center"
+                android:visibility="gone"
+                android:background="@drawable/button_border"
+                android:backgroundTint="@color/da_button__color"
+                android:text="@string/btn_attachment_edit"
+                android:textAllCaps="false"
+                android:textSize="@dimen/text_small" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:id="@+id/btn_purchase_cancel"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:textColor="@color/white"
+                android:padding="@dimen/margin_small"
+                android:gravity="center"
+                android:background="@drawable/button_border"
+                android:backgroundTint="@color/da_button__color"
+                android:text="@string/btn_cancel"
+                android:visibility="gone"
+                android:textAllCaps="false"
+                android:textSize="@dimen/text_small" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

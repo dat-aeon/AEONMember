@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="332dp"
+    android:layout_marginRight="@dimen/margin_medium"
+    android:id="@+id/m_loan_card_view"
+    android:layout_height="wrap_content"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardCornerRadius="@dimen/margin_small"
+    card_view:cardElevation="@dimen/margin_tiny">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_medium">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_regular"
+            android:text="-"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:id="@+id/lbl_attach_detail_title"
+            android:textColor="@color/black"
+            android:fontFamily="@font/pyidaungsu_bold"/>
+
+        <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_below="@+id/lbl_attach_detail_title"
+            android:id="@+id/img_attach_detail"
+            android:src="@drawable/noimage"
+            android:scaleType="fitCenter"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

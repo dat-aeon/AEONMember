@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/stepview_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_style"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_medium"
+            android:layout_alignParentTop="true"
+            android:visibility="gone">
+
+            <io.canner.stepsview.StepsView xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/stepsView_3"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                custom:circleRadius="20"
+                custom:labelSize="10" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/emer_data_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:id="@+id/back_occu_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/left_sign_32" />
+
+                    <TextView
+                        android:id="@+id/da_occu_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/da_occupation_title"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:layout_weight="0.9"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/go_to_guarantor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:id="@+id/da_gua_data_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="@string/da_guarantor_title"
+                        android:layout_gravity="end"
+                        android:textAlignment="viewEnd"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:layout_weight="0.9"/>
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/right_sign_32" />
+
+                </LinearLayout>
+            </LinearLayout>-->
+
+            <com.kofigyan.stateprogressbar.StateProgressBar
+                android:id="@+id/emer_stepped_bar"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:spb_currentStateNumber="three"
+                app:spb_maxStateNumber="five"
+                app:spb_stateBackgroundColor="@color/color_disable"
+                app:spb_stateForegroundColor="@color/da_button__color"
+                app:spb_stateNumberBackgroundColor="@color/white"
+                app:spb_stateNumberForegroundColor="@color/white"
+                app:spb_currentStateDescriptionColor="@color/da_button__color"
+                app:spb_stateDescriptionColor="@color/color_disable"
+                app:spb_animateToCurrentProgressState="true"
+                app:spb_checkStateCompleted="false"
+                app:spb_stateDescriptionSize="12sp"
+                app:spb_descriptionTopSpaceIncrementer="2dp"/>
+
+            <TextView
+                android:id="@+id/da_emer_data_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/da_emergency_title"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/da_label_color"
+                android:textSize="@dimen/text_regular_3x"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/emergency_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_below="@id/emer_data_banner"
+            android:layout_above="@id/button_layout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_medium">
+
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/margin_medium_2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/reg_form_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="Emergency Contact"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_regular_3x"
+                        android:textStyle="bold" />
+
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/emer_contact_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="@string/register_name_label"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/emergency_err_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Name is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/emergency_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint="@string/register_name_holder"
+                        android:inputType="textCapCharacters"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:maxLength="256"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/emer_relation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Relationship with Applicant*"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinner_relationship"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginRight="@dimen/margin_tiny"
+                        android:layout_weight="0.1"
+                        android:background="@drawable/spinner_drop_arrow"
+                        android:gravity=""
+                        android:paddingLeft="@dimen/margin_small"
+                        android:paddingRight="@dimen/margin_small" />
+
+                    <TextView
+                        android:id="@+id/emergency_err_relationship"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Description is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/emergency_relationship"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:hint="@string/register_relation_with_other_holder"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:maxLength="256"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:singleLine="true"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/emergency_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Current Address"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_medium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+                        <TextView
+                            android:id="@+id/emer_txt_apartment_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_apartment_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/emer_apartment_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+
+                        <TextView
+                            android:id="@+id/emer_txt_room_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_room_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/emer_room_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:weightSum="1.0">
+
+                        <TextView
+                            android:id="@+id/emer_txt_floor_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:gravity="center_vertical"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="@string/da_applicant_floor_no"
+                            android:textColor="@color/da_label_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/emer_floor_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edit_text_style"
+                            android:hint=""
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:maxLength="20"
+                            android:paddingLeft="@dimen/margin_medium"
+                            android:singleLine="true"
+                            android:textColor="@color/da_value_color"
+                            android:textColorHint="@color/grayLight"
+                            android:textSize="@dimen/text_regular" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/emergency_err_street"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:orientation="horizontal"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/emer_txt_street"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_street"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/emer_street"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:hint=""
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:maxLength="100"
+                                android:paddingLeft="@dimen/margin_medium"
+                                android:singleLine="true"
+                                android:textColor="@color/da_value_color"
+                                android:textColorHint="@color/grayLight"
+                                android:textSize="@dimen/text_regular" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/emergency_err_quarter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/emer_txt_quarter"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_quarter"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/emer_quarter"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:hint=""
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:maxLength="100"
+                                android:paddingLeft="@dimen/margin_medium"
+                                android:singleLine="true"
+                                android:textColor="@color/da_value_color"
+                                android:textColorHint="@color/grayLight"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/emergency_err_city"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/emer_txt_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_city"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <AutoCompleteTextView
+                                android:id="@+id/emer_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginRight="@dimen/margin_tiny"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:maxLength="100"
+                                android:gravity="center"
+                                android:longClickable="false"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:singleLine="true"
+                                android:textAlignment="center"
+                                android:textColor="@color/da_value_color"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/emergency_err_township"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:text="@string/da_err_street"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_err_msg_color"
+                            android:textSize="@dimen/text_regular"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:weightSum="1.0">
+
+                            <TextView
+                                android:id="@+id/emer_txt_township"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_weight="0.5"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:text="@string/da_applicant_township"
+                                android:textColor="@color/da_label_color"
+                                android:textSize="@dimen/text_regular"
+                                android:textStyle="bold" />
+
+                            <AutoCompleteTextView
+                                android:id="@+id/emer_township"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginRight="@dimen/margin_tiny"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/mandatroy_edit_text_style"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:maxLength="100"
+                                android:gravity="center"
+                                android:longClickable="false"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:singleLine="true"
+                                android:textAlignment="center"
+                                android:textColor="@color/da_value_color"
+                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:textSize="@dimen/text_regular" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/emer_mobile_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Moblie No.*"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/emergency_err_mobileNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Mobile No. is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/emergency_mobileNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:height="@dimen/edit_text_height"
+                        android:background="@drawable/mandatroy_edit_text_style"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:hint="@string/register_phoneno_holder"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/emer_resident"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Resident Tel No."
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textColor="@color/da_label_color"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/emergency_err_residentTelNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Mobile No. is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/emergency_residentTel"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:height="@dimen/edit_text_height"
+                        android:background="@drawable/edit_text_style"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:hint="@string/register_phoneno_holder"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_medium_x"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/emer_other_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Other Phone No."
+                        android:textColor="@color/da_label_color"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:textSize="@dimen/text_regular"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/emergency_err_otherPhoneNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_small"
+                        android:text="Mobile No. is required."
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/da_err_msg_color"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/emergency_other_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_height"
+                        android:height="@dimen/edit_text_height"
+                        android:background="@drawable/edit_text_style"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:hint="@string/register_phoneno_holder"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:textColor="@color/da_value_color"
+                        android:textColorHint="@color/grayLight"
+                        android:textSize="@dimen/text_regular" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_emerdata_save"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.5"
+                android:background="@drawable/button_border"
+                android:backgroundTint="@color/da_button__color"
+                android:text="Save"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_energency_next"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:layout_marginTop="4dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/button_border"
+                android:backgroundTint="@color/da_button__color"
+                android:text="Next"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

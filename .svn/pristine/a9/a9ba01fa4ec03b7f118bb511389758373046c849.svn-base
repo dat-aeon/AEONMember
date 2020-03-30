@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:weightSum="1">
+
+    <include layout="@layout/service_unavailable"
+        android:id="@+id/loc_service_unavailable"
+        android:visibility="gone"/>
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/outlet_loc_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:padding="@dimen/margin_small"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@drawable/edit_text_style"
+            android:orientation="horizontal">
+
+            <!--Left-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/margin_tiny"
+                android:layout_weight="0.5">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/ic_regular"
+                        android:layout_height="@dimen/ic_regular"
+                        android:src="@drawable/ic_location_mobile"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile Shop"
+                        android:textSize="@dimen/text_regular"
+                        android:layout_marginLeft="@dimen/margin_tiny"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:layout_toRightOf="@+id/loc_mobile"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/ic_regular"
+                        android:layout_height="@dimen/ic_regular"
+                        android:src="@drawable/ic_location_non_mobile"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Non-Mobile Shop"
+                        android:textSize="@dimen/text_regular"
+                        android:layout_marginLeft="@dimen/margin_small"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Right-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:layout_weight="0.5">
+
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/ic_regular"
+                        android:layout_height="@dimen/ic_regular"
+                        android:src="@drawable/ic_location_motorcycle"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Motorcycle Shop"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:layout_marginLeft="@dimen/margin_small"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/ic_regular"
+                        android:layout_height="@dimen/ic_regular"
+                        android:padding="2dp"
+                        android:src="@drawable/aeon_logo_white"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AEON Office"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="@dimen/margin_small"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/ic_regular"
+                        android:layout_height="@dimen/ic_regular"
+                        android:src="@drawable/ic_location_multiple_loan"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Multiple Shop"
+                        android:textSize="@dimen/text_regular"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:layout_marginLeft="@dimen/margin_small"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </fragment>
+
+</LinearLayout>

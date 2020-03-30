@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme"
+    android:paddingTop="@dimen/margin_medium"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_message_body_send"
+        android:maxWidth="256dp"
+        android:minWidth="0dp"
+        android:padding="@dimen/margin_medium_x"
+        android:background="@drawable/message_text_style"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_marginLeft="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/send_body_01"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/text_regular"
+            android:textColor="@color/black"
+            android:text="I want to buy  {brand} {category}."/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/send_body_02"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/text_regular"
+            android:textColor="@color/black"
+            android:layout_below="@id/send_body_01"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="My Location  :  {location}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/send_body_03"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/text_regular"
+            android:textColor="@color/black"
+            android:layout_below="@id/send_body_02"
+            android:layout_marginTop="@dimen/margin_small"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_medium_3"
+        android:text="dd/MM/yyyy hh:mm AM"
+        android:textSize="10sp"
+        android:id="@+id/buy_send_time"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/quantum_grey"
+        android:layout_below="@+id/text_message_body_send"/>
+
+</RelativeLayout>

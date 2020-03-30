@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="35dp"
+    android:layout_height="35dp"
+    android:id="@+id/msg_count"
+    android:gravity="center_vertical|center_horizontal"
+    android:text="0"
+    android:layout_marginRight="5dp"
+    android:textSize="@dimen/text_regular_2x"
+    android:background="@drawable/message_count_design"
+    android:textColor="@color/white"
+    android:fontFamily="@font/pyidaungsu_regular"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>

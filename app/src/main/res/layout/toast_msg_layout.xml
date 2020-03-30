@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/edit_text_height"
+    android:layout_gravity="center_horizontal"
+    app:cardElevation="@dimen/margin_medium"
+    app:cardBackgroundColor="@color/black"
+    app:cardCornerRadius="@dimen/margin_medium">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Toast Message"
+        android:gravity="center"
+        android:id="@+id/lbl_message"
+        android:textSize="@dimen/text_small"
+        android:padding="@dimen/margin_medium"
+        android:textColor="@color/white"/>
+
+</androidx.cardview.widget.CardView>

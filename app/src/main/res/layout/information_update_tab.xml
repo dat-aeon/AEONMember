@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical" android:layout_width="match_parent"
+android:background="@color/white"
+android:layout_height="match_parent">
+
+    <include android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/service_unavailable_update_qa"
+        layout="@layout/service_unavailable"
+        android:visibility="gone"/>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:padding="@dimen/margin_medium"
+        android:background="@null"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sec_qa_upd_form_title"
+                android:text="@string/sec_ans_update"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_medium"
+                android:textStyle="bold"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:gravity="center_horizontal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/security_qa_layout_upd_info"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_pwd_update"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/register_password_label"
+                android:textStyle="bold"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:textSize="@dimen/text_regular" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/verify_err_pas"
+                android:visibility="gone"
+                android:textColor="@color/red"
+                android:text="@string/infoupdate_err_pwd"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:textSize="@dimen/text_regular" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/txt_new_conf_pwd_upd"
+                    android:height="@dimen/edit_text_height"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:layout_weight="0.9"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/black"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:textColorHint="@color/grayLight"
+                    android:hint="Please Enter your password."
+                    android:background="@drawable/edit_text_style"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/img_pwd_visible"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_remove_red_eye_black_24dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginBottom="@dimen/margin_medium_3"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/btn_update_info"
+                android:textColor="@color/white"
+                android:enabled="false"
+                android:textStyle="bold"
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:background="@drawable/button_border"
+                android:backgroundTint="@color/info_update_color"
+                android:text="@string/infoupdate_update_button"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
+</LinearLayout>

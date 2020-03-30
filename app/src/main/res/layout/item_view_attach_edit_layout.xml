@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/m_loan_card_view"
+    android:layout_height="wrap_content"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardCornerRadius="@dimen/margin_small"
+    card_view:cardElevation="@dimen/margin_tiny">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_medium">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_medium"
+            android:text="Others"
+            android:id="@+id/lbl_attach_edit_title"
+            android:textColor="@color/black"
+            android:fontFamily="@font/pyidaungsu_bold"/>
+
+        <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+            android:layout_width="192dp"
+            android:layout_height="128dp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_below="@+id/lbl_attach_edit_title"
+            android:id="@+id/img_attach_edit"
+            android:src="@drawable/noimage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_medium"
+            android:text="EDIT"
+            android:visibility="gone"
+            android:id="@+id/do_attach_edit"
+            android:textColor="@color/colorPrimary"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:fontFamily="@font/pyidaungsu_regular"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

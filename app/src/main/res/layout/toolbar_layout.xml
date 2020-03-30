@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/rel_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:paddingTop="@dimen/margin_small_2x"
+        android:paddingBottom="@dimen/margin_tiny"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:id="@+id/menu_back_btn_view"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:src="@drawable/back_arrow_64" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/aeon_logo_side_small"
+            android:layout_height="@dimen/aeon_logo_side_small"
+            android:src="@drawable/aeon_logo_white"
+            android:layout_toRightOf="@id/menu_back_btn_view"
+            android:layout_marginEnd="@dimen/margin_medium"/>
+
+        <TextView
+            android:id="@+id/menu_bar_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="Lv.1 : Application User"
+            android:textColor="@color/colorPrimary"
+            android:textSize="7pt"
+            android:layout_toRightOf="@id/logo"
+            android:layout_toLeftOf="@id/flag_layout"/>
+
+        <TextView
+            android:id="@+id/menu_bar_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="09xxxxxxxx"
+            android:textColor="@color/colorPrimary"
+            android:textSize="7pt"
+            android:layout_below="@id/menu_bar_level"
+            android:layout_toRightOf="@id/logo"
+            android:layout_toLeftOf="@id/flag_layout"/>
+
+        <TextView
+            android:id="@+id/menu_bar_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:justificationMode="inter_word"
+            android:textColor="@color/colorPrimary"
+            android:text="KHIN YADANAR THEIN KHIN YADANAR "
+            android:textSize="7pt"
+            android:layout_below="@id/menu_bar_phone"
+            android:layout_toRightOf="@id/logo"/>
+
+        <RelativeLayout
+            android:id="@+id/flag_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/margin_small_2x"
+            android:layout_marginTop="@dimen/margin_small_2x">
+
+            <LinearLayout
+                android:id="@+id/flag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/my_flag"
+                    android:tag="my"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/mm_flag" />
+
+                <ImageView
+                    android:id="@+id/en_flag"
+                    android:tag="en"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/en_flag2" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/menu_bar_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="2020-01-15"
+                android:layout_margin="@dimen/margin_tiny"
+                android:paddingTop="10dp"
+                android:layout_below="@+id/flag"
+                android:textColor="@color/colorPrimary"
+                android:textSize="7pt"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <!--<LinearLayout
+        android:id="@+id/user_info_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/margin_small_2x"
+        android:paddingBottom="@dimen/margin_tiny"
+        android:paddingEnd="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rel_title">
+
+        <LinearLayout
+            android:id="@+id/menu_back_btn_view"
+            android:layout_width="30dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:src="@drawable/back_arrow_64" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/aeon_logo_side_small"
+            android:layout_height="@dimen/aeon_logo_side_small"
+            android:src="@drawable/aeon_logo_white" />
+
+        &lt;!&ndash; <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:orientation="vertical">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:fontFamily="@font/pyidaungsu_regular"
+                 android:text="Date "
+                 android:textColor="@color/colorPrimary"
+                 android:textSize="7pt" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:fontFamily="@font/pyidaungsu_regular"
+                 android:text="Level "
+                 android:textColor="@color/colorPrimary"
+                 android:textSize="7pt" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:fontFamily="@font/pyidaungsu_regular"
+                 android:text="PhoneNo "
+                 android:textColor="@color/colorPrimary"
+                 android:textSize="7pt" />
+         </LinearLayout>&ndash;&gt;
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="5dp">
+
+            <TextView
+                android:id="@+id/menu_bar_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="Lv.1 : Application User"
+                android:textColor="@color/colorPrimary"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="7pt" />
+
+            <TextView
+                android:id="@+id/menu_bar_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:text="09xxxxxxxx"
+                android:textColor="@color/colorPrimary"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="7pt" />
+
+            <TextView
+                android:id="@+id/menu_bar_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:textAlignment="center"
+                android:justificationMode="inter_word"
+                android:textColor="@color/colorPrimary"
+                android:text="KHIN YADANAR THEIN "
+                android:textSize="7pt"/>
+
+        </LinearLayout>
+    </LinearLayout>-->
+
+</RelativeLayout>

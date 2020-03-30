@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:id="@+id/root_otp_request_view"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppBarOverlay"
+        android:background="?attr/colorPrimary">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_main_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:theme="@style/ToolbarTheme">
+
+            <include
+                android:id="@+id/toolbar_new_main"
+                layout="@layout/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_disable"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:padding="@dimen/margin_medium"
+            android:background="@null"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_3"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_otp_title"
+                    android:text="@string/otp_title"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_regular_3x"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/reg_err_otp"
+                    android:visibility="gone"
+                    android:textColor="@color/red"
+                    android:text="@string/otp_err_blank"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/txt_otp"
+                    android:paddingLeft="@dimen/margin_medium"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grayLight"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center"
+                    android:maxLength="4"
+                    android:hint="@string/otp_code_hint"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:background="@drawable/edit_text_style"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_ok_otp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/disable_button_border"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:enabled="false"
+                    android:text="@string/otp_btn_ok"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_re_send_otp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/disable_button_border"
+                    android:enabled="false"
+                    android:text="@string/otp_btn_resend"
+                    android:fontFamily="@font/pyidaungsu_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:background="@null"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_timer"
+                    android:text="--:--"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:gravity="center_horizontal|center_vertical"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_medium_2"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

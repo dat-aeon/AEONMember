@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="@drawable/alert_dialog_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_large">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_category"
+            android:textColor="@color/colorPrimary"
+            android:text="Category : "
+            android:layout_marginBottom="@dimen/margin_small"
+            android:textSize="@dimen/text_regular" />
+
+        <Spinner
+            android:id="@+id/txt_category"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/lbl_category"
+            android:paddingLeft="@dimen/margin_small"
+            android:paddingRight="@dimen/margin_small"
+            android:layout_height="@dimen/edit_text_height"
+            android:layout_marginRight="@dimen/margin_tiny"
+            android:textColor="@color/black"
+            android:background="@drawable/edit_text_style"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_brand"
+            android:textColor="@color/colorPrimary"
+            android:text="Brand : "
+            android:layout_marginBottom="@dimen/margin_small"
+            android:textSize="@dimen/text_regular" />
+
+        <Spinner
+            android:id="@+id/txt_brand"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/lbl_brand"
+            android:paddingLeft="@dimen/margin_small"
+            android:paddingRight="@dimen/margin_small"
+            android:layout_height="@dimen/edit_text_height"
+            android:layout_marginRight="@dimen/margin_tiny"
+            android:textColor="@color/black"
+            android:background="@drawable/edit_text_style"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_additional_text"
+            android:textColor="@color/colorPrimary"
+            android:text="Additional Text : "
+            android:layout_marginBottom="@dimen/margin_small"
+            android:textSize="@dimen/text_regular" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/err_add_text"
+            android:visibility="gone"
+            android:textColor="@color/red"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/register_name_err"
+            android:layout_below="@+id/lbl_additional_text"
+            android:textSize="@dimen/text_regular" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            app:counterMaxLength="100"
+            app:hintEnabled="false"
+            app:errorEnabled="true"
+            android:layout_below="@+id/err_add_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:id="@+id/txt_additional_text"
+                android:padding="@dimen/margin_medium"
+                android:textSize="@dimen/text_regular"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grayLight"
+                android:maxLength="100"
+                android:gravity="top|left"
+                android:background="@drawable/edit_text_style"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_location"
+            android:textColor="@color/colorPrimary"
+            android:text="Place : "
+            android:layout_marginBottom="@dimen/margin_small"
+            android:textSize="@dimen/text_regular" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/err_location"
+            android:visibility="gone"
+            android:textColor="@color/red"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:text="@string/register_name_err"
+            android:layout_below="@+id/lbl_location"
+            android:textSize="@dimen/text_regular" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintEnabled="false"
+            app:errorEnabled="true"
+            android:layout_below="@+id/err_location">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_location"
+                android:padding="@dimen/margin_medium"
+                android:textSize="@dimen/text_regular"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grayLight"
+                android:gravity="top|left"
+                android:maxLength="256"
+                android:background="@drawable/edit_text_style"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_chatbox"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_alignParentBottom="true"
+        android:layout_height="?attr/actionBarSize"
+        android:maxHeight="50dp"
+        android:minHeight="48dp"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/btn_shopping"
+            android:layout_width="@dimen/door_lock_margin_top"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/button_border"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Send"
+            android:textColor="#ffffff"
+            android:textSize="14dp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

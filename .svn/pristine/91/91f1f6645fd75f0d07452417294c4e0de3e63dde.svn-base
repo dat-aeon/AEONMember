@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="@drawable/alert_dialog_bg"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="@dimen/margin_large_2"
+    android:layout_marginRight="@dimen/margin_large_2"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_check_circle_black_24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_title"
+            android:textColor="@color/green"
+            android:textSize="@dimen/text_regular_3x"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:layout_gravity="center_vertical"
+            android:text="@string/dialog_title_success"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_message"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular_2x"
+        android:padding="@dimen/margin_medium"
+        android:fontFamily="@font/pyidaungsu_regular"
+        android:gravity="center_horizontal"
+        android:text="Success Message."/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:textSize="@dimen/text_regular_3x"
+        android:width="120dp"
+        android:id="@+id/btn_ok"
+        android:fontFamily="@font/pyidaungsu_regular"
+        android:layout_gravity="center_horizontal|bottom"
+        android:background="@drawable/button_border"
+        android:textColor="@color/white"
+        android:text="OK"/>
+
+</LinearLayout>

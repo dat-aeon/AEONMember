@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/AppTheme"
+    android:paddingTop="@dimen/margin_medium_2">
+
+    <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+        android:id="@+id/img_message_body"
+        android:layout_width="266dp"
+        android:layout_height="200dp"
+        android:maxWidth="250dp"
+        android:minWidth="0dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:backgroundTint="@color/grayLight"
+        android:src="@drawable/noimage"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/text_message_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_medium_3"
+        android:text="10/10/2018 11:40 PM"
+        android:textSize="@dimen/text_smaller"
+        android:fontFamily="@font/pyidaungsu_regular"
+        android:layout_below="@+id/img_message_body"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

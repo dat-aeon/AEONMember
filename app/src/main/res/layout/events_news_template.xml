@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    card_view:cardBackgroundColor="@color/white"
+    android:layout_width="match_parent"
+    android:id="@+id/card_view"
+    android:layout_marginRight="@dimen/margin_small"
+    android:layout_marginLeft="@dimen/margin_small"
+    card_view:cardUseCompatPadding="true"
+    android:layout_height="180dp"
+    card_view:cardCornerRadius="@dimen/margin_small"
+    card_view:cardElevation="@dimen/margin_tiny">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_small"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/news_title"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:textStyle="bold"
+            android:lines="2"
+            android:ellipsize="end"
+            android:text="Goods News Title"
+            android:textSize="@dimen/text_regular_2x"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:textColor="@color/news_color"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_margin="@dimen/margin_small"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0.9"
+                android:weightSum="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/news_published_date"
+                    android:textColor="@color/color_disable"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:text="dd-MM-yyyy hh:mm"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/news_content"
+                    android:layout_weight="0.9"
+                    android:textSize="@dimen/text_regular"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Events and News Content."/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/news_read_more"
+                    android:layout_weight="0.1"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:textColor="@color/newsheader"
+                    android:layout_margin="@dimen/margin_tiny"
+                    android:textSize="14dp"
+                    android:text="@string/read_more"/>
+
+            </LinearLayout>
+
+            <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:id="@+id/news_img"
+                android:layout_weight="0.1"
+                android:layout_gravity="bottom"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

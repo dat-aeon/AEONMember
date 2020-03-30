@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/head_menu_withcount">
+
+        <ImageView
+            android:id="@+id/iconimage_withcount"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"/>
+
+        <TextView
+            android:id="@+id/submenu_withcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Agent Channel"
+            android:textColor="#000000"
+            android:textSize="14sp"/>
+
+        <include layout="@layout/menu_counter"/>
+
+    </LinearLayout>
+</LinearLayout>
