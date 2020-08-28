@@ -9,19 +9,17 @@
         android:id="@+id/tabLayout9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabGravity="fill"
-        app:tabMaxWidth="0dp"
-        app:tabIndicatorColor="@color/white"
-        app:tabIndicatorHeight="@dimen/margin_tiny"
         app:tabBackground="@color/colorPrimary"
-        app:tabTextAppearance="@style/CustomTextAppearanceTab"
-        app:tabMode="fixed">
-    </com.google.android.material.tabs.TabLayout>
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/share_view"
+        app:tabIndicatorHeight="@dimen/margin_tiny"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
+        app:tabTextAppearance="@style/CustomTextAppearanceTab"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.viewpager.widget.ViewPager>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

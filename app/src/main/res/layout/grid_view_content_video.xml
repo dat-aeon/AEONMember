@@ -1,35 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/grid_layout_border"
     android:backgroundTint="@color/how_to_use_color"
+    android:elevation="@dimen/margin_tiny"
+    android:gravity="center"
     android:padding="5dp">
 
-    <ImageView
-        android:layout_height="50dp"
+    <!--<ImageView
+        android:layout_height="@dimen/category_ic_side"
         android:id="@+id/imageView1"
-        android:layout_width="50dp"
+        android:layout_width="@dimen/category_ic_side"
+        android:layout_marginTop="@dimen/margin_small"
         android:src="@drawable/play_icon_512"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-    </ImageView>
+        android:layout_centerHorizontal="true"/>-->
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="@dimen/category_ic_side"
+        android:layout_height="@dimen/category_ic_side"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/messaging_container_frame"
+        android:backgroundTint="@color/grayLight"
+        android:padding="@dimen/margin_small_2x"
+        android:src="@drawable/gd_ic_how_to_use" />
+
 
     <TextView
-        android:text="@string/main_video_title"
-        android:layout_height="wrap_content"
         android:id="@+id/text_howToUse"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginTop="5dp"
-        android:textSize="@dimen/main_view_font_size"
-        android:fontFamily="@font/pyidaungsu_regular"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/vcsm_labels_font"
+        android:text="@string/main_video_title"
         android:textColor="@color/white"
-        android:ellipsize="marquee"/>
+        android:textSize="@dimen/main_view_font_size" />
 
 </RelativeLayout>

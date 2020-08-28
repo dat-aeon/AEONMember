@@ -209,6 +209,7 @@ public class RegistrationPhotoUploadActivity extends BaseActivity {
         txtTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.photoupload_announce_label, getApplicationContext()));
         txtInfo1.setText(CommonUtils.getLocaleString(new Locale(language), R.string.photoupload_notice1_label, getApplicationContext()));
         txtInfo5.setText(CommonUtils.getLocaleString(new Locale(language), R.string.photoupload_notice5_label, getApplicationContext()));
+        addValueToPreference(language);
     }
 
     private static Intent intentPhotoTaking(Context context){

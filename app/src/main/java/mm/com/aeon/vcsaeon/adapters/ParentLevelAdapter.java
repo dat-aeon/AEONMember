@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.core.content.res.ResourcesCompat;
+
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.beans.TempFAQInfo;
 import mm.com.aeon.vcsaeon.beans.TempFAQInfoResDto;
@@ -33,10 +34,10 @@ public class ParentLevelAdapter extends BaseExpandableListAdapter {
         this.mContext = mContext;
         this.mListDataHeader = new ArrayList<>();
         this.mListDataHeader.addAll(mListDataHeader);
-        this.mScreenWidth=mScreenWidth;
+        this.mScreenWidth = mScreenWidth;
 
         // Init second level data
-        String[] mItemHeaders=null;
+        String[] mItemHeaders = null;
         mListData_SecondLevel_Map = new HashMap<>();
         int parentCount = mListDataHeader.size();
 
@@ -47,13 +48,13 @@ public class ParentLevelAdapter extends BaseExpandableListAdapter {
                 List<TempFAQInfoResDto> faqInfoResDtoList = tempFAQInfo.getFaqInfoResInfoList();
                 String[] questionList = new String[faqInfoResDtoList.size()];
                 String[] answerList = new String[faqInfoResDtoList.size()];
-                int in=0;
-                for (TempFAQInfoResDto tempFAQInfoResDto :faqInfoResDtoList) {
-                    questionList[in]=tempFAQInfoResDto.getQuestion();
-                    answerList[in]=tempFAQInfoResDto.getAnswer();
+                int in = 0;
+                for (TempFAQInfoResDto tempFAQInfoResDto : faqInfoResDtoList) {
+                    questionList[in] = tempFAQInfoResDto.getQuestion();
+                    answerList[in] = tempFAQInfoResDto.getAnswer();
                     in++;
                 }
-                if(content.equals(category)){
+                if (content.equals(category)) {
                     mItemHeaders = questionList;
                     break;
                 }
@@ -63,7 +64,7 @@ public class ParentLevelAdapter extends BaseExpandableListAdapter {
 
         // THIRD LEVEL
         String[] mItemChildOfChild;
-        List<String> listChild=null;
+        List<String> listChild = null;
         mListData_ThirdLevel_Map = new HashMap<>();
         for (Object o : mListData_SecondLevel_Map.entrySet()) {
             Map.Entry entry = (Map.Entry) o;
@@ -74,9 +75,9 @@ public class ParentLevelAdapter extends BaseExpandableListAdapter {
                 for (int i = 0; i < stringList.size(); i++) {
                     for (TempFAQInfo tempFAQInfo : tempFAQInfoList) {
                         List<TempFAQInfoResDto> c_tempFaqInfoResDtoList = tempFAQInfo.getFaqInfoResInfoList();
-                        int ix=0;
+                        int ix = 0;
                         for (TempFAQInfoResDto tempFAQInfoResDto : c_tempFaqInfoResDtoList) {
-                            if(stringList.get(i).equals(tempFAQInfoResDto.getQuestion())){ //Answer
+                            if (stringList.get(i).equals(tempFAQInfoResDto.getQuestion())) { //Answer
                                 String[] childOfChildAns = {tempFAQInfoResDto.getAnswer()};
                                 mItemChildOfChild = childOfChildAns;
                                 listChild = Arrays.asList(mItemChildOfChild);
@@ -93,35 +94,42 @@ public class ParentLevelAdapter extends BaseExpandableListAdapter {
     public Object getChild(int groupPosition, int childPosition) {
         return childPosition;
     }
+
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
     }
+
     @Override
     public View getChildView(int groupPosition, int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
         final CustomExpListView secondLevelExpListView = new CustomExpListView(this.mContext);
         String parentNode = (String) getGroup(groupPosition);
-        secondLevelExpListView.setAdapter(new SecondLevelAdapter(this.mContext, mListData_SecondLevel_Map.get(parentNode), mListData_ThirdLevel_Map,mScreenWidth));
+        secondLevelExpListView.setAdapter(new SecondLevelAdapter(this.mContext, mListData_SecondLevel_Map.get(parentNode), mListData_ThirdLevel_Map, mScreenWidth));
         secondLevelExpListView.setGroupIndicator(null);
         return secondLevelExpListView;
     }
+
     @Override
     public int getChildrenCount(int groupPosition) {
         return 1;
     }
+
     @Override
     public Object getGroup(int groupPosition) {
         return this.mListDataHeader.get(groupPosition);
     }
+
     @Override
     public int getGroupCount() {
         return this.mListDataHeader.size();
     }
+
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
+
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
@@ -133,14 +141,16 @@ public class ParentLevelAdapter extends BaseExpandableListAdapter {
         }
         TextView lblListHeader = convertView.findViewById(R.id.lblListHeader);
         lblListHeader.setTypeface(ResourcesCompat.getFont(mContext, R.font.pyidaungsu_bold), Typeface.BOLD);
-        lblListHeader.setTextColor(Color.rgb(53,55,158));
+        lblListHeader.setTextColor(Color.rgb(57, 189, 200));
         lblListHeader.setText(headerTitle);
         return convertView;
     }
+
     @Override
     public boolean hasStableIds() {
         return true;
     }
+
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;

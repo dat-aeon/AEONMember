@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/white"
@@ -16,7 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:theme="@style/ToolbarTheme">
+            android:theme="@style/ToolbarTheme"
+            android:contentInsetLeft="@dimen/margin_medium"
+            android:contentInsetStart="@dimen/margin_medium"
+            app:contentInsetLeft="@dimen/margin_medium"
+            app:contentInsetStart="@dimen/margin_medium">
 
             <include
                 android:id="@+id/toolbar_new_main"
@@ -60,6 +65,7 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/text_medium"
                     android:textStyle="bold"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:fontFamily="@font/pyidaungsu_bold"
                     android:gravity="center_horizontal"/>
 

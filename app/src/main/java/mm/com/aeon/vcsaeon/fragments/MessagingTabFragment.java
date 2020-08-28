@@ -24,7 +24,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -65,6 +64,7 @@ import mm.com.aeon.vcsaeon.beans.UserInformationFormBean;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
 import mm.com.aeon.vcsaeon.adapters.MessageListAdapter;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
+import mm.com.aeon.vcsaeon.common_utils.UiUtils;
 import mm.com.aeon.vcsaeon.delegates.AccessPermissionResultDelegate;
 import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 import mm.com.aeon.vcsaeon.networking.WebSocketClientListener;
@@ -127,7 +127,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
         view = inflater.inflate(R.layout.messaging_tab, container, false);
         setHasOptionsMenu(true);
 
-
         PreferencesManager.setSocketFlagClose(getActivity(), false);
 
         // close button listener
@@ -142,6 +141,7 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
             toolbar = ((MainMenuActivityDrawer) getActivity()).findViewById(R.id.toolbar_home);
         }
         LinearLayout menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+        menuBackBtn.setAnimation(UiUtils.animSlideToRight(getActivity()));
         menuBackBtn.setVisibility(View.VISIBLE);
 
         imgBrowse = view.findViewById(R.id.img_browse);
@@ -162,10 +162,8 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
         btnAdminCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 int permission = ContextCompat.checkSelfPermission(getActivity(),
                         Manifest.permission.CALL_PHONE);
-
                 if (permission != PackageManager.PERMISSION_GRANTED) {
                     makeCallRequest();
                 } else {
@@ -196,8 +194,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
         allMessageList = new ArrayList<>();
         messageListForUI = new ArrayList<>();
 
-        //final MainMenuActivityDrawer mainMenuActivity = (MainMenuActivityDrawer) getActivity();
-
         phoneNo = userInformationFormBean.getPhoneNo();
         final int senderId = userInformationFormBean.getCustomerId();
 
@@ -205,36 +201,28 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
 
             @Override
             public void onOpen(ServerHandshake serverHandshake) {
-                Log.e("MessagingTabFragment", "onOpen().");
                 mesgSocketClient.send("userName:" + phoneNo + "userId:" + senderId);
                 mesgSocketClient.send("cr:" + phoneNo + "or:" + "userWithAgency:");
             }
 
             @Override
             public void onMessage(final String message) {
-                Log.e("MessagingTabFragment", "onMessage()");
                 final String messageStr = message;
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
                         try {
-
                             JSONObject object = new JSONObject(messageStr);
                             String type = object.getString("type");
 
                             //if socket notified message is coming
                             if (type.equals("message")) {
-                                Log.e("MessagingTabFragment", "type-message");
-
                                 JSONObject messageObj = object.getJSONObject("data");
                                 String sendFlag = messageObj.getString("op_send_flag");
                                 String messageType = messageObj.getString("message_type");
 
                                 // if message send from operator, add message to messaging UI
                                 if (sendFlag.equals("1")) {
-
-                                    //mainMenuActivity.unReadMessageCount.setText("0");
 
                                     MessageInfoBean message = new MessageInfoBean();
                                     message.setSender("A");
@@ -250,27 +238,13 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
 
                                         if ((!mesgSocketClient.isClosed())) {
                                             mesgSocketClient.send("ChangeReadFlagWithMsgId:" + messageObj.getString("message_id"));
-                                            /*String messageCountStr = mainMenuActivity.unReadMessageCount.getText().toString();
-                                            if (messageCountStr != null && !messageCountStr.equals(BLANK)) {
-                                                int messageCount = Integer.parseInt(messageCountStr);
-                                                if (messageCount == 0) {
-                                                    mainMenuActivity.unReadMessageCount.setVisibility(View.GONE);
-                                                } else {
-                                                    mainMenuActivity.unReadMessageCount.setText(String.valueOf(--messageCount));
-                                                    if (messageCount == 0) {
-                                                        mainMenuActivity.unReadMessageCount.setVisibility(View.GONE);
-                                                    }
-                                                }
-                                            }*/
                                         }
-
                                     }
                                 }
                             }
 
                             // if socket is created room on server, get message List
                             else if (type.equals("room")) {
-                                Log.e("MessagingTabFragment", "type-room");
                                 if (messageListForUI.size() == 0) {
                                     mesgSocketClient.send("messageList:");
                                 } else {
@@ -280,7 +254,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
 
                             // if message list is got from server, display on messaging UI
                             else if (type.equals("messageListData")) {
-                                Log.e("MessagingTabFragment", "type-messageListData");
                                 mesgSocketClient.send("unReadMesgCount:");
                                 List<Integer> unReadMessageList = new ArrayList<Integer>();
                                 JSONArray arr = object.getJSONArray("data");
@@ -305,23 +278,18 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
 
                                 // if message list is exceed 25 messages, show more message button
                                 if (allMessageList.size() >= MESSAGE_DISPLAY_COUNT) {
-
                                     if (arr.length() >= MESSAGE_DISPLAY_COUNT) {
                                         MessageInfoBean infoBean = new MessageInfoBean();
                                         infoBean.setButton(true);
                                         messageListForUI.add(infoBean);
                                     }
-
                                     for (int i = MESSAGE_DISPLAY_COUNT - 1; i >= 0; i--) {
                                         messageListForUI.add(allMessageList.get(i));
                                     }
-
                                 } else {
-
                                     for (int i = allMessageList.size() - 1; i >= 0; i--) {
                                         messageListForUI.add(allMessageList.get(i));
                                     }
-
                                 }
 
                                 if (messageListForUI.size() > 2) {
@@ -337,27 +305,11 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
 
                                 if (unReadMessageList.size() > 0) {
                                     for (int messageId : unReadMessageList) {
-
                                         mesgSocketClient.send("ChangeReadFlagWithMsgId:" + messageId);
-
-                                        /*String messageCountStr = mainMenuActivity.unReadMessageCount.getText().toString();
-                                        if(messageCountStr!=null && !messageCountStr.equals(BLANK)){
-                                            int messageCount = Integer.parseInt(messageCountStr);
-                                            if(messageCount==0){
-                                                mainMenuActivity.unReadMessageCount.setVisibility(View.GONE);
-                                            } else {
-                                                mainMenuActivity.unReadMessageCount.setText(String.valueOf(--messageCount));
-                                                if(messageCount==0){
-                                                    mainMenuActivity.unReadMessageCount.setVisibility(View.GONE);
-                                                }
-                                            }
-                                        }*/
                                     }
                                 }
 
                             } else if (type.equals("mobileOldMessage")) {
-
-                                Log.e("MessagingTabFragment", "type-mobileOldMessage");
 
                                 Gson gson = new Gson();
                                 Type token = new TypeToken<List<TempOldMsgInfo>>() {
@@ -397,7 +349,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
                                 //clear old-displayed message.
                                 messageListForUI.clear();
 
-
                                 for (MessageInfoBean messageInfoBean : tempMessageListForUI) {
                                     messageListForUI.add(messageInfoBean);
                                 }
@@ -408,11 +359,8 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
 
                                 mMessageAdapter.notifyDataSetChanged();
                                 mMessageRecycler.smoothScrollToPosition(tempOldMsgList.size());
-
                             }
-
                             closeDialog(msgReqDialog);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                             closeDialog(msgReqDialog);
@@ -426,15 +374,12 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
 
             @Override
             public void onClose(int i, String s, boolean b) {
-                Log.e("MessagingTabFragment", "onClose()");
                 closeDialog(msgReqDialog);
             }
         };
-
         webSocketClientListener = new WebSocketClientListener(getActivity(), listener, BuildConfig.WEB_SOCKET_URL);
 
         try {
-            Log.e("MessagingTabFragment", "connectWebsocket()");
             mesgSocketClient = webSocketClientListener.connectWebsocket();
         } catch (URISyntaxException e) {
             closeDialog(msgReqDialog);
@@ -506,7 +451,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (imgAdd.getVisibility() == View.GONE) {
-                    //Toast.makeText(getActivity(),"Image Info Cleared.",Toast.LENGTH_SHORT).show();
                     displayMessage(getActivity(), "Image Info Cleared.");
                 }
                 imgAdd.setVisibility(View.VISIBLE);
@@ -528,10 +472,7 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
                         final String textSendMessage = textMsg.getText().toString();
 
                         if (textSendMessage.isEmpty() && imgEncoded == null) {
-
-                            //Toast.makeText(getActivity(),"Text or Image is required to send!", Toast.LENGTH_SHORT).show();
                             displayMessage(getActivity(), "Text or Image is required to send!");
-
                         } else if (!textSendMessage.isEmpty()) {
 
                             mesgSocketClient.send("msg:" + textMsg.getText().toString() + "op_send_flag:" + 0 + "message_type:" + 0);
@@ -543,7 +484,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
                             messageListForUI.add(message);
                             mMessageAdapter.notifyDataSetChanged();
                             mMessageRecycler.smoothScrollToPosition(messageListForUI.size());
-                            Log.e("MessagingTabFragment", "A Text Message is sent.");
 
                         } else {
 
@@ -557,8 +497,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
                             messageListForUI.add(message);
                             mMessageAdapter.notifyDataSetChanged();
                             mMessageRecycler.smoothScrollToPosition(messageListForUI.size());
-                            Log.e("MessagingTabFragment", "An Image is sent.");
-
                         }
 
                         textMsg.setText(BLANK);
@@ -592,8 +530,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
 
         switch (item.getItemId()) {
             case R.id.action_favorite:
-                //this.languageFlag = item;
-                Log.e("update flag", item.getTitle().toString());
                 if (item.getTitle().equals(LANG_MM)) {
                     item.setIcon(R.drawable.en_flag2);
                     item.setTitle(LANG_EN);
@@ -604,7 +540,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
                     item.setTitle(LANG_MM);
                     changeLabel(LANG_EN);
                 }
-
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -613,10 +548,9 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("MessagingTabFragment", "onResume()");
+
         if (mesgSocketClient.isClosed()) {
             try {
-                Log.e("MessagingTabFragment", "connectWebsocket()-onResume()");
                 mesgSocketClient = webSocketClientListener.connectWebsocket();
             } catch (URISyntaxException e) {
                 closeDialog(msgReqDialog);
@@ -634,22 +568,14 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
     @Override
     public void onPause() {
         super.onPause();
-        Log.e("MessagingTabFragment", "onPause()");
-
-        /*if(!mesgSocketClient.isClosed()){
-            mesgSocketClient.close();
-            Log.e("MessagingTabFragment","mesgSocketClient.close()-onPause()");
-        }*/
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.e("MessagingTabFragment", "onStart()");
 
         if (imgEncoded == null) {
-            Log.e("MessagingTabFragment", "No Image Information.");
+            //do something.
         } else {
             imgAdd.setVisibility(View.GONE);
             imgBrowse.setVisibility(View.VISIBLE);
@@ -658,26 +584,19 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
             imgSend.setImageBitmap(decodeStringToBitmap(imgEncoded));
         }
 
-        /*if(!mesgSocketClient.isClosed()){
-            mesgSocketClient.close();
-            Log.e("MessagingTabFragment","mesgSocketClient.close()-onStart()");
-        }*/
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e("MessagingTabFragment", "onDestroy()");
         if (!mesgSocketClient.isClosed()) {
             mesgSocketClient.close();
-            Log.e("MessagingTabFragment", "mesgSocketClient.close()-onDestroy()");
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e("MessagingTabFragment", "onActivityResult()");
 
         //selected photo.
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
@@ -777,7 +696,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
 
         } catch (Exception e) {
             e.printStackTrace();
-            //Toast.makeText(getActivity(),"Image cannot be created.",Toast.LENGTH_SHORT).show();
             displayMessage(getActivity(), "Image cannot be created.");
         }
     }
@@ -792,7 +710,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
     }
 
     public void showCallMessage() {
-        //Toast.makeText(getActivity(),"Call not available!", Toast.LENGTH_SHORT).show();
         displayMessage(getActivity(), "Call not available!");
     }
 
@@ -805,7 +722,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
             );
         } catch (Exception e) {
             e.printStackTrace();
-            //Toast.makeText(getActivity(),"Image File could not be created.2\n"+e.getMessage(), Toast.LENGTH_SHORT).show();
             displayMessage(getActivity(), "Image File could not be created.2\n" + e.getMessage());
             return null;
         }
@@ -863,6 +779,7 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
                 }
                 return;
             }
+
             //Call Service.
             case CALL_REQUEST_CODE: {
                 if (grantResults.length == 0
@@ -874,7 +791,6 @@ public class MessagingTabFragment extends BaseFragment implements LanguageChange
                     if (hotlinePhoneNo == null || hotlinePhoneNo.equals(BLANK)) {
                         showSnackBarMessage(getString(R.string.message_call_not_available));
                     } else {
-                        Log.e("call", "Message");
                         Intent callIntent = new Intent(Intent.ACTION_CALL);
                         callIntent.setData(Uri.parse(PHONE_URI_PREFIX + hotlinePhoneNo));
                         startActivity(callIntent);

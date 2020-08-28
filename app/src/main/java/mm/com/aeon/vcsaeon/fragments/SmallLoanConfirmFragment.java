@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -19,18 +18,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -41,7 +36,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +54,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.kofigyan.stateprogressbar.components.StateItem;
@@ -91,10 +84,8 @@ import mm.com.aeon.vcsaeon.beans.EmergencyContactFormBean;
 import mm.com.aeon.vcsaeon.beans.GuarantorFormBean;
 import mm.com.aeon.vcsaeon.beans.LoanCalculationReqBean;
 import mm.com.aeon.vcsaeon.beans.LoanCalculationResBean;
-import mm.com.aeon.vcsaeon.beans.LoanConfirmationFormBean;
 import mm.com.aeon.vcsaeon.beans.OccupationDataFormBean;
 import mm.com.aeon.vcsaeon.beans.PasswordCheckReqBean;
-import mm.com.aeon.vcsaeon.beans.ProductTypeListBean;
 import mm.com.aeon.vcsaeon.beans.TownshipListBean;
 import mm.com.aeon.vcsaeon.beans.UserInformationFormBean;
 import mm.com.aeon.vcsaeon.common_utils.CameraUtil;
@@ -123,6 +114,7 @@ import static mm.com.aeon.vcsaeon.activities.MainMenuActivityDrawer.guarantorErr
 import static mm.com.aeon.vcsaeon.activities.MainMenuActivityDrawer.occupationErrMsgShow;
 import static mm.com.aeon.vcsaeon.activities.MainMenuActivityDrawer.photoList;
 import static mm.com.aeon.vcsaeon.activities.MainMenuActivityDrawer.tempPhotoBeanList;
+import static mm.com.aeon.vcsaeon.common_utils.CameraUtil.resizeImages;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.ALL_ATTACHMENT;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.APPLICANT_PHOTO;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.APPLICANT_SIGNATURE;
@@ -157,6 +149,7 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.PHOTO_NRC_BACK;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.PHOTO_NRC_FRONT;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.PHOTO_NRC_GUARANTOR_BACK;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.PHOTO_NRC_GUARANTOR_FRONT;
+import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.PHOTO_QUALITY_80;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.PHOTO_RESIDENT_PROOF;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.RESIDENT_PROOF_PHOTO;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.ROLE_MOBILE;
@@ -164,11 +157,12 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.ROLE_M_LOAN;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.ROLE_NON_MOBILE;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.ROLE_P_LOAN;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.SINGLE;
-import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.SPACE;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.SUCCESS;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.dateToString2;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.hideKeyboard;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.rotateBitmap;
+import static mm.com.aeon.vcsaeon.common_utils.PreferencesManager.isLoadImageLocked;
+import static mm.com.aeon.vcsaeon.common_utils.PreferencesManager.unLockImageLoad;
 import static mm.com.aeon.vcsaeon.common_utils.UiUtils.showNetworkErrorDialog;
 import static mm.com.aeon.vcsaeon.fragments.SmallLoanOccupationFragment.occu_monthlyIncome;
 
@@ -184,7 +178,7 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     private TextView labelTotalRepayment;
     private TextView labelFirstRepayAmount;
     private TextView labelMonthlyRepayAmount;
-    private TextView labelLastpayment;
+    private TextView labelLastPayment;
     private TextView labelNrcFront;
     private TextView labelNrcBack;
     private TextView labelIncomeProof;
@@ -236,7 +230,7 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     private String previewTotalRepayment = "-";
     private String previewFirstRepayment = "-";
     private String previewLastRepayment = "-";
-    private String previewMothlyRepayment = "-";
+    private String previewMonthlyRepayment = "-";
 
     private RelativeLayout layoutLoading;
     private LinearLayout btnNrcFront;
@@ -265,7 +259,7 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     public static TextView textBusinessErrMsg;
 
     private final int REQUEST_TAKE_PHOTO = 1;
-    private final int RESULT_LOAD_IMAGE = 1;
+    private final int REQUEST_LOAD_IMAGE = 2;
 
     private static String photoStatus;
     private String mCurrentPhotoPath;
@@ -278,8 +272,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     private static int customerId;
     private static int loanTerm;
 
-    private LoanConfirmationFormBean conData;
-    private LoanConfirmationFormBean resultConfirmData;
     UserInformationFormBean userInformationFormBean;
 
     private int selectedPosition;
@@ -300,9 +292,8 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     private Button preview;
     private StepsView stepsView;
 
-    private LinearLayout backToGuaData;
-    private TextView guarantorTitle;
-    private TextView loanDataTitle;
+    //private TextView guarantorTitle;
+    //private TextView loanDataTitle;
 
     private Double basicIncome;
     private String financeAmountCheck;
@@ -329,28 +320,11 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     private static Bitmap guarantorSignBitmap;
 
     boolean termAndConditionCheck = false;
-    boolean passworkBlank = false;
+    boolean passwordBlank = false;
 
     Bitmap rotateImage;
-
-    /*private RadioGroup loanType;
-    private RadioButton mobile;
-    private RadioButton non_mobile;
-    private static int daLoanTypeId = 1;
-    private static int daProductTypeId;
-    private Spinner spnProductCategory;*/
-
-    /*private TextView labelLoanType;
-    private TextView labelProductCat;
-    private TextView labelProductDes;*/
-
-    /*private EditText productDes;
-    private String productDescriptionCheck;
-    private static String productDescription;
-    private TextView errProductDes;
-    private Integer errProductDesLocale;*/
-
     private StateProgressBar confStepView;
+    ProgressDialog imgLoadPD;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -358,21 +332,24 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         view = inflater.inflate(R.layout.fragment_small_loan_confirm, container, false);
         setHasOptionsMenu(true);
 
-        String[] pages = {"Application\nData", "Occupation\nData","Emergency\nContact", "Guarantor\nData", "Loan\nConfirmation"};
+        //unlock attach image load/capture.
+        unLockImageLoad(getActivity());
+
+        String[] pages = {"Application\nData", "Occupation\nData", "Emergency\nContact", "Guarantor\nData", "Loan\nConfirmation"};
         confStepView = view.findViewById(R.id.conf_stepped_bar);
         confStepView.setStateDescriptionData(pages);
         confStepView.setOnStateItemClickListener(new OnStateItemClickListener() {
             @Override
             public void onStateItemClick(StateProgressBar stateProgressBar, StateItem stateItem, int stateNumber, boolean isCurrentState) {
-                if(stateNumber == 1){
+                if (stateNumber == 1) {
                     viewPager.setCurrentItem(0, true);
-                }else if(stateNumber == 2){
+                } else if (stateNumber == 2) {
                     viewPager.setCurrentItem(1, true);
-                }else if(stateNumber == 3){
+                } else if (stateNumber == 3) {
                     viewPager.setCurrentItem(2, true);
-                }else if(stateNumber == 4){
+                } else if (stateNumber == 4) {
                     viewPager.setCurrentItem(3, true);
-                }else if(stateNumber == 5){
+                } else if (stateNumber == 5) {
                     viewPager.setCurrentItem(4, true);
                 }
             }
@@ -419,10 +396,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 .setCompletedPosition(4)
                 .drawView();
 
-        /*labelLoanType = view.findViewById(R.id.conf_loan_type);
-        labelProductCat = view.findViewById(R.id.conf_product_category);
-        labelProductDes = view.findViewById(R.id.conf_product_desc);*/
-
         labelFinanceAmount = view.findViewById(R.id.conf_finance_amount);
         labelLoanTerm = view.findViewById(R.id.conf_finance_term);
         labelProcessFee = view.findViewById(R.id.conf_processing_fee);
@@ -430,7 +403,7 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         labelTotalRepayment = view.findViewById(R.id.conf_total_repay);
         labelFirstRepayAmount = view.findViewById(R.id.conf_first_repay);
         labelMonthlyRepayAmount = view.findViewById(R.id.conf_monthly_repay);
-        labelLastpayment = view.findViewById(R.id.conf_last_payment);
+        labelLastPayment = view.findViewById(R.id.conf_last_payment);
         labelNrcFront = view.findViewById(R.id.conf_nrc_front);
         labelNrcBack = view.findViewById(R.id.conf_nrc_back);
         labelIncomeProof = view.findViewById(R.id.conf_income_proof);
@@ -443,8 +416,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         labelApplicantSign = view.findViewById(R.id.conf_signature);
 
         errLoanTerm = view.findViewById(R.id.confirm_err_financeterm);
-        /*errProductDes = view.findViewById(R.id.confirm_err_pdescription);
-        errProductDesLocale = R.string.da_mesg_blank;*/
         errFinanceAmount = view.findViewById(R.id.confirm_err_financeAmt);
         errNrcFront = view.findViewById(R.id.err_nrcFront);
         errNrcBack = view.findViewById(R.id.err_nrcBack);
@@ -472,15 +443,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
 
         financeAmount = view.findViewById(R.id.confirm_finance_amount);
         financeAmount.requestFocus();
-
-        /*loanType = view.findViewById(R.id.confirm_radioLoanType);
-        spnProductCategory = view.findViewById(R.id.spinner_confirm_pcategory);*/
-
-        /*productDes = view.findViewById(R.id.product_description);
-        productDes.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(256)});*/
-
-        /*mobile = view.findViewById(R.id.confirm_radioMobile);
-        non_mobile = view.findViewById(R.id.confirm_radioNonmobile);*/
 
         radioLoanTerm = view.findViewById(R.id.rd_btn_loanterm);
 
@@ -592,293 +554,9 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 }
 
                 financeAmount.addTextChangedListener(this);
-
             }
         });
 
-        /*loanType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton radioButton = view.findViewById(checkedId);
-                if (radioButton.getText().toString().equals("Mobile")) {
-                    daLoanTypeId = CommonConstants.MOBILE;
-                } else {
-                    daLoanTypeId = CommonConstants.NON_MOBILE;
-                }
-            }
-        });*/
-
-        nrcFront.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.attachment_image_enlarge_view);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
-                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
-                FloatingActionButton btnok = dialog.findViewById(R.id.da_preview_close);
-                imagePopup.setImageBitmap(nrcFrontBitmap);
-                imageTitle.setText("Nrc Front");
-
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
-
-        nrcBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.attachment_image_enlarge_view);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
-                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
-                FloatingActionButton btnok = dialog.findViewById(R.id.da_preview_close);
-                imagePopup.setImageBitmap(nrcBackBitmap);
-                imageTitle.setText("Nrc Back");
-
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
-
-        residentProof.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.attachment_image_enlarge_view);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
-                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
-                FloatingActionButton btnok = dialog.findViewById(R.id.da_preview_close);
-                imagePopup.setImageBitmap(residentBitmap);
-                imageTitle.setText("Residence Proof");
-
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
-
-        incomeProof.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.attachment_image_enlarge_view);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
-                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
-                FloatingActionButton btnok = dialog.findViewById(R.id.da_preview_close);
-                imagePopup.setImageBitmap(incomeBitmap);
-                imageTitle.setText("Income Proof");
-
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
-
-        guarantorNrcFront.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.attachment_image_enlarge_view);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
-                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
-                FloatingActionButton btnok = dialog.findViewById(R.id.da_preview_close);
-                imagePopup.setImageBitmap(guaNrcFrontBitmap);
-                imageTitle.setText("Guarantor Nrc Front");
-
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
-
-        guarantorNrcBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.attachment_image_enlarge_view);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
-                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
-                FloatingActionButton btnok = dialog.findViewById(R.id.da_preview_close);
-                imagePopup.setImageBitmap(guaNrcBackBitmap);
-                imageTitle.setText("Guarantor Nrc Back");
-
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
-
-        criminalClearance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.attachment_image_enlarge_view);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
-                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
-                FloatingActionButton btnok = dialog.findViewById(R.id.da_preview_close);
-                imagePopup.setImageBitmap(criminalClearBitmap);
-                imageTitle.setText("Household or Criminal Clearance");
-
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
-
-        applicantPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.attachment_image_enlarge_view);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
-                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
-                FloatingActionButton btnok = dialog.findViewById(R.id.da_preview_close);
-                imagePopup.setImageBitmap(applicantBitmap);
-                imageTitle.setText("Applicant Photo");
-
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
-
-        signaturePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.attachment_image_enlarge_view);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
-                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
-                FloatingActionButton btnok = dialog.findViewById(R.id.da_preview_close);
-                imagePopup.setImageBitmap(signBitmap);
-                imageTitle.setText("Customer Signature");
-
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
-
-        guarantorSignPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.attachment_image_enlarge_view);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
-                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
-                FloatingActionButton btnok = dialog.findViewById(R.id.da_preview_close);
-                imagePopup.setImageBitmap(guarantorSignBitmap);
-                imageTitle.setText("Guarantor Signature");
-
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
-
-
-        /*List<ProductTypeListBean> productTypeList = PreferencesManager.getProductTypeList(getActivity());
-        int listSize = productTypeList.size();
-        productCategory = new String[listSize];
-        productId = new int[listSize];
-        getProductType(productTypeList, listSize);
-
-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(), R.layout.relation_spinner, productCategory);
-        spnProductCategory.setAdapter(categoryAdapter);
-
-        spnProductCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                daProductTypeId = productId[position];
-                productCategoryPreview = productCategory[position];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });*/
 
         preview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -888,7 +566,8 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 previewDialog.setContentView(R.layout.application_info_preview_layout);
                 previewDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 previewDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                FloatingActionButton btnok = previewDialog.findViewById(R.id.da_preview_close);
+
+                ImageView daDetailClose = previewDialog.findViewById(R.id.da_detail_close);
 
                 cityTownshipList = PreferencesManager.getCityListInfo(getActivity());
                 setUpCityList(cityTownshipList);
@@ -950,11 +629,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 TextView guaYearService = previewDialog.findViewById(R.id.preview_gur_year_of_service);
                 TextView guaMonthlyBasic = previewDialog.findViewById(R.id.preview_gur_monthly_basic_income);
                 TextView guaTotalIncome = previewDialog.findViewById(R.id.preview_gur_total_income);
-
-                /*Loan Confirmation - 11*/
-                /*TextView confLoanType = previewDialog.findViewById(R.id.preview_lc_loan_type);
-                TextView confProductCategory = previewDialog.findViewById(R.id.preview_lc_product_category);
-                TextView confProductDescription = previewDialog.findViewById(R.id.preview_lc_product_desc);*/
 
                 TextView confFinanceAmount = previewDialog.findViewById(R.id.preview_lc_finance_amt);
                 TextView confTermOfFinance = previewDialog.findViewById(R.id.preview_lc_finance_term);
@@ -1121,16 +795,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 TextView da_in_gur_total_income_title = previewDialog.findViewById(R.id.gur_lbl_total_income);
                 da_in_gur_total_income_title.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.da_in_gur_total_income, getActivity()));
 
-                //Loan Confirmation.
-                /*TextView da_in_loanConfirm_loan_type_title = previewDialog.findViewById(R.id.conf_lbl_loan_type);
-                da_in_loanConfirm_loan_type_title.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.da_in_loanConfirm_loan_type, getActivity()));
-
-                TextView da_in_loanConfirm_product_cat_title = previewDialog.findViewById(R.id.conf_lbl_product_category);
-                da_in_loanConfirm_product_cat_title.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.da_in_loanConfirm_product_cat, getActivity()));
-
-                TextView da_in_loanConfirm_product_des_title = previewDialog.findViewById(R.id.conf_lbl_product_description);
-                da_in_loanConfirm_product_des_title.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.da_in_loanConfirm_product_des, getActivity()));*/
-
                 TextView da_in_loanConfirm_finance_amount_title = previewDialog.findViewById(R.id.conf_lbl_finance_amt);
                 da_in_loanConfirm_finance_amount_title.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.da_in_loanConfirm_finance_amount, getActivity()));
 
@@ -1215,18 +879,13 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 guaMonthlyBasic.setText(getBasicIncome(guarantorDataBean.getMonthlyBasicIncome()));
                 guaTotalIncome.setText(getTotalIncome(guarantorDataBean.getTotalIncome()));
 
-                /*confLoanType.setText(getLoanType(daLoanTypeId));
-                confProductCategory.setText(productCategoryPreview);
-                String productDescri = productDes.getText().toString();
-                confProductDescription.setText(getStringValue(productDescri));*/
-
                 confFinanceAmount.setText(getFinanceAmount(finance_amount));
                 confTermOfFinance.setText(getLoanTerm(loanTerm));
                 confProcessingFee.setText(previewProcessingFee + MYANMAR_CURRENCY);
                 confCompulsorySave.setText(previewCompulsorySaving + MYANMAR_CURRENCY);
                 confTotalRepay.setText(previewTotalRepayment + MYANMAR_CURRENCY);
                 confFirstRepay.setText(previewFirstRepayment + MYANMAR_CURRENCY);
-                confMonthlyRepay.setText(previewMothlyRepayment + MYANMAR_CURRENCY);
+                confMonthlyRepay.setText(previewMonthlyRepayment + MYANMAR_CURRENCY);
                 confLastRepay.setText(previewLastRepayment + MYANMAR_CURRENCY);
 
                 /*Current Address*/
@@ -1445,7 +1104,7 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 TextView value_com_guarantor_township = previewDialog.findViewById(R.id.val_preview_com_guarantor_township);
                 value_com_guarantor_township.setText(getStringValue(getTownship(cityTownshipList, guarantorDataBean.getCompanyAddressCity(), guarantorDataBean.getCompanyAddressTownship())));
 
-                btnok.setOnClickListener(new View.OnClickListener() {
+                daDetailClose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         previewDialog.dismiss();
@@ -1474,9 +1133,7 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 MainMenuActivityDrawer.isSubmitclickConfirmData = true;
 
                 setUpLoanConfirmFormData();
-
                 checkConfirmData();
-
                 checkErrorPage();
 
                 if (!validate) {
@@ -1484,11 +1141,8 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 }
 
                 if (errorPages.size() == 0) {
-
                     if (!CommonUtils.isNetworkAvailable(getActivity())) {
-
                         showNetworkErrorDialog(getActivity(), getNetErrMsg());
-
                     } else {
 
                         final Dialog dialog = new Dialog(getActivity());
@@ -1527,14 +1181,14 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                                     tvCheckErr.setVisibility(View.GONE);
                                 }
                                 if (textPassword.equals(BLANK)) {
-                                    passworkBlank = false;
+                                    passwordBlank = false;
                                     tvPwdErr.setVisibility(View.VISIBLE);
                                 } else {
-                                    passworkBlank = true;
+                                    passwordBlank = true;
                                     tvPwdErr.setVisibility(View.GONE);
                                 }
 
-                                if (termAndConditionCheck && passworkBlank) {
+                                if (termAndConditionCheck && passwordBlank) {
                                     PasswordCheckReqBean passwordCheckReqBean
                                             = new PasswordCheckReqBean();
 
@@ -1589,7 +1243,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                         dialog.show();
                     }
                 } else {
-                    Log.e("First Err Page", String.valueOf(errorPages.get(0)));
                     viewPager.setCurrentItem(errorPages.get(0), true);
                 }
             }
@@ -1598,236 +1251,243 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         btnNrcFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                PopupMenu popup = new PopupMenu(getActivity(), btnNrcFront);
-                popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        String menuItem = item.getTitle().toString();
-                        if (menuItem.equals(CAMERA)) {
-                            if (CameraUtil.isCameraAllowed(getActivity())) {
-                                photoStatus = NRC_FRONT_PHOTO;
-                                openCamera();
-                                financeAmount.clearFocus();
+                if (!isLoadImageLocked(getActivity())) {
+                    PopupMenu popup = new PopupMenu(getActivity(), btnNrcFront);
+                    popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+                            String menuItem = item.getTitle().toString();
+                            if (menuItem.equals(CAMERA)) {
+                                if (CameraUtil.isCameraAllowed(getActivity())) {
+                                    photoStatus = NRC_FRONT_PHOTO;
+                                    openCamera();
+                                    financeAmount.clearFocus();
+                                }
+                            } else if (menuItem.equals(GALLERY)) {
+                                if (isStorageAllowed()) {
+                                    photoStatus = NRC_FRONT_PHOTO;
+                                    Intent intent = new Intent(
+                                            Intent.ACTION_PICK,
+                                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivityForResult(intent, REQUEST_LOAD_IMAGE);
+                                }
                             }
-                        } else if (menuItem.equals(GALLERY)) {
-                            if (isStorageAllowed()) {
-                                photoStatus = NRC_FRONT_PHOTO;
-                                Intent intent = new Intent(
-                                        Intent.ACTION_PICK,
-                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                startActivityForResult(intent, RESULT_LOAD_IMAGE);
-                            }
+                            return true;
                         }
-                        return true;
-                    }
-                });
-                popup.show();
+                    });
+                    popup.show();
+                }
             }
         });
 
         btnNrcBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(getActivity(), btnNrcBack);
-                popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        String menuItem = item.getTitle().toString();
-                        if (menuItem.equals(CAMERA)) {
-                            if (isCameraAllowed()) {
-                                photoStatus = NRC_BACK_PHOTO;
-                                openCamera();
-                                financeAmount.clearFocus();
+                if (!isLoadImageLocked(getActivity())) {
+                    PopupMenu popup = new PopupMenu(getActivity(), btnNrcBack);
+                    popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+                            String menuItem = item.getTitle().toString();
+                            if (menuItem.equals(CAMERA)) {
+                                if (isCameraAllowed()) {
+                                    photoStatus = NRC_BACK_PHOTO;
+                                    openCamera();
+                                    financeAmount.clearFocus();
+                                }
+                            } else if (menuItem.equals(GALLERY)) {
+                                if (isStorageAllowed()) {
+                                    photoStatus = NRC_BACK_PHOTO;
+                                    Intent intent = new Intent(
+                                            Intent.ACTION_PICK,
+                                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivityForResult(intent, REQUEST_LOAD_IMAGE);
+                                }
                             }
-                        } else if (menuItem.equals(GALLERY)) {
-                            if (isStorageAllowed()) {
-                                photoStatus = NRC_BACK_PHOTO;
-                                Intent intent = new Intent(
-                                        Intent.ACTION_PICK,
-                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                startActivityForResult(intent, RESULT_LOAD_IMAGE);
-
-                            }
+                            return true;
                         }
-                        return true;
-                    }
-                });
-                popup.show();
+                    });
+                    popup.show();
+                }
             }
         });
 
         btnIncomeProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(getActivity(), btnIncomeProof);
-                popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        String menuItem = item.getTitle().toString();
-                        if (menuItem.equals(CAMERA)) {
-                            if (isCameraAllowed()) {
-                                photoStatus = INCOME_PROOF_PHOTO;
-                                openCamera();
-                                financeAmount.clearFocus();
+                if (!isLoadImageLocked(getActivity())) {
+                    PopupMenu popup = new PopupMenu(getActivity(), btnIncomeProof);
+                    popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+                            String menuItem = item.getTitle().toString();
+                            if (menuItem.equals(CAMERA)) {
+                                if (isCameraAllowed()) {
+                                    photoStatus = INCOME_PROOF_PHOTO;
+                                    openCamera();
+                                    financeAmount.clearFocus();
+                                }
+                            } else if (menuItem.equals(GALLERY)) {
+                                if (isStorageAllowed()) {
+                                    photoStatus = INCOME_PROOF_PHOTO;
+                                    Intent intent = new Intent(
+                                            Intent.ACTION_PICK,
+                                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivityForResult(intent, REQUEST_LOAD_IMAGE);
+                                }
                             }
-                        } else if (menuItem.equals(GALLERY)) {
-                            if (isStorageAllowed()) {
-                                photoStatus = INCOME_PROOF_PHOTO;
-                                Intent intent = new Intent(
-                                        Intent.ACTION_PICK,
-                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                startActivityForResult(intent, RESULT_LOAD_IMAGE);
-                            }
+                            return true;
                         }
-                        return true;
-                    }
-                });
-                popup.show();
+                    });
+                    popup.show();
+                }
             }
         });
 
         btnResidentProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(getActivity(), btnResidentProof);
-                popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        String menuItem = item.getTitle().toString();
-                        if (menuItem.equals(CAMERA)) {
-                            if (isCameraAllowed()) {
-                                photoStatus = RESIDENT_PROOF_PHOTO;
-                                openCamera();
-                                financeAmount.clearFocus();
+                if (!isLoadImageLocked(getActivity())) {
+                    PopupMenu popup = new PopupMenu(getActivity(), btnResidentProof);
+                    popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+                            String menuItem = item.getTitle().toString();
+                            if (menuItem.equals(CAMERA)) {
+                                if (isCameraAllowed()) {
+                                    photoStatus = RESIDENT_PROOF_PHOTO;
+                                    openCamera();
+                                    financeAmount.clearFocus();
+                                }
+                            } else if (menuItem.equals(GALLERY)) {
+                                if (isStorageAllowed()) {
+                                    photoStatus = RESIDENT_PROOF_PHOTO;
+                                    Intent intent = new Intent(
+                                            Intent.ACTION_PICK,
+                                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivityForResult(intent, REQUEST_LOAD_IMAGE);
+                                }
                             }
-                        } else if (menuItem.equals(GALLERY)) {
-                            if (isStorageAllowed()) {
-                                photoStatus = RESIDENT_PROOF_PHOTO;
-                                Intent intent = new Intent(
-                                        Intent.ACTION_PICK,
-                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                startActivityForResult(intent, RESULT_LOAD_IMAGE);
-                            }
+                            return true;
                         }
-                        return true;
-                    }
-                });
-                popup.show();
+                    });
+                    popup.show();
+                }
             }
         });
 
         btnGuarantorFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(getActivity(), btnGuarantorFront);
-                popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        String menuItem = item.getTitle().toString();
-                        if (menuItem.equals(CAMERA)) {
-                            if (isCameraAllowed()) {
-                                photoStatus = NRC_GUARANTOR_FRONT;
-                                openCamera();
-                                financeAmount.clearFocus();
+                if (!isLoadImageLocked(getActivity())) {
+                    PopupMenu popup = new PopupMenu(getActivity(), btnGuarantorFront);
+                    popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+                            String menuItem = item.getTitle().toString();
+                            if (menuItem.equals(CAMERA)) {
+                                if (isCameraAllowed()) {
+                                    photoStatus = NRC_GUARANTOR_FRONT;
+                                    openCamera();
+                                    financeAmount.clearFocus();
+                                }
+                            } else if (menuItem.equals(GALLERY)) {
+                                if (isStorageAllowed()) {
+                                    photoStatus = NRC_GUARANTOR_FRONT;
+                                    Intent intent = new Intent(
+                                            Intent.ACTION_PICK,
+                                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivityForResult(intent, REQUEST_LOAD_IMAGE);
+                                }
                             }
-                        } else if (menuItem.equals(GALLERY)) {
-                            if (isStorageAllowed()) {
-                                photoStatus = NRC_GUARANTOR_FRONT;
-                                Intent intent = new Intent(
-                                        Intent.ACTION_PICK,
-                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                startActivityForResult(intent, RESULT_LOAD_IMAGE);
-                            }
+                            return true;
                         }
-                        return true;
-                    }
-                });
-                popup.show();
+                    });
+                    popup.show();
+                }
             }
         });
 
         btnGuarantorBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(getActivity(), btnGuarantorBack);
-                popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        String menuItem = item.getTitle().toString();
-                        if (menuItem.equals(CAMERA)) {
-                            if (isCameraAllowed()) {
-                                photoStatus = NRC_GUARANTOR_BACK;
-                                openCamera();
-                                financeAmount.clearFocus();
+                if (!isLoadImageLocked(getActivity())) {
+                    PopupMenu popup = new PopupMenu(getActivity(), btnGuarantorBack);
+                    popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+                            String menuItem = item.getTitle().toString();
+                            if (menuItem.equals(CAMERA)) {
+                                if (isCameraAllowed()) {
+                                    photoStatus = NRC_GUARANTOR_BACK;
+                                    openCamera();
+                                    financeAmount.clearFocus();
+                                }
+                            } else if (menuItem.equals(GALLERY)) {
+                                if (isStorageAllowed()) {
+                                    photoStatus = NRC_GUARANTOR_BACK;
+                                    Intent intent = new Intent(
+                                            Intent.ACTION_PICK,
+                                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivityForResult(intent, REQUEST_LOAD_IMAGE);
+                                }
                             }
-                        } else if (menuItem.equals(GALLERY)) {
-                            if (isStorageAllowed()) {
-                                photoStatus = NRC_GUARANTOR_BACK;
-                                Intent intent = new Intent(
-                                        Intent.ACTION_PICK,
-                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                startActivityForResult(intent, RESULT_LOAD_IMAGE);
-                            }
+                            return true;
                         }
-                        return true;
-                    }
-                });
-                popup.show();
+                    });
+                    popup.show();
+                }
             }
         });
 
         btnCriminalClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(getActivity(), btnCriminalClear);
-                popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        String menuItem = item.getTitle().toString();
-                        if (menuItem.equals(CAMERA)) {
-                            if (isCameraAllowed()) {
-                                photoStatus = CRIMINAL_CLEARANCE;
-                                openCamera();
-                                financeAmount.clearFocus();
+                if (!isLoadImageLocked(getActivity())) {
+                    PopupMenu popup = new PopupMenu(getActivity(), btnCriminalClear);
+                    popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+                            String menuItem = item.getTitle().toString();
+                            if (menuItem.equals(CAMERA)) {
+                                if (isCameraAllowed()) {
+                                    photoStatus = CRIMINAL_CLEARANCE;
+                                    openCamera();
+                                    financeAmount.clearFocus();
+                                }
+                            } else if (menuItem.equals(GALLERY)) {
+                                if (isStorageAllowed()) {
+                                    photoStatus = CRIMINAL_CLEARANCE;
+                                    Intent intent = new Intent(
+                                            Intent.ACTION_PICK,
+                                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivityForResult(intent, REQUEST_LOAD_IMAGE);
+                                }
                             }
-                        } else if (menuItem.equals(GALLERY)) {
-                            if (isStorageAllowed()) {
-                                photoStatus = CRIMINAL_CLEARANCE;
-                                Intent intent = new Intent(
-                                        Intent.ACTION_PICK,
-                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                startActivityForResult(intent, RESULT_LOAD_IMAGE);
-                            }
+                            return true;
                         }
-                        return true;
-                    }
-                });
-                popup.show();
+                    });
+                    popup.show();
+                }
             }
         });
 
         btnApplicantPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isCameraAllowed()) {
-                    photoStatus = APPLICANT_PHOTO;
-                    openCamera();
-                    financeAmount.clearFocus();
+                if (!isLoadImageLocked(getActivity())) {
+                    if (isCameraAllowed()) {
+                        photoStatus = APPLICANT_PHOTO;
+                        openCamera();
+                        financeAmount.clearFocus();
+                    }
                 }
             }
         });
@@ -1835,90 +1495,82 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         btnSignature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(getActivity(), btnSignature);
-                popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        String menuItem = item.getTitle().toString();
-                        if (menuItem.equals(CAMERA)) {
-                            if (isCameraAllowed()) {
-                                photoStatus = APPLICANT_SIGNATURE;
-                                openCamera();
-                                financeAmount.clearFocus();
+                if (!isLoadImageLocked(getActivity())) {
+                    PopupMenu popup = new PopupMenu(getActivity(), btnSignature);
+                    popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+                            String menuItem = item.getTitle().toString();
+                            if (menuItem.equals(CAMERA)) {
+                                if (isCameraAllowed()) {
+                                    photoStatus = APPLICANT_SIGNATURE;
+                                    openCamera();
+                                    financeAmount.clearFocus();
+                                }
+                            } else if (menuItem.equals(GALLERY)) {
+                                if (isStorageAllowed()) {
+                                    photoStatus = APPLICANT_SIGNATURE;
+                                    Intent intent = new Intent(
+                                            Intent.ACTION_PICK,
+                                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivityForResult(intent, REQUEST_LOAD_IMAGE);
+                                }
                             }
-                        } else if (menuItem.equals(GALLERY)) {
-                            if (isStorageAllowed()) {
-                                photoStatus = APPLICANT_SIGNATURE;
-                                Intent intent = new Intent(
-                                        Intent.ACTION_PICK,
-                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                startActivityForResult(intent, RESULT_LOAD_IMAGE);
-                            }
+                            return true;
                         }
-                        return true;
-                    }
-                });
-                popup.show();
+                    });
+                    popup.show();
+                }
             }
         });
 
         btnGuarantorSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(getActivity(), btnGuarantorSign);
-                popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        String menuItem = item.getTitle().toString();
-                        if (menuItem.equals(CAMERA)) {
-                            if (isCameraAllowed()) {
-                                photoStatus = GUARANTOR_SIGNATURE;
-                                openCamera();
-                                financeAmount.clearFocus();
+                if (!isLoadImageLocked(getActivity())) {
+                    PopupMenu popup = new PopupMenu(getActivity(), btnGuarantorSign);
+                    popup.getMenuInflater().inflate(R.menu.gallery_camera_popup, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+                            String menuItem = item.getTitle().toString();
+                            if (menuItem.equals(CAMERA)) {
+                                if (isCameraAllowed()) {
+                                    photoStatus = GUARANTOR_SIGNATURE;
+                                    openCamera();
+                                    financeAmount.clearFocus();
+                                }
+                            } else if (menuItem.equals(GALLERY)) {
+                                if (isStorageAllowed()) {
+                                    photoStatus = GUARANTOR_SIGNATURE;
+                                    Intent intent = new Intent(
+                                            Intent.ACTION_PICK,
+                                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivityForResult(intent, REQUEST_LOAD_IMAGE);
+                                }
                             }
-                        } else if (menuItem.equals(GALLERY)) {
-                            if (isStorageAllowed()) {
-                                photoStatus = GUARANTOR_SIGNATURE;
-                                Intent intent = new Intent(
-                                        Intent.ACTION_PICK,
-                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                startActivityForResult(intent, RESULT_LOAD_IMAGE);
-                            }
+                            return true;
                         }
-                        return true;
-                    }
-                });
-                popup.show();
+                    });
+                    popup.show();
+                }
             }
         });
 
-
-        /*backToGuaData = view.findViewById(R.id.back_gua_data);*/
-        guarantorTitle = view.findViewById(R.id.da_gua_data_title);
-        loanDataTitle = view.findViewById(R.id.da_loan_data_title);
-
-        /*backToGuaData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPager.setCurrentItem(3, true);
-            }
-        });*/
+        //guarantorTitle = view.findViewById(R.id.da_gua_data_title);
+        //loanDataTitle = view.findViewById(R.id.da_loan_data_title);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
                 selectedPosition = position;
-                if(selectedPosition == 4){
-                    ((MainMenuActivityDrawer)getActivity()).setLanguageListener(SmallLoanConfirmFragment.this);
+                if (selectedPosition == 4) {
+                    ((MainMenuActivityDrawer) getActivity()).setLanguageListener(SmallLoanConfirmFragment.this);
                 }
             }
 
@@ -1928,7 +1580,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                     curLang = PreferencesManager.getCurrentLanguage(getContext());
                     changeLabel(curLang);
                     addSelectedPhotos();
-
                     if (MainMenuActivityDrawer.isSubmitclickConfirmData) {
                         MainMenuActivityDrawer.isSubmitclickConfirmData = false;
                         showErrorMsg();
@@ -1948,24 +1599,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         setUpFormData();
         setupErrMesgData();
 
-        /*productDescriptionCheck = productDes.getText().toString();
-        if(!isEmptyOrNull(productDescriptionCheck)){
-            productDes.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
-        }
-        productDes.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean focus) {
-                if(focus){
-                    productDes.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
-                }else{
-                    productDescriptionCheck = productDes.getText().toString();
-                    if(isEmptyOrNull(productDescriptionCheck)){
-                        productDes.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.mandatroy_edit_text_style));
-                    }
-                }
-            }
-        });*/
-
         financeAmountCheck = financeAmount.getText().toString();
         if (!isEmptyOrNull(financeAmountCheck)) {
             financeAmount.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
@@ -1983,39 +1616,32 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 }
             }
         });
-
         return view;
     }
 
     @Override
     public void onTabAttach(String imageUrl) {
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.action_favorite:
-                //this.languageFlag = item;
                 if (item.getTitle().equals(LANG_MM)) {
                     item.setIcon(R.drawable.en_flag2);
                     item.setTitle(LANG_EN);
                     changeLabel(LANG_MM);
-
                 } else if (item.getTitle().equals(LANG_EN)) {
                     item.setIcon(R.drawable.mm_flag);
                     item.setTitle(LANG_MM);
                     changeLabel(LANG_EN);
                 }
-
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void checkConfirmData() {
-
         if (CommonUtils.isEmptyOrNull(Double.toString(txtFinanceAmount))) {
             validate = false;
         } else if (txtFinanceAmount < MIN_LOAN_AMOUNT) {
@@ -2025,15 +1651,9 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         } else if (Double.compare(txtFinanceAmount, (basicIncome * 2)) == 1) {
             validate = false;
         }
-
-        /*if (CommonUtils.isEmptyOrNull(productDescription)) {
-            validate = false;
-        }*/
-
         if (CommonUtils.isEmptyOrNull(Double.toString(txtProcessingFee))) {
             validate = false;
         }
-
         //Empty Attachments.
         if (photoList.size() != ALL_ATTACHMENT) {
             validate = false;
@@ -2041,24 +1661,11 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     }
 
     private void showErrorMsg() {
-
         ApplicationFormErrMesgBean errConfirmMesgBean = PreferencesManager.getErrMesgInfo(getContext());
 
         if (errConfirmMesgBean == null) {
             errConfirmMesgBean = new ApplicationFormErrMesgBean();
         }
-
-        /*if (CommonUtils.isEmptyOrNull(productDescription)) {
-            errProductDes.setVisibility(View.VISIBLE);
-            errProductDes.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_productDescription_require_err, getActivity()));
-            errProductDesLocale = R.string.da_productDescription_require_err;
-            errConfirmMesgBean.setConfProductDesLocale(errProductDesLocale);
-
-        } else {
-            errProductDes.setVisibility(View.GONE);
-            errProductDesLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfProductDesLocale(errProductDesLocale);
-        }*/
 
         if (CommonUtils.isEmptyOrNull(financeAmount.getText().toString())) {
             errFinanceAmount.setVisibility(View.VISIBLE);
@@ -2073,7 +1680,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
             errConfirmMesgBean.setConfFinanceAmountLocale(errFinanceAmountLocale);
 
         } else if (Double.compare(txtFinanceAmount, (basicIncome * 2)) == 1) {
-            //errFinanceAmount.setText("Finance Amount must not be exceed than " + (basicIncome*2) + " Kyats.");
             errFinanceAmount.setVisibility(View.VISIBLE);
             errFinanceAmount.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_financeAmt_exceed_err, getActivity()));
             errFinanceAmountLocale = R.string.da_financeAmt_exceed_err;
@@ -2089,133 +1695,121 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
             errLoanTerm.setVisibility(View.VISIBLE);
             errLoanTerm.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_financeTerm_require_err, getActivity()));
             errLoanTermLocale = R.string.da_financeTerm_require_err;
-            errConfirmMesgBean.setConfLoanTermLocale(errLoanTermLocale);
 
         } else {
             errLoanTerm.setVisibility(View.GONE);
             errLoanTermLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfLoanTermLocale(errLoanTermLocale);
         }
+        errConfirmMesgBean.setConfLoanTermLocale(errLoanTermLocale);
 
         if (!isPhotoExisted(PHOTO_NRC_FRONT)) {
             errNrcFront.setVisibility(View.VISIBLE);
             errNrcFront.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_nrcfront_require_err, getActivity()));
             errNrcFrontLocale = R.string.da_nrcfront_require_err;
-            errConfirmMesgBean.setConfNrcFrontLocale(errNrcFrontLocale);
 
         } else {
             errNrcFront.setVisibility(View.GONE);
             errNrcFrontLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfNrcFrontLocale(errNrcFrontLocale);
         }
+        errConfirmMesgBean.setConfNrcFrontLocale(errNrcFrontLocale);
 
         if (!isPhotoExisted(PHOTO_NRC_BACK)) {
             errNrcBack.setVisibility(View.VISIBLE);
             errNrcBack.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_nrcback_require_err, getActivity()));
             errNrcBackLocale = R.string.da_nrcback_require_err;
-            errConfirmMesgBean.setConfNrcBackLocale(errNrcBackLocale);
 
         } else {
             errNrcBack.setVisibility(View.GONE);
             errNrcBackLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfNrcBackLocale(errNrcBackLocale);
         }
+        errConfirmMesgBean.setConfNrcBackLocale(errNrcBackLocale);
 
         if (!isPhotoExisted(PHOTO_INCOME_PROOF)) {
             errIncomeProof.setVisibility(View.VISIBLE);
             errIncomeProof.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_incomeProof_require_err, getActivity()));
             errIncomeProofLocale = R.string.da_incomeProof_require_err;
-            errConfirmMesgBean.setConfIncomeProofLocale(errIncomeProofLocale);
 
         } else {
             errIncomeProof.setVisibility(View.GONE);
             errIncomeProofLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfIncomeProofLocale(errIncomeProofLocale);
         }
+        errConfirmMesgBean.setConfIncomeProofLocale(errIncomeProofLocale);
 
         if (!isPhotoExisted(PHOTO_RESIDENT_PROOF)) {
             errResidentProof.setVisibility(View.VISIBLE);
             errResidentProof.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_residentProof_require_err, getActivity()));
             errResidentProofLocale = R.string.da_residentProof_require_err;
-            errConfirmMesgBean.setConfResidentProofLocale(errResidentProofLocale);
 
         } else {
             errResidentProof.setVisibility(View.GONE);
             errResidentProofLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfResidentProofLocale(errResidentProofLocale);
         }
+        errConfirmMesgBean.setConfResidentProofLocale(errResidentProofLocale);
 
         if (!isPhotoExisted(PHOTO_NRC_GUARANTOR_FRONT)) {
             errGuarantorNrcFront.setVisibility(View.VISIBLE);
             errGuarantorNrcFront.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_guaNrcfront_require_err, getActivity()));
             errGuarantorNrcFrontLocale = R.string.da_guaNrcfront_require_err;
-            errConfirmMesgBean.setConfGuarantorNrcFrontLocale(errGuarantorNrcFrontLocale);
         } else {
             errGuarantorNrcFront.setVisibility(View.GONE);
             errGuarantorNrcFrontLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfGuarantorNrcFrontLocale(errGuarantorNrcFrontLocale);
         }
+        errConfirmMesgBean.setConfGuarantorNrcFrontLocale(errGuarantorNrcFrontLocale);
 
         if (!isPhotoExisted(PHOTO_NRC_GUARANTOR_BACK)) {
             errGuarantorNrcBack.setVisibility(View.VISIBLE);
             errGuarantorNrcBack.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_guaNrcback_require_err, getActivity()));
             errGuarantorNrcBackLocale = R.string.da_guaNrcback_require_err;
-            errConfirmMesgBean.setConfGuarantorNrcBackLocale(errGuarantorNrcBackLocale);
         } else {
             errGuarantorNrcBack.setVisibility(View.GONE);
             errGuarantorNrcBackLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfGuarantorNrcBackLocale(errGuarantorNrcBackLocale);
         }
+        errConfirmMesgBean.setConfGuarantorNrcBackLocale(errGuarantorNrcBackLocale);
 
         if (!isPhotoExisted(PHOTO_CRIMINAL_CLEARANCE)) {
             errCriminalClear.setVisibility(View.VISIBLE);
             errCriminalClear.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_household_require_err, getActivity()));
             errCriminalClearLocale = R.string.da_household_require_err;
-            errConfirmMesgBean.setConfCriminalClearLocale(errCriminalClearLocale);
         } else {
             errCriminalClear.setVisibility(View.GONE);
             errCriminalClearLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfCriminalClearLocale(errCriminalClearLocale);
         }
+        errConfirmMesgBean.setConfCriminalClearLocale(errCriminalClearLocale);
 
         if (!isPhotoExisted(PHOTO_APPLICANT)) {
             errApplicantPhoto.setVisibility(View.VISIBLE);
             errApplicantPhoto.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_applicantPhoto_require_err, getActivity()));
             errApplicantPhotoLocale = R.string.da_applicantPhoto_require_err;
-            errConfirmMesgBean.setConfApplicantPhotoLocale(errApplicantPhotoLocale);
         } else {
             errApplicantPhoto.setVisibility(View.GONE);
             errApplicantPhotoLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfApplicantPhotoLocale(errApplicantPhotoLocale);
         }
+        errConfirmMesgBean.setConfApplicantPhotoLocale(errApplicantPhotoLocale);
 
         if (!isPhotoExisted(PHOTO_APPLICANT_SIGNATURE)) {
             errApplicantSign.setVisibility(View.VISIBLE);
             errApplicantSign.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_signature_require_err, getActivity()));
             errApplicantSignLocale = R.string.da_signature_require_err;
-            errConfirmMesgBean.setConfApplicantSignLocale(errApplicantSignLocale);
         } else {
             errApplicantSign.setVisibility(View.GONE);
             errApplicantSignLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfApplicantSignLocale(errApplicantSignLocale);
         }
+        errConfirmMesgBean.setConfApplicantSignLocale(errApplicantSignLocale);
 
         if (!isPhotoExisted(PHOTO_GUARANTOR_SIGNATURE)) {
             errGuarantorSign.setVisibility(View.VISIBLE);
             errGuarantorSign.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_guarantor_sign_require_err, getActivity()));
             errGuarantorSignLocale = R.string.da_guarantor_sign_require_err;
-            errConfirmMesgBean.setConfGuarantorSignLocale(errGuarantorSignLocale);
         } else {
             errGuarantorSign.setVisibility(View.GONE);
             errGuarantorSignLocale = R.string.da_mesg_blank;
-            errConfirmMesgBean.setConfGuarantorSignLocale(errGuarantorSignLocale);
         }
+        errConfirmMesgBean.setConfGuarantorSignLocale(errGuarantorSignLocale);
 
         PreferencesManager.saveErrorMesgInfo(getContext(), errConfirmMesgBean);
     }
 
     private void checkErrorPage() {
-
         errorPages.clear();
 
         if (!MainMenuActivityDrawer.appDataCorrect) {
@@ -2271,28 +1865,30 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
             }
         }
         int counter = 0;
-        char[] newchars = new char[countChar];
+        char[] newChars = new char[countChar];
         for (int i = 0; i < chars.length; i++) {
             if (chars[i] != ',') {
-                newchars[counter] = chars[i];
+                newChars[counter] = chars[i];
                 counter++;
             }
         }
-        String input = new String(newchars);
+        String input = new String(newChars);
         return input;
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        endImageLoadProgressInfo();
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
-
-        //byte[] photoByte = null;
-        String curPhotoPath = BLANK;
         File currentFile = null;
+        displayImageLoadProgressInfo();
         try {
-
-            if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            if (requestCode == REQUEST_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
 
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
@@ -2310,48 +1906,45 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 if (galleryFile.exists()) {
                     // copy from gallery to temp folder
                     File destFile = createFileName();
-
-                    try{
-                        Bitmap myBitmap = BitmapFactory.decodeFile(galleryFile.getAbsolutePath());
-                        rotateImage = modifyOrientation(myBitmap, picturePath);
-                    }catch (IOException e){
-                        e.printStackTrace();
-                    }
-
                     CameraUtil.copyFile(galleryFile, destFile);
                     currentFile = destFile;
-                    curPhotoPath = CameraUtil.resizeImages(destFile.getAbsolutePath(), CommonConstants.PHOTO_QUALITY_95, getActivity(), CameraUtil.PURCHASE_APP_IMG_WIDTH, CameraUtil.PURCHASE_APP_IMG_HEIGHT);
-//                    curPhotoPath = CameraUtil.reduceFileSize(destFile.getAbsolutePath(), CommonConstants.PHOTO_QUALITY_95);
+                    try {
+                        resizeImages(currentFile.getAbsolutePath(), PHOTO_QUALITY_80, getActivity());
+                        rotateImage = BitmapFactory.decodeFile(currentFile.getAbsolutePath());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        endImageLoadProgressInfo();
+                    }
                 }
+                endImageLoadProgressInfo();
 
+                //Captured photo.
             } else if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-
                 currentFile = new File(mCurrentPhotoPath);
-
-                /*try{
-                    Bitmap myBitmap = BitmapFactory.decodeFile(currentFile.getAbsolutePath());
-                    rotateImage = modifyOrientation(myBitmap, mCurrentPhotoPath);
-                }catch (IOException e){
+                try {
+                    if (currentFile.exists()) {
+                        resizeImages(currentFile.getAbsolutePath(), PHOTO_QUALITY_80, getActivity());
+                        rotateImage = BitmapFactory.decodeFile(currentFile.getAbsolutePath());
+                    }
+                } catch (Exception e) {
                     e.printStackTrace();
-                }*/
-
-                if (currentFile.exists()) {
-//                    curPhotoPath = CameraUtil.reduceFileSize(mCurrentPhotoPath, CommonConstants.PHOTO_QUALITY_95);
-                    curPhotoPath = CameraUtil.resizeImages(mCurrentPhotoPath, CommonConstants.PHOTO_QUALITY_95, getActivity(), CameraUtil.PURCHASE_APP_IMG_WIDTH, CameraUtil.PURCHASE_APP_IMG_HEIGHT);
-                    rotateImage = BitmapFactory.decodeFile(currentFile.getAbsolutePath());
+                } finally {
+                    endImageLoadProgressInfo();
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        } finally {
+            endImageLoadProgressInfo();
         }
-        Log.e("current path", curPhotoPath);
+
         if (currentFile != null) {
+
             File renameFile = CameraUtil.renameFileName(getActivity(), currentFile, rootFolderName);
 
             if (renameFile != null) {
+
                 Bitmap bitmap = BitmapFactory.decodeFile(renameFile.getAbsolutePath());
 
                 ApplicationInfoPhotoBean photoBean = new ApplicationInfoPhotoBean();
@@ -2361,82 +1954,93 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
 
                 if (photoStatus.equals(NRC_FRONT_PHOTO)) {
                     nrcFrontBitmap = bitmap;
-                    nrcFront.setImageBitmap(rotateImage);
+                    Glide.with(this).load(rotateImage).into(nrcFront);
                     nrcFront.setVisibility(View.VISIBLE);
                     photoBean.setFileType(PHOTO_NRC_FRONT);
                     addAndReplacePhotoList(photoBean);
                     addAndReplaceTempPhotoList(new DATempPhotoBean(PHOTO_NRC_FRONT, renameFile.getAbsolutePath()));
+                    setUpNrcFrontImageDetailView(rotateImage);
 
                 } else if (photoStatus.equals(NRC_BACK_PHOTO)) {
                     nrcBackBitmap = bitmap;
-                    nrcBack.setImageBitmap(rotateImage);
+                    Glide.with(this).load(rotateImage).into(nrcBack);
                     nrcBack.setVisibility(View.VISIBLE);
                     photoBean.setFileType(PHOTO_NRC_BACK);
                     addAndReplacePhotoList(photoBean);
                     addAndReplaceTempPhotoList(new DATempPhotoBean(PHOTO_NRC_BACK, renameFile.getAbsolutePath()));
+                    setUpNrcBackImageDetailView(rotateImage);
 
                 } else if (photoStatus.equals(INCOME_PROOF_PHOTO)) {
                     incomeBitmap = bitmap;
-                    incomeProof.setImageBitmap(rotateImage);
+                    Glide.with(this).load(rotateImage).into(incomeProof);
                     incomeProof.setVisibility(View.VISIBLE);
                     photoBean.setFileType(PHOTO_INCOME_PROOF);
                     addAndReplacePhotoList(photoBean);
                     addAndReplaceTempPhotoList(new DATempPhotoBean(PHOTO_INCOME_PROOF, renameFile.getAbsolutePath()));
+                    setUpIncomeProofImageDetailView(rotateImage);
 
                 } else if (photoStatus.equals(RESIDENT_PROOF_PHOTO)) {
                     residentBitmap = bitmap;
-                    residentProof.setImageBitmap(rotateImage);
+                    Glide.with(this).load(rotateImage).into(residentProof);
                     residentProof.setVisibility(View.VISIBLE);
                     photoBean.setFileType(PHOTO_RESIDENT_PROOF);
                     addAndReplacePhotoList(photoBean);
                     addAndReplaceTempPhotoList(new DATempPhotoBean(PHOTO_RESIDENT_PROOF, renameFile.getAbsolutePath()));
+                    setUpResidentProofImageDetailView(rotateImage);
 
                 } else if (photoStatus.equals(NRC_GUARANTOR_FRONT)) {
                     guaNrcFrontBitmap = bitmap;
-                    guarantorNrcFront.setImageBitmap(rotateImage);
+                    Glide.with(this).load(rotateImage).into(guarantorNrcFront);
                     guarantorNrcFront.setVisibility(View.VISIBLE);
                     photoBean.setFileType(PHOTO_NRC_GUARANTOR_FRONT);
                     addAndReplacePhotoList(photoBean);
                     addAndReplaceTempPhotoList(new DATempPhotoBean(PHOTO_NRC_GUARANTOR_FRONT, renameFile.getAbsolutePath()));
+                    setUpGuarantorNrcFrontImageDetailView(rotateImage);
 
                 } else if (photoStatus.equals(NRC_GUARANTOR_BACK)) {
                     guaNrcBackBitmap = bitmap;
-                    guarantorNrcBack.setImageBitmap(rotateImage);
+                    Glide.with(this).load(rotateImage).into(guarantorNrcBack);
                     guarantorNrcBack.setVisibility(View.VISIBLE);
                     photoBean.setFileType(PHOTO_NRC_GUARANTOR_BACK);
                     addAndReplacePhotoList(photoBean);
                     addAndReplaceTempPhotoList(new DATempPhotoBean(PHOTO_NRC_GUARANTOR_BACK, renameFile.getAbsolutePath()));
+                    setUpGuarantorNrcBackImageDetailView(rotateImage);
 
                 } else if (photoStatus.equals(CRIMINAL_CLEARANCE)) {
                     criminalClearBitmap = bitmap;
-                    criminalClearance.setImageBitmap(rotateImage);
+                    Glide.with(this).load(rotateImage).into(criminalClearance);
                     criminalClearance.setVisibility(View.VISIBLE);
                     photoBean.setFileType(PHOTO_CRIMINAL_CLEARANCE);
                     addAndReplacePhotoList(photoBean);
                     addAndReplaceTempPhotoList(new DATempPhotoBean(PHOTO_CRIMINAL_CLEARANCE, renameFile.getAbsolutePath()));
+                    setUpCriminalClearanceImageDetailView(rotateImage);
 
                 } else if (photoStatus.equals(APPLICANT_PHOTO)) {
                     applicantBitmap = bitmap;
-                    applicantPhoto.setImageBitmap(rotateImage);
+                    Glide.with(this).load(rotateImage).into(applicantPhoto);
                     applicantPhoto.setVisibility(View.VISIBLE);
                     photoBean.setFileType(PHOTO_APPLICANT);
                     addAndReplacePhotoList(photoBean);
                     addAndReplaceTempPhotoList(new DATempPhotoBean(PHOTO_APPLICANT, renameFile.getAbsolutePath()));
+                    setUpApplicantPhotoImageDetailView(rotateImage);
 
                 } else if (photoStatus.equals(APPLICANT_SIGNATURE)) {
                     signBitmap = bitmap;
-                    signaturePhoto.setImageBitmap(rotateImage);
+                    Glide.with(this).load(rotateImage).into(signaturePhoto);
                     signaturePhoto.setVisibility(View.VISIBLE);
                     photoBean.setFileType(PHOTO_APPLICANT_SIGNATURE);
                     addAndReplacePhotoList(photoBean);
                     addAndReplaceTempPhotoList(new DATempPhotoBean(PHOTO_APPLICANT_SIGNATURE, renameFile.getAbsolutePath()));
+                    setUpSignaturePhotoImageDetailView(rotateImage);
+
                 } else if (photoStatus.equals(GUARANTOR_SIGNATURE)) {
                     guarantorSignBitmap = bitmap;
-                    guarantorSignPhoto.setImageBitmap(rotateImage);
+                    Glide.with(this).load(rotateImage).into(guarantorSignPhoto);
                     guarantorSignPhoto.setVisibility(View.VISIBLE);
                     photoBean.setFileType(PHOTO_GUARANTOR_SIGNATURE);
                     addAndReplacePhotoList(photoBean);
                     addAndReplaceTempPhotoList(new DATempPhotoBean(PHOTO_GUARANTOR_SIGNATURE, renameFile.getAbsolutePath()));
+                    setUpGuarantorSignPhotoDetailView(rotateImage);
                 }
             }
         }
@@ -2487,7 +2091,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         File photoCaptured = createFileName();
 
         try {
-
             if (Build.VERSION.SDK_INT >= 24) {
                 temUri = FileProvider.getUriForFile(getActivity(),
                         getActivity().getPackageName()
@@ -2506,7 +2109,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
             }
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivityForResult(intent, REQUEST_TAKE_PHOTO);
-
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "Image cannot be created.", Toast.LENGTH_SHORT).show();
@@ -2603,7 +2205,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                     new ContextThemeWrapper(getActivity(), R.style.RadioButton), null, 0);
             radioButton.setText(term[i]);
             radioButton.setId(i);
-            Log.e("radio Button",radioButton.getText().toString());
             radioLoanTerm.addView(radioButton);
             radioLoanTerm.setOrientation(RadioGroup.HORIZONTAL);
         }
@@ -2622,21 +2223,15 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         loanCalculationReqBean.setMotorCycleLoanFlag(false);
 
         Service loanCalculateService = APIClient.getUserService();
-        //Call<BaseResponse<LoanCalculationResBean>> req = loanCalculateService.getLoanCalculationResult(PreferencesManager.getAccessToken(getActivity()), loanCalculationReqBean);
         Call<BaseResponse<LoanCalculationResBean>> req = loanCalculateService.getLoanCalculationResult(loanCalculationReqBean);
         showLoading();
         req.enqueue(new Callback<BaseResponse<LoanCalculationResBean>>() {
             @Override
             public void onResponse(Call<BaseResponse<LoanCalculationResBean>> call, Response<BaseResponse<LoanCalculationResBean>> response) {
-
                 if (response.isSuccessful()) {
-
                     BaseResponse baseResponse = response.body();
-
                     if (baseResponse != null) {
-
                         if (baseResponse.getStatus().equals(SUCCESS)) {
-
                             LoanCalculationResBean loanCalculationResBean =
                                     (LoanCalculationResBean) baseResponse.getData();
                             try {
@@ -2654,7 +2249,7 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                                 previewTotalRepayment = df.format(loanCalculationResBean.getTotalRepayment());
                                 previewFirstRepayment = df.format(loanCalculationResBean.getFirstPayment());
                                 previewLastRepayment = df.format(loanCalculationResBean.getLastPayment());
-                                previewMothlyRepayment = df.format(loanCalculationResBean.getMonthlyPayment());
+                                previewMonthlyRepayment = df.format(loanCalculationResBean.getMonthlyPayment());
 
                                 hideKeyboard(getActivity());
                                 closeLoading();
@@ -2663,10 +2258,8 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                                 e.printStackTrace();
                                 closeLoading();
                             }
-
                         } else if (baseResponse.getStatus().equals(FAILED)) {
                             closeLoading();
-
                         } else {
                             closeLoading();
                         }
@@ -2683,18 +2276,12 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 closeLoading();
             }
         });
+
     }
 
     public void changeLabel(String language) {
-        /*confirmRegister.setText(CommonUtils.getLocaleString(new Locale(language), R.string.terms_accept, getContext()));*/
-        loanDataTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanConfirm_title, getContext()));
-        /*guarantorTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_guarantor_title, getContext()));*/
 
-        /*labelLoanType.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanconfirm_loanType, getActivity()));
-        labelProductCat.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanconfirm_category, getActivity()));
-        labelProductDes.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanconfirm_description, getActivity()));*/
-
-        /*errProductDes.setText(CommonUtils.getLocaleString(new Locale(language), errProductDesLocale, getActivity()));*/
+        //loanDataTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanConfirm_title, getContext()));
 
         labelFinanceAmount.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanconfirm_financeAmount, getActivity()));
         errFinanceAmount.setText(CommonUtils.getLocaleString(new Locale(language), errFinanceAmountLocale, getActivity()));
@@ -2707,7 +2294,7 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         labelTotalRepayment.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanconfirm_totalRepayAmount, getActivity()));
         labelFirstRepayAmount.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanconfirm_firstRepayAmount, getActivity()));
         labelMonthlyRepayAmount.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanconfirm_monthlyRepayAmount, getActivity()));
-        labelLastpayment.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanconfirm_lastpayment, getActivity()));
+        labelLastPayment.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanconfirm_lastpayment, getActivity()));
 
         labelNrcFront.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanconfirm_nrcFront, getActivity()));
         errNrcFront.setText(CommonUtils.getLocaleString(new Locale(language), errNrcFrontLocale, getActivity()));
@@ -2746,27 +2333,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
 
         PreferencesManager.setCurrentLanguage(getContext(), language);
     }
-
-    /*void setUpTermAndConditionListener() {
-        textTermAndCond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setCancelable(false);
-                dialog.setContentView(R.layout.da_terms_and_conditions_layout);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                FloatingActionButton fab = dialog.findViewById(R.id.fab_close);
-                fab.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-            }
-        });
-    }*/
 
     void doDaRegistration() {
 
@@ -2831,11 +2397,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         registerBean.setEmergencyContactInfoDto(emergencyContactDataBean);
         registerBean.setGuarantorInfoDto(guarantorDataBean);
 
-        Log.e("1", String.valueOf(applicationRegisterSaveReqBean.getDaApplicationInfoId()));
-        Log.e("2", String.valueOf(applicationRegisterSaveReqBean.getApplicantCompanyInfoDto().getDaApplicantCompanyInfoId()));
-        Log.e("3", String.valueOf(applicationRegisterSaveReqBean.getEmergencyContactInfoDto().getDaEmergencyContactInfoId()));
-        Log.e("4", String.valueOf(applicationRegisterSaveReqBean.getGuarantorInfoDto().getDaGuarantorInfoId()));
-
         List<ApplicationInfoAttachmentFormBean> attachList = new ArrayList<>();
         List<MultipartBody.Part> parts = new ArrayList<>();
         for (ApplicationInfoPhotoBean photoBean : photoList) {
@@ -2846,18 +2407,15 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
             attachList.add(attachmentFormBean);
             parts.add(photoBean.getFile());
         }
-        Log.e("parts size", parts.size() + "");
-        registerBean.setApplicationInfoAttachmentDtoList(attachList);
 
+        registerBean.setApplicationInfoAttachmentDtoList(attachList);
         final String accessToken = PreferencesManager.getAccessToken(getActivity());
+
         //do upload in background.
         new DigitalApplicationRegistrationAsyncTask(registerBean, accessToken, getActivity(), textBusinessErrMsg, parts, (AppCompatActivity) getActivity()).execute();
     }
 
     void setUpLoanConfirmFormData() {
-
-        /*productDescription = productDes.getText().toString();*/
-
         if (!processingFee.getText().toString().equals(BLANK)) {
             txtProcessingFee = Double
                     .parseDouble(processingFee.getText().toString()
@@ -2865,7 +2423,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         } else {
             txtProcessingFee = 0.0;
         }
-
         if (!financeAmount.getText().toString().equals(BLANK)) {
             txtFinanceAmount = Double.
                     parseDouble(financeAmount.getText().toString()
@@ -2916,7 +2473,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     }
 
     void addAndReplaceTempPhotoList(DATempPhotoBean tempPhotoBean) {
-
         if (tempPhotoBean != null) {
             if (tempPhotoBeanList.size() == 0) {
                 tempPhotoBeanList.add(tempPhotoBean);
@@ -2943,10 +2499,9 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     private void setupErrMesgData() {
 
         if (PreferencesManager.isDaftSavedErrExisted(getActivity())) {
+
             ApplicationFormErrMesgBean savedInformation
                     = PreferencesManager.getErrMesgInfo(getContext());
-
-            /*errProductDesLocale = savedInformation.getConfProductDesLocale();*/
             errFinanceAmountLocale = savedInformation.getConfFinanceAmountLocale();
             errLoanTermLocale = savedInformation.getConfLoanTermLocale();
             errNrcFrontLocale = savedInformation.getConfNrcFrontLocale();
@@ -2960,11 +2515,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
             errApplicantSignLocale = savedInformation.getConfApplicantSignLocale();
             errGuarantorSignLocale = savedInformation.getConfGuarantorSignLocale();
             errBusinessErrLocale = savedInformation.getConfBusinessErrLocale();
-
-            /*if (errProductDesLocale != R.string.da_mesg_blank) {
-                errProductDes.setText(CommonUtils.getLocaleString(new Locale(curLang), errProductDesLocale, getContext()));
-                errProductDes.setVisibility(View.VISIBLE);
-            }*/
 
             if (errFinanceAmountLocale != R.string.da_mesg_blank) {
                 errFinanceAmount.setText(CommonUtils.getLocaleString(new Locale(curLang), errFinanceAmountLocale, getContext()));
@@ -3041,14 +2591,7 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                     = PreferencesManager.getSelectedPhotos(getActivity());
 
             for (DATempPhotoBean daTempPhotoBean : daTempPhotoBeans) {
-
                 int photoType = daTempPhotoBean.getPhotoType();
-                File mFile = new File(daTempPhotoBean.getAbsFilePath());
-                Log.e("absolute file path ", daTempPhotoBean.getAbsFilePath());
-                Log.e("file path", mFile.getName());
-
-                //byte[] photoByte = CommonUtils.encodedFileToByteArray2(mFile);
-                //Bitmap bitmap = ByteToBitmap(photoByte);
                 Bitmap bitmap = BitmapFactory.decodeFile(daTempPhotoBean.getAbsFilePath());
 
                 switch (photoType) {
@@ -3108,7 +2651,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
 
     void setUpFormData() {
         // set up form data
-
         setUpSelectedPhotos();
     }
 
@@ -3119,16 +2661,10 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     @Override
     public void onStart() {
         super.onStart();
-
         financeAmountCheck = financeAmount.getText().toString();
         if (!isEmptyOrNull(financeAmountCheck)) {
             financeAmount.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
         }
-
-        /*productDescriptionCheck = productDes.getText().toString();
-        if(!isEmptyOrNull(productDescriptionCheck)){
-            productDes.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
-        }*/
     }
 
     DecimalFormat df = new DecimalFormat("#,###,###");
@@ -3227,7 +2763,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     }
 
     String getContactTime(String timeFrom, String timeTo) {
-
         if (isEmptyOrNull(timeFrom) && isEmptyOrNull(timeTo)) {
             return "-";
         } else {
@@ -3257,21 +2792,21 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
     }
 
     String getBasicIncome(Double basicIncome) {
-        if(basicIncome == 0){
+        if (basicIncome == 0) {
             return "- MMK";
         }
         return df.format(basicIncome) + " MMK";
     }
 
     String getOtherIncome(Double otherIncome) {
-        if(otherIncome == 0){
+        if (otherIncome == 0) {
             return "- MMK";
         }
         return df.format(otherIncome) + " MMK";
     }
 
     String getTotalIncome(Double totalIncome) {
-        if(totalIncome == 0){
+        if (totalIncome == 0) {
             return "- MMK";
         }
         return df.format(totalIncome) + " MMK";
@@ -3329,7 +2864,7 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
 
     String getFinanceAmount(Double financeAmount) {
         if (financeAmount == 0) {
-           return "- MMK";
+            return "- MMK";
         }
         return df.format(financeAmount) + MYANMAR_CURRENCY;
     }
@@ -3356,15 +2891,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         return userInformationFormBean.getMemberNo();
     }
 
-   /* String getProductCategory(int categoryId){
-        if(categoryId > 0){
-            categoryId = categoryId - 1;
-            final String[] productCategory = getResources().getStringArray(R.array.confirm_product_category);
-            return productCategory[categoryId];
-        }
-        return "-";
-    }*/
-
     public static String getStringValue(String text) {
         if (text == null || text == "blank") {
             return "-";
@@ -3374,13 +2900,6 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
             return text;
         }
     }
-
-    /*private void getProductType(List<ProductTypeListBean> productTypeList, int listSize){
-        for(int list = 0; list < listSize; list++){
-            productCategory[list] = productTypeList.get(list).getName();
-            productId[list] = productTypeList.get(list).getProductTypeId();
-        }
-    }*/
 
     void setUpCityList(List<CityTownshipResBean> cityTownshipList) {
         cityList = new ArrayList<>();
@@ -3414,18 +2933,16 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
                 }
             }
         }
-
         for (int id = 0; id < townshipId.size(); id++) {
             if (townshipId.get(id) == townId) {
                 township = townshipList.get(id);
             }
         }
-
         return township;
     }
 
     String getEducationPreview(int educationLevel) {
-        if(educationLevel > 0){
+        if (educationLevel > 0) {
             educationLevel = educationLevel - 1;
             String[] education_level = getResources().getStringArray(R.array.applicant_education);
             return education_level[educationLevel];
@@ -3440,12 +2957,9 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                 ExifInterface.ORIENTATION_UNDEFINED);
-
         Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
-
         return rotateBitmap(bitmap, orientation);
     }
 
@@ -3498,5 +3012,279 @@ public class SmallLoanConfirmFragment extends PagerRootFragment implements Appli
         Matrix matrix = new Matrix();
         matrix.preScale(horizontal ? -1 : 1, vertical ? -1 : 1);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
+    void setUpNrcFrontImageDetailView(final Bitmap bitmap) {
+        nrcFront.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.attachment_image_enlarge_view);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
+                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
+
+                imagePopup.setImageBitmap(bitmap);
+                imageTitle.setText("Nrc Front");
+
+                ImageView imgPreviewClose = dialog.findViewById(R.id.da_img_preview_close);
+                imgPreviewClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
+    void setUpNrcBackImageDetailView(final Bitmap bitmap) {
+        nrcBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.attachment_image_enlarge_view);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
+                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
+                imagePopup.setImageBitmap(bitmap);
+                imageTitle.setText("Nrc Back");
+
+                ImageView imgPreviewClose = dialog.findViewById(R.id.da_img_preview_close);
+                imgPreviewClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
+    void setUpIncomeProofImageDetailView(final Bitmap bitmap) {
+        incomeProof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.attachment_image_enlarge_view);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
+                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
+                imagePopup.setImageBitmap(bitmap);
+                imageTitle.setText("Income Proof");
+
+                ImageView imgPreviewClose = dialog.findViewById(R.id.da_img_preview_close);
+                imgPreviewClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
+    void setUpGuarantorNrcFrontImageDetailView(final Bitmap bitmap) {
+        guarantorNrcFront.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.attachment_image_enlarge_view);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
+                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
+                imagePopup.setImageBitmap(bitmap);
+                imageTitle.setText("Guarantor Nrc Front");
+
+                ImageView imgPreviewClose = dialog.findViewById(R.id.da_img_preview_close);
+                imgPreviewClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
+    void setUpGuarantorNrcBackImageDetailView(final Bitmap bitmap) {
+        guarantorNrcBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.attachment_image_enlarge_view);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
+                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
+                imagePopup.setImageBitmap(bitmap);
+                imageTitle.setText("Guarantor Nrc Back");
+
+                ImageView imgPreviewClose = dialog.findViewById(R.id.da_img_preview_close);
+                imgPreviewClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
+    void setUpCriminalClearanceImageDetailView(final Bitmap bitmap) {
+        criminalClearance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.attachment_image_enlarge_view);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
+                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
+                imagePopup.setImageBitmap(bitmap);
+                imageTitle.setText("Household or Criminal Clearance");
+
+                ImageView imgPreviewClose = dialog.findViewById(R.id.da_img_preview_close);
+                imgPreviewClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
+    void setUpApplicantPhotoImageDetailView(final Bitmap bitmap) {
+        applicantPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.attachment_image_enlarge_view);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
+                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
+                imagePopup.setImageBitmap(bitmap);
+                imageTitle.setText("Applicant Photo");
+
+                ImageView imgPreviewClose = dialog.findViewById(R.id.da_img_preview_close);
+                imgPreviewClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
+    void setUpSignaturePhotoImageDetailView(final Bitmap bitmap) {
+        signaturePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.attachment_image_enlarge_view);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
+                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
+                imagePopup.setImageBitmap(bitmap);
+                imageTitle.setText("Customer Signature");
+
+                ImageView imgPreviewClose = dialog.findViewById(R.id.da_img_preview_close);
+                imgPreviewClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
+    void setUpGuarantorSignPhotoDetailView(final Bitmap bitmap) {
+        guarantorSignPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.attachment_image_enlarge_view);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
+                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
+                imagePopup.setImageBitmap(bitmap);
+                imageTitle.setText("Guarantor Signature");
+
+                ImageView imgPreviewClose = dialog.findViewById(R.id.da_img_preview_close);
+                imgPreviewClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
+    void setUpResidentProofImageDetailView(final Bitmap bitmap) {
+        residentProof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.attachment_image_enlarge_view);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                TextView imageTitle = dialog.findViewById(R.id.lbl_attach_image_title);
+                SendMessageImageView imagePopup = dialog.findViewById(R.id.img_attach_photo);
+                imagePopup.setImageBitmap(bitmap);
+                imageTitle.setText("Residence Proof");
+
+                ImageView imgPreviewClose = dialog.findViewById(R.id.da_img_preview_close);
+                imgPreviewClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
+    void displayImageLoadProgressInfo() {
+        imgLoadPD = new ProgressDialog(getContext());
+        imgLoadPD.setMessage("Processing...");
+        imgLoadPD.setCancelable(false);
+        imgLoadPD.show();
+    }
+
+    void endImageLoadProgressInfo() {
+        if (imgLoadPD != null && imgLoadPD.isShowing()) {
+            imgLoadPD.dismiss();
+        }
     }
 }

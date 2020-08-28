@@ -1,60 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
-    android:padding="@dimen/margin_medium"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/margin_medium">
 
     <TextView
+        android:id="@+id/err_amt_exceed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/include_back_button"
         android:background="@color/white"
-        android:textStyle="bold"
-        android:textColor="@color/red"
-        android:padding="4dp"
-        android:visibility="gone"
-        android:id="@+id/err_amt_exceed"
         android:fontFamily="@font/pyidaungsu_regular"
-        android:text="@string/warning_msg_high_amount"/>
+        android:padding="4dp"
+        android:text="@string/warning_msg_high_amount"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <LinearLayout
+        android:id="@+id/layout_loan_amt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layout_loan_amt"
         android:layout_below="@id/err_amt_exceed"
         android:weightSum="3">
 
         <EditText
+            android:id="@+id/text_loan_amt"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
-            android:layout_weight="2"
-            android:id="@+id/text_loan_amt"
-            android:hint="@string/hint_loan_amount"
-            android:padding="@dimen/margin_medium"
-            android:textSize="@dimen/text_heading_2x"
-            android:maxLength="9"
-            android:inputType="number"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:typeface="sans"
             android:layout_marginRight="@dimen/margin_medium"
+            android:layout_weight="2"
+            android:background="@drawable/edit_text_style"
             android:fontFamily="@font/pyidaungsu_bold"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_loan_amount"
+            android:inputType="number"
+            android:maxLength="9"
+            android:paddingLeft="@dimen/margin_medium_2"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingRight="@dimen/margin_medium"
+            android:paddingBottom="@dimen/margin_medium"
+            android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/quantum_grey"
-            android:background="@drawable/edit_text_style"/>
+            android:textSize="@dimen/text_heading_1x"
+            android:textStyle="bold"
+            android:typeface="sans" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_m_loan"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
-            android:id="@+id/cv_m_loan"
+            android:layout_toEndOf="@id/text_loan_amt"
             android:layout_weight="1"
-            app:cardElevation="@dimen/cv_elevation"
-            app:cardCornerRadius="@dimen/cv_corner_round_radius"
-            app:cardBackgroundColor="@color/grayLight"
             android:elevation="@dimen/cv_elevation"
-            android:layout_toEndOf="@id/text_loan_amt">
+            app:cardBackgroundColor="@color/grayLight"
+            app:cardCornerRadius="@dimen/cv_corner_round_radius"
+            app:cardElevation="@dimen/cv_elevation">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -62,32 +65,33 @@
                 android:gravity="center_vertical|right">
 
                 <TextView
+                    android:id="@+id/lbl_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/lbl_motor_cycle_loan"
-                    android:textSize="@dimen/text_small"
-                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_medium"
                     android:layout_marginTop="@dimen/margin_small"
                     android:layout_marginRight="@dimen/margin_small"
-                    android:layout_marginLeft="@dimen/margin_small"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/pyidaungsu_regular"
                     android:layout_toStartOf="@+id/ch_motor_cycle_loan"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="-4dp"
+                    android:text="@string/lbl_motor_cycle_loan"
                     android:textColor="@color/black"
-                    android:id="@+id/lbl_switch" />
+                    android:textSize="@dimen/text_small" />
 
                 <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/ch_motor_cycle_loan"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_weight="0.5"
-                    android:theme="@style/DialogTheme"
-                    android:textSize="@dimen/text_regular"
+                    android:fontFamily="@font/pyidaungsu_regular"
                     android:gravity="center_vertical"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/pyidaungsu_regular"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/ch_motor_cycle_loan"/>
+                    android:textSize="@dimen/text_regular"
+                    android:theme="@style/DialogTheme" />
 
             </RelativeLayout>
 
@@ -96,57 +100,59 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/err_invalid_loan_term"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:textStyle="bold"
-        android:textColor="@color/red"
-        android:padding="4dp"
-        android:visibility="gone"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:id="@+id/err_invalid_loan_term"
-        android:fontFamily="@font/pyidaungsu_regular"
         android:layout_below="@+id/layout_loan_amt"
-        android:text="@string/warning_msg_high_amount"/>
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@color/white"
+        android:fontFamily="@font/pyidaungsu_regular"
+        android:padding="4dp"
+        android:text="@string/warning_msg_high_amount"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_loan_term"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cv_loan_term"
-        app:cardElevation="@dimen/cv_elevation"
-        app:cardCornerRadius="@dimen/cv_corner_round_radius"
+        android:layout_below="@+id/err_invalid_loan_term"
         android:layout_marginTop="@dimen/margin_medium"
         app:cardBackgroundColor="@color/grayLight"
-        android:layout_below="@+id/err_invalid_loan_term">
+        app:cardCornerRadius="@dimen/cv_corner_round_radius"
+        app:cardElevation="@dimen/cv_elevation">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="40dp"
             android:layout_below="@id/text_loan_amt"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:minHeight="40dp"
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/lbl_loan_term"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:fontFamily="@font/pyidaungsu_regular"
                 android:text="@string/lbl_loan_term"
-                android:textSize="@dimen/text_regular"
                 android:textColor="@color/black"
-                android:id="@+id/lbl_loan_term"
-                android:layout_marginLeft="@dimen/margin_medium"
-                android:fontFamily="@font/pyidaungsu_regular"/>
+                android:textSize="@dimen/text_regular" />
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scrollbars="none"
+                android:layout_marginLeft="@dimen/margin_medium"
                 android:paddingRight="@dimen/margin_small"
-                android:layout_marginLeft="@dimen/margin_medium">
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
                 <RadioGroup
+                    android:id="@+id/rd_btn_group"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/rd_btn_group"/>
+                    android:layout_height="match_parent" />
             </HorizontalScrollView>
 
         </LinearLayout>
@@ -154,24 +160,24 @@
     </androidx.cardview.widget.CardView>
 
     <Button
+        android:id="@+id/btn_calculate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_calculate"
+        android:layout_below="@id/cv_loan_term"
         android:layout_marginTop="8dp"
-        android:text="@string/btn_calculate"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:fontFamily="@font/pyidaungsu_bold"
         android:background="@drawable/button_border"
         android:backgroundTint="@color/calculator_color"
-        android:layout_below="@id/cv_loan_term"/>
+        android:fontFamily="@font/pyidaungsu_bold"
+        android:text="@string/btn_calculate"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <ScrollView
+        android:id="@+id/layout_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_calculate"
         android:layout_marginTop="@dimen/margin_medium"
-        android:id="@+id/layout_result"
         android:visibility="gone">
 
         <RelativeLayout
@@ -179,12 +185,12 @@
             android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/layout_pay_amt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/layout_pay_amt"
-                app:cardElevation="@dimen/cv_elevation"
+                app:cardBackgroundColor="@color/grayLight"
                 app:cardCornerRadius="@dimen/cv_corner_round_radius"
-                app:cardBackgroundColor="@color/grayLight">
+                app:cardElevation="@dimen/cv_elevation">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -192,160 +198,180 @@
                     android:layout_margin="8dp">
 
                     <TextView
+                        android:id="@+id/lbl_processing_fee"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
-                        android:id="@+id/lbl_processing_fee"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/pyidaungsu_regular"
-                        android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"
-                        android:text="@string/lbl_processing_fee"/>
+                        android:layout_alignParentTop="true"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="-4dp"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:text="@string/lbl_processing_fee"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_regular" />
 
                     <EditText
+                        android:id="@+id/text_processing_fee"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
-                        android:enabled="false"
-                        android:id="@+id/text_processing_fee"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:padding="4dp"
-                        android:typeface="monospace"
+                        android:background="@drawable/edit_text_style"
+                        android:enabled="false"
                         android:fontFamily="@font/pyidaungsu_bold"
-                        android:background="@drawable/edit_text_style"/>
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:paddingTop="@dimen/margin_tiny"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
 
                     <TextView
+                        android:id="@+id/lbl_total_repay"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
-                        android:id="@+id/lbl_total_repay"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:layout_below="@+id/lbl_processing_fee"
                         android:layout_alignParentLeft="true"
-                        android:text="@string/lbl_total_repayment_amount"/>
-
-                    <EditText
-                        android:layout_width="100dp"
-                        android:layout_height="32dp"
-                        android:layout_marginTop="8dp"
-                        android:enabled="false"
-                        android:id="@+id/text_total_repay"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center_vertical"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:padding="4dp"
-                        android:typeface="monospace"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:layout_below="@+id/text_processing_fee"
-                        android:background="@drawable/edit_text_style"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:id="@+id/lbl_first_pay"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="-4dp"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:text="@string/lbl_total_repayment_amount"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_regular" />
+
+                    <EditText
+                        android:id="@+id/text_total_repay"
+                        android:layout_width="100dp"
+                        android:layout_height="32dp"
+                        android:layout_below="@+id/text_processing_fee"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_text_style"
+                        android:enabled="false"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:paddingTop="@dimen/margin_tiny"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
+
+                    <TextView
+                        android:id="@+id/lbl_first_pay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
                         android:layout_below="@+id/lbl_total_repay"
                         android:layout_alignParentLeft="true"
-                        android:text="@string/lbl_first_repayment_amount"/>
-
-                    <EditText
-                        android:layout_width="100dp"
-                        android:layout_height="32dp"
-                        android:layout_marginTop="8dp"
-                        android:enabled="false"
-                        android:id="@+id/text_first_pay"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/text_total_repay"
-                        android:gravity="center_vertical"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:padding="4dp"
-                        android:typeface="monospace"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:background="@drawable/edit_text_style"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:id="@+id/lbl_monthly_pay"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="-4dp"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:text="@string/lbl_first_repayment_amount"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_regular" />
+
+                    <EditText
+                        android:id="@+id/text_first_pay"
+                        android:layout_width="100dp"
+                        android:layout_height="32dp"
+                        android:layout_below="@+id/text_total_repay"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_text_style"
+                        android:enabled="false"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:paddingTop="@dimen/margin_tiny"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
+
+                    <TextView
+                        android:id="@+id/lbl_monthly_pay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
                         android:layout_below="@+id/lbl_first_pay"
                         android:layout_alignParentLeft="true"
-                        android:text="@string/lbl_monthly_repayment_amount"/>
-
-                    <EditText
-                        android:layout_width="100dp"
-                        android:layout_height="32dp"
-                        android:layout_marginTop="8dp"
-                        android:id="@+id/text_monthly_pay"
-                        android:enabled="false"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/text_first_pay"
-                        android:gravity="left|center_vertical"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:padding="4dp"
-                        android:typeface="monospace"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:background="@drawable/edit_text_style"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:text="@string/lbl_last_payment"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:id="@+id/lbl_last_pay"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/pyidaungsu_regular"
-                        android:layout_below="@+id/lbl_monthly_pay" />
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="-4dp"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:text="@string/lbl_monthly_repayment_amount"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_regular" />
 
                     <EditText
+                        android:id="@+id/text_monthly_pay"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
-                        android:layout_marginTop="8dp"
-                        android:id="@+id/text_total_pay"
-                        android:enabled="false"
+                        android:layout_below="@+id/text_first_pay"
                         android:layout_alignParentRight="true"
-                        android:layout_below="@+id/lbl_monthly_pay"
-                        android:gravity="left|center_vertical"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:padding="4dp"
-                        android:typeface="monospace"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_text_style"
+                        android:enabled="false"
                         android:fontFamily="@font/pyidaungsu_bold"
-                        android:background="@drawable/edit_text_style"/>
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:paddingTop="@dimen/margin_tiny"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
+
+                    <TextView
+                        android:id="@+id/lbl_last_pay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_below="@+id/lbl_monthly_pay"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="-4dp"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:text="@string/lbl_last_payment"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_regular" />
+
+                    <EditText
+                        android:id="@+id/text_total_pay"
+                        android:layout_width="100dp"
+                        android:layout_height="32dp"
+                        android:layout_below="@+id/lbl_monthly_pay"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_text_style"
+                        android:enabled="false"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:paddingTop="@dimen/margin_tiny"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
 
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/layout_saving_amt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:id="@+id/layout_saving_amt"
-                app:cardBackgroundColor="@color/grayLight"
                 android:layout_below="@+id/layout_pay_amt"
-                app:cardElevation="@dimen/cv_elevation"
-                app:cardCornerRadius="@dimen/cv_corner_round_radius">
+                android:layout_marginTop="@dimen/margin_medium"
+                app:cardBackgroundColor="@color/grayLight"
+                app:cardCornerRadius="@dimen/cv_corner_round_radius"
+                app:cardElevation="@dimen/cv_elevation">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -353,60 +379,68 @@
                     android:layout_margin="8dp">
 
                     <TextView
+                        android:id="@+id/lbl_com_saving"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
-                        android:id="@+id/lbl_com_saving"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/pyidaungsu_regular"
-                        android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"
-                        android:text="@string/lbl_compulsory_saving"/>
+                        android:layout_alignParentTop="true"
+                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="-4dp"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:text="@string/lbl_compulsory_saving"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_regular" />
 
                     <EditText
+                        android:id="@+id/text_saving"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
-                        android:id="@+id/text_saving"
-                        android:layout_alignParentRight="true"
-                        android:gravity="left|center_vertical"
-                        android:enabled="false"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:padding="4dp"
-                        android:typeface="monospace"
                         android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/edit_text_style"
+                        android:enabled="false"
                         android:fontFamily="@font/pyidaungsu_bold"
-                        android:background="@drawable/edit_text_style"/>
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:paddingTop="@dimen/margin_tiny"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
 
                     <TextView
+                        android:id="@+id/lbl_total_saving"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/lbl_total_saving"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:layout_marginTop="8dp"
                         android:layout_below="@id/lbl_com_saving"
                         android:layout_alignParentLeft="true"
+                        android:layout_marginTop="8dp"
                         android:fontFamily="@font/pyidaungsu_regular"
-                        android:text="@string/lbl_total_compulsory_saving"/>
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="-6dp"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:text="@string/lbl_total_compulsory_saving"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_regular" />
 
                     <EditText
+                        android:id="@+id/text_total_saving"
                         android:layout_width="100dp"
                         android:layout_height="32dp"
-                        android:id="@+id/text_total_saving"
-                        android:layout_alignParentRight="true"
-                        android:gravity="left|center_vertical"
-                        android:enabled="false"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:padding="4dp"
-                        android:typeface="monospace"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/pyidaungsu_bold"
                         android:layout_below="@+id/text_saving"
-                        android:background="@drawable/edit_text_style"/>
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_text_style"
+                        android:enabled="false"
+                        android:fontFamily="@font/pyidaungsu_bold"
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="@dimen/margin_medium"
+                        android:paddingTop="@dimen/margin_tiny"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
 
                 </RelativeLayout>
 
@@ -417,16 +451,17 @@
     </ScrollView>
 
     <RelativeLayout
+        android:id="@+id/layout_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:id="@+id/layout_loading">
+        android:visibility="gone">
+
         <ImageView
+            android:id="@+id/img_loading"
             android:layout_width="@dimen/loading_animation_side"
             android:layout_height="@dimen/loading_animation_side"
             android:layout_centerInParent="true"
-            android:id="@+id/img_loading"
-            android:src="@drawable/loading"/>
+            android:src="@drawable/loading" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -5,7 +5,7 @@
     android:layout_marginRight="@dimen/margin_small"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/AppTheme"
-    android:paddingTop="8dp"
+    android:paddingTop="@dimen/margin_medium"
     android:id="@+id/layout_receive">
 
     <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
@@ -29,9 +29,9 @@
         android:weightSum="1">
 
         <RelativeLayout
-            android:layout_width="256dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.8"
+            android:layout_weight="0.9"
             android:id="@+id/text_message_body"
             android:textSize="@dimen/text_regular"
             android:padding="@dimen/margin_medium_x"
@@ -50,6 +50,7 @@
                 android:id="@+id/received_body_01"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_regular"
+                android:layout_marginLeft="@dimen/margin_small"
                 android:text="Dear Customer, We are  { agent-name }. We have { brand } { category } as your wish."/>
 
             <TextView
@@ -60,6 +61,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_regular"
                 android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_small"
                 android:layout_below="@id/received_body_01"/>
 
             <TextView
@@ -69,6 +71,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_regular"
                 android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_small"
                 android:layout_below="@id/received_body_02"/>
 
             <TextView
@@ -78,6 +81,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_regular"
                 android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_small"
                 android:layout_below="@id/received_body_03"
                 android:text="If you interest our information, please contact us :  {phone-no}."/>
 
@@ -88,6 +92,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_regular"
                 android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_small"
                 android:layout_below="@id/received_body_04"
                 android:text="Link : "/>
 
@@ -110,6 +115,7 @@
             android:layout_height="48dp"
             android:layout_marginLeft="@dimen/margin_small"
             android:id="@+id/ic_call"
+            android:layout_weight="0.1"
             android:layout_gravity="bottom"
             android:src="@drawable/ic_buy_call"
             android:layout_below="@+id/img_admin"

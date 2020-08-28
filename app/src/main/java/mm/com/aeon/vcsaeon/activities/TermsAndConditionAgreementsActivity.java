@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
@@ -18,7 +17,6 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.Locale;
-
 import androidx.core.content.ContextCompat;
 
 import mm.com.aeon.vcsaeon.R;
@@ -29,7 +27,6 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_EN;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_MM;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.PARAM_TERM_ACCEPTED;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.TERM_ACCEPTED;
-import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.replacePhoneNo;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.setAeonPhoneNo;
 
 public class TermsAndConditionAgreementsActivity extends BaseActivity {
@@ -83,12 +80,11 @@ public class TermsAndConditionAgreementsActivity extends BaseActivity {
         textText10 = findViewById(R.id.faq_terms_cond_text10);
         textText11 = findViewById(R.id.faq_terms_cond_text11);
 
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),LANG_MM);
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), LANG_MM);
         changeLabel(LANG_MM);
 
         checkBoxAccept.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                 if (isChecked) {
                     btnAgree.setBackground(getDrawable(R.drawable.button_border));
                     btnAgree.setEnabled(true);
@@ -103,40 +99,32 @@ public class TermsAndConditionAgreementsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(TermsAndConditionAgreementsActivity.this, PhoneRequestActivity.class));
-                //finish();
             }
         });
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         preferences = PreferencesManager.getApplicationPreference(getApplicationContext());
         String termsAccepted = PreferencesManager.getStringEntryFromPreferences(preferences, PARAM_TERM_ACCEPTED);
-
-        if(termsAccepted.equals(TERM_ACCEPTED)) {
+        if (termsAccepted.equals(TERM_ACCEPTED)) {
             finish();
         }
-
     }
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         finish();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //return super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        final String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
         menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
         menu.getItem(0).setTitle(LANG_MM);
-
         menu.getItem(1).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
         menu.getItem(1).setTitle(LANG_EN);
-
         return true;
     }
 
@@ -150,7 +138,6 @@ public class TermsAndConditionAgreementsActivity extends BaseActivity {
             changeLabel(LANG_EN);
             addValueToPreference(LANG_EN);
         }
-
         return super.onOptionsItemSelected(item);
     }
 

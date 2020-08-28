@@ -8,6 +8,8 @@ import mm.com.aeon.vcsaeon.beans.ApplicationInfoReqBean;
 import mm.com.aeon.vcsaeon.beans.ApplicationLastInfoReqBean;
 import mm.com.aeon.vcsaeon.beans.ApplicationRegisterReqBean;
 import mm.com.aeon.vcsaeon.beans.ApplicationRegisterSaveReqBean;
+import mm.com.aeon.vcsaeon.beans.AskProductMessageCountReqBean;
+import mm.com.aeon.vcsaeon.beans.AskProductMessageCountResBean;
 import mm.com.aeon.vcsaeon.beans.AutoReplyMessageBean;
 import mm.com.aeon.vcsaeon.beans.CheckAccountLockReqBean;
 import mm.com.aeon.vcsaeon.beans.CheckAccountLockResBean;
@@ -31,6 +33,8 @@ import mm.com.aeon.vcsaeon.beans.FreeMessageUserReqBean;
 import mm.com.aeon.vcsaeon.beans.FreeMessageUserResBean;
 import mm.com.aeon.vcsaeon.beans.HotlineInfoResBean;
 import mm.com.aeon.vcsaeon.beans.HowToUseVideoResBean;
+import mm.com.aeon.vcsaeon.beans.L2MessageUnReadCountReqBean;
+import mm.com.aeon.vcsaeon.beans.L2MessageUnReadCountResBean;
 import mm.com.aeon.vcsaeon.beans.LoanCalculationReqBean;
 import mm.com.aeon.vcsaeon.beans.LoanCalculationResBean;
 import mm.com.aeon.vcsaeon.beans.LoanTypeBean;
@@ -88,6 +92,7 @@ import retrofit2.http.Query;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_APPLICATION_ENQUIRY;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_APPLICATION_INFO_DETAIL;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_APPLICATION_REGISTER;
+import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_ASK_PRODUCT_MSG_COUNT;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_ATTACHMENT_EDIT;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_AUTO_MESSAGE_REPLY;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_CHECK_PASSWORD;
@@ -118,6 +123,7 @@ import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_INFORMATION
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_INFORMATION_FAQ_INFO_LIST;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_INFORMATION_HOTLINE;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_INFORMATION_TOWNSHIP_CODE_LIST;
+import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_L2_UNREAD_MSG_COUNT;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_LOAD_SAVE_DATA;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_LOAN_CALCULATOR;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.API_LOAN_TYPES;
@@ -147,7 +153,6 @@ import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.PARAM_USERNAME;
 public interface Service {
 
     @POST(API_CUSTOMER_INFO_UPDATE_PROFILE_)
-        // MTH
     Call<BaseResponse<UpdateProfilePhotoResBean>> getUpdateProfilePhotoInfo(@Query(PARAM_ACCESS_TOKEN) String accessToken,
                                                                             @Body UpdateProfilePhotoReqBean updateProfilePhotoReqBean);
 
@@ -239,11 +244,9 @@ public interface Service {
 
     @GET(API_GET_GOOD_NEWS_INFO)
     Call<BaseResponse<List<EventsNewsInfoResBean>>> getNewsInfo();
-    //Call<BaseResponse<List<EventsNewsInfoResBean>>> getNewsInfo(@Query(PARAM_ACCESS_TOKEN) String accessToken);
 
     @GET(API_GET_AEON_ANNOUNCEMENT)
     Call<BaseResponse<List<PromotionsInfoResBean>>> getPromotionsInfo();
-    //Call<BaseResponse<List<PromotionsInfoResBean>>> getPromotionsInfo(@Query(PARAM_ACCESS_TOKEN) String accessToken);
 
     @POST(API_RESET_PWD_CHECK_ACCOUNT_LOCKED)
     Call<BaseResponse<CheckAccountLockResBean>> checkAccountLock(@Body CheckAccountLockReqBean checkAccountLockReqBean);
@@ -259,8 +262,6 @@ public interface Service {
 
     @POST(API_LOAN_CALCULATOR)
     Call<BaseResponse<LoanCalculationResBean>> getLoanCalculationResult(@Body LoanCalculationReqBean loanCalculationReqBean);
-    /*Call<BaseResponse<LoanCalculationResBean>> getLoanCalculationResult(@Query(PARAM_ACCESS_TOKEN) String accessToken,
-                                                                        @Body LoanCalculationReqBean loanCalculationReqBean);*/
 
     @POST(API_CHECK_PASSWORD)
     Call<BaseResponse> checkPassword(@Query(PARAM_ACCESS_TOKEN) String accessToken,
@@ -284,10 +285,6 @@ public interface Service {
 
     @GET(API_LOAN_TYPES)
     Call<BaseResponse<List<LoanTypeBean>>> getLoanTypes();
-
-    /*@POST(API_LOAD_SAVE_DATA)
-    Call<BaseResponse<ApplicationLastInfoResBean>> getLastRegisterInfo(@Query(PARAM_ACCESS_TOKEN) String accessToken,
-                                                                       @Body ApplicationLastInfoReqBean applicationLastInfoReqBean);*/
 
     @POST(API_LOAD_SAVE_DATA)
     Call<BaseResponse<ApplicationRegisterSaveReqBean>> getLastRegisterInfo(@Query(PARAM_ACCESS_TOKEN) String accessToken,
@@ -323,9 +320,6 @@ public interface Service {
     Call<BaseResponse> doAttachmentEdit(@Query(PARAM_ACCESS_TOKEN) String accessToken,
                                         @Part("applicationInfoDto") PurchaseAttachEditReqBean purchaseAttachEditReqBean, @Part List<MultipartBody.Part> imgList);
 
-    /*Call<BaseResponse> doAttachmentEdit(@Query(PARAM_ACCESS_TOKEN) String accessToken,
-                                        @Body PurchaseAttachEditReqBean purchaseAttachEditReqBean);*/
-
     @GET(API_PRODUCT_TYPE_LIST)
     Call<BaseResponse<List<ProductTypeListBean>>> getProductTypeList();
 
@@ -349,4 +343,10 @@ public interface Service {
 
     @POST(API_STATUS_READ_FLAG)
     Call<BaseResponse> setStatusReadFlag(@Body StatusReadFlagReq statusReadFlagReq);
+
+    @POST(API_L2_UNREAD_MSG_COUNT)
+    Call<BaseResponse<L2MessageUnReadCountResBean>> getL2UnreadMessageCount(@Body L2MessageUnReadCountReqBean reqBean);
+
+    @POST(API_ASK_PRODUCT_MSG_COUNT)
+    Call<BaseResponse<AskProductMessageCountResBean>> getAskProductUnreadMessageCount(@Body AskProductMessageCountReqBean reqBean);
 }

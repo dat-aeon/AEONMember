@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 public class SendMessageImageView extends AppCompatImageView {
 
-    public static float radius = 10.0f;
+    public static float radius = 14.0f;
 
     public SendMessageImageView(Context context) {
         super(context);

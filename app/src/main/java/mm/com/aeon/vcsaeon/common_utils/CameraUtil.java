@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
-import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -31,6 +30,8 @@ import okhttp3.RequestBody;
 
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.CAMERA_REQUEST_CODE;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.STORAGE_REQUEST_CODE;
+import static mm.com.aeon.vcsaeon.common_utils.PreferencesManager.lockImageLoad;
+import static mm.com.aeon.vcsaeon.common_utils.PreferencesManager.unLockImageLoad;
 
 public class CameraUtil {
 
@@ -43,8 +44,7 @@ public class CameraUtil {
     public static final int PURCHASE_APP_IMG_WIDTH = 582;
     public static final int PURCHASE_APP_IMG_HEIGHT = 826;
 
-    public static File CreateImageFile(Activity activity, String rootFolderName, String rootFolderPath, String currentApply){
-
+    public static File CreateImageFile(Activity activity, String rootFolderName, String rootFolderPath, String currentApply) {
         File photoFile = null;
         try {
             photoFile = createImageFile(activity, rootFolderName, rootFolderPath, currentApply);
@@ -55,11 +55,8 @@ public class CameraUtil {
     }
 
     public static File createImageFile(Activity activity, String rootFolderName, String rootFolderPath, String currentApply) throws IOException {
-
         String timeStamp = new SimpleDateFormat(FILE_DATE_FORMAT).format(new Date());
-        //String imageFileName= timeStamp + "-" + currentApply;
-        String imageFileName= timeStamp+ "_";
-
+        String imageFileName = timeStamp + "_";
         File storageDir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/" + rootFolderName);
         File image = File.createTempFile(
                 imageFileName.toUpperCase(),  /* prefix */
@@ -67,7 +64,6 @@ public class CameraUtil {
                 storageDir      /* directory */
         );
         // Save a file: path for use with ACTION_VIEW intents
-        String mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
 
@@ -95,7 +91,6 @@ public class CameraUtil {
                             dialog.dismiss();
                         }
                     });
-            //mDialog.show();
             return false;
         }
     }
@@ -116,15 +111,10 @@ public class CameraUtil {
     }
 
     //Resize captured image with defined resolution ratios.
-    public static String resizeImages(String sPath, int photoQuality, Activity activity, int width, int height) throws IOException {
+    public static String resizeImages(String sPath, int photoQuality, Activity activity) {
+        lockImageLoad(activity); //true
         String compressedPhotoPath = null;
-        boolean isVertical = true;
-        Bitmap bitmap = new GetImageThumbnail().getThumbnail(sPath, activity, width, height, isVertical);
-
-        File before = new File(sPath);
-        long photoMb = before.length() / FOLDER_KB_DIVISOR;
-        Log.e("Original KB", String.valueOf(photoMb)+" KB");
-
+        Bitmap bitmap = new GetImageThumbnail().getThumbnail(sPath, activity, PURCHASE_APP_IMG_WIDTH, PURCHASE_APP_IMG_HEIGHT, true);
         try {
             boolean keepReduce = true;
             int photoQuality2 = photoQuality;
@@ -136,25 +126,20 @@ public class CameraUtil {
                     photoQuality2 = photoQuality2 - 1;
                     keepReduce = true;
                 } else {
-                    Log.e("Resize KB", fileSize+" KB");
                     break;
                 }
             }
+            unLockImageLoad(activity); //false
             return compressedPhotoPath;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            unLockImageLoad(activity); //false
             return null;
         }
     }
 
-    public static String reduceFileSize(String sPath, int photoQuality){
+    public static String reduceFileSize(String sPath, int photoQuality) {
         String compressedPhotoPath = null;
         Bitmap bitmap = BitmapFactory.decodeFile(sPath);
-
-        File before = new File(sPath);
-        long photoMb = before.length() / FOLDER_KB_DIVISOR;
-        Log.e("Original KB", String.valueOf(photoMb)+" KB");
-
         try {
             boolean keepReduce = true;
             int photoQuality2 = photoQuality;
@@ -166,7 +151,6 @@ public class CameraUtil {
                     photoQuality2 = photoQuality2 - 1;
                     keepReduce = true;
                 } else {
-                    Log.e("Resize KB", fileSize+" KB");
                     break;
                 }
             }
@@ -196,11 +180,10 @@ public class CameraUtil {
         }
     }
 
-    public static byte[] BitmapToByte(Bitmap bitmap){
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, baos);
-
-        return  baos.toByteArray();
+    public static byte[] BitmapToByte(Bitmap bitmap) {
+        ByteArrayOutputStream baoStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, baoStream);
+        return baoStream.toByteArray();
     }
 
     private static void setDpi(byte[] imageData, int dpi) {
@@ -211,12 +194,12 @@ public class CameraUtil {
         imageData[17] = (byte) (dpi & 255);
     }
 
-    public static void removeCapturedNrc(String key, Map<String, String> imgMap){
-        for(Map.Entry<String, String> entry : imgMap.entrySet()) {
-            if(entry.getKey()!=null){
-                if(entry.getKey().equals(key)){
+    public static void removeCapturedNrc(String key, Map<String, String> imgMap) {
+        for (Map.Entry<String, String> entry : imgMap.entrySet()) {
+            if (entry.getKey() != null) {
+                if (entry.getKey().equals(key)) {
                     File file = new File(entry.getValue());
-                    if(file.isFile()){
+                    if (file.isFile()) {
                         file.delete();
                     }
                 }
@@ -228,7 +211,6 @@ public class CameraUtil {
         if (!sourceFile.exists()) {
             return;
         }
-
         FileChannel source = null;
         FileChannel destination = null;
         source = new FileInputStream(sourceFile).getChannel();
@@ -252,14 +234,11 @@ public class CameraUtil {
         return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
     }
 
-    public static File renameFileName(Context context, File currentFile, String rootFolderName){
-
+    public static File renameFileName(Context context, File currentFile, String rootFolderName) {
         String filepath = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/" + rootFolderName + "/").getPath();
         File from = new File(filepath, currentFile.getName());
         File renameFile = new File(filepath, new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + ".jpg");
         from.renameTo(renameFile);
-        Log.e("from file", from.getAbsolutePath());
-
         return renameFile;
     }
 }

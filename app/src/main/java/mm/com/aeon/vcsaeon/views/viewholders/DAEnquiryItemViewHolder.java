@@ -23,6 +23,8 @@ import mm.com.aeon.vcsaeon.delegates.DAEnquiryDelegate;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.PARAM_LANG;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.STATUS_APPROVE;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.STATUS_CANCEL;
+import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.STATUS_CASH;
+import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.STATUS_CASH_COMPLETED;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.STATUS_COMPLETE;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.STATUS_ON_PROCESS;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.STATUS_UNSUCESSFUL;
@@ -70,16 +72,15 @@ public class DAEnquiryItemViewHolder extends RecyclerView.ViewHolder {
         btnPurchaseDetail = itemView.findViewById(R.id.btn_purchase_detail);
         btnEditAttach = itemView.findViewById(R.id.btn_edit_attachment);
         btnCancel = itemView.findViewById(R.id.btn_purchase_cancel);
-        textStatusCount=itemView.findViewById(R.id.status_count);
+        textStatusCount = itemView.findViewById(R.id.status_count);
 
-        labelApplicationNo=itemView.findViewById(R.id.lbl_aplication_number);
-        labelAgreementNo=itemView.findViewById(R.id.lbl_agg_number);
+        labelApplicationNo = itemView.findViewById(R.id.lbl_aplication_number);
+        labelAgreementNo = itemView.findViewById(R.id.lbl_agg_number);
         labelApplyDate = itemView.findViewById(R.id.lbl_apply_date);
         labelLoanAmt = itemView.findViewById(R.id.lbl_loan_amt);
         labelApproveAmt = itemView.findViewById(R.id.lbl_approve_amt);
         labelLoanTerm = itemView.findViewById(R.id.lbl_loan_term);
         labelApproveTerm = itemView.findViewById(R.id.lbl_approve_loan_term);
-
 
         textApplicationNo = itemView.findViewById(R.id.lbl_agg_no);
         textAgreementNo = itemView.findViewById(R.id.lbl_agg_no_value);
@@ -90,8 +91,8 @@ public class DAEnquiryItemViewHolder extends RecyclerView.ViewHolder {
         textApproveTerm = itemView.findViewById(R.id.lbl_approve_loan_term_val);
         textViewDetail = itemView.findViewById(R.id.lbl_view_detail);
 
-        labelApplicationNo.setText(CommonUtils.getLocaleString(new Locale(curLang),R.string.lbl_application_no,itemView.getContext()));
-        labelAgreementNo.setText(CommonUtils.getLocaleString(new Locale(curLang),R.string.lbl_agreement_no,itemView.getContext()));
+        labelApplicationNo.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.lbl_application_no, itemView.getContext()));
+        labelAgreementNo.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.lbl_agreement_no, itemView.getContext()));
         labelApplyDate.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.lbl_apply_date, itemView.getContext()));
         labelLoanAmt.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.lbl_loan_amount, itemView.getContext()));
         labelApproveAmt.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.lbl_approve_amount, itemView.getContext()));
@@ -107,11 +108,11 @@ public class DAEnquiryItemViewHolder extends RecyclerView.ViewHolder {
 
         final int status = applicationInfo.getStatus();
         Log.e("Status:", String.valueOf(status));
-        int statusCount=applicationInfo.getApplicationStatusChangedCount();
-        Log.e("StatusCount:",String.valueOf(statusCount));
-        if (statusCount==0){
+        int statusCount = applicationInfo.getApplicationStatusChangedCount();
+        Log.e("StatusCount:", String.valueOf(statusCount));
+        if (statusCount == 0) {
             textStatusCount.setVisibility(View.GONE);
-        }else {
+        } else {
             textStatusCount.setVisibility(View.VISIBLE);
         }
 
@@ -159,9 +160,6 @@ public class DAEnquiryItemViewHolder extends RecyclerView.ViewHolder {
                 break;
 
             case 11:
-                setStatusModifyRequest();
-                showApplicationCancel();
-                break;
             case 12:
                 setStatusModifyRequest();
                 showApplicationCancel();
@@ -203,13 +201,23 @@ public class DAEnquiryItemViewHolder extends RecyclerView.ViewHolder {
                 setStatusSaleEntryList();
                 showPurchaseDetail();
                 break;
+            case 21:
+                goneCancelButton();
+                setStatusCash();
+                showPurchaseDetail();
+                break;
+            case 22:
+                goneCancelButton();
+                setUpStatusCashCompleted();
+                showPurchaseDetail();
+                break;
         }
 
         curLang = PreferencesManager.getCurrentLanguage(itemView.getContext());
         Log.e("change list label to", curLang);
 
-        labelApplicationNo.setText(CommonUtils.getLocaleString(new Locale(curLang),R.string.lbl_application_no,itemView.getContext()));
-        labelAgreementNo.setText(CommonUtils.getLocaleString(new Locale(curLang),R.string.lbl_agreement_no,itemView.getContext()));
+        labelApplicationNo.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.lbl_application_no, itemView.getContext()));
+        labelAgreementNo.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.lbl_agreement_no, itemView.getContext()));
         labelApplyDate.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.lbl_apply_date, itemView.getContext()));
         labelLoanAmt.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.lbl_loan_amount, itemView.getContext()));
         labelApproveAmt.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.lbl_approve_amount, itemView.getContext()));
@@ -220,18 +228,20 @@ public class DAEnquiryItemViewHolder extends RecyclerView.ViewHolder {
         btnCancel.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.btn_cancel, itemView.getContext()));
         btnEditAttach.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.btn_attachment_edit, itemView.getContext()));
 
-        String agreementNo=applicationInfo.getAgreementNo();
+        String agreementNo = applicationInfo.getAgreementNo();
         String applicationNo = String.valueOf(applicationInfo.getApplicationNo());
-        String ymNo=applicationNo.substring(0,4);
-        String middleNo=applicationNo.substring(4,7);
-        String lastNo=applicationNo.substring(7,10);
 
-        textApplicationNo.setText(" : "+ymNo+"-"+middleNo+"-"+lastNo);
+        /*String ymNo = applicationNo.substring(0, 4);
+        String middleNo = applicationNo.substring(4, 7);
+        String lastNo = applicationNo.substring(7, 10);
+        textApplicationNo.setText(" : " + ymNo + "-" + middleNo + "-" + lastNo);*/
+
+        textApplicationNo.setText(" : " + applicationNo);
         textLoanTerm.setText(" : " + applicationInfo.getFinanceTerm() + " Months");
         textApproveTerm.setText(getApproveTerm(applicationInfo.getApprovedFinanceTerm()));
-        if (agreementNo!=null){
-            textAgreementNo.setText(" : " +agreementNo);
-        }else {
+        if (agreementNo != null) {
+            textAgreementNo.setText(" : " + agreementNo);
+        } else {
             textAgreementNo.setText(" : -");
         }
 
@@ -269,7 +279,7 @@ public class DAEnquiryItemViewHolder extends RecyclerView.ViewHolder {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                delegate.onCancel(applicationInfo.getDaApplicationInfoId(),curLang);
+                delegate.onCancel(applicationInfo.getDaApplicationInfoId(), curLang);
             }
         });
 
@@ -339,11 +349,11 @@ public class DAEnquiryItemViewHolder extends RecyclerView.ViewHolder {
         btnStatus.setText(STATUS_APPROVE);
     }
 
-    void setStatusModifyRequest(){
+    void setStatusModifyRequest() {
         btnStatus.setText(STATUS_APPROVE);
     }
 
-    void setStatusModifyUpload(){
+    void setStatusModifyUpload() {
         btnStatus.setText(STATUS_APPROVE);
     }
 
@@ -383,8 +393,16 @@ public class DAEnquiryItemViewHolder extends RecyclerView.ViewHolder {
         btnStatus.setText(STATUS_COMPLETE);
     }
 
-    String getApproveTerm(int approveTerm){
-        if(approveTerm == 0){
+    void setStatusCash() {
+        btnStatus.setText(STATUS_COMPLETE);
+    }
+
+    void setUpStatusCashCompleted() {
+        btnStatus.setText(STATUS_COMPLETE);
+    }
+
+    String getApproveTerm(int approveTerm) {
+        if (approveTerm == 0) {
             return " : -";
         }
         return " : " + approveTerm + " Months";

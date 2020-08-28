@@ -1,7 +1,6 @@
 package mm.com.aeon.vcsaeon.adapters;
 
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,6 @@ public class ShoppingMessageListAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
-
             case VIEW_TYPE_INIT_MSG:
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_buy_init, parent, false);
                 return new InitMessageViewHolder(view);
@@ -63,7 +61,6 @@ public class ShoppingMessageListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         BuyMessagesBean buyMessagesBean = buyMessagesBeanList.get(position);
         switch (holder.getItemViewType()) {
-
             case VIEW_TYPE_INIT_MSG:
                 ((InitMessageViewHolder) holder).BindView(buyMessagesBean);
                 break;
@@ -94,7 +91,6 @@ public class ShoppingMessageListAdapter extends RecyclerView.Adapter {
 
     //Sender Message.
     private class BuySendViewHolder extends RecyclerView.ViewHolder {
-
         TextView text01;
         TextView text02;
         TextView text03;
@@ -109,24 +105,19 @@ public class ShoppingMessageListAdapter extends RecyclerView.Adapter {
         }
 
         public void BindView(BuyMessagesBean buyMessagesBean) {
-
             Resources res = itemView.getResources();
-
             text01.setText(res.getString(R.string.buy_send_01_format, buyMessagesBean.getBuySendMsgUIBean().getBrandName(),
                     buyMessagesBean.getBuySendMsgUIBean().getCategoryName()));
             text02.setText(res.getString(R.string.buy_send_02_format, buyMessagesBean.getBuySendMsgUIBean().getLocation()));
             text03.setText(res.getString(R.string.buy_send_03_format, buyMessagesBean.getBuySendMsgUIBean().getMessageBody()));
-
             textSentTime.setText(buyMessagesBean.getBuySendMsgUIBean().getSendTime());
         }
     }
 
     //Received Message.
     private class BuyReceiveViewHolder extends RecyclerView.ViewHolder {
-
         ImageView imgAgentLogo;
         ImageView imgPhoneCall;
-
         TextView text01;
         TextView text02;
         TextView text03;
@@ -136,10 +127,8 @@ public class ShoppingMessageListAdapter extends RecyclerView.Adapter {
 
         public BuyReceiveViewHolder(@NonNull View itemView) {
             super(itemView);
-
             imgAgentLogo = itemView.findViewById(R.id.img_admin);
             imgPhoneCall = itemView.findViewById(R.id.ic_call);
-
             text01 = itemView.findViewById(R.id.received_body_01);
             text02 = itemView.findViewById(R.id.received_body_02);
             text03 = itemView.findViewById(R.id.received_body_03);
@@ -149,7 +138,6 @@ public class ShoppingMessageListAdapter extends RecyclerView.Adapter {
         }
 
         public void BindView(final BuyMessagesBean buyMessagesBean) {
-
             final Resources res = itemView.getResources();
             final String url = buyMessagesBean.getBuyReceiveMsgUIBean().getUrlLink();
             final String phoneNo = buyMessagesBean.getBuyReceiveMsgUIBean().getPhoneNo();
@@ -163,15 +151,12 @@ public class ShoppingMessageListAdapter extends RecyclerView.Adapter {
             text04.setText(res.getString(R.string.buy_receive_04_format, phoneNo));
             text05.setText(res.getString(R.string.buy_receive_05_format, url));
             textReceivedTime.setText(buyMessagesBean.getBuyReceiveMsgUIBean().getSendTime());
-            Log.e("TAG", "bind agent id : " + agentId);
-
             imgPhoneCall.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     delegate.onTouchPhoneCall(agentId, phoneNo, messageId);
                 }
             });
-
             if (url != null) {
                 text05.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -185,14 +170,11 @@ public class ShoppingMessageListAdapter extends RecyclerView.Adapter {
 
     //more message.
     private class BuyMoreMessageHolder extends RecyclerView.ViewHolder {
-
         Button btnMoreMessage;
-
         public BuyMoreMessageHolder(@NonNull View itemView) {
             super(itemView);
             btnMoreMessage = itemView.findViewById(R.id.more_message_btn);
         }
-
         public void onBindView(final BuyMessagesBean buyMessagesBean) {
             btnMoreMessage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -202,12 +184,10 @@ public class ShoppingMessageListAdapter extends RecyclerView.Adapter {
                 }
             });
         }
-
     }
 
     //Init Message Sown by AEON.
     private class InitMessageViewHolder extends RecyclerView.ViewHolder {
-
         TextView textMsgBody;
         TextView textSendTime;
 

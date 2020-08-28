@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,19 +21,17 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
 
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.beans.CustAgreementListDto;
 import mm.com.aeon.vcsaeon.beans.UserInformationFormBean;
-import mm.com.aeon.vcsaeon.common_utils.CommonConstants;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
 import mm.com.aeon.vcsaeon.delegates.MembershipInfoDelegate;
 
-import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.FINANCE_AMOUNT_FORMAT;
+import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.QR_INFO_SHOW;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.getUnderlineText;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.getWelcomeLetterLink;
 
@@ -45,41 +42,36 @@ public class CardInfoOneQRListAdapter extends RecyclerView.Adapter {
     private MembershipInfoDelegate delegate;
     private UserInformationFormBean userInformationFormBean;
 
-    private static final int VIEW_TYPE_INFO=1;
-    private static final int VIEW_TYPE_WARN=2;
+    private static final int VIEW_TYPE_INFO = 1;
+    private static final int VIEW_TYPE_WARN = 2;
 
     public CardInfoOneQRListAdapter(List<CustAgreementListDto> custAgreementListDtoList, Context context,
-                                    MembershipInfoDelegate delegate){
+                                    MembershipInfoDelegate delegate) {
         this.customerAgreementListDtoList = custAgreementListDtoList;
         this.context = context;
         this.delegate = delegate;
 
-        final String userInfoBean = PreferencesManager.getCurrentUserInfo(context);
-        this.userInformationFormBean = new Gson().fromJson(userInfoBean, UserInformationFormBean.class);
+        final String userInfoBeanJson = PreferencesManager.getCurrentUserInfo(context);
+        this.userInformationFormBean = new Gson().fromJson(userInfoBeanJson, UserInformationFormBean.class);
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        if (viewType == VIEW_TYPE_INFO){
+        if (viewType == VIEW_TYPE_INFO) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_card_info_one, parent, false);
             return new QRListItemViewHolder(view);
         }
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_card_info_two, parent, false);
         return new CardOneWarningHolder(view);
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+        CustAgreementListDto custAgreementListDto = customerAgreementListDtoList.get(position);
         if (holder.getItemViewType() == VIEW_TYPE_INFO) {
-            CustAgreementListDto custAgreementListDto = customerAgreementListDtoList.get(position);
             ((QRListItemViewHolder) holder).bindView(custAgreementListDto);
-
         } else {
-            CustAgreementListDto custAgreementListDto = customerAgreementListDtoList.get(position);
             ((CardOneWarningHolder) holder).bindView(custAgreementListDto);
         }
     }
@@ -87,8 +79,7 @@ public class CardInfoOneQRListAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         CustAgreementListDto dto = customerAgreementListDtoList.get(position);
-
-        if(dto.isWarningText()){
+        if (dto.isWarningText()) {
             return VIEW_TYPE_WARN;
         }
         return VIEW_TYPE_INFO;
@@ -99,7 +90,7 @@ public class CardInfoOneQRListAdapter extends RecyclerView.Adapter {
         return customerAgreementListDtoList.size();
     }
 
-    private class QRListItemViewHolder extends RecyclerView.ViewHolder{
+    private class QRListItemViewHolder extends RecyclerView.ViewHolder {
 
         TextView titleAgreementNo;
         TextView lblAgreementNo;
@@ -108,11 +99,6 @@ public class CardInfoOneQRListAdapter extends RecyclerView.Adapter {
         TextView titleDate;
         TextView lblDate;
 
-        /*TextView lblLoanAmount;
-        TextView lblLoanAmtUnit;
-        TextView lblLoanTerm;
-        TextView lblLoanTermUnit;*/
-
         RelativeLayout layoutLoanInfo;
 
         String finAmtUnit;
@@ -120,35 +106,23 @@ public class CardInfoOneQRListAdapter extends RecyclerView.Adapter {
 
         public QRListItemViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            /*lblLoanAmount = itemView.findViewById(R.id.lbl_loan_amount);
-            lblLoanAmtUnit = itemView.findViewById(R.id.lbl_loan_amt_unit);
-            lblLoanTerm = itemView.findViewById(R.id.lbl_loan_term);
-            lblLoanTermUnit = itemView.findViewById(R.id.lbl_loan_term_unit);*/
-
             titleAgreementNo = itemView.findViewById(R.id.title_agreement_no);
             titleQRCode = itemView.findViewById(R.id.title_qr_code);
             titleDate = itemView.findViewById(R.id.title_date);
-
             lblAgreementNo = itemView.findViewById(R.id.lbl_agreement_no);
             imgQrCode = itemView.findViewById(R.id.img_qr_code);
             lblDate = itemView.findViewById(R.id.lbl_last_payment_day);
-
             layoutLoanInfo = itemView.findViewById(R.id.layout_loan_info);
-
-
         }
 
-        void bindView(final CustAgreementListDto custAgreementListDto){
-
-            Log.e("card one", "bind view");
+        void bindView(final CustAgreementListDto custAgreementListDto) {
 
             String curLang = PreferencesManager.getCurrentLanguage(itemView.getContext());
-            titleDate.setText(CommonUtils.getLocaleString(new Locale(curLang),R.string.last_received_day,itemView.getContext()));
+            titleDate.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.last_received_day, itemView.getContext()));
             finAmtUnit = CommonUtils.getLocaleString(new Locale(curLang), R.string.mem_card_amt_unit, itemView.getContext());
             finTermUnit = CommonUtils.getLocaleString(new Locale(curLang), R.string.mem_card_fin_term, itemView.getContext());
 
-            String qrShow = String.valueOf(custAgreementListDto.getQrShow());
+            final int API_SHOW_STATUS = custAgreementListDto.getQrShow();
 
             layoutLoanInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -159,33 +133,21 @@ public class CardInfoOneQRListAdapter extends RecyclerView.Adapter {
                 }
             });
 
-            DecimalFormat df = new DecimalFormat(FINANCE_AMOUNT_FORMAT);
-           /* lblLoanAmount.setText(df.format(custAgreementListDto.getFinancialAmt()));
-            lblLoanAmtUnit.setText(finAmtUnit);
-
-            lblLoanTerm.setText(custAgreementListDto.getFinancialTerm()+"");
-            lblLoanTermUnit.setText(finTermUnit);*/
-
             lblAgreementNo.setText(Html.fromHtml(getUnderlineText(custAgreementListDto.getAgreementNo())));
-            Log.e("StatusLast:", String.valueOf(custAgreementListDto.getLastPaymentDate()));
-            if(custAgreementListDto.getLastPaymentDate() == null){
-                lblDate.setText("-");
-            }else{
+
+            if (custAgreementListDto.getLastPaymentDate() != null) {
                 lblDate.setText(CommonUtils.dateToString(custAgreementListDto.getLastPaymentDate()));
             }
 
-            if(qrShow.equals(CommonConstants.INFO_SHOW)){
-                imgQrCode.setVisibility(View.GONE);
-                titleQRCode.setVisibility(View.GONE);
-            } else {
+            if (API_SHOW_STATUS == QR_INFO_SHOW) {
 
-                try{
+                try {
 
                     final int daApplicationInfoId = custAgreementListDto.getDaApplicationInfoId();
                     final String qrCodeStr = custAgreementListDto.getEncodeStringForQr();
 
-                    if(qrCodeStr != null){
-                        Bitmap bitmap = textToImage(qrCodeStr, 600, 600);
+                    if (qrCodeStr != null) {
+                        Bitmap bitmap = textToImage(qrCodeStr, 640, 640);
                         imgQrCode.setImageBitmap(bitmap);
                         imgQrCode.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -193,21 +155,33 @@ public class CardInfoOneQRListAdapter extends RecyclerView.Adapter {
                                 delegate.onTouchQRCode(daApplicationInfoId);
                             }
                         });
+                        enableQrCode();
                     } else {
-                        imgQrCode.setVisibility(View.GONE);
-                        titleQRCode.setVisibility(View.GONE);
+                        disableQrCode();
                     }
 
-                } catch (Exception e){
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    disableQrCode();
                 }
+
+            } else {
+                disableQrCode();
             }
+        }
+
+        private void enableQrCode() {
+            imgQrCode.setVisibility(View.VISIBLE);
+            titleQRCode.setVisibility(View.VISIBLE);
+        }
+
+        private void disableQrCode() {
+            imgQrCode.setVisibility(View.GONE);
+            titleQRCode.setVisibility(View.GONE);
         }
 
         //generate qr-code from string.
         private Bitmap textToImage(String text, int width, int height) throws WriterException, NullPointerException {
             BitMatrix bitMatrix;
-
             try {
                 bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.DATA_MATRIX.QR_CODE,
                         width, height, null);
@@ -231,19 +205,17 @@ public class CardInfoOneQRListAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private class CardOneWarningHolder extends RecyclerView.ViewHolder{
-
+    private class CardOneWarningHolder extends RecyclerView.ViewHolder {
         TextView warningMessage;
 
-        CardOneWarningHolder(View itemView){
+        CardOneWarningHolder(View itemView) {
             super(itemView);
             warningMessage = itemView.findViewById(R.id.warn_text);
         }
 
         void bindView(final CustAgreementListDto dto) {
-
             String curLang = PreferencesManager.getCurrentLanguage(itemView.getContext());
-            warningMessage.setText(CommonUtils.getLocaleString(new Locale(curLang),R.string.received_day_warning_text, itemView.getContext()));
+            warningMessage.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.received_day_warning_text, itemView.getContext()));
         }
     }
 

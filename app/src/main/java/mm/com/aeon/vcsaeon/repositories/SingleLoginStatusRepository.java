@@ -1,11 +1,9 @@
 package mm.com.aeon.vcsaeon.repositories;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
-import mm.com.aeon.vcsaeon.beans.HowToUseVideoResBean;
 import mm.com.aeon.vcsaeon.beans.SingleLoginCheck;
 import mm.com.aeon.vcsaeon.beans.SingleLoginStatus;
+import mm.com.aeon.vcsaeon.delegates.MultipleCheckDelegate;
 import mm.com.aeon.vcsaeon.networking.APIClient;
 import mm.com.aeon.vcsaeon.networking.BaseResponse;
 import mm.com.aeon.vcsaeon.networking.Service;
@@ -14,6 +12,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SingleLoginStatusRepository {
+
+    private SingleLoginStatusRepository() {
+    }
 
     private static SingleLoginStatusRepository singleLoginStatusRepository;
 
@@ -28,7 +29,7 @@ public class SingleLoginStatusRepository {
             = new MutableLiveData<>();
     Service service = APIClient.getUserService();
 
-    public MutableLiveData<SingleLoginStatus> getSingleLoginStatus(SingleLoginCheck singleLoginCheck) {
+    public MutableLiveData<SingleLoginStatus> getSingleLoginStatus(SingleLoginCheck singleLoginCheck, final MultipleCheckDelegate delegate) {
 
         Call<BaseResponse<SingleLoginStatus>> request
                 = service.getSingleLoginStatus(singleLoginCheck);
@@ -39,10 +40,17 @@ public class SingleLoginStatusRepository {
                                    Response<BaseResponse<SingleLoginStatus>> response) {
                 if (response.body().isResponseOk()) {
                     mutableLiveData.setValue(response.body().getData());
+                    SingleLoginStatus singleLoginStatus = response.body().getData();
+                    if (singleLoginStatus != null) {
+                        if (singleLoginStatus.isLogoutFlag()) {
+                            delegate.onDialogDisplay();
+                        }
+                    }
                 } else {
                     mutableLiveData.setValue(null);
                 }
             }
+
             @Override
             public void onFailure(Call<BaseResponse<SingleLoginStatus>> call, Throwable t) {
                 mutableLiveData.setValue(null);

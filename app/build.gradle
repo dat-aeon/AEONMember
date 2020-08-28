@@ -8,9 +8,10 @@ android {
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 14
-        versionName "2.1.0"
+        versionName "2.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     android {
         lintOptions {
             checkReleaseBuilds false
@@ -19,47 +20,72 @@ android {
             abortOnError false
         }
     }
+
     buildTypes {
 
         debug {
             minifyEnabled false
             shrinkResources false
-            useProguard false
+            //useProguard false
             debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            //Development Url.
             buildConfigField "String", "WEB_SOCKET_URL", '"wss://ass.aeoncredit.com.mm/vcschat"'
             buildConfigField "String", "API_URL", '"https://ass.aeoncredit.com.mm/daso/"'
             buildConfigField "String", "PL_CHAT_URL", '"wss://ass.aeoncredit.com.mm/vcsplchat"'
             buildConfigField "String", "API_DIGITAL_APPLICATION_URL", '"https://ass.aeoncredit.com.mm/daso/"'
             buildConfigField "String", "FREE_CHAT_URL", '"wss://ass.aeoncredit.com.mm/free-chat-server"'
+            buildConfigField "boolean", "IS_PRODUCTION", "false"
+
+            //Production Url.
+            /*buildConfigField "String", "WEB_SOCKET_URL", '"wss://amf.aeoncredit.com.mm/vcschat"'
+            buildConfigField "String", "API_URL", '"https://amf.aeoncredit.com.mm/daso/"'
+            buildConfigField "String", "PL_CHAT_URL", '"wss://amf.aeoncredit.com.mm/vcsplchat"'
+            buildConfigField "String", "API_DIGITAL_APPLICATION_URL", '"https://amf.aeoncredit.com.mm/daso/"'
+            buildConfigField "String", "FREE_CHAT_URL", '"wss://amf.aeoncredit.com.mm/free-chat-server"'
+            buildConfigField "boolean", "IS_PRODUCTION", "true"*/
 
             /*UAT Links*/
             /*buildConfigField "String", "WEB_SOCKET_URL", '"wss://ass.aeoncredit.com.mm/vcschat-uat"'
             buildConfigField "String", "API_URL", '"https://ass.aeoncredit.com.mm/daso-uat/"'
             buildConfigField "String", "PL_CHAT_URL", '"wss://ass.aeoncredit.com.mm/vcsplchat-uat"'
             buildConfigField "String", "API_DIGITAL_APPLICATION_URL", '"https://ass.aeoncredit.com.mm/daso-uat/"'
-            buildConfigField "String", "FREE_CHAT_URL", '"wss://ass.aeoncredit.com.mm/free-chat-server-uat"'*/
+            buildConfigField "String", "FREE_CHAT_URL", '"wss://ass.aeoncredit.com.mm/free-chat-server-uat"'
+            buildConfigField "boolean", "IS_PRODUCTION", "false"*/
+
         }
 
         release {
             minifyEnabled true   // Obfuscate and minify codes
             shrinkResources true // Remove unused resources
-            useProguard true     // Remove unused codes
+            //useProguard true     // Remove unused codes
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            //Development Url.
             buildConfigField "String", "WEB_SOCKET_URL", '"wss://ass.aeoncredit.com.mm/vcschat"'
             buildConfigField "String", "API_URL", '"https://ass.aeoncredit.com.mm/daso/"'
             buildConfigField "String", "PL_CHAT_URL", '"wss://ass.aeoncredit.com.mm/vcsplchat"'
             buildConfigField "String", "API_DIGITAL_APPLICATION_URL", '"https://ass.aeoncredit.com.mm/daso/"'
             buildConfigField "String", "FREE_CHAT_URL", '"wss://ass.aeoncredit.com.mm/free-chat-server"'
+            buildConfigField "boolean", "IS_PRODUCTION", "false"
 
+            //Production Url.
+            /*buildConfigField "String", "WEB_SOCKET_URL", '"wss://amf.aeoncredit.com.mm/vcschat"'
+            buildConfigField "String", "API_URL", '"https://amf.aeoncredit.com.mm/daso/"'
+            buildConfigField "String", "PL_CHAT_URL", '"wss://amf.aeoncredit.com.mm/vcsplchat"'
+            buildConfigField "String", "API_DIGITAL_APPLICATION_URL", '"https://amf.aeoncredit.com.mm/daso/"'
+            buildConfigField "String", "FREE_CHAT_URL", '"wss://amf.aeoncredit.com.mm/free-chat-server"'
+            buildConfigField "boolean", "IS_PRODUCTION", "true"*/
 
             /*UAT Links*/
             /*buildConfigField "String", "WEB_SOCKET_URL", '"wss://ass.aeoncredit.com.mm/vcschat-uat"'
             buildConfigField "String", "API_URL", '"https://ass.aeoncredit.com.mm/daso-uat/"'
             buildConfigField "String", "PL_CHAT_URL", '"wss://ass.aeoncredit.com.mm/vcsplchat-uat"'
             buildConfigField "String", "API_DIGITAL_APPLICATION_URL", '"https://ass.aeoncredit.com.mm/daso-uat/"'
-            buildConfigField "String", "FREE_CHAT_URL", '"wss://ass.aeoncredit.com.mm/free-chat-server-uat"'*/
+            buildConfigField "String", "FREE_CHAT_URL", '"wss://ass.aeoncredit.com.mm/free-chat-server-uat"'
+            buildConfigField "boolean", "IS_PRODUCTION", "false"*/
         }
     }
 }
@@ -121,9 +147,9 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.2.0'
 
     /*CameraX*/
-    def cameraxVersion = "1.0.0-alpha02"
-    implementation "androidx.camera:camera-core:${cameraxVersion}"
-    implementation "androidx.camera:camera-camera2:${cameraxVersion}"
+    def cameraXVersion = "1.0.0-alpha02"
+    implementation "androidx.camera:camera-core:${cameraXVersion}"
+    implementation "androidx.camera:camera-camera2:${cameraXVersion}"
 
     /*Material Components*/
     implementation 'com.google.android.material:material:1.1.0-alpha02'
@@ -146,4 +172,8 @@ dependencies {
 
     /* view-model */
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+
+    /*  */
+    //implementation 'org.conscrypt:conscrypt-android:2.2.1'
+
 }

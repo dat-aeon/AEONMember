@@ -33,7 +33,7 @@ public class APIClient {
         return RetrofitClient.getClient(BuildConfig.API_DIGITAL_APPLICATION_URL).create(Service.class);
     }
 
-    public static Service getAuthUserService(){
+    public static Service getAuthUserService() {
         OkHttpClient okHttpClient = initOkHttp(true);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BuildConfig.API_URL)
@@ -48,10 +48,10 @@ public class APIClient {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        String credential = Credentials.basic(AUTH_USERNAME,AUTH_PASSWORD);
+        String credential = Credentials.basic(AUTH_USERNAME, AUTH_PASSWORD);
 
         OkHttpClient.Builder httpClient = VCSOkHttpClient.getObjectInstance().newBuilder();
-        
+
         if (isAuth) {
             httpClient.authenticator(new TokenRenewAuthenticator());
             httpClient.addInterceptor(interceptor).addInterceptor(new AuthenticationInterceptor(credential));
@@ -62,9 +62,11 @@ public class APIClient {
 
     static class AuthenticationInterceptor implements Interceptor {
         private String authToken;
+
         AuthenticationInterceptor(String token) {
             this.authToken = token;
         }
+
         @NonNull
         @Override
         public Response intercept(@NonNull Chain chain) throws IOException {

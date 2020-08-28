@@ -4,19 +4,32 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
+    android:elevation="@dimen/margin_tiny"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/grid_layout_border"
     android:backgroundTint="@color/our_service_color"
     android:padding="5dp">
 
-    <ImageView
-        android:layout_height="50dp"
+    <!--<ImageView
+        android:layout_height="@dimen/category_ic_side"
         android:id="@+id/imageView1"
-        android:layout_width="50dp"
+        android:layout_width="@dimen/category_ic_side"
+        android:layout_marginTop="@dimen/margin_small"
         android:src="@drawable/about_us_icon_512"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-    </ImageView>
+        android:layout_centerHorizontal="true"/>-->
+
+    <ImageView
+        android:layout_height="@dimen/category_ic_side"
+        android:id="@+id/imageView1"
+        android:layout_width="@dimen/category_ic_side"
+        android:layout_marginTop="@dimen/margin_small"
+        android:padding="@dimen/margin_small_2x"
+        android:background="@drawable/messaging_container_frame"
+        android:backgroundTint="@color/grayLight"
+        android:src="@drawable/gd_ic_our_service"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:text="@string/main_ourservice_title"
@@ -26,8 +39,10 @@
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/main_view_font_size"
+        android:lineSpacingExtra="-4dp"
         android:textAlignment="center"
-        android:fontFamily="@font/pyidaungsu_regular"
+        android:layout_marginTop="@dimen/margin_small"
+        android:fontFamily="@font/vcsm_labels_font"
         android:textColor="@color/white"
         android:ellipsize="marquee"/>
 

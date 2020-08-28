@@ -23,6 +23,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_regular_3x"
             android:padding="@dimen/margin_medium_2"
+            android:lineSpacingExtra="-4dp"
             android:gravity="center_horizontal"
             android:textStyle="bold"
             android:fontFamily="@font/pyidaungsu_bold"

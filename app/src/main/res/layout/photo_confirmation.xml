@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppBarOverlay"
-        android:background="?attr/colorPrimary">
+        android:background="?attr/colorPrimary"
+        android:theme="@style/AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_main_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:theme="@style/ToolbarTheme">
+            android:theme="@style/ToolbarTheme"
+            app:contentInsetLeft="@dimen/margin_medium"
+            app:contentInsetStart="@dimen/margin_medium">
 
             <include
                 android:id="@+id/toolbar_new_main"
@@ -26,45 +30,39 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <View
-        android:id="@+id/line1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/color_disable"/>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/form_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/form_layout"
             android:layout_margin="@dimen/margin_medium"
-            android:padding="@dimen/margin_medium_2"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/margin_medium_2">
 
             <LinearLayout
+                android:id="@+id/security_qa_layout_fp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/security_qa_layout_fp"
                 android:layout_marginBottom="@dimen/margin_medium_2"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/photo_view"
                     android:layout_width="fill_parent"
-                    android:layout_height="400dp"
-                    android:id="@+id/photo_view"/>
+                    android:layout_height="400dp" />
 
                 <TextView
+                    android:id="@+id/confirm_photo_txt2"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_height"
-                    android:id="@+id/confirm_photo_txt2"
                     android:layout_marginTop="@dimen/margin_medium"
-                    android:textColor="@color/colorPrimary"
                     android:fontFamily="@font/pyidaungsu_regular"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/photoconfirm_confirm_title"/>
+                    android:text="@string/photoconfirm_confirm_title"
+                    android:textColor="@color/colorPrimary" />
 
             </LinearLayout>
 
@@ -72,30 +70,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_medium"
-                android:weightSum="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
                     android:id="@+id/btn_photo_confirm"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/pyidaungsu_regular"
-                    android:background="@drawable/button_border"
-                    android:layout_weight="0.5"
-                    android:layout_marginRight="@dimen/margin_small"
-                    android:text="@string/photoconfirm_confirm_confirm"/>
-
-                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/btn_photo_retry"
-                    android:textColor="@color/white"
+                    android:layout_marginRight="@dimen/margin_small"
                     android:layout_weight="0.5"
-                    android:layout_marginLeft="@dimen/margin_small"
-                    android:fontFamily="@font/pyidaungsu_regular"
                     android:background="@drawable/button_border"
-                    android:text="@string/photoconfirm_confirm_retry"/>
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/photoconfirm_confirm_confirm"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_photo_retry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/button_border"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/photoconfirm_confirm_retry"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 

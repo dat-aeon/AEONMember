@@ -6,9 +6,12 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.ArraySet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +29,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.beans.EventsNewsInfoResBean;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
+import mm.com.aeon.vcsaeon.common_utils.UiUtils;
 import mm.com.aeon.vcsaeon.views.customviews.MyMapView;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
 
@@ -39,6 +45,7 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.BLANK;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_MM;
 import static mm.com.aeon.vcsaeon.common_utils.CommonURL.NEWS_URL;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.isLatLongValid;
+import static mm.com.aeon.vcsaeon.common_utils.UiUtils.animSlideToLeft;
 
 public class EventsNewsListAdapter extends RecyclerView.Adapter {
 
@@ -48,13 +55,15 @@ public class EventsNewsListAdapter extends RecyclerView.Adapter {
     private RecyclerView eventsNewsInfoRecyclerView;
     private Bundle savedInstanceState;
     private GoogleMap mMap;
-    private int imgViewHeight=0;
+    private int imgViewHeight = 0;
+
+    private Set<Integer> visitedItems = new ArraySet<>();
 
     public EventsNewsListAdapter(Context context, List<EventsNewsInfoResBean> eventsNewsInfoResBeanList, RecyclerView eventsNewsInfoRecyclerView, Bundle savedInstanceState) {
         this.context = context;
         this.eventsNewsInfoResBeanList = eventsNewsInfoResBeanList;
-        this.eventsNewsInfoRecyclerView=eventsNewsInfoRecyclerView;
-        this.savedInstanceState=savedInstanceState;
+        this.eventsNewsInfoRecyclerView = eventsNewsInfoRecyclerView;
+        this.savedInstanceState = savedInstanceState;
         imgViewHeight = (int) context.getResources().getDimension(R.dimen.image_detail_height);
     }
 
@@ -79,11 +88,10 @@ public class EventsNewsListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         EventsNewsInfoResBean eventsNewsInfoResBean = eventsNewsInfoResBeanList.get(i);
-        ((EventsNewsInfoDataRowHolder) viewHolder).bind(eventsNewsInfoResBean);
+        ((EventsNewsInfoDataRowHolder) viewHolder).bind(eventsNewsInfoResBean, i);
     }
 
-
-    private class EventsNewsInfoDataRowHolder extends RecyclerView.ViewHolder{
+    private class EventsNewsInfoDataRowHolder extends RecyclerView.ViewHolder {
 
         TextView textTitle;
         TextView textPublishedDate;
@@ -91,42 +99,48 @@ public class EventsNewsListAdapter extends RecyclerView.Adapter {
         TextView textReadMore;
         ImageView newsImage;
 
-        EventsNewsInfoDataRowHolder(final View itemView){
+        EventsNewsInfoDataRowHolder(final View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.news_title);
             textPublishedDate = itemView.findViewById(R.id.news_published_date);
             textContent = itemView.findViewById(R.id.news_content);
             textReadMore = itemView.findViewById(R.id.news_read_more);
             newsImage = itemView.findViewById(R.id.news_img);
-
         }
 
-        public String getReadMoreText(String language){
+        public String getReadMoreText(String language) {
             return CommonUtils.getLocaleString(new Locale(language), R.string.read_more, context);
         }
 
-        void bind(final EventsNewsInfoResBean eventsNewsInfoResBean){
+        void bind(final EventsNewsInfoResBean eventsNewsInfoResBean, int index) {
 
-            final SharedPreferences mPreferences= PreferencesManager.getApplicationPreference(context);
-            final String curLang = PreferencesManager.getStringEntryFromPreferences(mPreferences, "lang");
-
-            String mContent = eventsNewsInfoResBean.getContentEng();
-
-            if(curLang.equals(LANG_MM)){
-                mContent = eventsNewsInfoResBean.getContentMyn();
-                textTitle.setText(eventsNewsInfoResBean.getTitleMyn());
-                textReadMore.setText(getReadMoreText(curLang));
+            if (visitedItems.contains(eventsNewsInfoResBean.getNewsInfoId())) {
+                itemView.clearAnimation();
             } else {
-                textTitle.setText(eventsNewsInfoResBean.getTitleEng());
-                textReadMore.setText(getReadMoreText(curLang));
+                if (index > 5) index = index / 5;
+                itemView.setAnimation(UiUtils.rvAnimSlideToLeft(context, (++index * 100) + 100)); //Anim.
+                visitedItems.add(eventsNewsInfoResBean.getNewsInfoId());
             }
 
-            textContent.setText(mContent);
-            textPublishedDate.setText(CommonUtils.getStringFromDateDisplay(eventsNewsInfoResBean.getDisplayDate()));
+            final SharedPreferences mPreferences = PreferencesManager.getApplicationPreference(context);
+            final String curLang = PreferencesManager.getStringEntryFromPreferences(mPreferences, "lang");
+
+            if (curLang.equals(LANG_MM)) {
+                textTitle.setText(eventsNewsInfoResBean.getTitleMyn());
+                textContent.setText(eventsNewsInfoResBean.getContentMyn());
+            } else {
+                textTitle.setText(eventsNewsInfoResBean.getTitleEng());
+                textContent.setText(eventsNewsInfoResBean.getContentEng());
+            }
+
+            textReadMore.setText(getReadMoreText(curLang));
+            if (eventsNewsInfoResBean.getDisplayDate() != null) {
+                textPublishedDate.setText(CommonUtils.getStringFromDateDisplay(eventsNewsInfoResBean.getDisplayDate()));
+            }
 
             //Coupon Img.
-            final String imagePath = NEWS_URL+eventsNewsInfoResBean.getImagePath();
-            if(imagePath==null || imagePath==BLANK) {
+            final String imagePath = NEWS_URL + eventsNewsInfoResBean.getImagePath();
+            if (imagePath == null || imagePath == BLANK) {
                 //Picasso.get().load(R.drawable.noimage).into(newsImage);
             } else {
                 Picasso.get().load(imagePath).into(newsImage, new com.squareup.picasso.Callback() {
@@ -134,6 +148,7 @@ public class EventsNewsListAdapter extends RecyclerView.Adapter {
                     public void onSuccess() {
                         Picasso.get().load(imagePath).into(newsImage);
                     }
+
                     @Override
                     public void onError(Exception e) {
                         //Picasso.get().load(R.drawable.noimage).into(newsImage);
@@ -161,26 +176,36 @@ public class EventsNewsListAdapter extends RecyclerView.Adapter {
                     });
 
                     final MyMapView mMapView;
-                    TextView textDetailTitle = dialog.findViewById(R.id.news_detail_title);
-                    TextView textDetailPublishedDate = dialog.findViewById(R.id.news_detail_published_date);
-                    TextView textDetailContent = dialog.findViewById(R.id.news_detail_content);
-                    TextView textNewsUrlLink = dialog.findViewById(R.id.news_link);
 
-                    if(eventsNewsInfoResBean.getNewsUrl() != null){
-                        //textNewsUrlLink.setText(Html.fromHtml(stringToHtmlUrl(eventsNewsInfoResBean.getNewsUrl())));
+                    TextView textDetailTitle = dialog.findViewById(R.id.news_detail_title);
+                    textDetailTitle.setAnimation(UiUtils.animSlideToRight(context));
+
+                    TextView textDetailPublishedDate = dialog.findViewById(R.id.news_detail_published_date);
+                    textDetailPublishedDate.setAnimation(UiUtils.animSlideToRight(context));
+
+                    TextView textDetailContent = dialog.findViewById(R.id.news_detail_content);
+                    textDetailContent.setAnimation(UiUtils.animSlideToRight(context));
+
+                    TextView textNewsUrlLink = dialog.findViewById(R.id.news_link);
+                    textNewsUrlLink.setAnimation(UiUtils.animSlideToRight(context));
+
+                    if (eventsNewsInfoResBean.getNewsUrl() != null) {
                         textNewsUrlLink.setText(eventsNewsInfoResBean.getNewsUrl());
                     } else {
                         textNewsUrlLink.setVisibility(View.GONE);
                     }
 
                     final ImageView newsDetailImage = dialog.findViewById(R.id.news_detail_image);
+                    newsDetailImage.setAnimation(UiUtils.animSlideToRight(context));
 
-                    final SharedPreferences mPreferences= PreferencesManager.getApplicationPreference(context);
+                    final SharedPreferences mPreferences = PreferencesManager.getApplicationPreference(context);
                     final String curLang = PreferencesManager.getStringEntryFromPreferences(mPreferences, "lang");
 
-                    textDetailPublishedDate.setText(CommonUtils.getStringFromDateDisplay(eventsNewsInfoResBean.getDisplayDate()));
+                    if (eventsNewsInfoResBean.getDisplayDate() != null) {
+                        textDetailPublishedDate.setText(CommonUtils.getStringFromDateDisplay(eventsNewsInfoResBean.getDisplayDate()));
+                    }
 
-                    if(curLang.equals(LANG_MM)){
+                    if (curLang.equals(LANG_MM)) {
                         textDetailTitle.setText(eventsNewsInfoResBean.getTitleMyn());
                         textDetailContent.setText(eventsNewsInfoResBean.getContentMyn());
                     } else {
@@ -189,6 +214,7 @@ public class EventsNewsListAdapter extends RecyclerView.Adapter {
                     }
 
                     mMapView = dialog.findViewById(R.id.mapView);
+                    mMapView.setAnimation(UiUtils.animSlideToRight(context));
                     mMapView.onCreate(savedInstanceState);
                     mMapView.onResume(); // needed to get the map to display immediately
 
@@ -199,7 +225,7 @@ public class EventsNewsListAdapter extends RecyclerView.Adapter {
                     }
 
                     //location(x,y)
-                    if(isLatLongValid(eventsNewsInfoResBean.getLatitude(),eventsNewsInfoResBean.getLongitude())) {
+                    if (isLatLongValid(eventsNewsInfoResBean.getLatitude(), eventsNewsInfoResBean.getLongitude())) {
 
                         final double latitude = Double.valueOf(eventsNewsInfoResBean.getLatitude());
                         final double longitude = Double.valueOf(eventsNewsInfoResBean.getLongitude());
@@ -218,7 +244,6 @@ public class EventsNewsListAdapter extends RecyclerView.Adapter {
                                 // For zooming automatically to the location of the marker
                                 CameraPosition cameraPosition = new CameraPosition.Builder().target(position).zoom(15).build();
                                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
                             }
                         });
 
@@ -227,9 +252,8 @@ public class EventsNewsListAdapter extends RecyclerView.Adapter {
                     }
 
                     //Coupon Img.
-                    final String imagePath = NEWS_URL+eventsNewsInfoResBean.getImagePath();
-                    if(imagePath==null || imagePath==BLANK) {
-                        //Picasso.get().load(R.drawable.noimage).into(newsDetailImage);
+                    final String imagePath = NEWS_URL + eventsNewsInfoResBean.getImagePath();
+                    if (imagePath == null || imagePath == BLANK) {
                         newsDetailImage.setMinimumHeight(imgViewHeight);
                     } else {
                         Picasso.get().load(imagePath).into(newsDetailImage, new com.squareup.picasso.Callback() {
@@ -237,9 +261,9 @@ public class EventsNewsListAdapter extends RecyclerView.Adapter {
                             public void onSuccess() {
                                 Picasso.get().load(imagePath).into(newsDetailImage);
                             }
+
                             @Override
                             public void onError(Exception e) {
-                                //Picasso.get().load(R.drawable.noimage).into(newsDetailImage);
                                 newsDetailImage.setMinimumHeight(imgViewHeight);
                             }
                         });
@@ -248,10 +272,10 @@ public class EventsNewsListAdapter extends RecyclerView.Adapter {
                     //removing background dim
                     Window w = dialog.getWindow();
                     w.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-
                     dialog.show();
                 }
             });
+
         }
     }
 }

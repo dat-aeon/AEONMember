@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -120,9 +119,9 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
 
     private LinearLayout backToOccuData;
     private LinearLayout goToGuarantorData;
-    private TextView occupationTitle;
-    private TextView guarantorTitle;
-    private TextView emergencyTitle;
+    //private TextView occupationTitle;
+    //private TextView guarantorTitle;
+    //private TextView emergencyTitle;
 
     private TextView lblEmerTitle;
     private TextView lblEmerApartment;
@@ -180,32 +179,33 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
     private String appEmerTownship;
 
     private StateProgressBar emerStepView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_small_loan_emergency, container, false);
         setHasOptionsMenu(true);
 
-        String[] pages = {"Application\nData", "Occupation\nData","Emergency\nContact", "Guarantor\nData", "Loan\nConfirmation"};
+        String[] pages = {"Application\nData", "Occupation\nData", "Emergency\nContact", "Guarantor\nData", "Loan\nConfirmation"};
         emerStepView = view.findViewById(R.id.emer_stepped_bar);
         emerStepView.setStateDescriptionData(pages);
 
         emerStepView.setOnStateItemClickListener(new OnStateItemClickListener() {
             @Override
             public void onStateItemClick(StateProgressBar stateProgressBar, StateItem stateItem, int stateNumber, boolean isCurrentState) {
-                if(stateNumber == 1){
+                if (stateNumber == 1) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(0, true);
-                }else if(stateNumber == 2){
+                } else if (stateNumber == 2) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(1, true);
-                }else if(stateNumber == 3){
+                } else if (stateNumber == 3) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(2, true);
-                }else if(stateNumber == 4){
+                } else if (stateNumber == 4) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(3, true);
-                }else if(stateNumber == 5){
+                } else if (stateNumber == 5) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(4, true);
                 }
@@ -385,31 +385,6 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
                 }
             }
         });
-/*
-        autoEmergencyCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean focus) {
-                if(focus){
-                    autoEmergencyCity.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
-                }else{
-                    if(isEmptyOrNull(autoEmergencyCity.getText().toString())){
-                        autoEmergencyCity.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.mandatroy_edit_text_style));
-                    }
-                }
-            }
-        });
-        autoEmergencyTowhship.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean focus) {
-                if(focus){
-                    autoEmergencyTowhship.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
-                }else{
-                    if(isEmptyOrNull(autoEmergencyTowhship.getText().toString())){
-                        autoEmergencyTowhship.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.mandatroy_edit_text_style));
-                    }
-                }
-            }
-        });*/
 
         final String[] applicantRelation = getResources().getStringArray(R.array.applicant_relation);
         ArrayAdapter<String> adapterType = new ArrayAdapter<String>(getActivity(), R.layout.relation_spinner, applicantRelation);
@@ -459,7 +434,6 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
         emerQuarter.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(100)});
         eme_relationshipDetail.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(256)});
 
-
         ScrollView scrollView = view.findViewById(R.id.emergency_scroll);
         scrollView.setOnTouchListener(new View.OnTouchListener() {
 
@@ -500,27 +474,9 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
             }
         });
 
-        /*backToOccuData = view.findViewById(R.id.back_occu_data);
-        goToGuarantorData = view.findViewById(R.id.go_to_guarantor);*/
-        guarantorTitle = view.findViewById(R.id.da_gua_data_title);
-        emergencyTitle = view.findViewById(R.id.da_emer_data_title);
-        occupationTitle = view.findViewById(R.id.da_occu_title);
-
-        /*backToOccuData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUpDataOnPageChanged();
-                viewPager.setCurrentItem(1, true);
-            }
-        });
-
-        goToGuarantorData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUpDataOnPageChanged();
-                viewPager.setCurrentItem(3, true);
-            }
-        });*/
+        //guarantorTitle = view.findViewById(R.id.da_gua_data_title);
+        //emergencyTitle = view.findViewById(R.id.da_emer_data_title);
+        //occupationTitle = view.findViewById(R.id.da_occu_title);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -530,8 +486,8 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
             @Override
             public void onPageSelected(int position) {
                 selectedPosition = position;
-                if(selectedPosition == 2){
-                    ((MainMenuActivityDrawer)getActivity()).setLanguageListener(SmallLoanEmergencyFragment.this);
+                if (selectedPosition == 2) {
+                    ((MainMenuActivityDrawer) getActivity()).setLanguageListener(SmallLoanEmergencyFragment.this);
                 }
             }
 
@@ -552,15 +508,9 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
             }
 
         });
-        /*if (curLang.equals(LANG_MM)) {
-            changeLabel(LANG_MM);
-        } else {
-            changeLabel(LANG_EN);
-        }*/
 
         changeLabel(curLang);
         replaceLastEmergencyInfo();
-        Log.e("Page create", "Gurantor fragment");
 
         nameCheck = eme_name.getText().toString();
         if (!isEmptyOrNull(nameCheck)) {
@@ -615,14 +565,12 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
                 }
             }
         });
-
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("Resume", "==========================Emergency Fragment");
     }
 
     @Override
@@ -630,27 +578,22 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
 
         switch (item.getItemId()) {
             case R.id.action_favorite:
-                //this.languageFlag = item;
                 if (item.getTitle().equals(LANG_MM)) {
                     item.setIcon(R.drawable.en_flag2);
                     item.setTitle(LANG_EN);
                     changeLabel(LANG_MM);
-
                 } else if (item.getTitle().equals(LANG_EN)) {
                     item.setIcon(R.drawable.mm_flag);
                     item.setTitle(LANG_MM);
                     changeLabel(LANG_EN);
                 }
-
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void saveEmergencyContactToDatabase() {
-
         setUpEmergencyContactFormData();
-
         ApplicationRegisterSaveReqBean saveDataBean
                 = new ApplicationRegisterSaveReqBean();
 
@@ -682,14 +625,13 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
         emergencyContact.setCurrentAddressCity(city_id);
         emergencyContact.setCurrentAddressTownship(town_id);
 
-
         saveDataBean.setEmergencyContactInfoDto(emergencyContact);
 
         if (saveDataBean.isBeanValid()) {
-
             if (!CommonUtils.isNetworkAvailable(getActivity())) {
                 showNetworkErrorDialog(getActivity(), getNetErrMsg());
             } else {
+
                 final ProgressDialog saveDialog = new ProgressDialog(getActivity());
                 saveDialog.setMessage("Saving Data...");
                 saveDialog.setCancelable(false);
@@ -702,19 +644,13 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
                     @Override
                     public void onResponse(Call<BaseResponse<ApplicationRegisterSaveReqBean>> call, Response<BaseResponse<ApplicationRegisterSaveReqBean>> response) {
                         if (response.isSuccessful()) {
-
                             BaseResponse baseResponse = response.body();
-
                             if (baseResponse != null) {
-
                                 if (baseResponse.getStatus().equals(SUCCESS)) {
-
                                     ApplicationRegisterSaveReqBean localSaveReqBean = (ApplicationRegisterSaveReqBean) baseResponse.getData();
                                     PreferencesManager.saveDaftSavedInfo(getActivity(), localSaveReqBean);
-
                                     saveDialog.dismiss();
                                     showSnackBarMessage("Emergency Contact Data saved.");
-
                                 } else {
                                     saveDialog.dismiss();
                                     showSnackBarMessage("Emergency Contact Data cannot be saved.");
@@ -736,7 +672,6 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
                     }
                 });
             }
-
         } else {
             showSnackBarMessage("Emergency Contact Data is required to save.");
         }
@@ -812,6 +747,7 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
                     emerFloorNo.setText(emerLastInfo.getCurrentAddressFloor());
                     emerStreet.setText(emerLastInfo.getCurrentAddressStreet());
                     emerQuarter.setText(emerLastInfo.getCurrentAddressQtr());
+
                     if (emerLastInfo.getCurrentAddressCity() == 0) {
                         autoEmergencyCity.setText("");
                     } else {
@@ -845,11 +781,8 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
     }
 
     private void showValidationMsg(String curLang) {
-
         setUpEmergencyContactFormData();
-
         ApplicationFormErrMesgBean errEmerMesgBean = PreferencesManager.getErrMesgInfo(getContext());
-
         if (errEmerMesgBean == null) {
             errEmerMesgBean = new ApplicationFormErrMesgBean();
         }
@@ -859,62 +792,55 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
             errName.setVisibility(View.VISIBLE);
             errName.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.register_name_err, getActivity()));
             errNameLocale = R.string.register_name_err;
-            errEmerMesgBean.setEmergencyNameLocale(errNameLocale);
         } else {
             errName.setVisibility(View.GONE);
             errNameLocale = R.string.da_mesg_blank;
-            errEmerMesgBean.setEmergencyNameLocale(errNameLocale);
         }
+        errEmerMesgBean.setEmergencyNameLocale(errNameLocale);
 
         /*Emergency Contact Quarter*/
         if (CommonUtils.isEmptyOrNull(emergencyQuarter)) {
             errEmergencyQuarter.setVisibility(View.VISIBLE);
             errEmergencyQuarter.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_quarter, getActivity()));
             errEmergencyQuarterLocale = R.string.da_err_quarter;
-            errEmerMesgBean.setEmergencyQuarterLocale(errEmergencyQuarterLocale);
         } else {
             errEmergencyQuarter.setVisibility(View.GONE);
             errEmergencyQuarterLocale = R.string.da_mesg_blank;
-            errEmerMesgBean.setEmergencyQuarterLocale(errEmergencyQuarterLocale);
         }
+        errEmerMesgBean.setEmergencyQuarterLocale(errEmergencyQuarterLocale);
 
         /*Emergency street*/
         if (CommonUtils.isEmptyOrNull(emergencyStreet)) {
             errEmergencyStreet.setVisibility(View.VISIBLE);
             errEmergencyStreet.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_street, getActivity()));
             errEmergencyStreetLocale = R.string.da_err_street;
-            errEmerMesgBean.setEmergencyStreetLocale(errEmergencyStreetLocale);
         } else {
             errEmergencyStreet.setVisibility(View.GONE);
             errEmergencyStreetLocale = R.string.da_mesg_blank;
-            errEmerMesgBean.setEmergencyStreetLocale(errEmergencyStreetLocale);
         }
+        errEmerMesgBean.setEmergencyStreetLocale(errEmergencyStreetLocale);
 
         /*Emergency City*/
         if (CommonUtils.isEmptyOrNull(appEmerCity)) {
             errEmergencyCity.setVisibility(View.VISIBLE);
             errEmergencyCity.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_city, getActivity()));
             errEmergencyCityLocale = R.string.da_err_city;
-            errEmerMesgBean.setEmergencyCityLocale(errEmergencyCityLocale);
-
         } else {
             errEmergencyCity.setVisibility(View.GONE);
             errEmergencyCityLocale = R.string.da_mesg_blank;
-            errEmerMesgBean.setEmergencyCityLocale(errEmergencyCityLocale);
         }
+        errEmerMesgBean.setEmergencyCityLocale(errEmergencyCityLocale);
 
         /*Emergency Township*/
         if (CommonUtils.isEmptyOrNull(appEmerTownship)) {
             errEmergencyTownship.setVisibility(View.VISIBLE);
             errEmergencyTownship.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_township, getActivity()));
             errEmergencyTownshipLocale = R.string.da_err_township;
-            errEmerMesgBean.setEmergencyTownshipLocale(errEmergencyTownshipLocale);
-
         } else {
             errEmergencyTownship.setVisibility(View.GONE);
             errEmergencyTownshipLocale = R.string.da_mesg_blank;
-            errEmerMesgBean.setEmergencyTownshipLocale(errEmergencyTownshipLocale);
         }
+        errEmerMesgBean.setEmergencyTownshipLocale(errEmergencyTownshipLocale);
 
         /*Relationship*/
         if (relationship == EMERGENCY_RELATION_OTHER) {
@@ -922,13 +848,11 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
                 errRelationshipDetail.setVisibility(View.VISIBLE);
                 errRelationshipDetail.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_relationship_require_err, getActivity()));
                 errRelationshipDetailLocale = R.string.da_relationship_require_err;
-                errEmerMesgBean.setEmergencyRelationshipDetailLocale(errRelationshipDetailLocale);
-
             } else {
                 errRelationshipDetail.setVisibility(View.GONE);
                 errRelationshipDetailLocale = R.string.da_mesg_blank;
-                errEmerMesgBean.setEmergencyRelationshipDetailLocale(errRelationshipDetailLocale);
             }
+            errEmerMesgBean.setEmergencyRelationshipDetailLocale(errRelationshipDetailLocale);
         }
 
         /*Mobile No.*/
@@ -951,22 +875,19 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
 
         /*Residence No.*/
         if (!CommonUtils.isEmptyOrNull(residentTel)) {
-            if (!CommonUtils.isPhoneNoValid(residentTel)) {
+            if (!CommonUtils.isTelPhoneNoValid(residentTel)) {
                 errResidentTelNo.setVisibility(View.VISIBLE);
                 errResidentTelNo.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_residentTelNo_format_err, getActivity()));
                 errResidentTelNoLocale = R.string.da_residentTelNo_format_err;
-                errEmerMesgBean.setEmergencyResidentTelNoLocale(errResidentTelNoLocale);
-
             } else {
                 errResidentTelNo.setVisibility(View.GONE);
                 errResidentTelNoLocale = R.string.da_mesg_blank;
-                errEmerMesgBean.setEmergencyResidentTelNoLocale(errResidentTelNoLocale);
             }
         } else {
             errResidentTelNo.setVisibility(View.GONE);
             errResidentTelNoLocale = R.string.da_mesg_blank;
-            errEmerMesgBean.setEmergencyResidentTelNoLocale(errResidentTelNoLocale);
         }
+        errEmerMesgBean.setEmergencyResidentTelNoLocale(errResidentTelNoLocale);
 
         /*Other Phone No.*/
         if (!CommonUtils.isEmptyOrNull(otherPhone)) {
@@ -974,18 +895,15 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
                 errOtherPhoneNo.setVisibility(View.VISIBLE);
                 errOtherPhoneNo.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_otherPhoneNo_format_err, getActivity()));
                 errOtherPhoneNoLocale = R.string.da_otherPhoneNo_format_err;
-                errEmerMesgBean.setEmergencyOtherPhoneNoLocale(errOtherPhoneNoLocale);
-
             } else {
                 errOtherPhoneNo.setVisibility(View.GONE);
                 errOtherPhoneNoLocale = R.string.da_mesg_blank;
-                errEmerMesgBean.setEmergencyOtherPhoneNoLocale(errOtherPhoneNoLocale);
             }
         } else {
             errOtherPhoneNo.setVisibility(View.GONE);
             errOtherPhoneNoLocale = R.string.da_mesg_blank;
-            errEmerMesgBean.setEmergencyOtherPhoneNoLocale(errOtherPhoneNoLocale);
         }
+        errEmerMesgBean.setEmergencyOtherPhoneNoLocale(errOtherPhoneNoLocale);
 
         PreferencesManager.saveErrorMesgInfo(getContext(), errEmerMesgBean);
 
@@ -1003,7 +921,7 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
 
         /*Relationship*/
         if (relationship == EMERGENCY_RELATION_OTHER) {
-            if (CommonUtils.isEmptyOrNull(relationshipDetail)) {           // myanmar language need to set
+            if (CommonUtils.isEmptyOrNull(relationshipDetail)) {   // myanmar language need to set
                 validate = false;
             }
         }
@@ -1032,7 +950,7 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
         }
 
         if (!CommonUtils.isEmptyOrNull(residentTel)) {
-            if (!CommonUtils.isPhoneNoValid(residentTel)) {
+            if (!CommonUtils.isTelPhoneNoValid(residentTel)) {
                 validate = false;
             }
         }
@@ -1055,9 +973,8 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
     }
 
     public void changeLabel(String language) {
-        /*occupationTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_occupation_title, getContext()));
-        guarantorTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_guarantor_title, getContext()));*/
-        emergencyTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_emergency_title, getContext()));
+
+        //emergencyTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_emergency_title, getContext()));
 
         labelName.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_emergency_name, getActivity()));
         labelRelation.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_emergency_relationship, getActivity()));
@@ -1084,7 +1001,6 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
         lblEmerTownship.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_applicant_township, getActivity()));
         lblEmerCity.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_applicant_city, getActivity()));
 
-
         btnNext.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_applicant_next_btn, getActivity()));
         btnSave.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_applicant_save_btn, getActivity()));
 
@@ -1110,11 +1026,9 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
         emergencyQuarter = emerQuarter.getText().toString();
         appEmerCity = autoEmergencyCity.getText().toString();
         appEmerTownship = autoEmergencyTowhship.getText().toString();
-
     }
 
     void appLoadInputData() {
-
         setUpEmergencyContactFormData();
 
         ApplicationRegisterSaveReqBean registerSaveReqBean
@@ -1159,7 +1073,6 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
     void setUpDataOnPageChanged() {
         appLoadInputData();
         MainMenuActivityDrawer.emerDataCorrect = checkEmergencyData();
-        Log.e("Emergency Data", String.valueOf(MainMenuActivityDrawer.emerDataCorrect));
     }
 
     @Override
@@ -1243,7 +1156,6 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
                     townshipList.add(townshipBean.getName());
                     townshipId.add(townshipBean.getTownshipId());
                 }
-
                 ArrayAdapter<String> addressTownship = new ArrayAdapter<String>(getActivity(), R.layout.nrc_spinner_item_2, townshipList);
                 addressTownship.setDropDownViewResource(R.layout.dialog_nrc_division);
                 addressTownship.setNotifyOnChange(true);
@@ -1274,13 +1186,11 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
                 break;
             }
         }
-
         for (int id = 0; id < townshipId.size(); id++) {
             if (townshipId.get(id) == townId) {
                 township = townshipList.get(id);
             }
         }
-
         return township;
     }
 
@@ -1305,24 +1215,22 @@ public class SmallLoanEmergencyFragment extends PagerRootFragment implements Lan
                 }
             }
         }
-
         for (int id = 0; id < saveTownshipList.size(); id++) {
             if (saveTownshipList.get(id).equals(name)) {
                 saveTownshipid = saveTownshipId.get(id);
             }
         }
-
         return saveTownshipid;
     }
 
     @Override
     public void changeLanguageTitle(String lang) {
         changeLabel(lang);
-        Log.e("Change Language", "Emergency Flag");
     }
 
     @Override
     public void clickMenuBarBackBtn() {
         replaceFragment(new MainMenuWelcomeFragment());
     }
+
 }

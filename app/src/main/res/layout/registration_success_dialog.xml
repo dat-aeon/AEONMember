@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:weightSum="1"
+    android:layout_gravity="center"
     android:background="@drawable/alert_dialog_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -27,12 +28,23 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_title"
             android:textColor="@color/blue"
-            android:textSize="@dimen/text_regular_3x"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:textSize="@dimen/text_regular"
             android:fontFamily="@font/pyidaungsu_regular"
             android:layout_gravity="center_vertical"
             android:text="@string/dialog_title_info"/>
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/margin_medium_x"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        android:layout_marginBottom="@dimen/margin_tiny"
+        android:background="@color/gray" />
 
     <TextView
         android:layout_width="match_parent"
@@ -58,7 +70,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_large_2"
+            android:layout_height="@dimen/mini_button_height"
             android:layout_marginTop="@dimen/margin_small"
             android:textSize="@dimen/text_medium"
             android:width="120dp"

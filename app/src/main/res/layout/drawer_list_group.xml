@@ -1,5 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -8,11 +7,12 @@
         android:id="@+id/lblListHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fontFamily="@font/pyidaungsu_regular"
         android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingLeft="35dp"
         android:singleLine="false"
         android:textColor="@color/colorPrimary"
-        android:background="@color/light"
-        android:fontFamily="@font/pyidaungsu_regular"
-        android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+        android:textSize="@dimen/text_regular" />
 </LinearLayout>

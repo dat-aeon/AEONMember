@@ -1,5 +1,7 @@
 package mm.com.aeon.vcsaeon.networking;
 
+import mm.com.aeon.vcsaeon.BuildConfig;
+
 public class NetworkingConstants {
 
     //API Client | OkHttp3 Client
@@ -26,6 +28,9 @@ public class NetworkingConstants {
 
     public static final String PARAM_USERNAME = "username";
     public static final String PARAM_PASSWORD = "password";
+
+    //Video Play Url
+    public static final String URL_VIDEO_PLAY = BuildConfig.API_URL + "how-to-use-video/";
 
     //Service Api | Api Endpoints
     /*Customer-Info-Manage*/
@@ -134,4 +139,8 @@ public class NetworkingConstants {
     public static final String API_MENU_STATUS_COUNT = "application/get-application-status-changed-count";
 
     public static final String API_STATUS_READ_FLAG = "application/update-application-status-changed-read-flag";
+
+    /* Un-read message count */
+    public static final String API_L2_UNREAD_MSG_COUNT = "free-token/get-level-2-message-unread-count";
+    public static final String API_ASK_PRODUCT_MSG_COUNT = "free-token/get-ask-product-unread-count";
 }

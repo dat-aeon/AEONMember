@@ -2,15 +2,15 @@ package mm.com.aeon.vcsaeon.activities;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,7 +69,7 @@ public class ForcePasswordResetActivity extends BaseActivity {
     TextView menuBarDate;
     TextView menuBarPhoneNo;
     TextView menuBarName;
-    LinearLayout menuBackbtn;
+    LinearLayout menuBackBtn;
 
     ForceResetPasswordReqBean forceResetPasswordReqBean;
 
@@ -82,12 +82,12 @@ public class ForcePasswordResetActivity extends BaseActivity {
 
         btnResetPwd = findViewById(R.id.btn_change_pwd);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_main_home);
+        toolbar = findViewById(R.id.toolbar_main_home);
         toolbar.setTitleTextColor(getColor(R.color.white));
         setSupportActionBar(toolbar);
 
-        menuBackbtn = toolbar.findViewById(R.id.menu_back_btn_view);
-        menuBackbtn.setVisibility(View.VISIBLE);
+        menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+        menuBackBtn.setVisibility(View.VISIBLE);
 
         menuBarName = toolbar.findViewById(R.id.menu_bar_name);
         menuBarLevelInfo = toolbar.findViewById(R.id.menu_bar_level);
@@ -96,8 +96,10 @@ public class ForcePasswordResetActivity extends BaseActivity {
 
         menuBarDate.setText(CommonUtils.getCurTimeStringForLogout());
         menuBarLevelInfo.setText(R.string.menu_level_one);
+
         //get install phone number from fragment.
         String installPhone = PreferencesManager.getInstallPhoneNo(getApplicationContext()).trim();
+
         menuBarPhoneNo.setText(installPhone);
         menuBarName.setVisibility(View.GONE);
 
@@ -118,7 +120,7 @@ public class ForcePasswordResetActivity extends BaseActivity {
             }
         });
 
-        menuBackbtn.setOnClickListener(new View.OnClickListener() {
+        menuBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -148,7 +150,6 @@ public class ForcePasswordResetActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                //
                 final String newPwd = textNewPwd.getText().toString();
                 final String confNewPwd = textConfNewPwd.getText().toString();
 
@@ -156,10 +157,10 @@ public class ForcePasswordResetActivity extends BaseActivity {
 
                 final String curLang2 = PreferencesManager.getCurrentLanguage(getApplicationContext());
 
-                if(newPwd==null || newPwd.equals(BLANK)){
+                if (newPwd == null || newPwd.equals(BLANK)) {
                     txtErrNewPwd.setVisibility(View.VISIBLE);
                     validation = false;
-                } else if(newPwd.length()<6 || newPwd.length()>16 || newPwd.equals(SPACE)){
+                } else if (newPwd.length() < 6 || newPwd.length() > 16 || newPwd.equals(SPACE)) {
                     txtErrNewPwd.setText(getString(R.string.register_pwd_format_err_msg));
                     changeErrPwd(curLang2);
                     txtErrNewPwd.setVisibility(View.VISIBLE);
@@ -168,15 +169,15 @@ public class ForcePasswordResetActivity extends BaseActivity {
                     txtErrNewPwd.setVisibility(View.GONE);
                 }
 
-                if(confNewPwd==null || confNewPwd.equals(BLANK)){
+                if (confNewPwd == null || confNewPwd.equals(BLANK)) {
                     txtErrConfNewPwd.setVisibility(View.VISIBLE);
                     validation = false;
-                } else if(!newPwd.equals(confNewPwd)){
+                } else if (!newPwd.equals(confNewPwd)) {
                     txtErrConfNewPwd.setText(getString(R.string.resetpass_conpass_err2));
                     changeErrConfPwd(curLang2);
                     txtErrConfNewPwd.setVisibility(View.VISIBLE);
                     validation = false;
-                } else if(confNewPwd.length()<6 || confNewPwd.length()>16){
+                } else if (confNewPwd.length() < 6 || confNewPwd.length() > 16) {
                     txtErrConfNewPwd.setText(getString(R.string.register_pwd_format_err_msg));
                     changeErrConfPwd(curLang2);
                     txtErrConfNewPwd.setVisibility(View.VISIBLE);
@@ -185,10 +186,10 @@ public class ForcePasswordResetActivity extends BaseActivity {
                     txtErrConfNewPwd.setVisibility(View.GONE);
                 }
 
-                if(validation){
+                if (validation) {
 
                     if (!CommonUtils.isNetworkAvailable(getApplicationContext())) {
-                        showNetworkErrorDialog(ForcePasswordResetActivity.this,getNetErrMsg());
+                        showNetworkErrorDialog(ForcePasswordResetActivity.this, getNetErrMsg());
                     } else {
 
                         //network call
@@ -205,25 +206,20 @@ public class ForcePasswordResetActivity extends BaseActivity {
 
                         req.enqueue(new Callback<BaseResponse>() {
                             @Override
-                            public void onResponse(Call<BaseResponse> call,
-                                                   Response<BaseResponse> response) {
-
+                            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                                 if (response.isSuccessful()) {
-
                                     BaseResponse baseResponse = response.body();
-
-                                    if(baseResponse.getStatus().equals(SUCCESS)){
-
+                                    if (baseResponse.getStatus().equals(SUCCESS)) {
                                         closeDialog(forceResetPwdDialog);
 
                                         //Update Biometric data.
                                         SharedPreferences myPreferences = PreferencesManager.getApplicationPreference(getApplicationContext());
-                                        PreferencesManager.setBiometricRegistered(getApplicationContext(),true);
+                                        PreferencesManager.setBiometricRegistered(getApplicationContext(), true);
                                         PreferencesManager.addEntryToPreferences(myPreferences, "biometric_phone", forceResetPasswordReqBean.getPhoneNo());
                                         PreferencesManager.addEntryToPreferences(myPreferences, "biometric_pwd", newPwd);
 
                                         //Set Current login phone no.
-                                        PreferencesManager.setCurrentLoginPhoneNo(getApplicationContext(),forceResetPasswordReqBean.getPhoneNo());
+                                        PreferencesManager.setCurrentLoginPhoneNo(getApplicationContext(), forceResetPasswordReqBean.getPhoneNo());
 
                                         //Show Dialog nad go to login.
                                         final Dialog dialog = new Dialog(ForcePasswordResetActivity.this);
@@ -234,47 +230,38 @@ public class ForcePasswordResetActivity extends BaseActivity {
                                         Button btnOk = dialog.findViewById(R.id.btn_ok);
                                         TextView messageBody = dialog.findViewById(R.id.text_message);
                                         messageBody.setText(getString(R.string.pwd_update_success));
-                                        PreferencesManager.setRegistrationCompleted(getApplicationContext(),true);
+                                        PreferencesManager.setRegistrationCompleted(getApplicationContext(), true);
                                         btnOk.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
                                                 dialog.dismiss();
-
                                                 Intent intent = new Intent(ForcePasswordResetActivity.this, LoginActivity.class);
-                                                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                 startActivity(intent);
-
-                                                //startActivity(new Intent(ForcePasswordResetActivity.this, LoginActivity.class));
                                             }
                                         });
                                         dialog.show();
-
                                     } else {
-
                                         closeDialog(forceResetPwdDialog);
-
-                                        if(baseResponse.getMessageCode().equals(PASSWORD_WEAK)){
+                                        if (baseResponse.getMessageCode().equals(PASSWORD_WEAK)) {
                                             changePwdStrength(curLang2);
                                             txtErrNewPwd.setVisibility(View.VISIBLE);
                                         }
-
-                                        if(baseResponse.getMessageCode().equals(INVALID_PASSWORD_LENGTH)){
+                                        if (baseResponse.getMessageCode().equals(INVALID_PASSWORD_LENGTH)) {
                                             changePwdStrength(curLang2);
                                             txtErrNewPwd.setVisibility(View.VISIBLE);
                                         }
-
                                     }
-
                                 } else {
                                     closeDialog(forceResetPwdDialog);
-                                    showErrorDialog(ForcePasswordResetActivity.this,getString(R.string.message_password_failed));
+                                    showErrorDialog(ForcePasswordResetActivity.this, getString(R.string.message_password_failed));
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<BaseResponse> call, Throwable t) {
                                 closeDialog(forceResetPwdDialog);
-                                showErrorDialog(ForcePasswordResetActivity.this,getString(R.string.service_unavailable));
+                                showErrorDialog(ForcePasswordResetActivity.this, getString(R.string.service_unavailable));
                             }
                         });
                     }
@@ -287,27 +274,12 @@ public class ForcePasswordResetActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         SharedPreferences sharedPreferences = PreferencesManager.getApplicationPreference(getApplicationContext());
-        String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences,"lang");
+        String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences, "lang");
         changeLabel(curLang);
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        /*getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-
-        final String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        if(curLang.equals(LANG_MM)){
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
-            menu.getItem(0).setTitle(LANG_EN);
-            changeLabel(LANG_MM);
-        } else {
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
-            menu.getItem(0).setTitle(LANG_MM);
-            changeLabel(LANG_EN);
-        }*/
-
         return true;
     }
 
@@ -320,30 +292,27 @@ public class ForcePasswordResetActivity extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_favorite) {
-
-            if(item.getTitle().equals(LANG_MM)){
+            if (item.getTitle().equals(LANG_MM)) {
                 item.setIcon(R.drawable.en_flag2);
                 item.setTitle(LANG_EN);
                 changeLabel(LANG_MM);
                 addValueToPreference(LANG_MM);
-            } else if(item.getTitle().equals(LANG_EN)){
+            } else if (item.getTitle().equals(LANG_EN)) {
                 item.setIcon(R.drawable.mm_flag);
                 item.setTitle(LANG_MM);
                 changeLabel(LANG_EN);
                 addValueToPreference(LANG_EN);
             }
-
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    public void addValueToPreference(String lang){
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),lang);
+    public void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), lang);
     }
 
-    public void changeLabel(String language){
+    public void changeLabel(String language) {
         txtNewPwd.setText(CommonUtils.getLocaleString(new Locale(language), R.string.resetpass_newpass_label, getApplicationContext()));
         txtConfPwd.setText(CommonUtils.getLocaleString(new Locale(language), R.string.resetpass_conpass_label, getApplicationContext()));
         textNewPwd.setHint(CommonUtils.getLocaleString(new Locale(language), R.string.resetpass_hint, getApplicationContext()));
@@ -356,20 +325,21 @@ public class ForcePasswordResetActivity extends BaseActivity {
         addValueToPreference(language);
     }
 
-    public void changePwdStrength(String language){
+    public void changePwdStrength(String language) {
         txtErrNewPwd.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_pwd_strength_err_msg, getApplicationContext()));
     }
 
-    public void changeErrPwd(String language){
+    public void changeErrPwd(String language) {
         txtErrNewPwd.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_pwd_format_err_msg, getApplicationContext()));
     }
 
-    public void changeErrConfPwd(String language){
+    public void changeErrConfPwd(String language) {
         txtErrConfNewPwd.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_confpwd_format_err_msg, getApplicationContext()));
     }
 
-    private String getNetErrMsg(){
+    private String getNetErrMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         return CommonUtils.getLocaleString(new Locale(language), R.string.network_connection_err, getApplicationContext());
     }
+
 }

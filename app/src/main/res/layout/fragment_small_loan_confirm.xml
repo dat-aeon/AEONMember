@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -14,10 +14,10 @@
             android:id="@+id/stepview_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:background="@drawable/edit_text_style"
             android:orientation="vertical"
             android:padding="@dimen/margin_medium"
-            android:layout_alignParentTop="true"
             android:visibility="gone">
 
             <io.canner.stepsview.StepsView xmlns:custom="http://schemas.android.com/apk/res-auto"
@@ -28,101 +28,65 @@
                 custom:labelSize="10" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/loan_data_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
             android:orientation="vertical">
-
-            <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-
-                <LinearLayout
-                    android:id="@+id/back_gua_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/left_sign_32" />
-
-                    <TextView
-                        android:id="@+id/da_gua_data_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="1dp"
-                        android:text="@string/da_guarantor_title"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:textColor="@color/da_label_color"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/text_regular_2x"
-                        android:layout_weight="0.9"/>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/go_to_emergency"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
-
-                </LinearLayout>
-            </LinearLayout>-->
 
             <com.kofigyan.stateprogressbar.StateProgressBar
                 android:id="@+id/conf_stepped_bar"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:spb_currentStateNumber="five"
-                app:spb_maxStateNumber="five"
-                app:spb_stateBackgroundColor="@color/color_disable"
-                app:spb_stateForegroundColor="@color/da_button__color"
-                app:spb_stateNumberBackgroundColor="@color/white"
-                app:spb_stateNumberForegroundColor="@color/white"
-                app:spb_currentStateDescriptionColor="@color/da_button__color"
-                app:spb_stateDescriptionColor="@color/color_disable"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
                 app:spb_animateToCurrentProgressState="true"
                 app:spb_checkStateCompleted="false"
-                app:spb_stateDescriptionSize="12sp"
-                app:spb_descriptionTopSpaceIncrementer="2dp"/>
+                app:spb_currentStateDescriptionColor="@color/da_button__color"
+                app:spb_currentStateNumber="five"
+                app:spb_descriptionTopSpaceIncrementer="@dimen/margin_tiny"
+                app:spb_maxStateNumber="five"
+                app:spb_stateBackgroundColor="@color/color_disable"
+                app:spb_stateDescriptionColor="@color/color_disable"
+                app:spb_stateDescriptionSize="@dimen/text_small"
+                app:spb_stateForegroundColor="@color/da_button__color"
+                app:spb_stateNumberBackgroundColor="@color/white"
+                app:spb_stateNumberForegroundColor="@color/white" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/da_loan_data_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/pyidaungsu_bold"
                 android:gravity="center"
                 android:text="@string/da_loanConfirm_title"
-                android:fontFamily="@font/pyidaungsu_bold"
-                android:layout_marginBottom="5dp"
                 android:textColor="@color/da_label_color"
                 android:textSize="@dimen/text_regular_3x"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
+
+            <View
+                android:id="@+id/divider6"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:background="?android:attr/listDivider" />
 
         </LinearLayout>
 
         <ScrollView
             android:id="@+id/loan_confirm_scroll"
-            android:descendantFocusability="blocksDescendants"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none"
+            android:layout_above="@id/button_layout"
             android:layout_below="@id/loan_data_banner"
-            android:layout_above="@id/button_layout">
+            android:descendantFocusability="blocksDescendants"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -131,145 +95,6 @@
                 android:background="@null"
                 android:orientation="vertical"
                 android:padding="@dimen/margin_medium">
-
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="@dimen/margin_medium_2"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/reg_form_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="Loan Confirmation"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/text_regular_3x"
-                        android:textStyle="bold" />
-                </LinearLayout>-->
-
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_medium_3"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/conf_loan_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="6dp"
-                        android:text="Type *"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/text_regular"
-                        android:textStyle="bold" />
-
-                    <RadioGroup
-                        android:id="@+id/confirm_radioLoanType"
-                        android:layout_marginLeft="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/confirm_radioMobile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:buttonTint="@color/background"
-                            android:checked="true"
-                            android:text="Mobile"
-                            android:fontFamily="@font/pyidaungsu_bold"
-                            android:textColor="@color/background" />
-
-                        <RadioButton
-                            android:id="@+id/confirm_radioNonmobile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:buttonTint="@color/background"
-                            android:text="Non-mobile"
-                            android:fontFamily="@font/pyidaungsu_bold"
-                            android:textColor="@color/background" />
-                    </RadioGroup>
-
-                </LinearLayout>-->
-
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_medium_3"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/conf_product_category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Product Category *"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/text_regular"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/spinner_confirm_pcategory"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/edit_text_height"
-                        android:layout_weight="0.1"
-                        android:background="@drawable/spinner_drop_arrow"
-                        android:gravity=""
-                        android:paddingLeft="@dimen/margin_small"
-                        android:paddingRight="@dimen/margin_small" />
-
-                </LinearLayout>-->
-
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_medium_3"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/conf_product_desc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Product Description *"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/text_regular"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/confirm_err_pdescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Description is required."
-                        android:fontFamily="@font/pyidaungsu_regular"
-                        android:textColor="@color/red"
-                        android:textSize="@dimen/text_regular"
-                        android:visibility="gone" />
-
-                    <EditText
-                        android:id="@+id/product_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/edit_text_height"
-                        android:background="@drawable/mandatroy_edit_text_style"
-                        android:hint="Description"
-                        android:inputType="textCapCharacters"
-                        android:fontFamily="@font/pyidaungsu_regular"
-                        android:maxLength="256"
-                        android:paddingLeft="@dimen/margin_medium"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/grayLight"
-                        android:textSize="@dimen/text_regular" />
-
-                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -282,8 +107,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Finance Amount *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Finance Amount *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -293,8 +118,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Finance Amount is required."
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Finance Amount is required."
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -304,10 +129,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/mandatroy_edit_text_style"
-                        android:hint="100,000"
-                        android:fontFamily="@font/pyidaungsu_regular"
-                        android:inputType="number"
                         android:focusable="true"
+                        android:fontFamily="@font/input_text_font"
+                        android:hint="100,000"
+                        android:inputType="number"
                         android:maxLength="9"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -328,8 +153,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Term of Finance *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Term of Finance *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -339,8 +164,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Choose finance term"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Choose finance term"
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -372,8 +197,8 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Processing Fee"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Processing Fee"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -384,8 +209,8 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/edit_text_style"
                         android:enabled="false"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Auto-calculate"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -406,8 +231,8 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Compulsory Saving"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Compulsory Saving"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -418,8 +243,8 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/edit_text_style"
                         android:enabled="false"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Auto-calculate"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -440,8 +265,8 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text="Total Repayment Amount"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Total Repayment Amount"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -452,8 +277,8 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/edit_text_style"
                         android:enabled="false"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Auto-calculate"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -474,8 +299,8 @@
                         android:layout_width="200dp"
                         android:layout_height="40dp"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="First Repayment Amount"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="First Repayment Amount"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -486,8 +311,8 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/edit_text_style"
                         android:enabled="false"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Auto-calculate"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -508,8 +333,8 @@
                         android:layout_width="200dp"
                         android:layout_height="40dp"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Monthly Repayment Amount"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Monthly Repayment Amount"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -520,8 +345,8 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/edit_text_style"
                         android:enabled="false"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Auto-calculate"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -542,8 +367,8 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Last Payment"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Last Payment"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -554,8 +379,8 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/edit_text_style"
                         android:enabled="false"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Auto-calculate"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -575,8 +400,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="NRC Front *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="NRC Front *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -586,8 +411,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Please attach NRC-Front photo"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Please attach NRC-Front photo"
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -627,9 +452,9 @@
                                 android:id="@+id/txt_front_choose"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingTop="7dp"
                                 android:text="Choose"
-                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:textColor="@color/da_button__color"
                                 android:textSize="@dimen/text_medium" />
                         </LinearLayout>
@@ -648,8 +473,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="NRC Back *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="NRC Back *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -659,8 +484,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Please attach NRC-Back photo"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Please attach NRC-Back photo"
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -699,9 +524,9 @@
                                 android:id="@+id/txt_back_choose"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingTop="7dp"
                                 android:text="Choose"
-                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:textColor="@color/da_button__color"
                                 android:textSize="@dimen/text_medium" />
                         </LinearLayout>
@@ -719,8 +544,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Resident Proof Attachment *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Resident Proof Attachment *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -730,8 +555,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Please attach Resident-proof photo"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Please attach Resident-proof photo"
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -770,9 +595,9 @@
                                 android:id="@+id/txt_resident_choose"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingTop="7dp"
                                 android:text="Choose"
-                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:textColor="@color/da_button__color"
                                 android:textSize="@dimen/text_medium" />
                         </LinearLayout>
@@ -791,8 +616,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Income Proof Attachment *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Income Proof Attachment *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -802,8 +627,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Please attach Income-proof photo"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Please attach Income-proof photo"
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -842,9 +667,9 @@
                                 android:id="@+id/txt_income_proof"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingTop="7dp"
                                 android:text="Choose"
-                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:textColor="@color/da_button__color"
                                 android:textSize="@dimen/text_medium" />
                         </LinearLayout>
@@ -863,8 +688,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Guarantor NRC Front *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Guarantor NRC Front *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -874,8 +699,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Please attach NRC-Front photo"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Please attach NRC-Front photo"
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -914,9 +739,9 @@
                                 android:id="@+id/txt_gurantor_front"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingTop="7dp"
                                 android:text="Choose"
-                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:textColor="@color/da_button__color"
                                 android:textSize="@dimen/text_medium" />
                         </LinearLayout>
@@ -934,8 +759,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Guarantor NRC Back *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Guarantor NRC Back *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -945,8 +770,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Please attach NRC-Back photo"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Please attach NRC-Back photo"
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -985,9 +810,9 @@
                                 android:id="@+id/txt_gurantor_back"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingTop="7dp"
                                 android:text="Choose"
-                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:textColor="@color/da_button__color"
                                 android:textSize="@dimen/text_medium" />
                         </LinearLayout>
@@ -1006,8 +831,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Household or Criminal Clearance *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Household or Criminal Clearance *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -1017,8 +842,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Please attach Criminal clearance photo"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Please attach Criminal clearance photo"
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -1057,9 +882,9 @@
                                 android:id="@+id/txt_criminal_proof"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingTop="7dp"
                                 android:text="Choose"
-                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:textColor="@color/da_button__color"
                                 android:textSize="@dimen/text_medium" />
 
@@ -1080,8 +905,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Applicant's Photo *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Applicant's Photo *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -1091,8 +916,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Please attach Applicant's photo"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Please attach Applicant's photo"
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -1132,9 +957,9 @@
                                 android:id="@+id/txt_applicant_photo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingTop="7dp"
                                 android:text="Take Photo"
-                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:textColor="@color/da_button__color"
                                 android:textSize="@dimen/text_medium" />
 
@@ -1155,8 +980,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Customer Signature Attachment *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Customer Signature Attachment *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -1166,8 +991,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Please attach Applicant's signature"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Please attach Applicant's signature"
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -1206,9 +1031,9 @@
                                 android:id="@+id/txt_signature_photo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingTop="7dp"
                                 android:text="Choose"
-                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:textColor="@color/da_button__color"
                                 android:textSize="@dimen/text_medium" />
                         </LinearLayout>
@@ -1228,8 +1053,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Guarantor Signature Attachment *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Guarantor Signature Attachment *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -1239,8 +1064,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Please attach Guarantor's signature"
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Please attach Guarantor's signature"
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -1279,9 +1104,9 @@
                                 android:id="@+id/txt_guar_sign_photo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingTop="7dp"
                                 android:text="Choose"
-                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:textColor="@color/da_button__color"
                                 android:textSize="@dimen/text_medium" />
                         </LinearLayout>
@@ -1299,23 +1124,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp">
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/err_business_mesg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_small"
-                    android:text="Error message"
+                    android:layout_marginLeft="@dimen/margin_small_2x"
                     android:fontFamily="@font/pyidaungsu_regular"
+                    android:lineSpacingExtra="-2dp"
+                    android:padding="@dimen/margin_small"
+                    android:text="Error message"
                     android:textColor="@color/da_err_msg_color"
                     android:textSize="@dimen/text_regular"
                     android:visibility="gone" />
@@ -1327,30 +1153,33 @@
 
                     <Button
                         android:id="@+id/btn_confirm_preview"
-                        android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/margin_medium"
                         android:layout_marginTop="16dp"
-                        android:backgroundTint="@color/da_button__color"
+                        android:layout_marginRight="@dimen/margin_small"
+                        android:layout_weight="1"
                         android:background="@drawable/button_border"
-                        android:text="@string/da_preview_btn"
+                        android:backgroundTint="@color/da_button__color"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="@string/da_preview_btn"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/btn_confirm_next"
-                        android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="2dp"
+                        android:layout_marginLeft="@dimen/margin_small"
                         android:layout_marginTop="16dp"
-                        android:backgroundTint="@color/da_button__color"
+                        android:layout_marginRight="@dimen/margin_medium"
+                        android:layout_weight="1"
                         android:background="@drawable/button_border"
-                        android:text="I Agree and Submit"
+                        android:backgroundTint="@color/da_button__color"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="I Agree and Submit"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 

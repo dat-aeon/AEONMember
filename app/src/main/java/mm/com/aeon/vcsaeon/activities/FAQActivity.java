@@ -3,7 +3,7 @@ package mm.com.aeon.vcsaeon.activities;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
+
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+
 import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class FAQActivity extends BaseActivity {
         menuBarName.setVisibility(View.GONE);
 
         final String mCurLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        if(mCurLang.equals(LANG_MM)){
+        if (mCurLang.equals(LANG_MM)) {
             changeLabel(LANG_MM);
         } else {
             changeLabel(LANG_EN);
@@ -97,28 +98,24 @@ public class FAQActivity extends BaseActivity {
         req.enqueue(new Callback<BaseResponse<List<FAQInfo>>>() {
             @Override
             public void onResponse(Call<BaseResponse<List<FAQInfo>>> call, Response<BaseResponse<List<FAQInfo>>> response) {
-                if(response.isSuccessful()){
-
+                if (response.isSuccessful()) {
                     List<String> listDataHeader = new ArrayList<>();
                     BaseResponse baseResponse = response.body();
 
-                    if(baseResponse.getStatus().equals(SUCCESS)){
-
-                        try{
-
-                            List<FAQInfo> faqInfoList = (List<FAQInfo>)baseResponse.getData();
-
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
+                        try {
+                            List<FAQInfo> faqInfoList = (List<FAQInfo>) baseResponse.getData();
                             List<TempFAQInfo> tempFAQInfoList = new ArrayList<>();
                             List<TempFAQInfoResDto> tempFAQInfoResDtoList;
 
                             SharedPreferences sharedPreferences = PreferencesManager.getApplicationPreference(getApplicationContext());
-                            String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences,"lang");
-                            if(curLang.equals(LANG_MM)){
+                            String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences, "lang");
+                            if (curLang.equals(LANG_MM)) {
                                 for (FAQInfo faqInfo : faqInfoList) {
                                     TempFAQInfo tempFAQInfo = new TempFAQInfo();
                                     tempFAQInfo.setFaqCategory(faqInfo.getFaqCategoryMyn());
                                     tempFAQInfoResDtoList = new ArrayList<>();
-                                    for (FAQInfoResDto faqInfoResDto :faqInfo.getFaqInfoResDtoList()) {
+                                    for (FAQInfoResDto faqInfoResDto : faqInfo.getFaqInfoResDtoList()) {
                                         TempFAQInfoResDto tempFAQInfoResDto = new TempFAQInfoResDto();
                                         tempFAQInfoResDto.setQuestion(faqInfoResDto.getQuestionMM());
                                         tempFAQInfoResDto.setAnswer(faqInfoResDto.getAnswerMM());
@@ -129,14 +126,12 @@ public class FAQActivity extends BaseActivity {
                                     tempFAQInfo.setFaqInfoResInfoList(tempFAQInfoResDtoList);
                                     tempFAQInfoList.add(tempFAQInfo);
                                 }
-
                             } else {
-
                                 for (FAQInfo faqInfo : faqInfoList) {
                                     TempFAQInfo tempFAQInfo = new TempFAQInfo();
                                     tempFAQInfo.setFaqCategory(faqInfo.getFaqCategoryEng());
                                     tempFAQInfoResDtoList = new ArrayList<>();
-                                    for (FAQInfoResDto faqInfoResDto :faqInfo.getFaqInfoResDtoList()) {
+                                    for (FAQInfoResDto faqInfoResDto : faqInfo.getFaqInfoResDtoList()) {
                                         TempFAQInfoResDto tempFAQInfoResDto = new TempFAQInfoResDto();
                                         tempFAQInfoResDto.setQuestion(faqInfoResDto.getQuestionEN());
                                         tempFAQInfoResDto.setAnswer(faqInfoResDto.getAnswerEN());
@@ -150,41 +145,34 @@ public class FAQActivity extends BaseActivity {
                             }
 
                             String[] mItemHeaders = new String[tempFAQInfoList.size()];
-                            int index=0;
+                            int index = 0;
                             for (TempFAQInfo tempFAQInfo : tempFAQInfoList) {
                                 mItemHeaders[index] = tempFAQInfo.getFaqCategory();
                                 index++;
                             }
 
-                            Collections.addAll(listDataHeader, mItemHeaders); //set category
-
-                            //ExpandableListView mExpandableListView = getExpandableListView(); ExpandableListActivity
+                            //set category
+                            Collections.addAll(listDataHeader, mItemHeaders);
                             ExpandableListView mExpandableListView = findViewById(R.id.list);
 
                             if (mExpandableListView != null) {
-                                Display display = getWindowManager(). getDefaultDisplay();
-                                int mScreenWidth=display.getWidth();
-                                ParentLevelAdapter parentLevelAdapter = new ParentLevelAdapter(getApplicationContext(), listDataHeader, tempFAQInfoList,mScreenWidth);
+                                Display display = getWindowManager().getDefaultDisplay();
+                                int mScreenWidth = display.getWidth();
+                                ParentLevelAdapter parentLevelAdapter = new ParentLevelAdapter(getApplicationContext(), listDataHeader, tempFAQInfoList, mScreenWidth);
                                 mExpandableListView.setAdapter(parentLevelAdapter);
                             }
-
                             closeDialog(getFaqDialog);
 
-                        } catch (Exception e){
-
+                        } catch (Exception e) {
                             closeDialog(getFaqDialog);
                             serviceNotFoundView.setVisibility(View.VISIBLE);
                         }
-
                     } else {
-
                         // display service_unavailable layout if not success.
                         closeDialog(getFaqDialog);
                         serviceNotFoundView.setVisibility(View.VISIBLE);
                     }
-
                 } else {
-
                     // display service_unavailable layout if not success.
                     closeDialog(getFaqDialog);
                     serviceNotFoundView.setVisibility(View.VISIBLE);
@@ -202,24 +190,6 @@ public class FAQActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        /*getMenuInflater().inflate(R.menu.toolbar_main_menu, menu);
-
-        final String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-
-        if(curLang.equals(LANG_MM)){
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
-            menu.getItem(0).setTitle(LANG_EN);
-            changeLabel(LANG_MM);
-        } else {
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
-            menu.getItem(0).setTitle(LANG_MM);
-            changeLabel(LANG_EN);
-        }
-        menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
-        menu.getItem(0).setTitle(LANG_MM);
-        menu.getItem(1).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
-        menu.getItem(1).setTitle(LANG_EN);*/
         return true;
     }
 
@@ -232,17 +202,6 @@ public class FAQActivity extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_myFlag) {
-            /*if(item.getTitle().equals(LANG_MM)){
-                item.setIcon(R.drawable.en_flag2);
-                item.setTitle(LANG_EN);
-                addValueToPreference(LANG_MM);
-                recreate();
-            } else if(item.getTitle().equals(LANG_EN)){
-                item.setIcon(R.drawable.mm_flag);
-                item.setTitle(LANG_MM);
-                addValueToPreference(LANG_EN);
-                recreate();
-            }*/
             addValueToPreference(LANG_MM);
             recreate();
             return true;
@@ -255,12 +214,13 @@ public class FAQActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addValueToPreference(String lang){
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),lang);
+    public void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), lang);
     }
 
-    public void changeLabel(String language){
+    public void changeLabel(String language) {
         toolbar.setTitle(CommonUtils.getLocaleString(new Locale(language), R.string.faq_title, getApplicationContext()));
         txtService.setText(CommonUtils.getLocaleString(new Locale(language), R.string.service_unavailable, getApplicationContext()));
     }
+
 }

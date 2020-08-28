@@ -2,8 +2,10 @@ package mm.com.aeon.vcsaeon.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.widget.Toolbar;
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +31,7 @@ import mm.com.aeon.vcsaeon.beans.UserInformationFormBean;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
 import mm.com.aeon.vcsaeon.adapters.UpdateInformationAdapter;
+import mm.com.aeon.vcsaeon.common_utils.UiUtils;
 import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_EN;
@@ -41,7 +45,7 @@ public class NavInformationUpdateFragment extends BaseFragment implements Langua
 
     UserInformationFormBean userInformationFormBean;
 
-    public static int infoUpdateTabPosition=0;
+    public static int infoUpdateTabPosition = 0;
 
     @Nullable
     @Override
@@ -61,23 +65,25 @@ public class NavInformationUpdateFragment extends BaseFragment implements Langua
         LinearLayout menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
         TextView menuBarLevelInfo = toolbar.findViewById(R.id.menu_bar_level);
         menuBarLevelInfo.setText(R.string.menu_level_two);
+
+        menuBackBtn.setAnimation(UiUtils.animSlideToRight(getActivity()));
         menuBackBtn.setVisibility(View.VISIBLE);
 
         SharedPreferences sharedPreferences = PreferencesManager.getApplicationPreference(getActivity());
-        String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences,PARAM_LANG);
+        String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences, PARAM_LANG);
 
-        tab1= CommonUtils.getLocaleString(new Locale(curLang), R.string.sec_ans_update, getActivity());
-        tab2= CommonUtils.getLocaleString(new Locale(curLang), R.string.infoupdate_tab2_title, getActivity());
+        tab1 = CommonUtils.getLocaleString(new Locale(curLang), R.string.sec_ans_update, getActivity());
+        tab2 = CommonUtils.getLocaleString(new Locale(curLang), R.string.infoupdate_tab2_title, getActivity());
 
         tabLayout = view.findViewById(R.id.tabLayout);
         tabLayout.addTab(tabLayout.newTab().setText(tab1));
         tabLayout.addTab(tabLayout.newTab().setText(tab2));
-        tabLayout.setTabTextColors(getActivity().getColor(R.color.white),getActivity().getColor(R.color.white));
+        tabLayout.setTabTextColors(getActivity().getColor(R.color.white), getActivity().getColor(R.color.white));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = view.findViewById(R.id.viewPager);
         final UpdateInformationAdapter adapter = new
-                UpdateInformationAdapter(getActivity().getSupportFragmentManager(),tabLayout.getTabCount());
+                UpdateInformationAdapter(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
 
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -87,7 +93,7 @@ public class NavInformationUpdateFragment extends BaseFragment implements Langua
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                infoUpdateTabPosition=tab.getPosition();
+                infoUpdateTabPosition = tab.getPosition();
             }
 
             @Override
@@ -104,7 +110,7 @@ public class NavInformationUpdateFragment extends BaseFragment implements Langua
         return view;
     }
 
-    public void replaceFragment(Fragment fragment, int containerViewId){
+    public void replaceFragment(Fragment fragment, int containerViewId) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(containerViewId, fragment, "TAG");

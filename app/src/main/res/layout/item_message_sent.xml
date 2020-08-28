@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:theme="@style/AppTheme"
-    android:paddingTop="@dimen/margin_medium_2">
+    android:paddingTop="@dimen/margin_medium_2"
+    android:theme="@style/AppTheme">
 
     <TextView
         android:id="@+id/text_message_body_send"
-        android:text=""
-        android:textSize="@dimen/text_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxWidth="250dp"
-        android:minWidth="0dp"
-        android:padding="@dimen/margin_medium_x"
-        android:textColor="@color/black"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="@dimen/margin_small"
         android:layout_marginRight="@dimen/margin_medium"
-        android:textIsSelectable="true"
-        android:fontFamily="@font/pyidaungsu_regular"
+        android:background="@drawable/messaging_container_frame"
         android:backgroundTint="@color/grayLight"
-        android:background="@drawable/message_text_style"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"/>
+        android:fontFamily="@font/pyidaungsu_regular"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="-2dp"
+        android:maxWidth="250dp"
+        android:paddingLeft="@dimen/margin_medium_2"
+        android:paddingTop="@dimen/margin_medium_x"
+        android:paddingRight="@dimen/margin_medium_2"
+        android:paddingBottom="@dimen/margin_medium"
+        android:text="A quick brown fox jumps over the lazy dog."
+        android:textColor="@color/black"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/text_regular" />
 
     <TextView
         android:id="@+id/text_message_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/text_message_body_send"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="@dimen/margin_small"
         android:layout_marginRight="@dimen/margin_medium_3"
+        android:fontFamily="@font/vcsm_chat_msg_font"
         android:text="10/10/2018 11:40 PM"
-        android:textSize="10sp"
-        android:layout_alignParentRight="true"
-        android:fontFamily="@font/pyidaungsu_regular"
-        android:layout_below="@+id/text_message_body_send"/>
+        android:textAllCaps="true"
+        android:textSize="@dimen/text_smaller" />
 
 </RelativeLayout>

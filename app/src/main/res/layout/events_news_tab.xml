@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/news_swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/DialogTheme"
-        android:id="@+id/news_swipe_refresh_layout">
+        android:theme="@style/DialogTheme">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -20,13 +20,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginBottom="@dimen/margin_small"/>
+                android:layout_marginBottom="@dimen/margin_small" />
 
-            <include android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <include
                 android:id="@+id/news_unavailable"
-                android:visibility="gone"
-                layout="@layout/news_unavailable"/>
+                layout="@layout/news_unavailable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
 
         </RelativeLayout>
 

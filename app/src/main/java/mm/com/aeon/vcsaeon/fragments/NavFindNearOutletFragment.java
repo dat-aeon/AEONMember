@@ -46,6 +46,7 @@ import mm.com.aeon.vcsaeon.activities.MainMenuActivityDrawer;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
 import mm.com.aeon.vcsaeon.adapters.FindNearOutletAdapter;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
+import mm.com.aeon.vcsaeon.common_utils.UiUtils;
 import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 import mm.com.aeon.vcsaeon.delegates.AccessPermissionResultDelegate;
 
@@ -53,7 +54,7 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_EN;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_MM;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LOCATION_REQUEST_CODE;
 
-public class NavFindNearOutletFragment extends BaseFragment implements LanguageChangeListener , AccessPermissionResultDelegate {
+public class NavFindNearOutletFragment extends BaseFragment implements LanguageChangeListener, AccessPermissionResultDelegate {
 
     View view;
     TabLayout tabLayout;
@@ -66,7 +67,6 @@ public class NavFindNearOutletFragment extends BaseFragment implements LanguageC
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //return super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.find_nearest_outlets, container, false);
         setHasOptionsMenu(true);
 
@@ -78,11 +78,12 @@ public class NavFindNearOutletFragment extends BaseFragment implements LanguageC
 
         } else {
             ((MainMenuActivityDrawer) getActivity()).setLanguageListener(this);
-            //((MainMenuActivityDrawer) getActivity()).setAccessDelegate(this);
             toolbar = ((MainMenuActivityDrawer) getActivity()).findViewById(R.id.toolbar_home);
 
         }
         LinearLayout menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+
+        menuBackBtn.setAnimation(UiUtils.animSlideToRight(getActivity()));
         menuBackBtn.setVisibility(View.VISIBLE);
 
         int permission = ContextCompat.checkSelfPermission(getActivity(),
@@ -97,7 +98,7 @@ public class NavFindNearOutletFragment extends BaseFragment implements LanguageC
         return view;
     }
 
-    private void showTabFragment(){
+    private void showTabFragment() {
 
         String curLang = PreferencesManager.getCurrentLanguage(getActivity());
         if (curLang.equals(LANG_MM)) {
@@ -156,14 +157,14 @@ public class NavFindNearOutletFragment extends BaseFragment implements LanguageC
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         //get access to location permission
-        Log.e("oulet","location activity result");
+        Log.e("oulet", "location activity result");
         switch (requestCode) {
             case LOCATION_REQUEST_CODE:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     showTabFragment();
                 } else {
                     // Permission Denied
-                    Toast.makeText( getActivity(),"Please accept to get outlet information." , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please accept to get outlet information.", Toast.LENGTH_SHORT).show();
                     makeLocationRequest();
                 }
                 break;
@@ -176,7 +177,7 @@ public class NavFindNearOutletFragment extends BaseFragment implements LanguageC
         ActivityCompat.requestPermissions(getActivity(),
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 LOCATION_REQUEST_CODE);
-        Log.e("oulet","request permission location");
+        Log.e("oulet", "request permission location");
     }
 
     @Override
@@ -206,7 +207,7 @@ public class NavFindNearOutletFragment extends BaseFragment implements LanguageC
                     }
                 } else {
                     // Permission Denied
-                    Toast.makeText( getActivity(),"Please accept to get outlet information." , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please accept to get outlet information.", Toast.LENGTH_SHORT).show();
                     makeLocationRequest();
                 }
                 break;

@@ -27,6 +27,7 @@
             android:id="@+id/send_body_01"
             android:textIsSelectable="true"
             android:textSize="@dimen/text_regular"
+            android:layout_marginLeft="@dimen/margin_small"
             android:textColor="@color/black"
             android:text="I want to buy  {brand} {category}."/>
 
@@ -39,6 +40,7 @@
             android:textColor="@color/black"
             android:layout_below="@id/send_body_01"
             android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginLeft="@dimen/margin_small"
             android:text="My Location  :  {location}"/>
 
         <TextView
@@ -48,6 +50,7 @@
             android:textIsSelectable="true"
             android:textSize="@dimen/text_regular"
             android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/margin_small"
             android:layout_below="@id/send_body_02"
             android:layout_marginTop="@dimen/margin_small"/>
 

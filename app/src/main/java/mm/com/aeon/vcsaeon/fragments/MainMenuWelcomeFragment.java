@@ -24,8 +24,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +31,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -50,6 +47,8 @@ import com.google.gson.Gson;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import mm.com.aeon.vcsaeon.BuildConfig;
 import mm.com.aeon.vcsaeon.R;
@@ -68,9 +67,11 @@ import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
 import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 import mm.com.aeon.vcsaeon.delegates.AccessPermissionResultDelegate;
 import mm.com.aeon.vcsaeon.delegates.LogoutDelegate;
+import mm.com.aeon.vcsaeon.delegates.MessageCountDisplayDelegate;
 import mm.com.aeon.vcsaeon.networking.APIClient;
 import mm.com.aeon.vcsaeon.networking.BaseResponse;
 import mm.com.aeon.vcsaeon.networking.Service;
+import mm.com.aeon.vcsaeon.repositories.MessagingRepository;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -83,17 +84,22 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LOCATION_REQUEST_
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.PARAM_LANG;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.REFRESH_TOKEN;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.SUCCESS;
+import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.ZERO;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.hideKeyboard;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.isNetworkAvailable;
 import static mm.com.aeon.vcsaeon.common_utils.UiUtils.showErrorDialog;
 import static mm.com.aeon.vcsaeon.common_utils.UiUtils.showNetworkErrorDialog;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.CODE_TOKEN_TIMEOUT;
 
-public class MainMenuWelcomeFragment extends BaseFragment implements LanguageChangeListener, AccessPermissionResultDelegate, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MainMenuWelcomeFragment extends BaseFragment
+        implements LanguageChangeListener,
+        AccessPermissionResultDelegate,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        MessageCountDisplayDelegate {
 
     View view;
-    //TextView textVersion;
-    //TextView textVersionLbl;
+    Timer unreadMessageCountTask;
 
     private TextView textLoanApplication;
     private TextView textMembership;
@@ -105,7 +111,7 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
     private TextView textCalculator;
     private TextView textFindUs;
 
-    private TextView textInfomationUpdate;
+    private TextView textInformationUpdate;
     private TextView textGoodNews;
     private TextView textAnnouncement;
 
@@ -114,6 +120,8 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
     private TextView textHowToUse;
     private TextView textShare;
     private TextView menuStatusCount;
+
+    private LinearLayout layoutLogout;
 
     private TextView textLogout;
     LogoutDelegate logoutDelegate;
@@ -142,7 +150,6 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
         statusChangeCountReq = new StatusChangeCountReq();
         statusChangeCountRes = new StatusChangeCountRes();
 
-        //welcomeText = view.findViewById(R.id.welcome_text);
         ((MainMenuActivityDrawer) getActivity()).setLanguageListener(MainMenuWelcomeFragment.this);
         ((MainMenuActivityDrawer) getActivity()).setAccessDelegate(MainMenuWelcomeFragment.this);
 
@@ -174,7 +181,7 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
         View viewHowToUse = view.findViewById(R.id.include_howToUse);
         View viewShare = view.findViewById(R.id.include_share);
 
-        //View aboutUs = findViewById(R.id.include_about_us);
+        layoutLogout = view.findViewById(R.id.layoutLogout);
 
         textLoanApplication = viewLoanApplication.findViewById(R.id.text_loan_app);
         menuStatusCount = viewLoanApplication.findViewById(R.id.menu_status_count);
@@ -188,7 +195,6 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
             countDialog.show();
 
             statusChangeCountReq.setCustomerId(userInformationFormBean.getCustomerId());
-            Log.e("StatusCustomerId", String.valueOf(userInformationFormBean.getCustomerId()));
             Service loadCountInformation = APIClient.getApplicationRegisterService();
             Call<BaseResponse<StatusChangeCountRes>> productListReq = loadCountInformation.getMenuStatusCount(statusChangeCountReq);
 
@@ -197,24 +203,20 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
                 public void onResponse(Call<BaseResponse<StatusChangeCountRes>> call, Response<BaseResponse<StatusChangeCountRes>> response) {
                     BaseResponse baseResponse = response.body();
 
-                        if (baseResponse.getStatus().equals(SUCCESS)) {
-                            statusChangeCountRes = (StatusChangeCountRes) baseResponse.getData();
-                            Log.e("statusCount:", String.valueOf(statusChangeCountRes));
-                            if (statusChangeCountRes.getApplicationStatusChangedCount() == 0) {
-                                Log.e("StatusINfo", String.valueOf(statusChangeCountRes.getApplicationStatusChangedCount()));
-                                menuStatusCount.setVisibility(View.GONE);
-                                countDialog.dismiss();
-
-                            } else {
-                                Log.e("StatusINfo", String.valueOf(statusChangeCountRes.getApplicationStatusChangedCount()));
-                                countDialog.dismiss();
-                                menuStatusCount.setVisibility(View.VISIBLE);
-                                menuStatusCount.setText(String.valueOf(statusChangeCountRes.getApplicationStatusChangedCount()));
-                            }
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
+                        statusChangeCountRes = (StatusChangeCountRes) baseResponse.getData();
+                        if (statusChangeCountRes.getApplicationStatusChangedCount() == 0) {
+                            menuStatusCount.setVisibility(View.GONE);
+                            countDialog.dismiss();
                         } else {
                             countDialog.dismiss();
-                            showErrorDialog(getActivity(), getString(R.string.service_unavailable));
+                            menuStatusCount.setVisibility(View.VISIBLE);
+                            menuStatusCount.setText(String.valueOf(statusChangeCountRes.getApplicationStatusChangedCount()));
                         }
+                    } else {
+                        countDialog.dismiss();
+                        showErrorDialog(getActivity(), getString(R.string.service_unavailable));
+                    }
                 }
 
                 @Override
@@ -223,9 +225,7 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
                     showErrorDialog(getActivity(), getString(R.string.service_unavailable));
                 }
             });
-
         }
-
 
         textMembership = viewMembership.findViewById(R.id.text_memebership);
 
@@ -239,7 +239,7 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
         textFacebook = viewFacebook.findViewById(R.id.text_facebook);
         textAnnouncement = viewAnnouncement.findViewById(R.id.text_announce);
 
-        textInfomationUpdate = viewInfoUpdate.findViewById(R.id.text_info_update);
+        textInformationUpdate = viewInfoUpdate.findViewById(R.id.text_info_update);
         textHowToUse = viewHowToUse.findViewById(R.id.text_howToUse);
         textShare = viewShare.findViewById(R.id.text_share);
 
@@ -303,14 +303,11 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
                                             if (baseResponse.getStatus().equals(SUCCESS)) {
                                                 final List<ProductTypeListBean> productTypeList =
                                                         (List<ProductTypeListBean>) baseResponse.getData();
-
                                                 if (productTypeList != null) {
                                                     saveProductType(productTypeList);
                                                     replaceFragment(new DAEnquiryFragment());
-                                                    productListDialog.dismiss();
-                                                } else {
-                                                    productListDialog.dismiss();
                                                 }
+                                                productListDialog.dismiss();
                                             } else {
                                                 productListDialog.dismiss();
                                                 showErrorDialog(getActivity(), getString(R.string.service_unavailable));
@@ -359,22 +356,15 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
                                 if (baseResponse.getStatus().equals(SUCCESS)) {
                                     final List<ProductTypeListBean> productTypeList =
                                             (List<ProductTypeListBean>) baseResponse.getData();
-
                                     if (productTypeList != null) {
                                         saveProductType(productTypeList);
-
                                         if (userInformationFormBean.getCustomerTypeId() == CUSTOMER_TYPE_MEMBER) {
-                                            replaceFragment(new MembershipInfomationFragment());
-                                            //startActivity(new Intent(getContext(), MembershipInfomationActivity.class));
-
+                                            replaceFragment(new MembershipInformationFragment());
                                         } else if (userInformationFormBean.getCustomerTypeId() == CUSTOMER_TYPE_NON_MEMBER) {
                                             replaceFragment(new NavMembershipFragment());
                                         }
-                                        productListDialog.dismiss();
-                                    } else {
-                                        productListDialog.dismiss();
                                     }
-
+                                    productListDialog.dismiss();
                                 } else {
                                     productListDialog.dismiss();
                                     showErrorDialog(getActivity(), getString(R.string.service_unavailable));
@@ -414,7 +404,6 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
                 if (!isNetworkAvailable(getActivity())) {
                     showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
-                    //startActivity(new Intent(getContext(), FAQActivity.class));
                     replaceFragment(new NavLoanCalculationFragment());
                 }
             }
@@ -427,17 +416,13 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
                 if (!isNetworkAvailable(getActivity())) {
                     showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
-
                     int permission = ContextCompat.checkSelfPermission(getActivity(),
                             Manifest.permission.ACCESS_FINE_LOCATION);
                     isAgentChannel = true;
-
                     if (permission != PackageManager.PERMISSION_GRANTED) {
                         makeLocationRequest();
-
                     } else {
                         openGoogleAPIClient();
-                        //replaceFragment(new NavPurchaseMessagingTabFragment());
                     }
                 }
             }
@@ -450,7 +435,6 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
                 if (!isNetworkAvailable(getActivity())) {
                     showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
-                    //startActivity(new Intent(getContext(), FAQActivity.class));
                     replaceFragment(new NavEventsAndNewsFragment());
                 }
             }
@@ -463,20 +447,14 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
                 if (!isNetworkAvailable(getContext())) {
                     showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
-
                     isAgentChannel = false;
-
                     int permission = ContextCompat.checkSelfPermission(getActivity(),
                             Manifest.permission.ACCESS_FINE_LOCATION);
-
                     if (permission != PackageManager.PERMISSION_GRANTED) {
                         makeLocationRequest();
-
                     } else {
                         openGoogleAPIClient();
-                        // replaceFragment(new NavFindNearOutletFragment());
                     }
-
                 }
             }
         });
@@ -488,24 +466,22 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
                 if (!isNetworkAvailable(getContext())) {
                     showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
-                    //startActivity(new Intent(getContext(), AboutUsInfoActivity.class));
                     replaceFragment(new NavFAQFragment());
                 }
             }
         });
 
         //click Facebook.
-        viewFacebook
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (!isNetworkAvailable(getActivity())) {
-                            showNetworkErrorDialog(getContext(), getNetErrMsg());
-                        } else {
-                            startActivity(getOpenFacebookIntent(getContext()));
-                        }
-                    }
-                });
+        viewFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isNetworkAvailable(getActivity())) {
+                    showNetworkErrorDialog(getContext(), getNetErrMsg());
+                } else {
+                    startActivity(getOpenFacebookIntent(getContext()));
+                }
+            }
+        });
 
         //click Announcement.
         viewAnnouncement.setOnClickListener(new View.OnClickListener() {
@@ -519,7 +495,7 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
             }
         });
 
-        //click Infomation Update.
+        //click Information Update.
         viewInfoUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -556,20 +532,27 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                     startActivity(Intent.createChooser(shareIntent, "Please choose one."));
                 } catch (Exception e) {
-                    //e.toString();
+                    e.printStackTrace();
                 }
             }
         });
 
-        textLogout.setOnClickListener(new View.OnClickListener() {
+        /*textLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //logoutDelegate.onClickLogout();
+                doLogout(userInformationFormBean);
+            }
+        });*/
+
+        layoutLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 doLogout(userInformationFormBean);
             }
         });
 
         hideKeyboard(getActivity());
+        setUpTimerTask();
 
         return view;
     }
@@ -578,7 +561,6 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
         ActivityCompat.requestPermissions(getActivity(),
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 LOCATION_REQUEST_CODE);
-        Log.e("oulet welcome", "request permission location");
     }
 
     public LogoutDelegate getLogoutDelegate() {
@@ -591,22 +573,17 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.action_favorite:
-                //this.languageFlag = item;
-                Log.e("update flag", item.getTitle().toString());
                 if (item.getTitle().equals(LANG_MM)) {
                     item.setIcon(R.drawable.en_flag2);
                     item.setTitle(LANG_EN);
                     changeLabel(LANG_MM);
-
                 } else if (item.getTitle().equals(LANG_EN)) {
                     item.setIcon(R.drawable.mm_flag);
                     item.setTitle(LANG_MM);
                     changeLabel(LANG_EN);
                 }
-
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -622,7 +599,7 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
         textFindProduct.setText(CommonUtils.getLocaleString(new Locale(language), R.string.welcome_agent_channel_title, getActivity()));
         textFindUs.setText(CommonUtils.getLocaleString(new Locale(language), R.string.main_findus_title, getActivity()));
 
-        textInfomationUpdate.setText(CommonUtils.getLocaleString(new Locale(language), R.string.welcome_info_update_title, getActivity()));
+        textInformationUpdate.setText(CommonUtils.getLocaleString(new Locale(language), R.string.welcome_info_update_title, getActivity()));
         textGoodNews.setText(CommonUtils.getLocaleString(new Locale(language), R.string.main_news_title, getActivity()));
         textAnnouncement.setText(CommonUtils.getLocaleString(new Locale(language), R.string.main_announce_title, getActivity()));
 
@@ -639,32 +616,16 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
     }
 
     private static Intent getOpenFacebookIntent(Context context) {
-
         String url = "https://m.facebook.com/AEON-Microfinance-Myanmar-Co-Ltd-374820516619280/";
-
-        /*try {
-            context.getPackageManager().getPackageInfo("com.facebook.katana", 0);
-            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/374820516619280"));
-        } catch (Exception e) {
-            return new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.facebook.com/AEON-Microfinance-Myanmar-Co-Ltd-374820516619280/"));
-        }*/
-
         Uri uri;
         try {
             context.getPackageManager().getPackageInfo("com.facebook.katana", 0);
-
-            //if (PackageInfo. != null) {
-            //uri = Uri.parse("fb://facewebmodal/f?href=" + url);
             uri = Uri.parse("fb://page/374820516619280");
-            //}
-            // http://stackoverflow.com/a/24547437/1048340
-
         } catch (PackageManager.NameNotFoundException e) {
             uri = Uri.parse(url);
         } catch (ActivityNotFoundException e) {
             uri = Uri.parse(url);
         }
-
         return new Intent(Intent.ACTION_VIEW, uri);
     }
 
@@ -684,7 +645,6 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
     public void clickMenuBarBackBtn() {
     }
 
-
     //logout | update end usage time.
     public void doLogout(UserInformationFormBean userInformationFormBean) {
 
@@ -699,7 +659,6 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
         logoutDialog.setTitle(getString(R.string.logout_title));
         logoutDialog.setMessage(getString(R.string.logout_in_progress));
         logoutDialog.setCancelable(false);
-        //logoutDialog.show();
 
         reqLogout.enqueue(new Callback<BaseResponse>() {
             @Override
@@ -750,9 +709,7 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
                                     reqLogout.enqueue(new Callback<BaseResponse>() {
                                         @Override
                                         public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-
                                             if (response.isSuccessful()) {
-
                                                 BaseResponse baseResponse = response.body();
                                                 if (baseResponse.getStatus().equals(SUCCESS)) {
                                                     closeDialog();
@@ -842,15 +799,7 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
         switch (requestCode) {
             case LOCATION_REQUEST_CODE:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-
                     openGoogleAPIClient();
-//                    if (isAgentChannel){
-//                        replaceFragment(new NavPurchaseMessagingTabFragment());
-//                    } else {
-//                        replaceFragment(new NavFindNearOutletFragment());
-//                    }
-
                 } else {
                     // Permission Denied
                     if (isAgentChannel) {
@@ -877,14 +826,10 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-//                ActivityCompat.requestPermissions(mContext,
-//                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                        LOCATION_REQUEST_CODE);
             }
         });
         dialog.show();
     }
-
 
     private void openGoogleAPIClient() {
         GoogleApiClient googleApiClient = null;
@@ -948,6 +893,11 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
         }
     }
 
+    void setUpTimerTask() {
+        unreadMessageCountTask = new Timer();
+        unreadMessageCountTask.schedule(new LoadMessageCountTask(), 1000, 1000);
+    }
+
     void saveProductType(List<ProductTypeListBean> productTypeList) {
         PreferencesManager.saveProductTypeList(getActivity(), productTypeList);
     }
@@ -957,14 +907,11 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1000) {
             if (resultCode == Activity.RESULT_OK) {
-                String result = data.getStringExtra("result");
-                Log.e("Google api", resultCode + "");
                 if (isAgentChannel) {
                     replaceFragment(new NavPurchaseMessagingTabFragment());
                 } else {
                     replaceFragment(new NavFindNearOutletFragment());
                 }
-
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
@@ -974,16 +921,71 @@ public class MainMenuWelcomeFragment extends BaseFragment implements LanguageCha
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    }
 
+    void loadMessageCount() {
+        final int customerId = userInformationFormBean.getCustomerId();
+        MessagingRepository.getInstance().getL2UnreadMessageCount(customerId, this);
+        MessagingRepository.getInstance().getAskProductMessageCount(customerId, this);
+    }
+
+    @Override
+    public void onDisplayL2MessageCount(Integer messageCount) {
+        displayL2UnreadMsgCount(messageCount);
+    }
+
+    @Override
+    public void onDisplayProductAskMsgCount(Integer messageCount) {
+        displayAskProductUnreadMsgCount(messageCount);
+    }
+
+    void displayL2UnreadMsgCount(Integer msgCount) {
+        View viewCustomerService = view.findViewById(R.id.include_customer_service);
+        TextView lblMessageCount = viewCustomerService.findViewById(R.id.lblL2MessageCount);
+        if (msgCount == ZERO) {
+            lblMessageCount.setVisibility(View.GONE);
+        } else {
+            lblMessageCount.setVisibility(View.VISIBLE);
+            lblMessageCount.setText(msgCount > 99 ? "+99" : msgCount.toString());
+        }
+    }
+
+    void displayAskProductUnreadMsgCount(Integer msgCount) {
+        View viewFindProduct = view.findViewById(R.id.include_find_product);
+        TextView lblMessageCount = viewFindProduct.findViewById(R.id.lblAskProdMessageCount);
+        if (msgCount == ZERO) {
+            lblMessageCount.setVisibility(View.GONE);
+        } else {
+            lblMessageCount.setVisibility(View.VISIBLE);
+            lblMessageCount.setText(msgCount > 99 ? "+99" : msgCount.toString());
+        }
+    }
+
+    class LoadMessageCountTask extends TimerTask {
+        @Override
+        public void run() {
+            loadMessageCount();
+        }
+    }
+
+    void cancelTimerTask() {
+        if (unreadMessageCountTask != null) {
+            unreadMessageCountTask.cancel();
+            unreadMessageCountTask = null;
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cancelTimerTask();
     }
 }

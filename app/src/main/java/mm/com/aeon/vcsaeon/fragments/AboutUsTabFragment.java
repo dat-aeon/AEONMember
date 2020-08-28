@@ -1,7 +1,6 @@
 package mm.com.aeon.vcsaeon.fragments;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -61,6 +60,8 @@ public class AboutUsTabFragment extends BaseFragment implements AccessPermission
     Button btnCall;
     Toolbar toolbar;
 
+    View infoView;
+
     CompanyInfoResBean companyInfoResBean;
 
     @Nullable
@@ -76,6 +77,8 @@ public class AboutUsTabFragment extends BaseFragment implements AccessPermission
 
         txtTitle = view.findViewById(R.id.about_title);
         btnCall = view.findViewById(R.id.btn_about_call);
+
+        infoView = view.findViewById(R.id.info_view);
 
         serviceNotFoundView = view.findViewById(R.id.service_unavailable_about_us);
         serviceNotFoundView.setVisibility(View.GONE);
@@ -96,19 +99,15 @@ public class AboutUsTabFragment extends BaseFragment implements AccessPermission
         Call<BaseResponse<CompanyInfoResBean>> req = getAboutUsInfoService.getCompanyInfo();
 
         getActivity().setTheme(R.style.MessageDialogTheme);
-        final ProgressDialog aboutUsInfoDialog = new ProgressDialog(getContext());
-        aboutUsInfoDialog.setMessage(getString(R.string.progress_loading));
-        aboutUsInfoDialog.setCancelable(false);
-        aboutUsInfoDialog.show();
 
         req.enqueue(new Callback<BaseResponse<CompanyInfoResBean>>() {
             @Override
             public void onResponse(Call<BaseResponse<CompanyInfoResBean>> call, Response<BaseResponse<CompanyInfoResBean>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     final BaseResponse baseResponse = response.body();
 
-                    if(baseResponse.getStatus().equals(SUCCESS)){
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
 
                         companyInfoResBean = (CompanyInfoResBean) baseResponse.getData();
 
@@ -121,13 +120,12 @@ public class AboutUsTabFragment extends BaseFragment implements AccessPermission
                                 if (permission != PackageManager.PERMISSION_GRANTED) {
                                     makeCallRequest();
                                 } else {
-                                    String hotlinePhoneNo = companyInfoResBean.getHotlinePhone();
-                                    if(hotlinePhoneNo==null || hotlinePhoneNo.equals(BLANK)){
-                                        //Toast.makeText(getApplicationContext(),getString(R.string.message_call_not_available), Toast.LENGTH_SHORT).show();
-                                        displayMessage(getContext(),getString(R.string.message_call_not_available));
+                                    String hotLinePhoneNo = companyInfoResBean.getHotlinePhone();
+                                    if (hotLinePhoneNo == null || hotLinePhoneNo.equals(BLANK)) {
+                                        displayMessage(getContext(), getString(R.string.message_call_not_available));
                                     } else {
                                         Intent callIntent = new Intent(Intent.ACTION_CALL);
-                                        callIntent.setData(Uri.parse(PHONE_URI_PREFIX+hotlinePhoneNo));
+                                        callIntent.setData(Uri.parse(PHONE_URI_PREFIX + hotLinePhoneNo));
                                         startActivity(callIntent);
                                     }
                                 }
@@ -135,25 +133,17 @@ public class AboutUsTabFragment extends BaseFragment implements AccessPermission
                         });
 
                         changeLabel(curLang);
-                        closeDialog(aboutUsInfoDialog);
-
-                    } else {
-
-                        closeDialog(aboutUsInfoDialog);
-                        //do some "FAILED" conditions.
                     }
 
                 } else {
 
                     // display service_unavailable layout if not success.
-                    closeDialog(aboutUsInfoDialog);
                     serviceNotFoundView.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onFailure(Call<BaseResponse<CompanyInfoResBean>> call, Throwable t) {
-                closeDialog(aboutUsInfoDialog);
                 serviceNotFoundView.setVisibility(View.VISIBLE);
             }
         });
@@ -161,11 +151,11 @@ public class AboutUsTabFragment extends BaseFragment implements AccessPermission
         return view;
     }
 
-    public void addValueToPreference(String lang){
-        PreferencesManager.setCurrentLanguage(getContext(),lang);
+    public void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getContext(), lang);
     }
 
-    public void changeLabel(String language){
+    public void changeLabel(String language) {
 
         btnCall.setText(CommonUtils.getLocaleString(new Locale(language), R.string.aboutus_all_now_button, getActivity()));
         txtService.setText(CommonUtils.getLocaleString(new Locale(language), R.string.service_unavailable, getActivity()));
@@ -174,7 +164,7 @@ public class AboutUsTabFragment extends BaseFragment implements AccessPermission
         textFacebook.setText(companyInfoResBean.getSocialMediaAddress());
         textWeb.setText(companyInfoResBean.getWebAddress());
 
-        if(language.equals(LANG_EN)){
+        if (language.equals(LANG_EN)) {
             textAbout.setText(companyInfoResBean.getAboutCompanyEn());
             textAddress.setText(companyInfoResBean.getAddressEn());
         } else {
@@ -182,6 +172,8 @@ public class AboutUsTabFragment extends BaseFragment implements AccessPermission
             textAddress.setText(companyInfoResBean.getAddressMm());
         }
         PreferencesManager.setCurrentLanguage(getActivity(), language);
+
+        infoView.setVisibility(View.VISIBLE);
     }
 
     protected void makeCallRequest() {
@@ -190,7 +182,7 @@ public class AboutUsTabFragment extends BaseFragment implements AccessPermission
                 CALL_REQUEST_CODE);
     }
 
-    protected void showSnackBarMessage(String message){
+    protected void showSnackBarMessage(String message) {
         final Snackbar snackbar = Snackbar.make(getActivity().getWindow().getDecorView(), message, Snackbar.LENGTH_LONG);
         View view = snackbar.getView();
         TextView textView = view.findViewById(com.google.android.material.R.id.snackbar_text);
@@ -214,13 +206,13 @@ public class AboutUsTabFragment extends BaseFragment implements AccessPermission
                         PackageManager.PERMISSION_GRANTED) {
                     showSnackBarMessage(getString(R.string.message_permission_deniled));
                 } else {
-                    final String hotlinePhoneNo = companyInfoResBean.getHotlinePhone();
-                    if (hotlinePhoneNo == null || hotlinePhoneNo.equals(BLANK)) {
+                    final String hotLinePhoneNo = companyInfoResBean.getHotlinePhone();
+                    if (hotLinePhoneNo == null || hotLinePhoneNo.equals(BLANK)) {
                         showSnackBarMessage(getString(R.string.message_call_not_available));
                     } else {
-                        Log.e("call","About");
+                        Log.e("call", "About");
                         Intent callIntent = new Intent(Intent.ACTION_CALL);
-                        callIntent.setData(Uri.parse(PHONE_URI_PREFIX + hotlinePhoneNo));
+                        callIntent.setData(Uri.parse(PHONE_URI_PREFIX + hotLinePhoneNo));
                         startActivity(callIntent);
                     }
                 }

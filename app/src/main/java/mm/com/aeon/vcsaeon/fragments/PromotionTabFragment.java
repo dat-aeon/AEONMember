@@ -1,6 +1,7 @@
 package mm.com.aeon.vcsaeon.fragments;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import mm.com.aeon.vcsaeon.beans.LoginAccessTokenInfo;
 import mm.com.aeon.vcsaeon.beans.PromotionsInfoResBean;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
 import mm.com.aeon.vcsaeon.adapters.AnnouncementListAdapter;
+import mm.com.aeon.vcsaeon.common_utils.UiUtils;
 import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 import mm.com.aeon.vcsaeon.networking.APIClient;
 import mm.com.aeon.vcsaeon.networking.BaseResponse;
@@ -61,7 +64,9 @@ public class PromotionTabFragment extends BaseFragment implements LanguageChange
             ((MainMenuActivityDrawer) getActivity()).setLanguageListener(this);
             toolbar = ((MainMenuActivityDrawer) getActivity()).findViewById(R.id.toolbar_home);
         }
+
         LinearLayout menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+        menuBackBtn.setAnimation(UiUtils.animSlideToRight(getActivity()));
         menuBackBtn.setVisibility(View.VISIBLE);
 
         final Bundle mBundle = savedInstanceState;
@@ -83,17 +88,19 @@ public class PromotionTabFragment extends BaseFragment implements LanguageChange
                 loadAnnouncementDataToRV(mBundle);
             }
         });
+
+        view.setAnimation(UiUtils.animSlideToLeft(getActivity()));
         return view;
     }
 
-    public void replaceFragment(Fragment fragment , int containerView){
+    public void replaceFragment(Fragment fragment, int containerView) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(containerView, fragment, "TAG");
         transaction.commit();
     }
 
-    private void loadAnnouncementDataToRV(final Bundle mBundle){
+    private void loadAnnouncementDataToRV(final Bundle mBundle) {
 
         swipeRefreshLayout.setRefreshing(true);
 
@@ -104,29 +111,29 @@ public class PromotionTabFragment extends BaseFragment implements LanguageChange
             @Override
             public void onResponse(Call<BaseResponse<List<PromotionsInfoResBean>>> call, Response<BaseResponse<List<PromotionsInfoResBean>>> response) {
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     BaseResponse baseResponse = response.body();
 
-                    if(baseResponse.getStatus().equals(SUCCESS)){
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
 
-                        try{
+                        try {
 
                             promotionsInfoResBeanList = (List<PromotionsInfoResBean>) baseResponse.getData();
                             swipeRefreshLayout.setRefreshing(false);
 
-                            if(promotionsInfoResBeanList.size()==0){
+                            if (promotionsInfoResBeanList.size() == 0) {
                                 promotionsNotFoundView.setVisibility(View.VISIBLE);
                             } else {
                                 promotionsNotFoundView.setVisibility(View.GONE);
                                 //Bind Coupon List data to RecyclerView.
                                 promotionsRecyclerView = view.findViewById(R.id.recycler_view_promotions);
-                                promotionListAdapter = new AnnouncementListAdapter(getActivity(),promotionsInfoResBeanList,mBundle);
+                                promotionListAdapter = new AnnouncementListAdapter(getActivity(), promotionsInfoResBeanList, mBundle);
                                 promotionsRecyclerView.setAdapter(promotionListAdapter);
                                 promotionsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                             }
 
-                        } catch (Exception e){
+                        } catch (Exception e) {
 
                             swipeRefreshLayout.setRefreshing(false);
                             promotionsNotFoundView.setVisibility(View.VISIBLE);
@@ -138,23 +145,23 @@ public class PromotionTabFragment extends BaseFragment implements LanguageChange
                         promotionsNotFoundView.setVisibility(View.VISIBLE);
                     }
 
-                } else if(response.code()==CODE_TOKEN_TIMEOUT){
+                } else if (response.code() == CODE_TOKEN_TIMEOUT) {
 
                     //Refresh Token.
                     Service refreshTokenService = APIClient.getAuthUserService();
                     Call<BaseResponse<LoginAccessTokenInfo>> refreshToken = refreshTokenService.refreshToken(
-                            REFRESH_TOKEN,PreferencesManager.getRefreshToken(getActivity())
+                            REFRESH_TOKEN, PreferencesManager.getRefreshToken(getActivity())
                     );
 
                     refreshToken.enqueue(new Callback<BaseResponse<LoginAccessTokenInfo>>() {
                         @Override
                         public void onResponse(Call<BaseResponse<LoginAccessTokenInfo>> call, Response<BaseResponse<LoginAccessTokenInfo>> response) {
-                            if(response.isSuccessful()){
+                            if (response.isSuccessful()) {
                                 BaseResponse baseResponse = response.body();
-                                if(baseResponse.getStatus().equals(SUCCESS)){
+                                if (baseResponse.getStatus().equals(SUCCESS)) {
                                     LoginAccessTokenInfo loginAccessTokenInfo = (LoginAccessTokenInfo) baseResponse.getData();
-                                    PreferencesManager.keepAccessToken(getActivity(),loginAccessTokenInfo.getAccessToken());
-                                    PreferencesManager.keepRefreshToken(getActivity(),loginAccessTokenInfo.getRefreshToken());
+                                    PreferencesManager.keepAccessToken(getActivity(), loginAccessTokenInfo.getAccessToken());
+                                    PreferencesManager.keepRefreshToken(getActivity(), loginAccessTokenInfo.getRefreshToken());
                                     swipeRefreshLayout.setRefreshing(false);
                                     if (PreferencesManager.getMainNavFlag(getActivity())) {
                                         replaceFragment(new PromotionTabFragment(), R.id.content_new_main_drawer);
@@ -195,7 +202,7 @@ public class PromotionTabFragment extends BaseFragment implements LanguageChange
 
     @Override
     public void changeLanguageTitle(String lang) {
-        PreferencesManager.setCurrentLanguage(getContext(),lang);
+        PreferencesManager.setCurrentLanguage(getContext(), lang);
         if (PreferencesManager.getMainNavFlag(getActivity())) {
             replaceFragment(new PromotionTabFragment(), R.id.content_new_main_drawer);
         } else {

@@ -55,54 +55,51 @@ public class PhoneRequestActivity extends BaseActivity {
         currLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
         requestTitle.setText(CommonUtils.getLocaleString(new Locale(currLang), R.string.phone_request_text, getApplicationContext()));
         nextBtn.setText(CommonUtils.getLocaleString(new Locale(currLang), R.string.btn_next, getApplicationContext()));
-        getHotlinePhoneNo();
+        getHotLinePhoneNo();
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (!CommonUtils.isPhoneNoValid(phoneNoText.getText().toString())){
+                if (!CommonUtils.isPhoneNoValid(phoneNoText.getText().toString())) {
                     phoneNoText.setHint(CommonUtils.getLocaleString(new Locale(currLang), R.string.register_phoneno_format_err_msg, getApplicationContext()));
                     phoneNoText.setHintTextColor(getColor(android.R.color.holo_red_dark));
                     phoneNoText.setText(BLANK);
-
                 } else {
                     SharedPreferences preferences = PreferencesManager.getApplicationPreference(getApplicationContext());
                     PreferencesManager.addEntryToPreferences(preferences, PARAM_TERM_ACCEPTED, TERM_ACCEPTED);
-                    PreferencesManager.setInstallPhoneNo(getApplicationContext(),phoneNoText.getText().toString());
+                    PreferencesManager.setInstallPhoneNo(getApplicationContext(), phoneNoText.getText().toString());
                     startActivity(new Intent(PhoneRequestActivity.this, MainActivity.class));
                     finish();
                 }
-
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         finish();
     }
 
-    private void getHotlinePhoneNo(){
+    private void getHotLinePhoneNo() {
         Service service = APIClient.getUserService();
         Call<BaseResponse<HotlineInfoResBean>> reqPh = service.getHotlineInfo();
         reqPh.enqueue(new Callback<BaseResponse<HotlineInfoResBean>>() {
             @Override
             public void onResponse(Call<BaseResponse<HotlineInfoResBean>> call, Response<BaseResponse<HotlineInfoResBean>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     BaseResponse baseResponse = response.body();
-                    if(baseResponse.getStatus().equals(SUCCESS)){
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
                         HotlineInfoResBean hotlineInfoResBean = (HotlineInfoResBean) baseResponse.getData();
-                        PreferencesManager.setHotlinePhone(getApplicationContext(),hotlineInfoResBean.getHotlinePhone());
+                        PreferencesManager.setHotlinePhone(getApplicationContext(), hotlineInfoResBean.getHotlinePhone());
                     } else {
-                        PreferencesManager.setHotlinePhone(getApplicationContext(),BLANK);
+                        PreferencesManager.setHotlinePhone(getApplicationContext(), BLANK);
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<BaseResponse<HotlineInfoResBean>> call, Throwable t) {
-                PreferencesManager.setHotlinePhone(getApplicationContext(),BLANK);
+                PreferencesManager.setHotlinePhone(getApplicationContext(), BLANK);
             }
         });
     }

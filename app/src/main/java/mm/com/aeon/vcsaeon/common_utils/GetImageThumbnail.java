@@ -16,37 +16,43 @@ public class GetImageThumbnail {
         Bitmap scaled = null;
         try {
             InputStream input;
-            try{
-                input = context.getContentResolver().openInputStream(Uri.parse(uri));
-            } catch (Exception e){
-                input = context.getContentResolver().openInputStream(Uri.fromFile(new File(uri)));
-            }
-            Options onlyBoundsOptions = new Options();
-            BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
-            input.close();
-            if (onlyBoundsOptions.outWidth == -1 || onlyBoundsOptions.outHeight == -1) {
-                return null;
-            }
-            Options bitmapOptions = new Options();
-            try{
+
+            //get file input stream.
+            try {
                 input = context.getContentResolver().openInputStream(Uri.parse(uri));
             } catch (Exception e) {
                 input = context.getContentResolver().openInputStream(Uri.fromFile(new File(uri)));
             }
+
+            //set byte stream to options.
+            Options onlyBoundsOptions = new Options();
+            BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
+            input.close();
+
+            if (onlyBoundsOptions.outWidth == -1 || onlyBoundsOptions.outHeight == -1) {
+                return null;
+            }
+
+            Options bitmapOptions = new Options();
+            try {
+                input = context.getContentResolver().openInputStream(Uri.parse(uri));
+            } catch (Exception e) {
+                input = context.getContentResolver().openInputStream(Uri.fromFile(new File(uri)));
+            }
+
             Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
             input.close();
+
             int height = onlyBoundsOptions.outHeight;
             int width = onlyBoundsOptions.outWidth;
-
             int rotateDegree = 0;
-
             Matrix matrix = new Matrix();
             matrix.postRotate((float) rotateDegree);
 
-            if(width > height){
-                if(isVertical){
+            if (width > height) {
+                if (isVertical) {
                     scaled = Bitmap.createScaledBitmap(Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(),
-                            matrix, true), heightLength, widthLength,true);
+                            matrix, true), heightLength, widthLength, true);
                 } else {
                     scaled = Bitmap.createScaledBitmap(Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(),
                             matrix, true), widthLength, heightLength, true);
@@ -56,17 +62,17 @@ public class GetImageThumbnail {
                         matrix, true), widthLength, heightLength, true);
             }
 
-            if((scaled.getWidth()>scaled.getHeight())){
-                rotateDegree=90;
+            if ((scaled.getWidth() > scaled.getHeight())) {
+                rotateDegree = 90;
                 matrix.postRotate((float) rotateDegree);
                 scaled = Bitmap.createScaledBitmap(Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(),
                         matrix, true), widthLength, heightLength, true);
             }
 
             return scaled;
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        } catch (Exception e) {
+            return null;
         }
-        return null;
     }
 }

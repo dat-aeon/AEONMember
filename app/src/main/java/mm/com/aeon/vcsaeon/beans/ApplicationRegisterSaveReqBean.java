@@ -7,7 +7,7 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.ZERO;
 public class ApplicationRegisterSaveReqBean {
 
     private Integer daApplicationInfoId;
-    private Integer applicationNo;
+    private String applicationNo;
     private String appliedDate;
     private Integer status;
     private String settlementPendingComment;
@@ -442,7 +442,7 @@ public class ApplicationRegisterSaveReqBean {
     }
 
     public OccupationDataFormBean getApplicantCompanyInfoDto() {
-        if(applicantCompanyInfoDto == null){
+        if (applicantCompanyInfoDto == null) {
             return new OccupationDataFormBean();
         }
         return applicantCompanyInfoDto;
@@ -453,7 +453,7 @@ public class ApplicationRegisterSaveReqBean {
     }
 
     public EmergencyContactFormBean getEmergencyContactInfoDto() {
-        if(emergencyContactInfoDto == null){
+        if (emergencyContactInfoDto == null) {
             return new EmergencyContactFormBean();
         }
         return emergencyContactInfoDto;
@@ -464,7 +464,7 @@ public class ApplicationRegisterSaveReqBean {
     }
 
     public GuarantorFormBean getGuarantorInfoDto() {
-        if(guarantorInfoDto == null){
+        if (guarantorInfoDto == null) {
             return new GuarantorFormBean();
         }
         return guarantorInfoDto;
@@ -482,11 +482,11 @@ public class ApplicationRegisterSaveReqBean {
         this.daApplicationInfoId = daApplicationInfoId;
     }
 
-    public Integer getApplicationNo() {
+    public String getApplicationNo() {
         return applicationNo;
     }
 
-    public void setApplicationNo(Integer applicationNo) {
+    public void setApplicationNo(String applicationNo) {
         this.applicationNo = applicationNo;
     }
 

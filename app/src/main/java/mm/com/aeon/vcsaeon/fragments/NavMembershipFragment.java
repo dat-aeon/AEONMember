@@ -2,6 +2,7 @@ package mm.com.aeon.vcsaeon.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -28,6 +29,7 @@ import mm.com.aeon.vcsaeon.activities.MainMenuActivityDrawer;
 import mm.com.aeon.vcsaeon.beans.UserInformationFormBean;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
+import mm.com.aeon.vcsaeon.common_utils.UiUtils;
 import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_EN;
@@ -57,13 +59,14 @@ public class NavMembershipFragment extends BaseFragment implements LanguageChang
 
         // show back button on toolbar
         LinearLayout menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+        menuBackBtn.setAnimation(UiUtils.animSlideToRight(getActivity()));
         menuBackBtn.setVisibility(View.VISIBLE);
 
         btnUpgrade = view.findViewById(R.id.btn_upgrade);
 
         SharedPreferences sharedPreferences = PreferencesManager.getApplicationPreference(getActivity());
-        String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences,PARAM_LANG);
-        if(curLang.equals(LANG_MM)){
+        String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences, PARAM_LANG);
+        if (curLang.equals(LANG_MM)) {
             changeLabel(LANG_MM);
         } else {
             changeLabel(LANG_EN);
@@ -74,7 +77,7 @@ public class NavMembershipFragment extends BaseFragment implements LanguageChang
             public void onClick(View v) {
                 //clear previous data.
                 clearVerificationForm();
-                replaceFragment(new VerificationMemberInfoFragment(),R.id.content_main_drawer);
+                replaceFragment(new VerificationMemberInfoFragment(), R.id.content_main_drawer);
             }
         });
 
@@ -82,7 +85,7 @@ public class NavMembershipFragment extends BaseFragment implements LanguageChang
 
     }
 
-    public void replaceFragment(Fragment fragment, int containerView){
+    public void replaceFragment(Fragment fragment, int containerView) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(containerView, fragment, "TAG");
@@ -91,17 +94,17 @@ public class NavMembershipFragment extends BaseFragment implements LanguageChang
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
             case R.id.action_favorite:
                 //this.languageFlag = item;
-                if(item.getTitle().equals(LANG_MM)){
+                if (item.getTitle().equals(LANG_MM)) {
                     item.setIcon(R.drawable.en_flag2);
                     item.setTitle(LANG_EN);
                     changeLabel(LANG_MM);
 
-                } else if(item.getTitle().equals(LANG_EN)){
+                } else if (item.getTitle().equals(LANG_EN)) {
                     item.setIcon(R.drawable.mm_flag);
                     item.setTitle(LANG_MM);
                     changeLabel(LANG_EN);
@@ -112,19 +115,19 @@ public class NavMembershipFragment extends BaseFragment implements LanguageChang
         return super.onOptionsItemSelected(item);
     }
 
-    public void changeLabel(String language){
+    public void changeLabel(String language) {
         btnUpgrade.setText(CommonUtils.getLocaleString(new Locale(language), R.string.customertype_oldcustomer_button, getActivity()));
         PreferencesManager.setCurrentLanguage(getActivity(), language);
     }
 
-    private void clearVerificationForm(){
-        VerificationMemberInfoFragment.tempAgreementNoVal=null;
-        VerificationMemberInfoFragment.tempDateOfBirth=null;
-        VerificationMemberInfoFragment.tempNrcCode=null;
-        VerificationMemberInfoFragment.tempDivCode=0;
-        VerificationMemberInfoFragment.tempNrcType=0;
-        VerificationMemberInfoFragment.tempNrcCode=null;
-        VerificationMemberInfoFragment.tempTwspCode=null;
+    private void clearVerificationForm() {
+        VerificationMemberInfoFragment.tempAgreementNoVal = null;
+        VerificationMemberInfoFragment.tempDateOfBirth = null;
+        VerificationMemberInfoFragment.tempNrcCode = null;
+        VerificationMemberInfoFragment.tempDivCode = 0;
+        VerificationMemberInfoFragment.tempNrcType = 0;
+        VerificationMemberInfoFragment.tempNrcCode = null;
+        VerificationMemberInfoFragment.tempTwspCode = null;
     }
 
     @Override

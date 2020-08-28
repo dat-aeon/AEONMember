@@ -4,19 +4,32 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
+    android:elevation="@dimen/margin_tiny"
+    android:padding="@dimen/margin_small"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/grid_layout_border"
     android:backgroundTint="@color/calculator_color"
     android:paddingTop="5dp">
 
-    <ImageView
-        android:layout_height="45dp"
+    <!--<ImageView
+        android:layout_height="@dimen/category_ic_side"
         android:id="@+id/imageView1"
-        android:layout_width="45dp"
+        android:layout_width="@dimen/category_ic_side"
+        android:padding="@dimen/margin_tiny"
         android:src="@drawable/calculator_icon_128"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-    </ImageView>
+        android:layout_centerHorizontal="true"/>-->
+
+    <ImageView
+        android:layout_height="@dimen/category_ic_side"
+        android:id="@+id/imageView1"
+        android:layout_width="@dimen/category_ic_side"
+        android:padding="@dimen/margin_small_2x"
+        android:backgroundTint="@color/grayLight"
+        android:background="@drawable/messaging_container_frame"
+        android:src="@drawable/gd_ic_loan_calculator"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:text="@string/main_calculator_title"
@@ -25,11 +38,12 @@
         android:layout_width="wrap_content"
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/main_view_font_size"
+        android:textSize="@dimen/text_small"
+        android:lineSpacingExtra="-4dp"
         android:textAlignment="center"
-        android:fontFamily="@font/pyidaungsu_regular"
+        android:fontFamily="@font/vcsm_labels_font"
         android:textColor="@color/white"
         android:ellipsize="marquee"
-        android:layout_marginTop="@dimen/margin_tiny_plus"/>
+        android:layout_marginTop="@dimen/margin_small_2x"/>
 
 </RelativeLayout>

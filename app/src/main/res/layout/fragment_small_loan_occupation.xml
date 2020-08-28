@@ -28,115 +28,61 @@
                 custom:labelSize="10" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/occu_data_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
             android:orientation="vertical">
-
-            <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-
-                <LinearLayout
-                    android:id="@+id/back_app_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/left_sign_32" />
-
-                    <TextView
-                        android:id="@+id/da_app_data_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.9"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:padding="1dp"
-                        android:text="@string/da_application_data_title"
-                        android:textColor="@color/da_label_color"
-                        android:textSize="@dimen/text_regular_2x"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/go_to_emergency"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp">
-
-                    <TextView
-                        android:id="@+id/da_emer_data_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_weight="0.9"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:padding="1dp"
-                        android:text="@string/da_emergency_title"
-                        android:textAlignment="viewEnd"
-                        android:textColor="@color/da_label_color"
-                        android:textSize="@dimen/text_regular_2x"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="right"
-                        android:src="@drawable/right_sign_32" />
-
-                </LinearLayout>
-            </LinearLayout>-->
 
             <com.kofigyan.stateprogressbar.StateProgressBar
                 android:id="@+id/occu_stepped_bar"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:spb_currentStateNumber="two"
-                app:spb_maxStateNumber="five"
-                app:spb_stateBackgroundColor="@color/color_disable"
-                app:spb_stateForegroundColor="@color/da_button__color"
-                app:spb_stateNumberBackgroundColor="@color/white"
-                app:spb_stateNumberForegroundColor="@color/white"
-                app:spb_currentStateDescriptionColor="@color/da_button__color"
-                app:spb_stateDescriptionColor="@color/color_disable"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
                 app:spb_animateToCurrentProgressState="true"
                 app:spb_checkStateCompleted="false"
-                app:spb_stateDescriptionSize="12sp"
-                app:spb_descriptionTopSpaceIncrementer="2dp"/>
+                app:spb_currentStateDescriptionColor="@color/da_button__color"
+                app:spb_currentStateNumber="two"
+                app:spb_descriptionTopSpaceIncrementer="@dimen/margin_tiny"
+                app:spb_maxStateNumber="five"
+                app:spb_stateBackgroundColor="@color/color_disable"
+                app:spb_stateDescriptionColor="@color/color_disable"
+                app:spb_stateDescriptionSize="@dimen/text_small"
+                app:spb_stateForegroundColor="@color/da_button__color"
+                app:spb_stateNumberBackgroundColor="@color/white"
+                app:spb_stateNumberForegroundColor="@color/white" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/da_occu_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/pyidaungsu_bold"
                 android:gravity="center"
                 android:text="@string/da_occupation_title"
-                android:layout_marginBottom="5dp"
                 android:textColor="@color/da_label_color"
-                android:fontFamily="@font/pyidaungsu_bold"
                 android:textSize="@dimen/text_regular_3x"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:background="?android:attr/listDivider" />
 
         </LinearLayout>
 
         <ScrollView
+            android:id="@+id/occupation_scroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/occupation_scroll"
             android:layout_above="@+id/button_layout"
             android:layout_below="@+id/occu_data_banner"
             android:layout_marginBottom="15dp"
@@ -150,25 +96,6 @@
                 android:orientation="vertical"
                 android:padding="@dimen/margin_medium">
 
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="@dimen/margin_medium_2"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/reg_form_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="Occupation Data"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/text_regular_3x"
-                        android:textStyle="bold" />
-
-                </LinearLayout>-->
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -180,8 +107,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Company Name *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Company Name *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -202,8 +129,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/mandatroy_edit_text_style"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Company Name"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -224,8 +151,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:gravity="center_vertical"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:gravity="center_vertical"
                         android:text="Company Address"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_medium"
@@ -234,16 +161,17 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginBottom="@dimen/margin_medium"
+                        android:orientation="horizontal"
                         android:weightSum="1.0">
+
                         <TextView
                             android:id="@+id/company_txt_apartment_no"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_apartment_no"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -255,8 +183,8 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
-                            android:hint=""
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:hint=""
                             android:maxLength="100"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -268,8 +196,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginBottom="@dimen/margin_medium"
+                        android:orientation="horizontal"
                         android:weightSum="1.0">
 
                         <TextView
@@ -277,8 +205,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_room_no"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -290,8 +218,8 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:maxLength="20"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -304,8 +232,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginBottom="@dimen/margin_medium"
+                        android:orientation="horizontal"
                         android:weightSum="1.0">
 
                         <TextView
@@ -313,8 +241,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_floor_no"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -326,8 +254,8 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:maxLength="20"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -348,8 +276,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="@string/da_err_street"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="@string/da_err_street"
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -365,8 +293,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.5"
-                                android:gravity="center_vertical"
                                 android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
                                 android:text="@string/da_applicant_street"
                                 android:textColor="@color/da_label_color"
                                 android:textSize="@dimen/text_regular"
@@ -378,8 +306,8 @@
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.5"
                                 android:background="@drawable/mandatroy_edit_text_style"
+                                android:fontFamily="@font/input_text_font"
                                 android:hint=""
-                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:maxLength="100"
                                 android:paddingLeft="@dimen/margin_medium"
                                 android:singleLine="true"
@@ -403,8 +331,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="@string/da_err_street"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="@string/da_err_street"
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -420,8 +348,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.5"
-                                android:gravity="center_vertical"
                                 android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
                                 android:text="@string/da_applicant_quarter"
                                 android:textColor="@color/da_label_color"
                                 android:textSize="@dimen/text_regular"
@@ -433,8 +361,8 @@
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.5"
                                 android:background="@drawable/mandatroy_edit_text_style"
-                                android:hint=""
                                 android:fontFamily="@font/pyidaungsu_regular"
+                                android:hint=""
                                 android:maxLength="100"
                                 android:paddingLeft="@dimen/margin_medium"
                                 android:singleLine="true"
@@ -455,8 +383,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="@string/da_err_street"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="@string/da_err_street"
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -464,8 +392,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:layout_marginBottom="@dimen/margin_medium"
+                            android:orientation="horizontal"
                             android:weightSum="1.0">
 
                             <TextView
@@ -473,8 +401,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.5"
-                                android:gravity="center_vertical"
                                 android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
                                 android:text="@string/da_applicant_city"
                                 android:textColor="@color/da_label_color"
                                 android:textSize="@dimen/text_regular"
@@ -489,15 +417,15 @@
                                 android:background="@drawable/mandatroy_edit_text_style"
                                 android:focusable="true"
                                 android:focusableInTouchMode="true"
-                                android:maxLength="100"
+                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:gravity="center"
                                 android:longClickable="false"
+                                android:maxLength="100"
                                 android:paddingLeft="@dimen/margin_medium_2"
                                 android:paddingRight="@dimen/margin_medium_2"
                                 android:singleLine="true"
                                 android:textAlignment="center"
                                 android:textColor="@color/da_value_color"
-                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:textSize="@dimen/text_regular" />
                         </LinearLayout>
 
@@ -514,8 +442,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="@string/da_err_street"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="@string/da_err_street"
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -523,8 +451,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:layout_marginBottom="@dimen/margin_medium"
+                            android:orientation="horizontal"
                             android:weightSum="1.0">
 
                             <TextView
@@ -532,8 +460,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.5"
-                                android:gravity="center_vertical"
                                 android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
                                 android:text="@string/da_applicant_township"
                                 android:textColor="@color/da_label_color"
                                 android:textSize="@dimen/text_regular"
@@ -548,15 +476,15 @@
                                 android:background="@drawable/mandatroy_edit_text_style"
                                 android:focusable="true"
                                 android:focusableInTouchMode="true"
-                                android:maxLength="100"
+                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:gravity="center"
                                 android:longClickable="false"
+                                android:maxLength="100"
                                 android:paddingLeft="@dimen/margin_medium_2"
                                 android:paddingRight="@dimen/margin_medium_2"
                                 android:singleLine="true"
                                 android:textAlignment="center"
                                 android:textColor="@color/da_value_color"
-                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:textSize="@dimen/text_regular" />
                         </LinearLayout>
                     </LinearLayout>
@@ -574,8 +502,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Company Tel No. "
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Company Tel No. "
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -596,8 +524,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/mandatroy_edit_text_style"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="@string/register_phoneno_holder"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:inputType="phone"
                         android:maxLength="11"
                         android:paddingLeft="@dimen/margin_medium"
@@ -618,8 +546,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Contact Time *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Contact Time *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -629,8 +557,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Contact Time is required."
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Contact Time is required."
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -678,8 +606,8 @@
                             android:layout_weight="1.5"
                             android:background="@drawable/edit_text_style"
                             android:focusable="false"
+                            android:fontFamily="@font/input_text_font"
                             android:hint="h:mm"
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:inputType="number"
                             android:maxLength="256"
                             android:singleLine="true"
@@ -695,8 +623,8 @@
                             android:layout_marginBottom="@dimen/margin_small"
                             android:layout_weight="0.5"
                             android:focusable="false"
-                            android:text="PM"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="PM"
                             android:textAlignment="center"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -717,8 +645,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Department *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Department *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -727,8 +655,8 @@
                         android:id="@+id/occupation_err_companyDept"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:layout_marginBottom="@dimen/margin_small"
+                        android:fontFamily="@font/pyidaungsu_regular"
                         android:text="Department Name is required."
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
@@ -739,8 +667,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/mandatroy_edit_text_style"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Company Department"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -761,8 +689,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Position *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Position *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -783,10 +711,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/mandatroy_edit_text_style"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Position"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:singleLine="true"
                         android:textColor="@color/da_value_color"
                         android:textColorHint="@color/grayLight"
@@ -805,8 +733,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Year of Service *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Year of Service *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -816,8 +744,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Year of Service is required."
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Year of Service is required."
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -831,61 +759,61 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="0.5"
                             android:orientation="horizontal"
-                            android:weightSum="1"
-                            android:layout_weight="0.5">
+                            android:weightSum="1">
 
                             <Spinner
                                 android:id="@+id/occu_spinner_service_year"
                                 android:layout_width="match_parent"
-                                android:layout_weight="0.3"
-                                android:paddingLeft="@dimen/margin_small"
-                                android:paddingRight="@dimen/margin_small"
                                 android:layout_height="@dimen/edit_text_height"
-                                android:background="@drawable/spinner_drop_arrow"/>
+                                android:layout_weight="0.3"
+                                android:background="@drawable/spinner_drop_arrow"
+                                android:paddingLeft="@dimen/margin_small"
+                                android:paddingRight="@dimen/margin_small" />
 
                             <TextView
                                 android:id="@+id/lbl_occu_stay_year"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="0.7"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="0.7"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingLeft="10dp"
                                 android:text="@string/register_stay_year"
                                 android:textColor="@color/da_label_color"
-                                android:textSize="@dimen/text_regular"
-                                android:fontFamily="@font/pyidaungsu_bold"/>
+                                android:textSize="@dimen/text_regular" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="0.5"
                             android:orientation="horizontal"
-                            android:weightSum="1"
-                            android:layout_weight="0.5">
+                            android:weightSum="1">
 
                             <Spinner
                                 android:id="@+id/occu_spinner_service_month"
                                 android:layout_width="match_parent"
-                                android:layout_weight="0.3"
-                                android:layout_marginLeft="@dimen/margin_tiny"
-                                android:paddingLeft="@dimen/margin_small"
-                                android:paddingRight="@dimen/margin_small"
                                 android:layout_height="@dimen/edit_text_height"
-                                android:background="@drawable/spinner_drop_arrow"/>
+                                android:layout_marginLeft="@dimen/margin_tiny"
+                                android:layout_weight="0.3"
+                                android:background="@drawable/spinner_drop_arrow"
+                                android:paddingLeft="@dimen/margin_small"
+                                android:paddingRight="@dimen/margin_small" />
 
                             <TextView
                                 android:id="@+id/lbl_occu_stay_month"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="0.7"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="0.7"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingLeft="10dp"
                                 android:text="@string/register_stay_month"
                                 android:textColor="@color/da_label_color"
-                                android:textSize="@dimen/text_regular"
-                                android:fontFamily="@font/pyidaungsu_bold"/>
+                                android:textSize="@dimen/text_regular" />
 
                         </LinearLayout>
 
@@ -909,8 +837,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="Company Status *"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="Company Status *"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
@@ -920,8 +848,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="Description is required."
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="Description is required."
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -934,6 +862,7 @@
                             android:background="@drawable/mandatroy_edit_text_style"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
+                            android:fontFamily="@font/pyidaungsu_regular"
                             android:gravity="center"
                             android:longClickable="false"
                             android:paddingLeft="@dimen/margin_medium_2"
@@ -941,7 +870,6 @@
                             android:singleLine="true"
                             android:textAlignment="center"
                             android:textColor="@color/da_value_color"
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:textSize="@dimen/text_regular" />
 
                     </LinearLayout>
@@ -956,8 +884,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="Description is required."
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="Description is required."
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -967,8 +895,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:background="@drawable/mandatroy_edit_text_style"
-                            android:hint="Description"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:hint="Description"
                             android:maxLength="256"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -992,8 +920,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Monthly Basic Income *"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Monthly Basic Income *"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -1014,8 +942,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/mandatroy_edit_text_style"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Basic Income"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:inputType="number"
                         android:maxLength="10"
                         android:paddingLeft="@dimen/margin_medium"
@@ -1090,8 +1018,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Other Income"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Other Income"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -1101,8 +1029,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/edit_text_style"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Other Income"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:inputType="number"
                         android:maxLength="10"
                         android:paddingLeft="@dimen/margin_medium"
@@ -1189,8 +1117,8 @@
                             android:layout_width="150dp"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="Total Income *"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="Total Income *"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
@@ -1199,39 +1127,36 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text=" : "
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:text=" : "
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/occupation_total_income"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
                             android:fontFamily="@font/pyidaungsu_regular"
-                            android:textColor="@color/da_value_color"
                             android:text="0"
+                            android:textColor="@color/da_value_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/occupation_total_income_cur_unit"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="@string/mem_card_amt_unit"
+                            android:textColor="@color/da_value_color"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
 
                     </LinearLayout>
-
-                    <!--<EditText
-                        android:id="@+id/occupation_total_income"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/edit_text_height"
-                        android:background="@drawable/mandatroy_edit_text_style"
-                        android:focusable="false"
-                        android:hint="Total Income"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:paddingLeft="@dimen/margin_medium"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/grayLight"
-                        android:textSize="@dimen/text_regular" />-->
 
                 </LinearLayout>
 
@@ -1251,8 +1176,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="Salary Day *"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="Salary Day *"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
@@ -1264,38 +1189,13 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <!--<TextView
-                            android:id="@+id/occupation_err_salaryDate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_small"
-                            android:text="Salary Date is required."
-                            android:textColor="@color/red"
-                            android:textSize="@dimen/text_regular"
-                            android:visibility="gone" />-->
-
                         <Spinner
                             android:id="@+id/occu_spinner_salary_date"
                             android:layout_width="match_parent"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:background="@drawable/spinner_drop_arrow"
                             android:paddingLeft="@dimen/margin_small"
-                            android:paddingRight="@dimen/margin_small"
-                            android:layout_height="@dimen/edit_text_height"
-                            android:background="@drawable/spinner_drop_arrow"/>
-
-                        <!--<EditText
-                            android:id="@+id/occupation_salary_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/edit_text_height"
-                            android:layout_weight="0.9"
-                            android:height="40dp"
-                            android:background="@drawable/edit_text_style"
-                            android:focusable="false"
-                            android:hint="@string/register_dob_holder"
-                            android:inputType="text"
-                            android:paddingLeft="@dimen/margin_medium"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/grayLight"
-                            android:textSize="@dimen/text_regular" />-->
+                            android:paddingRight="@dimen/margin_small" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -1308,9 +1208,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
             android:orientation="horizontal">
 
             <Button
@@ -1319,10 +1218,12 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="0.5"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_small"
                 android:background="@drawable/button_border"
                 android:backgroundTint="@color/da_button__color"
-                android:text="Save"
                 android:fontFamily="@font/pyidaungsu_bold"
+                android:text="Save"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -1331,16 +1232,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_medium"
                 android:layout_weight="0.5"
-                android:layout_marginLeft="@dimen/margin_tiny"
                 android:background="@drawable/button_border"
                 android:backgroundTint="@color/da_button__color"
-                android:text="Next"
                 android:fontFamily="@font/pyidaungsu_bold"
+                android:text="Next"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
     </RelativeLayout>
+
 </LinearLayout>

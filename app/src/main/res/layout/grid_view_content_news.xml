@@ -1,35 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center"
     android:background="@drawable/grid_layout_border"
     android:backgroundTint="@color/good_news_color"
+    android:elevation="@dimen/margin_tiny"
+    android:gravity="center"
     android:padding="5dp">
 
-    <ImageView
-        android:layout_height="50dp"
+    <!--<ImageView
         android:id="@+id/imageView1"
-        android:layout_width="50dp"
-        android:src="@drawable/news_icon_blue_512"
+        android:layout_width="@dimen/category_ci_side_2"
+        android:layout_height="@dimen/category_ci_side_2"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-    </ImageView>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:src="@drawable/news_icon_blue_512"/>-->
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="@dimen/category_ic_side"
+        android:layout_height="@dimen/category_ic_side"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@drawable/messaging_container_frame"
+        android:backgroundTint="@color/grayLight"
+        android:padding="@dimen/margin_medium"
+        android:src="@drawable/gd_ic_news" />
 
     <TextView
-        android:text="@string/main_news_title"
-        android:layout_height="wrap_content"
         android:id="@+id/text_news"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1"
-        android:layout_marginBottom="3dp"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/main_view_font_size"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginBottom="3dp"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/vcsm_labels_font"
+        android:text="@string/main_news_title"
         android:textAlignment="center"
-        android:fontFamily="@font/pyidaungsu_regular"
         android:textColor="@color/white"
-        android:ellipsize="marquee"/>
+        android:textSize="@dimen/text_small" />
 
 </RelativeLayout>

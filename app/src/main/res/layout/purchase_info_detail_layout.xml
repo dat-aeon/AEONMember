@@ -7,9 +7,10 @@
     <RelativeLayout
         android:id="@+id/layout_detail_back"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/edit_text_height"
+        android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:elevation="@dimen/margin_medium">
 
         <ImageView
             android:id="@+id/purchase_detail_back"
@@ -19,11 +20,24 @@
             android:layout_marginLeft="@dimen/margin_medium"
             android:src="@drawable/ic_arrow_back_black_detail_24dp" />
 
+        <TextView
+            android:id="@+id/lbl_purchase_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_toEndOf="@+id/purchase_detail_back"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:gravity="center_vertical"
+            android:text="Purchase Detail"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_medium" />
+
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="never"
         android:layout_below="@id/layout_detail_back">
 
         <RelativeLayout
@@ -31,21 +45,10 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/text_small">
 
-            <TextView
-                android:id="@+id/lbl_purchase_title"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/edit_text_height"
-                android:fontFamily="@font/pyidaungsu_bold"
-                android:gravity="center_vertical"
-                android:text="Purchase Detail"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_medium" />
-
             <View
                 android:id="@+id/separator_detail"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_below="@+id/lbl_purchase_title"
                 android:background="@color/colorPrimary" />
 
             <TextView

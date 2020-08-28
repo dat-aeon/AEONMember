@@ -1,6 +1,7 @@
 package mm.com.aeon.vcsaeon.networking;
 
 import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.OK_HTTP_WRITE_TIMEOUT;
@@ -11,10 +12,11 @@ public class VCSOkHttpClient {
 
     private static OkHttpClient objectInstance;
 
-    private VCSOkHttpClient(){}
+    private VCSOkHttpClient() {
+    }
 
-    public static OkHttpClient getObjectInstance(){
-        if(objectInstance == null){
+    public static OkHttpClient getObjectInstance() {
+        if (objectInstance == null) {
             objectInstance = new OkHttpClient.Builder()
                     .readTimeout(RETROFIT_READ_TIMEOUT, TimeUnit.SECONDS)
                     .writeTimeout(OK_HTTP_WRITE_TIMEOUT, TimeUnit.SECONDS)

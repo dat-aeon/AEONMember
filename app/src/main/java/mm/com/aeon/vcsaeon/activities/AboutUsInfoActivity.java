@@ -12,13 +12,13 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -115,14 +115,10 @@ public class AboutUsInfoActivity extends BaseActivity {
         req.enqueue(new Callback<BaseResponse<CompanyInfoResBean>>() {
             @Override
             public void onResponse(Call<BaseResponse<CompanyInfoResBean>> call, Response<BaseResponse<CompanyInfoResBean>> response) {
-                if(response.isSuccessful()){
-
+                if (response.isSuccessful()) {
                     final BaseResponse baseResponse = response.body();
-
-                    if(baseResponse.getStatus().equals(SUCCESS)){
-
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
                         companyInfoResBean = (CompanyInfoResBean) baseResponse.getData();
-
                         btnCall.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -132,30 +128,21 @@ public class AboutUsInfoActivity extends BaseActivity {
                                 if (permission != PackageManager.PERMISSION_GRANTED) {
                                     makeCallRequest();
                                 } else {
-                                    String hotlinePhoneNo = companyInfoResBean.getHotlinePhone();
-                                    if(hotlinePhoneNo==null || hotlinePhoneNo.equals(BLANK)){
-                                        //Toast.makeText(getApplicationContext(),getString(R.string.message_call_not_available), Toast.LENGTH_SHORT).show();
-                                        displayMessage(getApplicationContext(),getString(R.string.message_call_not_available));
+                                    String hotLinePhoneNo = companyInfoResBean.getHotlinePhone();
+                                    if (hotLinePhoneNo == null || hotLinePhoneNo.equals(BLANK)) {
+                                        displayMessage(getApplicationContext(), getString(R.string.message_call_not_available));
                                     } else {
                                         Intent callIntent = new Intent(Intent.ACTION_CALL);
-                                        callIntent.setData(Uri.parse(PHONE_URI_PREFIX+hotlinePhoneNo));
+                                        callIntent.setData(Uri.parse(PHONE_URI_PREFIX + hotLinePhoneNo));
                                         startActivity(callIntent);
                                     }
                                 }
                             }
                         });
-
                         changeLabel(curLang);
-                        closeDialog(aboutUsInfoDialog);
-
-                    } else {
-
-                        closeDialog(aboutUsInfoDialog);
-                        //do some "FAILED" conditions.
                     }
-
+                    closeDialog(aboutUsInfoDialog);
                 } else {
-
                     // display service_unavailable layout if not success.
                     closeDialog(aboutUsInfoDialog);
                     serviceNotFoundView.setVisibility(View.VISIBLE);
@@ -172,23 +159,6 @@ public class AboutUsInfoActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.toolbar_main_menu, menu);
-
-        /*String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        if(curLang.equals(LANG_MM)){
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
-            menu.getItem(0).setTitle(LANG_EN);
-            changeLabel(LANG_MM);
-        } else {
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
-            menu.getItem(0).setTitle(LANG_MM);
-            changeLabel(LANG_EN);
-        }*/
-//        menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
-//        menu.getItem(0).setTitle(LANG_MM);
-//        menu.getItem(1).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
-//        menu.getItem(1).setTitle(LANG_EN);
         return true;
     }
 
@@ -198,20 +168,8 @@ public class AboutUsInfoActivity extends BaseActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_myFlag) {
-           /* if(item.getTitle().equals(LANG_MM)){
-                item.setIcon(R.drawable.en_flag2);
-                item.setTitle(LANG_EN);
-                changeLabel(LANG_MM);
-                addValueToPreference(LANG_MM);
-            } else if(item.getTitle().equals(LANG_EN)){
-                item.setIcon(R.drawable.mm_flag);
-                item.setTitle(LANG_MM);
-                changeLabel(LANG_EN);
-                addValueToPreference(LANG_EN);
-            }*/
             changeLabel(LANG_MM);
             addValueToPreference(LANG_MM);
             return true;
@@ -220,25 +178,21 @@ public class AboutUsInfoActivity extends BaseActivity {
             changeLabel(LANG_EN);
             addValueToPreference(LANG_EN);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    public void addValueToPreference(String lang){
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),lang);
+    public void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), lang);
     }
 
-    public void changeLabel(String language){
-
+    public void changeLabel(String language) {
         btnCall.setText(CommonUtils.getLocaleString(new Locale(language), R.string.aboutus_all_now_button, getApplicationContext()));
         toolbar.setTitle(CommonUtils.getLocaleString(new Locale(language), R.string.aboutus_title, getApplicationContext()));
         txtService.setText(CommonUtils.getLocaleString(new Locale(language), R.string.service_unavailable, getApplicationContext()));
-
         textPhone.setText(companyInfoResBean.getHotlinePhone());
         textFacebook.setText(companyInfoResBean.getSocialMediaAddress());
         textWeb.setText(companyInfoResBean.getWebAddress());
-
-        if(language.equals(LANG_EN)){
+        if (language.equals(LANG_EN)) {
             textAbout.setText(companyInfoResBean.getAboutCompanyEn());
             textAddress.setText(companyInfoResBean.getAddressEn());
         } else {
@@ -260,14 +214,13 @@ public class AboutUsInfoActivity extends BaseActivity {
                 if (grantResults.length == 0
                         || grantResults[0] !=
                         PackageManager.PERMISSION_GRANTED) {
-                    //Log.i(TAG, "Permission has been denied by user");
                 } else {
-                    String hotlinePhoneNo = companyInfoResBean.getHotlinePhone();
-                    if(hotlinePhoneNo==null || hotlinePhoneNo.equals(BLANK)){
+                    String hotLinePhoneNo = companyInfoResBean.getHotlinePhone();
+                    if (hotLinePhoneNo == null || hotLinePhoneNo.equals(BLANK)) {
                         showSnackBarMessage(getString(R.string.message_call_not_available));
                     } else {
                         Intent callIntent = new Intent(Intent.ACTION_CALL);
-                        callIntent.setData(Uri.parse(PHONE_URI_PREFIX+hotlinePhoneNo));
+                        callIntent.setData(Uri.parse(PHONE_URI_PREFIX + hotLinePhoneNo));
                         startActivity(callIntent);
                     }
                 }
@@ -275,4 +228,5 @@ public class AboutUsInfoActivity extends BaseActivity {
             }
         }
     }
+
 }

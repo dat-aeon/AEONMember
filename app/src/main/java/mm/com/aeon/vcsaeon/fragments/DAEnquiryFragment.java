@@ -16,21 +16,16 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,7 +43,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.shagi.materialdatepicker.date.DatePickerFragmentDialog;
 
@@ -74,7 +68,6 @@ import mm.com.aeon.vcsaeon.beans.ApplicationInfoAttachmentResBean;
 import mm.com.aeon.vcsaeon.beans.ApplicationInfoReqBean;
 import mm.com.aeon.vcsaeon.beans.ApplicationInfoResBean;
 import mm.com.aeon.vcsaeon.beans.CityTownshipResBean;
-import mm.com.aeon.vcsaeon.beans.CustAgreementListDto;
 import mm.com.aeon.vcsaeon.beans.DAEnquiryResBean;
 import mm.com.aeon.vcsaeon.beans.EmergencyContactFormBean;
 import mm.com.aeon.vcsaeon.beans.GuarantorDetailFormBean;
@@ -84,7 +77,6 @@ import mm.com.aeon.vcsaeon.beans.ProductTypeListBean;
 import mm.com.aeon.vcsaeon.beans.PurchaseAttachEditReqBean;
 import mm.com.aeon.vcsaeon.beans.PurchaseAttachEditTempBean;
 import mm.com.aeon.vcsaeon.beans.PurchaseAttachInfoEditReqBean;
-import mm.com.aeon.vcsaeon.beans.PurchaseDetailInfoCancelReqBean;
 import mm.com.aeon.vcsaeon.beans.PurchaseDetailInfoReqBean;
 import mm.com.aeon.vcsaeon.beans.PurchaseDetailInfoResBean;
 import mm.com.aeon.vcsaeon.beans.PurchaseInfoAttachmentResBean;
@@ -116,8 +108,6 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.BLANK;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.CAMERA;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.FEMALE;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.GALLERY;
-import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_EN;
-import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_MM;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LOAN_TERM_PERIOD;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.MALE;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.MARRIED;
@@ -160,21 +150,13 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
     TextView lblLcStatus;
 
     EditText textApplicationNo1;
-    EditText textApplicationNo2;
-    EditText textApplicationNo3;
     EditText textAppliedDate;
 
     RecyclerView rvEnquiryList;
     RecyclerView rvOtherAttachments;
     static DAEnquiryListRVAdapter adapter;
 
-
     int selectedStatusId;
-
-    /*Spinner spinnerLoanType;
-    int[] loanTypeIds = null;
-    int selectedLoanTypeId;
-    TextView tvCategorySearched;*/
 
     UserInformationFormBean userInformationFormBean;
 
@@ -185,7 +167,6 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
     static SendMessageImageView imgCurrentAttach;
     static int curFileType;
     static String curFilePath;
-    /*static String textLoanType;*/
 
     private String mCurrentPhotoPath;
     private final int REQUEST_TAKE_PHOTO = 747;
@@ -258,20 +239,14 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                             if (baseResponse.getStatus().equals(SUCCESS)) {
                                 productTypeList = (List<ProductTypeListBean>) baseResponse.getData();
 
-                                Log.e("Procduct list", "Success");
-
                                 if (productTypeList != null) {
                                     saveProductType(productTypeList);
-
                                     int listSize = productTypeList.size();
                                     productCategory = new String[listSize];
                                     productId = new int[listSize];
                                     getProductType(productTypeList, listSize);
-
-                                    productListDialog.dismiss();
-                                } else {
-                                    productListDialog.dismiss();
                                 }
+                                productListDialog.dismiss();
                             } else {
                                 productListDialog.dismiss();
                                 showErrorDialog(getActivity(), getString(R.string.service_unavailable));
@@ -295,12 +270,7 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
             productCategory = new String[listSize];
             productId = new int[listSize];
             getProductType(productTypeList, listSize);
-
-            Log.e("product id : ", String.valueOf(productId[0]));
-            Log.e("product id : ", String.valueOf(productId[1]));
-
         }
-
 
         cityTownshipList = PreferencesManager.getCityListInfo(getActivity());
         if (cityTownshipList == null) {
@@ -323,17 +293,11 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                             if (baseResponse.getStatus().equals(SUCCESS)) {
                                 final List<CityTownshipResBean> cityTspList =
                                         (List<CityTownshipResBean>) baseResponse.getData();
-
-                                Log.e("TownshipCity list", "Success");
-                                Log.e("City List : ", String.valueOf(cityTspList.size()));
-
                                 if (cityTspList != null) {
                                     cityTownshipList = cityTspList;
                                     saveCityInfo(cityTownshipList);
-                                    loadingCityInfo.dismiss();
-                                } else {
-                                    loadingCityInfo.dismiss();
                                 }
+                                loadingCityInfo.dismiss();
                             } else {
                                 loadingCityInfo.dismiss();
                                 showErrorDialog(getActivity(), getString(R.string.service_unavailable));
@@ -355,7 +319,6 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
             setUpCityList(cityTownshipList);
         }
 
-
         SharedPreferences sharedPreferences = PreferencesManager.getApplicationPreference(getActivity());
         curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences, PARAM_LANG);
 
@@ -366,29 +329,7 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
         rvEnquiryList = view.findViewById(R.id.rv_application_list);
 
         textApplicationNo1 = view.findViewById(R.id.text_application_no1);
-        textApplicationNo2 = view.findViewById(R.id.text_application_no2);
-        textApplicationNo3 = view.findViewById(R.id.text_application_no3);
         textAppliedDate = view.findViewById(R.id.text_applied_date);
-
-        /*tvCategorySearched = view.findViewById(R.id.id_searched_label);*/
-        /*spinnerLoanType = view.findViewById(R.id.spinner_loan_type);*/
-        /*loanTypeIds = getResources().getIntArray(R.array.loan_type_id_array);*/
-
-        /*final String[] loanTypes = getResources().getStringArray(R.array.loan_type_array);
-        ArrayAdapter<String> loanTypeAdapter = new ArrayAdapter(getActivity(), R.layout.nrc_spinner_item_3, loanTypes);
-        spinnerLoanType.setAdapter(loanTypeAdapter);
-
-        spinnerLoanType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedLoanTypeId = loanTypeIds[position];
-                textLoanType = loanTypes[position];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });*/
 
         textAppliedDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -417,8 +358,6 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
             @Override
             public void onClick(View v) {
                 textApplicationNo1.setText("");
-                textApplicationNo2.setText("");
-                textApplicationNo3.setText("");
                 textApplicationNo1.requestFocus();
                 textAppliedDate.setText("");
             }
@@ -444,7 +383,7 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.e("StatusFrag", "Fragment is destroyed");
+
         StatusReadFlagReq readFlagReq = new StatusReadFlagReq();
         readFlagReq.setCustomerId(userInformationFormBean.getCustomerId());
 
@@ -455,9 +394,7 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 if (response.isSuccessful()) {
-                    Log.e("StatusCon:", "read flag success");
                 }
-
             }
 
             @Override
@@ -465,41 +402,7 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                 showMessageDialog("Service temporary unavailable.");
             }
         });
-
     }
-
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.action_favorite:
-                //this.languageFlag = item;
-                Log.e("update flag", item.getTitle().toString());
-                if (item.getTitle().equals(LANG_MM)) {
-                    item.setIcon(R.drawable.en_flag2);
-                    item.setTitle(LANG_EN);
-                    //changeLabel(LANG_MM);
-                    btnSearch.setText(CommonUtils.getLocaleString(new Locale(LANG_MM), R.string.btn_search, getContext()));
-                    if (adapter != null) {
-                        adapter.notifyDataSetChanged();
-                    }
-                    PreferencesManager.setCurrentLanguage(getContext(), LANG_MM);
-
-                } else if (item.getTitle().equals(LANG_EN)) {
-                    item.setIcon(R.drawable.mm_flag);
-                    item.setTitle(LANG_MM);
-                    //changeLabel(LANG_EN);
-                    btnSearch.setText(CommonUtils.getLocaleString(new Locale(LANG_EN), R.string.btn_search, getContext()));
-                    if (adapter != null) {
-                        adapter.notifyDataSetChanged();
-                    }
-                    PreferencesManager.setCurrentLanguage(getContext(), LANG_EN);
-                }
-
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 
     @Override
     public void onViewApplicationDetail(int daApplicationInfoId) {
@@ -533,10 +436,10 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                         previewDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         previewDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-                        FloatingActionButton fab = previewDialog.findViewById(R.id.fab_detail_close);
-                        fab.setOnClickListener(new View.OnClickListener() {
+                        ImageView imgClose = previewDialog.findViewById(R.id.detail_close);
+                        imgClose.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View v) {
+                            public void onClick(View view) {
                                 previewDialog.dismiss();
                             }
                         });
@@ -550,10 +453,8 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                         appNo_title.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.da_in_application_no, getActivity()));
                         TextView lblApplicationNo = previewDialog.findViewById(R.id.val_application_no);
                         String application_no = applicationDetailInfoResBean.getApplicationNo();
-                        String ymNo = application_no.substring(0, 4);
-                        String middleNo = application_no.substring(4, 7);
-                        String lastNo = application_no.substring(7, 10);
-                        lblApplicationNo.setText(ymNo + "-" + middleNo + "-" + lastNo);
+
+                        lblApplicationNo.setText(application_no);
 
                         TextView appDate_title = previewDialog.findViewById(R.id.lbl_application_date);
                         appDate_title.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.da_in_application_date, getActivity()));
@@ -1013,21 +914,6 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                         lblLcStatus = previewDialog.findViewById(R.id.val_lc_status);
                         setApplicationStatus(applicationDetailInfoResBean.getStatus());
 
-                        /*TextView da_in_loanConfirm_loan_type_title = previewDialog.findViewById(R.id.lbl_lc_loan_type);
-                        da_in_loanConfirm_loan_type_title.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.da_in_loanConfirm_loan_type, getActivity()));
-                        TextView lblLcLoanType = previewDialog.findViewById(R.id.val_lc_loan_type);
-                        lblLcLoanType.setText(getLoanType(applicationDetailInfoResBean.getDaLoanTypeId()));
-
-                        TextView da_in_loanConfirm_product_cat_title = previewDialog.findViewById(R.id.lbl_lc_product_category);
-                        da_in_loanConfirm_product_cat_title.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.da_in_loanConfirm_product_cat, getActivity()));
-                        TextView lblLcProductCategory = previewDialog.findViewById(R.id.val_lc_product_category);
-                        lblLcProductCategory.setText(getProductCategory(applicationDetailInfoResBean.getDaProductTypeId()));
-
-                        TextView da_in_loanConfirm_product_des_title = previewDialog.findViewById(R.id.lbl_lc_product_description);
-                        da_in_loanConfirm_product_des_title.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.da_in_loanConfirm_product_des, getActivity()));
-                        TextView lblLcProductDesc = previewDialog.findViewById(R.id.val_lc_product_desc);
-                        lblLcProductDesc.setText(getStringValue(applicationDetailInfoResBean.getProductDescription()));*/
-
                         TextView da_in_loanConfirm_finance_amount_title = previewDialog.findViewById(R.id.lbl_lc_finance_amt);
                         da_in_loanConfirm_finance_amount_title.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.da_in_loanConfirm_finance_amount, getActivity()));
                         TextView lblLcFinanceAmt = previewDialog.findViewById(R.id.val_lc_finance_amt);
@@ -1180,7 +1066,6 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
 
     @Override
     public void onTabAttach(String imageUrl) {
-        Log.e("TAG", "You Tab : " + imageUrl);
     }
 
     @Override
@@ -1234,11 +1119,6 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                             TextView outletName = dialog.findViewById(R.id.lbl_outlet_name);
                             outletName.setText(purchaseDetailInfo.getOutletName());
 
-                            /*TextView lblLoanType = dialog.findViewById(R.id.loan_type);
-                            lblLoanType.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.purchase_loan_type, getActivity()));
-                            loanType = dialog.findViewById(R.id.lbl_loan_type);
-                            setLoanTypeName(purchaseDetailInfo.getDaLoanTypeId());*/
-
                             TextView lblProductCate = dialog.findViewById(R.id.product_category_txt);
                             lblProductCate.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.purchase_product_category, getActivity()));
                             TextView productCateVal = dialog.findViewById(R.id.product_category_val);
@@ -1264,6 +1144,8 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                             TextView price = dialog.findViewById(R.id.lbl_price_val);
                             price.setText(df.format(productOne.getPrice()) + " MMK");
 
+                            TextView lblLoanType = dialog.findViewById(R.id.loan_type);
+                            lblLoanType.setText(CommonUtils.getLocaleString(new Locale(curlang), R.string.prod_detail_loan_type, getActivity()));
                             TextView loanType = dialog.findViewById(R.id.loan_type_val);
                             loanType.setText(getLoanType(productOne.getDaLoanTypeId()));
 
@@ -1530,7 +1412,7 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                                         if (applicationAttachInfo.isEditFlag()) {
                                             applicationAttachInfoEditResBeanList.add(applicationAttachInfo);
                                         }
-                                        //applicationAttachInfoEditResBeanList.add(applicationAttachInfo);
+
                                     }
 
                                     final Dialog dialog = new Dialog(getActivity());
@@ -1740,7 +1622,7 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
             if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
 
                 currentFile = new File(mCurrentPhotoPath);
-                CameraUtil.resizeImages(currentFile.getAbsolutePath(), CommonConstants.PHOTO_QUALITY_95, getActivity(), CameraUtil.PURCHASE_APP_IMG_WIDTH, CameraUtil.PURCHASE_APP_IMG_HEIGHT);
+                CameraUtil.resizeImages(currentFile.getAbsolutePath(), CommonConstants.PHOTO_QUALITY_95, getActivity());
 
             } else if (requestCode == REQUEST_LOAD_IMAGE && resultCode == RESULT_OK && data != null) {
 
@@ -1762,12 +1644,11 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                     File destFile = createFileName();
                     CameraUtil.copyFile(galleryFile, destFile);
                     currentFile = destFile;
-                    CameraUtil.resizeImages(destFile.getAbsolutePath(), CommonConstants.PHOTO_QUALITY_95, getActivity(), CameraUtil.PURCHASE_APP_IMG_WIDTH, CameraUtil.PURCHASE_APP_IMG_HEIGHT);
+                    CameraUtil.resizeImages(destFile.getAbsolutePath(), CommonConstants.PHOTO_QUALITY_95, getActivity());
                 }
             }
 
             File renameFile = CameraUtil.renameFileName(getActivity(), currentFile, rootFolderName);
-            Log.e("rename file", renameFile.getAbsolutePath());
 
             if (renameFile.exists()) {
                 PurchaseAttachEditTempBean purchaseAttachEditTempBean
@@ -1778,7 +1659,6 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                 purchaseAttachEditTempBean.setFilePath(curFilePath);
                 purchaseAttachEditTempBean.setFileName(renameFile.getName());
                 addEditPhotoInfo(getActivity(), purchaseAttachEditTempBean);
-                //imgCurrentAttach.setImageURI(Uri.fromFile(mFile));
 
                 // For photo display on list
                 applicationAttachInfoEditResBeanList.get(editPosition).setFilePath(renameFile.getAbsolutePath());
@@ -1812,60 +1692,6 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
                     }
                 })
                 .show();
-
-        /*new MaterialAlertDialogBuilder(getActivity(), R.style.MaterialDialogTheme)
-                .setTitle("Delete the application?")
-                .setMessage("This will clear the application data and files that you have applied.")
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(final DialogInterface dialog, int which) {
-
-                        final String accessToken = PreferencesManager.getAccessToken(getActivity());
-
-                        PurchaseDetailInfoCancelReqBean purchaseDetailInfoCancel
-                                = new PurchaseDetailInfoCancelReqBean();
-                        purchaseDetailInfoCancel.setDaApplicationInfoId(daApplicationInfoId);
-
-                        Service purchaseDetailCancelService = APIClient.getApplicationRegisterService();
-                        Call<BaseResponse> req = purchaseDetailCancelService
-                                .doPurchaseInfoCancel(accessToken, purchaseDetailInfoCancel);
-
-                        req.enqueue(new Callback<BaseResponse>() {
-                            @Override
-                            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-
-                                BaseResponse baseResponse = response.body();
-                                if (baseResponse != null) {
-                                    if (baseResponse.getStatus().equals(SUCCESS)) {
-                                        dialog.dismiss();
-                                        *//*removePurchaseInfoItemFromList(daApplicationInfoId);
-                                        adapter.notifyDataSetChanged();*//*
-                                        searchApplicationList();
-                                    } else {
-                                        dialog.dismiss();
-                                        showMessageDialog("Cancel Failed.");
-                                    }
-                                } else {
-                                    dialog.dismiss();
-                                    showMessageDialog("Cancel Failed.");
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<BaseResponse> call, Throwable t) {
-                                dialog.dismiss();
-                                showMessageDialog("Service temporary unavailable.");
-                            }
-                        });
-                    }
-                })
-                .show();*/
     }
 
     void enableSearch() {
@@ -1875,10 +1701,6 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
     void disableSearch() {
         btnSearch.setEnabled(false);
     }
-
-    /*void showSearchTitle() {
-        tvCategorySearched.setText("Category : " + "All");
-    }*/
 
     void removePurchaseInfoItemFromList(int daApplicationInfoId) {
         int i = 0;
@@ -2325,66 +2147,13 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
         if (status >= 17 && status <= 20) {
             setStatusPurchaseComplete();
         }
-
-        /*switch (status){
-
-            case 2 :
-                setStatusNew();
-                break;
-            case 3 :
-                setStatusIndex();
-                break;
-            case 4 :
-                setStatusUploadFinished();
-                break;
-            case 5 :
-                setStatusDocFuwaiting();
-                break;
-            case 6 :
-                setStatusDocFuAppUpdated();
-                break;
-            case 7 :
-                setStatusDocFuChecked();
-                break;
-            case 8 :
-                setStatusCanceled();
-
-                break;
-            case 9 :
-                setStatusRejected();
-                break;
-            case 10 :
-                setStatusApproved();
-                break;
-            case 11 :
-                setStatusPurchaseCancel();
-                break;
-            case 12 :
-                setStatusPurchaseInitial();
-                break;
-            case 13 :
-                setStatusPurchaseConfirmWaiting();
-                break;
-            case 14 :
-                setStatusPurchaseConfirm();
-                break;
-            case 15 :
-                setStatusPurchaseComplete();
-                break;
-            case 16 :
-                setStatusSettlementUploadFinished();
-                break;
-            case 17 :
-                setStatusSettlementPending();
-                break;
-        }*/
     }
 
     void searchApplicationList() {
         disableSearch();
         /*showSearchTitle();*/
 
-        String applicationNo = textApplicationNo1.getText().toString() + textApplicationNo2.getText().toString() + textApplicationNo3.getText().toString();
+        String applicationNo = textApplicationNo1.getText().toString();
         String appliedDate = textAppliedDate.getText().toString();
 
         Service applicationService = APIClient.getApplicationRegisterService();
@@ -2580,7 +2349,6 @@ public class DAEnquiryFragment extends BaseFragment implements DAEnquiryDelegate
         if (adapter != null) {
             adapter.notifyDataSetChanged();
         }
-        Log.e("change Label", "action");
     }
 
     @Override

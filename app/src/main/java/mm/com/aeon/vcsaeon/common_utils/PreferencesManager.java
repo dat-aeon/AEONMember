@@ -31,6 +31,8 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.SOCKET_INFO_SHARE
 
 public class PreferencesManager {
 
+    public static final String KEY_SELECT_IMAGE_LOCKED = "A350";
+
     public static SharedPreferences getApplicationPreference(Context context) {
         SharedPreferences preferences = context.getSharedPreferences("app_pref_info", MODE_PRIVATE);
         return preferences;
@@ -528,33 +530,48 @@ public class PreferencesManager {
     public static SingleLoginCheck getSingleLoginCheck(SharedPreferences sharedPreferences) {
         final String singleLoginCheckJson = sharedPreferences.getString("single_login_check", BLANK);
         if (singleLoginCheckJson.equals(BLANK)) {
-            return new SingleLoginCheck(0,"");
+            return new SingleLoginCheck(0, "");
         }
         return new Gson().fromJson(singleLoginCheckJson, SingleLoginCheck.class);
     }
 
-    private static void setSingleLoginCheck(SingleLoginCheck singleLoginCheck, SharedPreferences sharedPreferences){
+    private static void setSingleLoginCheck(SingleLoginCheck singleLoginCheck, SharedPreferences sharedPreferences) {
         final String singleLoginCheckJson = new Gson().toJson(singleLoginCheck);
         sharedPreferences.edit().putString("single_login_check", singleLoginCheckJson).commit();
     }
 
-    private static void setCustomerId(SharedPreferences sharedPreferences, int customerId){
+    private static void setCustomerId(SharedPreferences sharedPreferences, int customerId) {
         SingleLoginCheck singleLoginCheck = getSingleLoginCheck(sharedPreferences);
         singleLoginCheck.setCustomerId(customerId);
         setSingleLoginCheck(singleLoginCheck, sharedPreferences);
     }
 
-    public static void setLoginDeviceId(Context context, String loginDeviceId){
+    public static void setLoginDeviceId(Context context, String loginDeviceId) {
         SharedPreferences sharedPreferences = PreferencesManager.getCurrentUserPreferences(context);
         SingleLoginCheck singleLoginCheck = getSingleLoginCheck(sharedPreferences);
         singleLoginCheck.setLoginDeviceId(loginDeviceId);
         setSingleLoginCheck(singleLoginCheck, sharedPreferences);
     }
 
-    public static String getLoginDeviceId(Context context){
+    public static String getLoginDeviceId(Context context) {
         SharedPreferences sharedPreferences = PreferencesManager.getCurrentUserPreferences(context);
         SingleLoginCheck singleLoginCheck = getSingleLoginCheck(sharedPreferences);
         return singleLoginCheck.getLoginDeviceId();
+    }
+
+    public static boolean isLoadImageLocked(Context context) {
+        SharedPreferences sharedPreferences = PreferencesManager.getCurrentUserPreferences(context);
+        return sharedPreferences.getBoolean(KEY_SELECT_IMAGE_LOCKED, false);
+    }
+
+    public static void lockImageLoad(Context context) {
+        SharedPreferences sharedPreferences = PreferencesManager.getCurrentUserPreferences(context);
+        sharedPreferences.edit().putBoolean(KEY_SELECT_IMAGE_LOCKED, true).commit();
+    }
+
+    public static void unLockImageLoad(Context context) {
+        SharedPreferences sharedPreferences = PreferencesManager.getCurrentUserPreferences(context);
+        sharedPreferences.edit().putBoolean(KEY_SELECT_IMAGE_LOCKED, false).commit();
     }
 
 }

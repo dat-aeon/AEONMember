@@ -58,7 +58,6 @@ public class PagerRootFragment extends BaseFragment {
         MainMenuActivityDrawer.occupationErrMsgShow = false;
         MainMenuActivityDrawer.emergencyErrMsgShow = false;
         MainMenuActivityDrawer.guarantorErrMsgShow = false;
-        //Log.e("TAG","PagerRootFragment : onAttach()");
     }
 
     @Override
@@ -94,15 +93,16 @@ public class PagerRootFragment extends BaseFragment {
             Call<BaseResponse<ApplicationRegisterSaveReqBean>> req = loadLastInformation.getLastRegisterInfo(PreferencesManager.getAccessToken(getActivity()), lastInfoReqBean);
 
             req.enqueue(new Callback<BaseResponse<ApplicationRegisterSaveReqBean>>() {
+
                 @Override
                 public void onResponse(Call<BaseResponse<ApplicationRegisterSaveReqBean>> call, Response<BaseResponse<ApplicationRegisterSaveReqBean>> response) {
+
                     if (response.isSuccessful()) {
                         BaseResponse baseResponse = response.body();
                         if (baseResponse != null) {
                             if (baseResponse.getStatus().equals(SUCCESS)) {
 
                                 loadDialog.dismiss();
-                                Log.e("Save Reload Data", "Success");
                                 ApplicationRegisterSaveReqBean savedRegisterData = (ApplicationRegisterSaveReqBean) baseResponse.getData();
                                 PreferencesManager.saveDaftSavedInfo(getActivity(), savedRegisterData);
 
@@ -111,33 +111,22 @@ public class PagerRootFragment extends BaseFragment {
                                 final Call<BaseResponse<List<TownshipCodeResDto>>> req = getNrcInfoService.getTownshipCode();
 
                                 req.enqueue(new Callback<BaseResponse<List<TownshipCodeResDto>>>() {
+
                                     @Override
                                     public void onResponse(Call<BaseResponse<List<TownshipCodeResDto>>> call, Response<BaseResponse<List<TownshipCodeResDto>>> response) {
-
                                         BaseResponse baseResponse = response.body();
-
                                         if (baseResponse.getStatus().equals(SUCCESS)) {
-
                                             final List<TownshipCodeResDto> townshipCodeResDtoList =
                                                     (List<TownshipCodeResDto>) baseResponse.getData();
-
                                             if (townshipCodeResDtoList != null) {
-
                                                 saveTownshipCode(townshipCodeResDtoList);
-
                                                 viewPager = view.findViewById(R.id.view_pager);
                                                 viewPager.setAdapter(new ViewPagerAdapter(getChildFragmentManager()));
                                                 viewPager.setCurrentItem(viewPager.getCurrentItem(), true);
-
-                                                loadDialog.dismiss();
-
-                                            } else {
-                                                loadDialog.dismiss();
                                             }
-
-                                        } else {
                                             loadDialog.dismiss();
                                         }
+                                        loadDialog.dismiss();
                                     }
 
                                     @Override
@@ -148,24 +137,21 @@ public class PagerRootFragment extends BaseFragment {
 
                             } else {
                                 loadDialog.dismiss();
-                                Log.e("BaseResponse", "FAILED");
                             }
                         } else {
                             loadDialog.dismiss();
-                            Log.e("BaseResponse", "BaseResponse NULL");
                         }
                     } else {
                         closeDialog(loadDialog);
                         showErrorDialog(getActivity(), getString(R.string.service_unavailable));
-                        Log.e("TAG", "Request Un-successed.");
                     }
                 }
 
                 @Override
                 public void onFailure(Call<BaseResponse<ApplicationRegisterSaveReqBean>> call, Throwable t) {
                     closeDialog(loadDialog);
-                    Log.e("TAG", "Request Un-successed.");
                 }
+
             });
         }
 
@@ -252,18 +238,15 @@ public class PagerRootFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
-//        Log.e("TAG","PagerRootFragment : onStart()");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        //Log.e("TAG","PagerRootFragment : onPause()");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        //Log.e("TAG","PagerRootFragment : onResume()");
     }
 }

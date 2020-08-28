@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root_otp_request_view"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppBarOverlay"
-        android:background="?attr/colorPrimary">
+        android:background="?attr/colorPrimary"
+        android:theme="@style/AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_main_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:theme="@style/ToolbarTheme">
+            android:theme="@style/ToolbarTheme"
+            app:contentInsetLeft="@dimen/margin_medium"
+            app:contentInsetStart="@dimen/margin_medium">
 
             <include
                 android:id="@+id/toolbar_new_main"
@@ -27,12 +31,6 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <View
-        android:id="@+id/line1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/color_disable"/>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -41,118 +39,118 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_medium"
-            android:padding="@dimen/margin_medium"
             android:background="@null"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/margin_medium">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_medium_3"
                 android:layout_gravity="center_vertical"
+                android:layout_marginBottom="@dimen/margin_medium_3"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_otp_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txt_otp_title"
+                    android:fontFamily="@font/pyidaungsu_bold"
+                    android:gravity="center_horizontal"
                     android:text="@string/otp_title"
-                    android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/text_regular_3x"
-                    android:fontFamily="@font/pyidaungsu_bold"
-                    android:gravity="center_horizontal"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_medium"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_medium"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/reg_err_otp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/reg_err_otp"
-                    android:visibility="gone"
-                    android:textColor="@color/red"
-                    android:text="@string/otp_err_blank"
                     android:layout_marginBottom="@dimen/margin_small"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="@string/otp_err_blank"
+                    android:textColor="@color/red"
                     android:textSize="@dimen/text_regular"
-                    android:fontFamily="@font/pyidaungsu_regular"/>
+                    android:visibility="gone" />
 
                 <EditText
+                    android:id="@+id/txt_otp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edit_text_height"
-                    android:id="@+id/txt_otp"
+                    android:background="@drawable/edit_text_style"
+                    android:fontFamily="@font/input_text_font"
+                    android:hint="@string/otp_code_hint"
+                    android:inputType="numberDecimal"
+                    android:maxLength="4"
                     android:paddingLeft="@dimen/margin_medium"
-                    android:textSize="@dimen/text_regular"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grayLight"
-                    android:inputType="numberDecimal"
-                    android:textAlignment="center"
-                    android:maxLength="4"
-                    android:hint="@string/otp_code_hint"
-                    android:fontFamily="@font/pyidaungsu_regular"
-                    android:background="@drawable/edit_text_style"/>
+                    android:textSize="@dimen/text_regular" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium_2"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_medium_2"
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/btn_ok_otp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/btn_ok_otp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/disable_button_border"
                     android:layout_marginBottom="@dimen/margin_medium"
+                    android:background="@drawable/disable_button_border"
                     android:enabled="false"
+                    android:fontFamily="@font/pyidaungsu_regular"
                     android:text="@string/otp_btn_ok"
-                    android:fontFamily="@font/pyidaungsu_regular"/>
+                    android:textColor="@color/white" />
 
                 <Button
+                    android:id="@+id/btn_re_send_otp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/btn_re_send_otp"
-                    android:textColor="@color/white"
                     android:background="@drawable/disable_button_border"
                     android:enabled="false"
+                    android:fontFamily="@font/pyidaungsu_regular"
                     android:text="@string/otp_btn_resend"
-                    android:fontFamily="@font/pyidaungsu_regular"/>
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="180dp"
-                android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_medium_2"
                 android:background="@null"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_timer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txt_timer"
-                    android:text="--:--"
-                    android:textSize="18dp"
-                    android:textColor="@color/colorPrimary"
                     android:fontFamily="@font/pyidaungsu_regular"
-                    android:gravity="center_horizontal|center_vertical"/>
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="--:--"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18dp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_medium_2"/>
+                android:layout_height="@dimen/margin_medium_2" />
 
         </LinearLayout>
 

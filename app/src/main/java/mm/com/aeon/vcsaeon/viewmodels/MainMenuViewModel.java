@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import mm.com.aeon.vcsaeon.activities.MainMenuActivityDrawer;
 import mm.com.aeon.vcsaeon.beans.HowToUseVideoResBean;
 import mm.com.aeon.vcsaeon.beans.SingleLoginCheck;
 import mm.com.aeon.vcsaeon.beans.SingleLoginStatus;
@@ -25,7 +26,7 @@ public class MainMenuViewModel extends ViewModel {
                 = PreferencesManager.getSingleLoginCheck(context);
 
         singleLoginStatusRepository = SingleLoginStatusRepository.getInstance();
-        mutableLiveData = singleLoginStatusRepository.getSingleLoginStatus(singleLoginCheck);
+        mutableLiveData = singleLoginStatusRepository.getSingleLoginStatus(singleLoginCheck, null);
     }
 
     public LiveData<SingleLoginStatus> getSingleLoginStatus() {

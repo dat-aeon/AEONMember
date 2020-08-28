@@ -1,64 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:weightSum="1"
-    android:background="@drawable/alert_dialog_bg"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/message_dialogs_width"
     android:layout_height="wrap_content"
-    android:layout_marginRight="@dimen/margin_large_2"
-    android:layout_marginLeft="@dimen/margin_large_2">
+    android:layout_gravity="center"
+    android:background="@drawable/alert_dialog_bg"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/margin_medium_2"
+    android:paddingRight="@dimen/margin_medium_2"
+    android:weightSum="1">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/margin_medium_2"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium_2"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/ic_regular"
+            android:layout_height="@dimen/ic_regular"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_warning_black_24dp"/>
+            android:src="@drawable/ic_baseline_warning_24_x" />
 
         <TextView
+            android:id="@+id/text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text_title"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/text_regular_3x"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/margin_small"
             android:fontFamily="@font/pyidaungsu_regular"
-            android:layout_gravity="center_vertical"
-            android:text="@string/dialog_title_warning"/>
+            android:text="@string/dialog_title_warning"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/text_regular" />
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/margin_medium_x"
+        android:layout_marginBottom="@dimen/margin_tiny"
+        android:background="@color/gray" />
+
     <TextView
+        android:id="@+id/text_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text_message"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_regular_3x"
-        android:padding="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_small"
+        android:fontFamily="@font/pyidaungsu_regular"
         android:gravity="center_horizontal"
+        android:lineSpacingExtra="-4dp"
+        android:padding="@dimen/margin_medium"
         android:text="warning message"
-        android:fontFamily="@font/pyidaungsu_regular"/>
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:layout_marginBottom="@dimen/margin_large"
-        android:textSize="@dimen/text_regular_3x"
-        android:width="120dp"
         android:id="@+id/btn_ok"
-        android:fontFamily="@font/pyidaungsu_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/mini_button_height"
         android:layout_gravity="center_horizontal|bottom"
-        android:background="@drawable/button_border"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_medium_2"
+        android:background="@drawable/dialog_button_border"
+        android:fontFamily="@font/pyidaungsu_regular"
+        android:text="OK"
         android:textColor="@color/white"
-        android:text="OK"/>
+        android:textSize="@dimen/text_regular" />
 
 </LinearLayout>

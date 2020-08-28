@@ -4,14 +4,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    protected void showSnackBarMessage(String message){
+    protected void showSnackBarMessage(String message) {
         final Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), message, Snackbar.LENGTH_LONG);
         View view = snackbar.getView();
         TextView textView = view.findViewById(com.google.android.material.R.id.snackbar_text);
@@ -25,7 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         snackbar.show();
     }
 
-    protected String getLoginDeviceId(){
+    protected String getLoginDeviceId() {
         return PreferencesManager.getLoginDeviceId(getApplicationContext());
     }
 }

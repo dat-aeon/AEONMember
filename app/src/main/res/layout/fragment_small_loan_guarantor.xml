@@ -41,80 +41,17 @@
             android:id="@+id/gua_data_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
             android:orientation="vertical">
-
-            <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-
-                <LinearLayout
-                    android:id="@+id/back_emer_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/left_sign_32" />
-
-                    <TextView
-                        android:id="@+id/da_emer_data_title"
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:padding="1dp"
-                        android:text="@string/da_emergency_title"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:textColor="@color/da_label_color"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/text_regular_2x"
-                        android:layout_weight="0.9"/>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/go_to_loan_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp">
-
-                    <TextView
-                        android:id="@+id/da_loan_data_title"
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:padding="1dp"
-                        android:text="@string/da_loanConfirm_title"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:layout_gravity="end"
-                        android:textAlignment="viewEnd"
-                        android:textColor="@color/da_label_color"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/text_regular_2x"
-                        android:layout_weight="0.9"/>
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="right"
-                        android:src="@drawable/right_sign_32" />
-
-                </LinearLayout>
-            </LinearLayout>-->
 
             <com.kofigyan.stateprogressbar.StateProgressBar
                 android:id="@+id/guar_stepped_bar"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
                 app:spb_currentStateNumber="four"
                 app:spb_maxStateNumber="five"
                 app:spb_stateBackgroundColor="@color/color_disable"
@@ -125,10 +62,10 @@
                 app:spb_stateDescriptionColor="@color/color_disable"
                 app:spb_animateToCurrentProgressState="true"
                 app:spb_checkStateCompleted="false"
-                app:spb_stateDescriptionSize="12sp"
+                app:spb_stateDescriptionSize="@dimen/text_small"
                 app:spb_descriptionTopSpaceIncrementer="2dp"/>
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/da_gua_data_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -138,7 +75,15 @@
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/da_label_color"
                 android:textSize="@dimen/text_regular_3x"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:background="?android:attr/listDivider" />
 
         </LinearLayout>
 
@@ -212,7 +157,7 @@
                         android:background="@drawable/mandatroy_edit_text_style"
                         android:hint="@string/register_name_holder"
                         android:inputType="textCapCharacters"
-                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:fontFamily="@font/input_text_font"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -284,7 +229,7 @@
                             android:background="@drawable/mandatroy_edit_text_style"
                             android:focusable="false"
                             android:hint="@string/register_dob_holder"
-                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:fontFamily="@font/input_text_font"
                             android:inputType="text"
                             android:paddingLeft="@dimen/margin_medium"
                             android:textColor="@color/da_value_color"
@@ -385,7 +330,7 @@
                             android:textAlignment="center"
                             android:textColor="@color/da_value_color"
                             android:textColorHint="@color/grayLight"
-                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:fontFamily="@font/input_text_font"
                             android:textSize="@dimen/text_regular" />
 
                     </LinearLayout>
@@ -466,7 +411,7 @@
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:fontFamily="@font/input_text_font"
                             android:textColorHint="@color/grayLight"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -506,7 +451,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/mandatroy_edit_text_style"
-                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="@string/register_phoneno_holder"
                         android:inputType="phone"
                         android:maxLength="11"
@@ -552,7 +497,7 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/edit_text_style"
                         android:hint="@string/register_phoneno_holder"
-                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:fontFamily="@font/input_text_font"
                         android:inputType="phone"
                         android:maxLength="11"
                         android:paddingLeft="@dimen/margin_medium"
@@ -618,7 +563,7 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:background="@drawable/mandatroy_edit_text_style"
                             android:hint="Description"
-                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:fontFamily="@font/input_text_font"
                             android:maxLength="256"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -672,7 +617,7 @@
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:fontFamily="@font/input_text_font"
                             android:maxLength="20"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -707,7 +652,7 @@
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:fontFamily="@font/input_text_font"
                             android:maxLength="20"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -743,7 +688,7 @@
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:fontFamily="@font/input_text_font"
                             android:maxLength="20"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -795,7 +740,7 @@
                                 android:layout_weight="0.5"
                                 android:background="@drawable/mandatroy_edit_text_style"
                                 android:hint=""
-                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:fontFamily="@font/input_text_font"
                                 android:maxLength="100"
                                 android:paddingLeft="@dimen/margin_medium"
                                 android:singleLine="true"
@@ -848,7 +793,7 @@
                                 android:layout_weight="0.5"
                                 android:background="@drawable/mandatroy_edit_text_style"
                                 android:hint=""
-                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:fontFamily="@font/input_text_font"
                                 android:maxLength="100"
                                 android:paddingLeft="@dimen/margin_medium"
                                 android:singleLine="true"
@@ -1031,7 +976,7 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:background="@drawable/mandatroy_edit_text_style"
                             android:hint="Description"
-                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:fontFamily="@font/input_text_font"
                             android:maxLength="256"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -1333,7 +1278,7 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/mandatroy_edit_text_style"
                         android:hint="@string/register_company_name_holder"
-                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:fontFamily="@font/input_text_font"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -1432,7 +1377,7 @@
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:fontFamily="@font/input_text_font"
                             android:maxLength="20"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -1468,7 +1413,7 @@
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:fontFamily="@font/input_text_font"
                             android:maxLength="20"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -1505,7 +1450,7 @@
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:fontFamily="@font/input_text_font"
                             android:maxLength="20"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -1673,7 +1618,7 @@
                                 android:singleLine="true"
                                 android:textAlignment="center"
                                 android:textColor="@color/da_value_color"
-                                android:fontFamily="@font/pyidaungsu_regular"
+                                android:fontFamily="@font/input_text_font"
                                 android:textSize="@dimen/text_regular" />
                         </LinearLayout>
 
@@ -1772,7 +1717,7 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/mandatroy_edit_text_style"
                         android:hint=""
-                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:fontFamily="@font/input_text_font"
                         android:maxLength="256"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -1958,7 +1903,7 @@
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/mandatroy_edit_text_style"
                         android:hint="Monthly Basic Income"
-                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:fontFamily="@font/input_text_font"
                         android:inputType="number"
                         android:maxLength="10"
                         android:paddingLeft="@dimen/margin_medium"
@@ -2063,11 +2008,24 @@
 
                         <TextView
                             android:id="@+id/guarantor_total_income"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="20dp"
+                            android:text="0"
                             android:layout_marginBottom="@dimen/margin_small"
                             android:fontFamily="@font/pyidaungsu_regular"
                             android:textColor="@color/da_value_color"
+                            android:textSize="@dimen/text_regular"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/guarantor_total_income_cur_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_value_color"
+                            android:text="@string/mem_card_amt_unit"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
 
@@ -2081,9 +2039,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
             android:orientation="horizontal">
 
             <Button
@@ -2092,6 +2049,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="0.5"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_small"
                 android:backgroundTint="@color/da_button__color"
                 android:background="@drawable/button_border"
                 android:text="Save"
@@ -2104,7 +2063,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/margin_tiny"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_medium"
                 android:layout_weight="0.5"
                 android:backgroundTint="@color/da_button__color"
                 android:background="@drawable/button_border"

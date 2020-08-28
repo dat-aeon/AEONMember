@@ -11,7 +11,7 @@
 
     <color name="colorPrimary">#b70081</color>
     <color name="colorPrimaryDark">#99036c</color>
-    <color name="statusBar">#7a0156</color>
+    <color name="statusBar">@color/grayLight</color>
     <color name="colorAccent">#D81B60</color>
     <color name="background">#b70081</color>
     <color name="white">#FFFFFF</color>
@@ -45,7 +45,7 @@
     <color name="colorCorrectLine">#008000</color>
     <color name="colorNormalLine">#FFFF</color>
     <color name="colorWrongLine">#FF0000</color>
-    
+
     <color name="pink1">#fccde2</color>
     <color name="pink2">#fc5c9c</color>
     <color name="blue1">#a1eafb</color>
@@ -56,12 +56,12 @@
 
     <color name="login_color">#ffa45c</color>
     <color name="register_color">#86a6df</color>
-    <color name="free_chat_color">#dbe9b7</color>
+    <color name="free_chat_color">#24C759</color>
     <color name="calculator_color">#F56697</color>
     <color name="good_news_color">#39bdc8</color>
-    <color name="find_us_color">#99FFC107</color>
-    <color name="our_service_color">#39bdc8</color>
-    <color name="announcement_color">#99FFC107</color>
+    <color name="find_us_color">#FFC107</color>
+    <color name="our_service_color">#03c2fc</color>
+    <color name="announcement_color">#c203fc</color>
     <color name="how_to_use_color">#86a6df</color>
     <color name="facebook_color">#2d6cdf</color>
     <color name="share_color">#F56697</color>

@@ -42,6 +42,7 @@ import mm.com.aeon.vcsaeon.beans.LoanCalculationReqBean;
 import mm.com.aeon.vcsaeon.beans.LoanCalculationResBean;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
+import mm.com.aeon.vcsaeon.common_utils.UiUtils;
 import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 import mm.com.aeon.vcsaeon.networking.APIClient;
 import mm.com.aeon.vcsaeon.networking.BaseResponse;
@@ -57,6 +58,8 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.INVALID_LOAN_TERM
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LOAN_AMOUNT_FORMAT;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.SUCCESS;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.hideKeyboard;
+import static mm.com.aeon.vcsaeon.common_utils.UiUtils.animSlideToDown;
+import static mm.com.aeon.vcsaeon.common_utils.UiUtils.animSlideToUp;
 
 public class NavLoanCalculationFragment extends BaseFragment implements LanguageChangeListener {
 
@@ -139,6 +142,7 @@ public class NavLoanCalculationFragment extends BaseFragment implements Language
         }
         // show back button on toolbar
         LinearLayout menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+        menuBackBtn.setAnimation(UiUtils.animSlideToRight(getActivity()));
         menuBackBtn.setVisibility(View.VISIBLE);
 
         layoutResult = view.findViewById(R.id.layout_result);
@@ -209,6 +213,7 @@ public class NavLoanCalculationFragment extends BaseFragment implements Language
             public void onClick(View v) {
                 if (loanAmount == 0.0) {
                     errLoanAmt.setText(getRquiredLoanAmountErrMsg());
+                    errLoanAmt.setAnimation(animSlideToDown(getActivity())); //Anim
                     errLoanAmt.setVisibility(View.VISIBLE);
                     layoutResult.setVisibility(View.GONE);
                 } else {
@@ -261,6 +266,7 @@ public class NavLoanCalculationFragment extends BaseFragment implements Language
         });
 
         changeLabel(curLang);
+        //view.setAnimation(UiUtils.animSlideToLeft(getActivity()));
         return view;
     }
 
@@ -448,12 +454,14 @@ public class NavLoanCalculationFragment extends BaseFragment implements Language
 
     private void showInvalidLoanTermErrMessage() {
         errLoanAmt.setText(getInvalidLoanTermErrMsg());
+        errLoanAmt.setAnimation(animSlideToDown(getActivity())); //Anim
         errLoanAmt.setVisibility(View.VISIBLE);
     }
 
     @SuppressLint("SetTextI18n")
     private void showLoanTermErrMessage() {
         errLoanTerm.setText(getRequiredLoanTermErrMsg());
+        errLoanTerm.setAnimation(animSlideToDown(getActivity())); //Anim
         errLoanTerm.setVisibility(View.VISIBLE);
     }
 
@@ -477,11 +485,13 @@ public class NavLoanCalculationFragment extends BaseFragment implements Language
         if (isMotorCycleLoan) {
             if (loanAmount > MAX_LOAN_AMOUNT) {
                 errLoanAmt.setText(getExceedMsg());
+                errLoanAmt.setAnimation(animSlideToDown(getActivity())); //Anim
                 errLoanAmt.setVisibility(View.VISIBLE);
                 layoutResult.setVisibility(View.GONE);
                 isValid = false;
             } else if (loanAmount < MIN_M_LOAN_AMOUNT) {
                 errLoanAmt.setText(getMotorCycleLoanErrorMessage());
+                errLoanAmt.setAnimation(animSlideToDown(getActivity())); //Anim
                 errLoanAmt.setVisibility(View.VISIBLE);
                 layoutResult.setVisibility(View.GONE);
                 isValid = false;
@@ -492,11 +502,13 @@ public class NavLoanCalculationFragment extends BaseFragment implements Language
         } else {
             if (loanAmount > MAX_LOAN_AMOUNT) {
                 errLoanAmt.setText(getExceedMsg());
+                errLoanAmt.setAnimation(animSlideToDown(getActivity())); //Anim
                 errLoanAmt.setVisibility(View.VISIBLE);
                 layoutResult.setVisibility(View.GONE);
                 isValid = false;
             } else if (loanAmount < MIN_FEE_ZERO_AMOUNT) {
                 errLoanAmt.setText(getRequiredMsg());
+                errLoanAmt.setAnimation(animSlideToDown(getActivity())); //Anim
                 errLoanAmt.setVisibility(View.VISIBLE);
                 layoutResult.setVisibility(View.GONE);
                 isValid = false;

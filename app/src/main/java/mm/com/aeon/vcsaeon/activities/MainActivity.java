@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,13 +25,14 @@ import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
 import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 import mm.com.aeon.vcsaeon.delegates.AccessPermissionResultDelegate;
-import mm.com.aeon.vcsaeon.fragments.NavFindNearOutletFragment;
+import mm.com.aeon.vcsaeon.fragments.NavFreeChatFragment;
 import mm.com.aeon.vcsaeon.fragments.NewMainPageFragment;
 
-import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.BLANK;
+import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.CAMERA_REQUEST_CODE;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_EN;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_MM;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LOCATION_REQUEST_CODE;
+import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.STORAGE_REQUEST_CODE;
 
 public class MainActivity extends BaseActivity {
 
@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
     TextView menuBarDate;
     TextView menuBarPhoneNo;
     TextView menuBarName;
-    LinearLayout menuBackbtn;
+    LinearLayout menuBackBtn;
     LanguageChangeListener delegate;
     AccessPermissionResultDelegate locationDelegate;
 
@@ -63,8 +63,8 @@ public class MainActivity extends BaseActivity {
         toolbar.setTitleTextColor(getColor(R.color.white));
         setSupportActionBar(toolbar);
 
-        menuBackbtn = toolbar.findViewById(R.id.menu_back_btn_view);
-        menuBackbtn.setVisibility(View.GONE);
+        menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+        menuBackBtn.setVisibility(View.GONE);
 
         menuBarName = toolbar.findViewById(R.id.menu_bar_name);
         menuBarLevelInfo = toolbar.findViewById(R.id.menu_bar_level);
@@ -73,10 +73,10 @@ public class MainActivity extends BaseActivity {
 
         menuBarDate.setText(CommonUtils.getCurTimeStringForLogout());
         menuBarLevelInfo.setText(R.string.menu_level_one);
+
         //get install phone number from fragment.
         String installPhone = PreferencesManager.getInstallPhoneNo(getApplicationContext()).trim();
-        Log.e("phone", installPhone);
-        
+
         menuBarPhoneNo.setText(installPhone);
         menuBarName.setVisibility(View.GONE);
 
@@ -97,7 +97,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        menuBackbtn.setOnClickListener(new View.OnClickListener() {
+        menuBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 delegate.clickMenuBarBackBtn();
@@ -106,9 +106,8 @@ public class MainActivity extends BaseActivity {
 
         setUpDeviceId();
 
-        Window window = this.getWindow();
-        window.setStatusBarColor(getColor(R.color.statusBar));
-        //doubleBackToExitPressedOnce = true;
+        /*Window window = this.getWindow();
+        window.setStatusBarColor(getColor(R.color.statusBar));*/
         replaceFragment(new NewMainPageFragment());
 
     }
@@ -121,7 +120,7 @@ public class MainActivity extends BaseActivity {
         this.locationDelegate = locationDelegate;
     }
 
-    public void replaceFragment(Fragment fragment){
+    public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content_new_main_drawer, fragment, "TAG");
@@ -130,17 +129,25 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        //get access to location permission
-        Log.e("outlet","location "+requestCode);
-        locationDelegate.onAccessRequestPermissionResult(requestCode,permissions,grantResults);
 
+        //get access to local-storage permission.
+        Fragment frg = getSupportFragmentManager().findFragmentById(R.id.content_new_main_drawer);
+        if (frg instanceof NavFreeChatFragment) {
+            if (requestCode == STORAGE_REQUEST_CODE) {
+                frg.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            } else if (requestCode == CAMERA_REQUEST_CODE) {
+                frg.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+        }
+
+        //get access to location permission
+        locationDelegate.onAccessRequestPermissionResult(requestCode, permissions, grantResults);
     }
 
     protected void makeLocationRequest() {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 LOCATION_REQUEST_CODE);
-        Log.e("oulet","request permission location");
     }
 
     @Override
@@ -164,40 +171,18 @@ public class MainActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }
 
     @Override
     protected void onStart() {
-
-        Log.e("main activity", "Onstart");
         super.onStart();
-        //getVersionCode();
-        //new VersionCheckerAsyncTask(MainActivity.this, BuildConfig.APPLICATION_ID, curVersion,this).execute();
-        //replaceFragment(new NewMainPageFragment());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-       /* getMenuInflater().inflate(R.menu.toolbar_main_menu, menu);
-        String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());*/
-//        if(curLang.equals(LANG_MM)){
-//            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
-//            menu.getItem(0).setTitle(LANG_EN);
-//            ///changeLabel(LANG_MM);
-//        } else {
-//            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
-//            menu.getItem(0).setTitle(LANG_MM);
-//            //changeLabel(LANG_EN);
-//        }
-       /* menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
-        menu.getItem(0).setTitle(LANG_MM);
-        menu.getItem(1).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
-        menu.getItem(1).setTitle(LANG_EN);*/
-
         return true;
     }
 
@@ -210,29 +195,17 @@ public class MainActivity extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_myFlag) {
-            if(item.getTitle().equals(LANG_MM)){
-                //item.setIcon(R.drawable.en_flag2);
-                //item.setTitle(LANG_EN);
-                //changeLabel(LANG_MM);
+            if (item.getTitle().equals(LANG_MM)) {
                 addValueToPreference(LANG_MM);
-            } else if(item.getTitle().equals(LANG_EN)){
-                //item.setIcon(R.drawable.mm_flag);
-                //item.setTitle(LANG_MM);
-                //changeLabel(LANG_EN);
+            } else if (item.getTitle().equals(LANG_EN)) {
                 addValueToPreference(LANG_EN);
             }
             return false;
         }
         if (id == R.id.action_engFlag) {
-            if(item.getTitle().equals(LANG_MM)){
-                //item.setIcon(R.drawable.en_flag2);
-                //item.setTitle(LANG_EN);
-                //changeLabel(LANG_MM);
+            if (item.getTitle().equals(LANG_MM)) {
                 addValueToPreference(LANG_MM);
-            } else if(item.getTitle().equals(LANG_EN)){
-                //item.setIcon(R.drawable.mm_flag);
-                //item.setTitle(LANG_MM);
-                //changeLabel(LANG_EN);
+            } else if (item.getTitle().equals(LANG_EN)) {
                 addValueToPreference(LANG_EN);
             }
             return false;
@@ -240,8 +213,8 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addValueToPreference(String lang){
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),lang);
+    public void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), lang);
     }
 
     @Override
@@ -249,13 +222,13 @@ public class MainActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Fragment frg = getSupportFragmentManager().findFragmentById(R.id.content_new_main_drawer);
         if (frg instanceof NewMainPageFragment) {
-            if (requestCode == 1000){
-                frg.onActivityResult(requestCode,resultCode,data);
+            if (requestCode == 1000) {
+                frg.onActivityResult(requestCode, resultCode, data);
             }
         }
     }
 
-    void setUpDeviceId(){
+    void setUpDeviceId() {
         String deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         PreferencesManager.setLoginDeviceId(getApplicationContext(), deviceId);

@@ -56,11 +56,11 @@
     <string name="login_phoneno_err_msg">ဖုန်းနံပါတ်ထည့်ပါ။</string>
     <string name="login_phoneno_format_err_msg">ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
     <string name="login_password_err_msg">လျှို့ဝှက်ကုဒ်ထည့်ပါ။</string>
-    <string name="login_password_format_err_msg">Password ID စာလုံး ၆လုံး ဖြစ်ရမည်။</string>
+    <string name="login_password_format_err_msg">Password ID စာလုံး (၆)လုံး ဖြစ်ရမည်။</string>
     <!--Dialog-->
     <string name="login_in_progress">Loggin in ...</string>
-    <string name="login_success">Login Success.</string>
-    <string name="login_invalid">ဖုန်းနံပါတ် သို့မဟုတ် လျှို့ဝှက်ကုဒ် မှားနေသည်။</string>
+    <string name="login_success">Login အောင်မြင်သည်။</string>
+    <string name="login_invalid">ဖုန်းနံပါတ် (သို့မဟုတ်) လျှို့ဝှက်ကုဒ် မှားနေသည်။</string>
     <string name="login_unavailable">login ဝန်ဆောင်မှုမရနိုင်ပါ။</string>
     <string name="login_on_failure">Login မအောင်မြင်ပါ‌။</string>
     <string name="bio_login_invalid">သင်၏ Biometric အချက်အလက်ဖြင့် ဝင်မရတော့ပါ။ နောက်တစ်ကြိမ်ထည့်သွင်းလိုပါသလား?</string>
@@ -102,7 +102,7 @@
     <string name="register_phoneno_label">ဖုန်းနံပါတ်*</string>
     <string name="register_phoneno_holder">09xxxxxxxxx</string>
     <string name="register_password_label">လျှို့ဝှက်ကုဒ်*</string>
-    <string name="register_password_holder">စကားလုံး ၆လုံး မှ ၁၆လုံး</string>
+    <string name="register_password_holder">စကားလုံး (၆)လုံး မှ (၁၆)လုံး</string>
     <string name="register_conpassword_label">လျှို့ဝှက်ကုဒ် အတည်ပြုခြင်း*</string>
     <string name="register_stay_year">နှစ်</string>
     <string name="register_stay_month">လ</string>
@@ -111,25 +111,25 @@
     <string name="register_name_err">နာမည်ထည့်ပါ။</string>
     <string name="register_dob_err">မွေးနေ့ထည့်ပါ။</string>
     <string name="register_nrc_err">မှတ်ပုံတင်နံပါတ်ထည့်ပါ။</string>
-    <string name="register_nrc_format_err">မှတ်ပုံတင်နံပါတ် ၆ လုံးဖြစ်ရမည်။</string>
+    <string name="register_nrc_format_err">မှတ်ပုံတင်နံပါတ် (၆)လုံး ဖြစ်ရမည်။</string>
     <string name="register_phoneno_err">ဖုန်းနံပါတ်ထည့်ပါ။</string>
     <string name="register_tel_no_err">ဖုန်းနံပါတ်ထည့်ပါ။</string>
     <string name="register_password_err">လျှို့ဝှက်ကုဒ်ထည့်ပါ။</string>
     <string name="register_conpassword_err">အတည်ပြုလျှို့ဝှက်ကုဒ်ထည့်ပါ။</string>
-    <string name="register_pwd_format_err_msg">လျှို့ဝှက်ကုဒ်သည် ၆လုံး မှ ၁၆လုံးထိရှိသင့်သည်။</string>
+    <string name="register_pwd_format_err_msg">လျှို့ဝှက်ကုဒ်သည် (၆)လုံးမှ (၁၆)လုံးထိ ရှိသင့်သည်။</string>
     <string name="register_confpwd_format_err_msg">လျှို့ဝှက်ကုဒ်များမတူညီပါ။</string>
     <string name="register_phoneno_format_err_msg">ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
     <string name="register_tel_no_format_err_msg">ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
-    <string name="register_pwd_strength_err_msg">လျှို့ဝှက်ကုဒ်သည်မလုံလောက်ပါ။ နံပါတ် ၊အက္ခရာ နှင့် အထူးအက္ခရာ များ ပါဝင်သင့်ပါသည်။</string>
+    <string name="register_pwd_strength_err_msg">လျှို့ဝှက်ကုဒ်သည်မလုံလောက်ပါ။ နံပါတ်၊ အက္ခရာ နှင့် အထူးအက္ခရာများ ပါဝင်သင့်ပါသည်။</string>
     <string name="register_reg_code">123456</string>
-    <string name="register_age_limit">(အသက်သည် ၁၈နှစ်နှင့်အထက်ဖြစ်ရပါမည်)</string>
-    <string name="register_pwd_limit">*လျှို့ဝှက်ကုဒ်သည် ၆လုံး မှ ၁၆လုံး အတွင်းရှိရမည် ဖြစ်ပါသည်။</string>
+    <string name="register_age_limit">(အသက်သည် ၁၈နှစ်နှင့်အထက် ဖြစ်ရပါမည်)</string>
+    <string name="register_pwd_limit">*လျှို့ဝှက်ကုဒ်သည် (၆)လုံးမှ (၁၆)လုံးအတွင်း ရှိရမည်ဖြစ်ပါသည်။</string>
     <string name="register_name_format_err">English စာဖြင့် ရိုက်ထည့်ရန်။</string>
     <!--Dialog-->
     <string name="register_nrc_dup">မှတ်ပုံတင်နံပါတ် ထပ်နေပါသည်။</string>
     <string name="register_ph_no_dup">ဖုန်းနံပါတ် ထပ်နေပါသည်။</string>
     <string name="register_duplicate">သင်၏အချက်အလက်သည်ထည့်သွင်းပြီးဖြစ်သည်။</string>
-    <string name="register_duplicate_core">Date of Birth does not match with AEON data.</string>
+    <string name="register_duplicate_core">မွေးနေ့သည် AEONရှိ အချက်အလက်များနှင့် ကိုက်ညီမှုမရှိပါ။</string>
     <string name="register_imp_phone_no_duplicate">သင့်ဖုန်းနံပါတ်ဖြင့် မှတ်ပုံတင်ထားပြီးသား ရှိနေပါသည်။</string>
     <string name="register_failed">မှတ်ပုံတင်ခြင်း မအောင်မြင်ပါ။</string>
 
@@ -155,14 +155,14 @@
     <string name="verify_dob_label">မွေးနေ့*</string>
     <string name="verify_dob_holder">နှစ်-လ-ရက်</string>
     <string name="verify_nrc_label">မှတ်ပုံတင်နံပါတ်*</string>
-    <string name="verify_callnow_notice">Agreement No. အား မမှတ်မိပါက AEON Customer Service သို့ဆက်သွယ်ပါ။</string>
-    <string name="verify_security_question_title">လုံခြုံရေးမေးခွန်းများ စိစစ်ခြင်း</string>
+    <string name="verify_callnow_notice">Agreement No. အား မမှတ်မိပါက AEON Customer Service သို့ဆက်သွယ်ပေးပါ။</string>
+    <string name="verify_security_question_title">လုံခြုံရေးမေးခွန်းများ စီစစ်ခြင်း</string>
     <string name="verify_callnow_button">ဖုန်းခေါ်မည်</string>
-    <string name="verify_verify_button">စိစစ်မည်</string>
+    <string name="verify_verify_button">စီစစ်မည်</string>
     <!--Err-->
     <string name="verify_agreementno_err">Agreement No. ထည့်ပါ။</string>
-    <string name="verify_agreementno_err_format">Agreement No ပုံစံမမှန်ပါ။</string>
-    <string name="verify_err_invalid">Member အချက်အလက်များမမှန်ကန်ပါ။</string>
+    <string name="verify_agreementno_err_format">Agreement No. ပုံစံမမှန်ပါ။</string>
+    <string name="verify_err_invalid">Member အချက်အလက်များ မမှန်ကန်ပါ။</string>
     <string name="verify_dob_err">မွေးနေ့ထည့်ပါ။</string>
     <string name="verify_nrc_err">မှတ်ပုံတင်နံပါတ် ထည့်ပါ။</string>
 
@@ -179,7 +179,7 @@
 
     <!--PHOTO CONFIRMATION Screen--><!---->
     <string name="photoconfirm_title">ဓာတ်ပုံအတည်ပြုခြင်း</string>
-    <string name="photoconfirm_confirm_title">Member card အတွက်ဤပုံကိုအသုံးပြုပါမည်လား?</string>
+    <string name="photoconfirm_confirm_title">Member Card အတွက်ဤပုံကိုအသုံးပြုပါမည်လား?</string>
     <string name="photoconfirm_confirm_confirm">သုံးမည်</string>
     <string name="photoconfirm_confirm_retry">ပြန်ရိုက်မည်</string>
 
@@ -188,7 +188,7 @@
     <string name="membership_card2_photo_label">ဤဓာတ်ပုံကို သင့် Member Card လုံခြုံရေးအတွက်သုံးနိုင်သည်။</string>
     <string name="membership_tab_card1">ပထမကဒ်</string>
     <string name="membership_tab_card2">ဒုတိယကဒ်</string>
-    <string name="last_received_day">နောက်ဆုံးငွေပေးချေမှုရက်စွဲ : </string>
+    <string name="last_received_day">နောက်ဆုံးငွေပေးချေမှုရက်စွဲ - </string>
     <string name="received_day_warning_text">သင်၏နောက်ဆုံးငွေပေးချေမှုရက်စွဲနှင့် ပတ်သက်၍ ကွဲလွဲမှုများရှိပါက AEONသို့ဆက်သွယ်ပါ။</string>
 
     <!--INFORMATION UPDATE Screen-->
@@ -252,7 +252,7 @@
     <string name="da_emergency_relationship">လျှောက်ထားသူနှင့်တော်ဆက်မှု *</string>
     <string name="da_emergency_currAddress">လက်ရှိလိပ်စာ *</string>
     <string name="da_emergency_mobileNo">ဖုန်းနံပါတ် *</string>
-    <string name="da_emergency_residentTelNo">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်</string>
+    <string name="da_emergency_residentTelNo">နေထိုင်သည့်အိမ် တယ်လီဖုန်းနံပါတ်</string>
     <string name="da_emergency_otherPhoneNo">အခြားဖုန်းနံပါတ်</string>
 
     <string name="da_guarantor_name">နာမည် *</string>
@@ -260,8 +260,8 @@
     <string name="da_guarantor_nrc">မှတ်ပုံတင်နံပါတ် *</string>
     <string name="da_guarantor_nationality">လူမျိုး *</string>
     <string name="da_guarantor_mobileNo">ဖုန်းနံပါတ် *</string>
-    <string name="da_guarantor_residentTelNo">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ် </string>
-    <string name="da_guarantor_relationship">လျှောက်ထားသူနှင့်တော်ဆက်မှု *</string>
+    <string name="da_guarantor_residentTelNo">နေထိုင်သည့်အိမ် တယ်လီဖုန်းနံပါတ် </string>
+    <string name="da_guarantor_relationship">လျှောက်ထားသူနှင့်တော်စပ်မှု *</string>
     <string name="da_guarantor_currAddress">လက်ရှိလိပ်စာ *</string>
     <string name="da_guarantor_residenceType">အိမ်အမျိုးအစား *</string>
     <string name="da_guarantor_livingWith">အတူနေထိုင်သူ *</string>
@@ -328,7 +328,7 @@
     <string name="da_in_app_data_living_with">အတူနေထိုင်သူ</string>
     <string name="da_in_app_data_year_of_stay">နေထိုင်သည့်နှစ်</string>
     <string name="da_in_app_data_mobile_no">ဖုန်းနံပါတ်</string>
-    <string name="da_in_app_data_resident_tel_no">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်</string>
+    <string name="da_in_app_data_resident_tel_no">နေထိုင်သည့်အိမ် တယ်လီဖုန်းနံပါတ်</string>
     <string name="da_in_app_data_other_phone_no">အခြားဖုန်းနံပါတ်</string>
     <string name="da_in_app_data_email">အီးမေးလိပ်စာ</string>
 
@@ -346,10 +346,10 @@
     <string name="da_in_occu_salary_date">လခထုတ်ရက်</string>
 
     <string name="da_in_eme_name">နာမည်</string>
-    <string name="da_in_eme_relationship_with_applier">လျှောက်ထားသူနှင့်တော်ဆက်မှု</string>
+    <string name="da_in_eme_relationship_with_applier">လျှောက်ထားသူနှင့်တော်စပ်မှု</string>
     <string name="da_in_eme_current_address">လက်ရှိလိပ်စာ</string>
     <string name="da_in_eme_mobile_no">ဖုန်းနံပါတ်</string>
-    <string name="da_in_eme_resident_tel_no">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်</string>
+    <string name="da_in_eme_resident_tel_no">နေထိုင်သည့်အိမ် တယ်လီဖုန်းနံပါတ်</string>
     <string name="da_in_eme_other_phone_no">အခြားဖုန်းနံပါတ်</string>
 
     <string name="da_in_gur_name">နာမည်</string>
@@ -357,8 +357,8 @@
     <string name="da_in_gur_nrc_no">မှတ်ပုံတင်နံပါတ်</string>
     <string name="da_in_gur_nationality">နိုင်ငံသား</string>
     <string name="da_in_gur_mobile_no">ဖုန်းနံပါတ်</string>
-    <string name="da_in_gur_resident_tel_no">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်</string>
-    <string name="da_in_gur_relationship_with_applier">လျှောက်ထားသူနှင့်တော်ဆက်မှု </string>
+    <string name="da_in_gur_resident_tel_no">နေထိုင်သည့်အိမ် တယ်လီဖုန်းနံပါတ်</string>
+    <string name="da_in_gur_relationship_with_applier">လျှောက်ထားသူနှင့်တော်စပ်မှု </string>
     <string name="da_in_gur_current_address">လက်ရှိလိပ်စာ </string>
     <string name="da_in_gur_type_of_resident">အိမ်အမျိုးအစား </string>
     <string name="da_in_gur_living_with">အတူနေထိုင်သူ</string>
@@ -387,9 +387,10 @@
     <string name="da_in_loanConfirm_first_repayment_amount">ပထမအရစ် ပေးဆပ်ရမည့်ပမာဏ</string>
     <string name="da_in_loanConfirm_monthly_repayment_amount">လစဉ်ပြန်လည်ပေးဆပ်ရမည့်ပမာဏ</string>
     <string name="da_in_loanConfirm_last_payment">နောက်ဆုံးပေးဆပ်ရမည့်ပမာဏ</string>
+    <string name="prod_detail_loan_type">ချေးငွေအမျိုးအစား</string>
 
     <!--Purchase Detail-->
-    <string name="purchase_title">ဝယ်ယူမှု အသေးစိတ်</string>
+    <string name="purchase_title">ဝယ်ယူမှုအသေးစိတ်</string>
     <string name="purchase_product_category">ပစ္စည်းအမျိုးအစား</string>
     <string name="purchase_product_description">ပစ္စည်းအမည်</string>
     <string name="purchase_outlet_name">ဆိုင်အမည်</string>
@@ -419,7 +420,7 @@
     <string name="da_app_data_quarter">ရပ်ကွက်</string>
 
     <string name="app_cancel_title">လျှောက်လွှာပယ်ဖျက်ခြင်း</string>
-    <string name="app_cancel_message"> Application ပယ်ဖျက်လိုလျှင် AEON သို့ဆက်သွယ်ပါ</string>
+    <string name="app_cancel_message"> လျှောက်လွှာ ပယ်ဖျက်လိုလျှင် AEON သို့ဆက်သွယ်ပါ။</string>
 
     <!--Apply Aeon Service-->
     <string name="da_mesg_blank"></string>
@@ -434,7 +435,7 @@
     <string name="da_living_require_err">အခြားအတူနေထိုင်သူထည့်ပါ။</string>
     <string name="da_yearStay_require_err">နေထိုင်သည့်နှစ်ထည့်ပါ။</string>
     <string name="da_yearStayMonth_require_err">နေထိုင်သည့်လထည့်ပါ။</string>
-    <string name="da_yearStayMonth_exceed_err">နေထိုင်သည့်လသည် ၁၂ လထက်နည်းသင့်သည်။</string>
+    <string name="da_yearStayMonth_exceed_err">နေထိုင်သည့်လသည် (၁၂)လ ထက်နည်းသင့်သည်။</string>
     <string name="da_residentTelNo_require_err">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်ထည့်ပါ။</string>
     <string name="da_residentTelNo_format_err">နေထိုင်သည့်အိမ်တယ်လီဖုန်းနံပါတ်သည်ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
     <string name="da_MobileNo_require_err">ဖုန်းနံပါတ်ထည့်ပါ။</string>
@@ -478,11 +479,11 @@
     <string name="da_totalIncome_require_err">စုစုပေါင်းဝင်ငွေထည့်ပါ။</string>
     <string name="da_salaryDate_require_err">လခထုတ်ရက်ထည့်ပါ။</string>
 
-    <string name="da_relationship_require_err">လျှောက်ထားသူနှင့်တော်ဆက်မှုထည့်ပါ။</string>
+    <string name="da_relationship_require_err">လျှောက်ထားသူနှင့်တော်စပ်မှုထည့်ပါ။</string>
 
     <string name="da_productDescription_require_err">ကုန်ပစ္စည်းအကြောင်းအရာထည့်ပါ။</string>
     <string name="da_financeAmt_require_err">ချေးငွေပမာဏထည့်ပါ။</string>
-    <string name="da_financeAmt_invalid_err">ချေးငွေပမာဏသည် ၅၀,၀၀၀ ကျပ်နှင့် ၂,၀၀၀,၀၀၀ ကျပ်ကြားအတွင်း ဖြစ်ရမည်။</string>
+    <string name="da_financeAmt_invalid_err">ချေးငွေပမာဏသည် (၅၀,၀၀၀)ကျပ်နှင့် (၂,၀၀၀,၀၀၀)ကျပ်အတွင်း ဖြစ်ရမည်။</string>
     <string name="da_financeTerm_require_err">ချေးငွေကာလထည့်ပါ။</string>
     <string name="da_nrcfront_require_err">မှတ်ပုံတင်ကဒ် အရှေ့ဘက်ပုံထည့်ပါ။</string>
     <string name="da_nrcback_require_err">မှတ်ပုံတင်ကဒ် အနောက်ဘက်ပုံထည့်ပါ။</string>
@@ -500,7 +501,7 @@
     <string name="da_application_exceed_err">သင့်တွင် လုပ်ဆောင်ဆဲ ချေးငွေလျှောက်လွှာနှစ်ခု ရှိနေသည်။</string>
     <string name="da_successful_info">လျှောက်လွှာကိုအောင်မြင်စွာတင်ပြီးပါပြီ။</string>
 
-    <string name="da_preview_btn">အချက်အလက်ပြန်စစ်မည်။</string>
+    <string name="da_preview_btn">အချက်အလက်ပြန်စစ်မည်</string>
 
     <!--Events and News-->
     <string name="event_news_tab1">သတင်း</string>
@@ -526,16 +527,16 @@
     <!--FAQ Screen-->
     <string name="faq_title">မေးလေ့ရှိသောမေးခွန်းများ</string>
     <string name="faq_tab1_title">မေးလေ့ရှိသောမေးခွန်းများ</string>
-    <string name="faq_tab2_title">စည်းကမ်းချက််များ</string>
+    <string name="faq_tab2_title">စည်းကမ်းချက်များ</string>
     <string name="faq_terms_cond_title">AEON Microfinance (Myanmar) Mobile Application သုံးစွဲခြင်းဆိုင်ရာစည်းကမ်းချက်များ</string>
 
     <!--Logout-->
     <string name="logout_title">ထွက်မည်</string>
-    <string name="logout_in_progress">Logging out ...</string>
+    <string name="logout_in_progress">Logging လုပ်ဆောင်နေပါသည် ...</string>
     <string name="logout_success">Logout.</string>
-    <string name="logout_unsuccess">Logout Unsuccess.</string>
+    <string name="logout_unsuccess">Logout မအောင်မြင်ပါ။.</string>
     <string name="logout_unavailable">Logout Service Unavailable!</string>
-    <string name="logout_on_failure">Logout Failed!</string>
+    <string name="logout_on_failure">Logout မအောင်မြင်ပါ!</string>
     <string name="logout_alert_in_back">Double BACK click is to logout.</string>
 
     <!--NAV MENUS-->
@@ -612,7 +613,7 @@
     <string name="reg_bio_phone_err">ဖုန်းနံပါတ်ထည့်ပါ။</string>
     <string name="reg_bio_pwd_err">လျှို့ဝှက်ကုဒ်ထည့်ပါ။</string>
     <string name="reg_bio_phone_format_err">ဖုန်းနံပါတ်မဟုတ်ပါ။</string>
-    <string name="reg_bio_pwd_format_err">စာ ၆လုံး မှ ၁၆လုံး ဖြစ်ရမည်။</string>
+    <string name="reg_bio_pwd_format_err">စာ (၆)လုံးမှ (၁၆)လုံး ဖြစ်ရမည်။</string>
 
     <string name="camera_view_label">ဓာတ်ပုံရိုက်နေစဉ်အတွင်း မျက်မှန်မတပ်ရ။</string>
 
@@ -651,11 +652,11 @@
     <string name="otp_code_label">OTP Code*</string>
     <string name="otp_code_hint">Enter OTP Code</string>
     <string name="otp_code_err_msg">OTP Code invalid.</string>
-    <string name="otp_btn_ok">OTP Code ပို့မည်</string>
+    <string name="otp_btn_ok">OTP Code အတည်ပြုမည်</string>
     <string name="otp_btn_resend">OTPနံပါတ်ပြန်ပို့ပေးပါ</string>
 
     <string name="otp_err_blank">OTPနံပါတ်ထည့်ပါ။</string>
-    <string name="otp_err_length">OTPနံပါတ်သည်၄လုံးရှိသင့်သည်။</string>
+    <string name="otp_err_length">OTPနံပါတ်သည် (၄)လုံး ရှိသင့်သည်။</string>
     <string name="otp_err_invalid">သင်၏ OTPနံပါတ်မှားနေသည်။</string>
     <string name="otp_err_expired">OTPနံပါတ်အသုံးပြု၍မရတော့ပါ။ \'OTPနံပါတ်ပြန်ပို့ပေးပါ\' ခလုတ်အားနှိပ်ပါ။</string>
     <string name="otp_err_wrong">သင်၏ OTPနံပါတ်မှားနေသည်။</string>
@@ -856,9 +857,9 @@ AEON သည် Customer မှ နောက်ဆုံးသတင်းပေ�
     <string name="lbl_total_compulsory_saving">စုစုပေါင်း မဖြစ်မနေစုငွေ</string>
     <string name="hint_loan_amount">ချေးငွေပမာဏ</string>
 
-    <string name="warning_msg_high_amount">အများဆုံးချေးငွေပမာဏသည်  ၂,၀၀၀,၀၀၀ ကျပ် ဖြစ်သည်။</string>
-    <string name="warning_msg_low_amount">အနည်းဆုံးချေးငွေပမာဏသည်  ၅၀,၀၀၀ ကျပ် ဖြစ်သည်။</string>
-    <string name="warning_mloan_msg_low_amount">အနည်းဆုံး Motor Cycle ချေးငွေပမာဏသည် ၃၅၀,၀၀၀ ကျပ် ဖြစ်သည်။</string>
+    <string name="warning_msg_high_amount">အများဆုံးချေးငွေပမာဏသည်  (၂,၀၀၀,၀၀၀)ကျပ် ဖြစ်သည်။</string>
+    <string name="warning_msg_low_amount">အနည်းဆုံးချေးငွေပမာဏသည်  (၅၀,၀၀၀)ကျပ် ဖြစ်သည်။</string>
+    <string name="warning_mloan_msg_low_amount">အနည်းဆုံး Motor Cycle ချေးငွေပမာဏသည် (၃၅၀,၀၀၀)ကျပ် ဖြစ်သည်။</string>
     <string name="error_invlid_loan_term">ချေးငွေကာလ မမှန်ကန်ပါ။</string>
     <string name="error_require_loan_term">ချေးငွေကာလတစ်ခုကို ရွေးခြယ်ပေးပါ။</string>
     <string name="error_require_loan_amount">ချေးငွေပမာဏ ထည့်သွင်းပေးပါ။</string>
@@ -927,18 +928,18 @@ AEON သည် Customer မှ နောက်ဆုံးသတင်းပေ�
     <string name="msg_popup_new_ver">New Version!</string>
     <string name="msg_password_check_failed">Password Check Failed.</string>
     <string name="title_conf_pwd">သင်၏စကားဝှက်ကိုအတည်ပြုပါ</string>
-    <string name="progress_confirming">Confirming...</string>
+    <string name="progress_confirming">အတည်ပြုခြင်း လုပ်ဆောင်နေပါသည် ...</string>
 
     <!-- Shopping Messages -->
-    <string name="at_add_text_err">အပိုဆောင်းစာသားထည့်ပါ။</string>
+    <string name="at_add_text_err">အပိုစောင်းစာသားထည့်ပါ။</string>
     <string name="at_location_err">လက်ရှိတည်နေရာထည့်ပါ။</string>
 
     <!--Dialog string-->
     <string name="agent_channel_category">အမျိုးအစား :</string>
-    <string name="agent_channel_brand">အမှတ်တံဆိပ် :</string>
-    <string name="agent_channel_addText">အပိုဆောင်းစာသား :</string>
+    <string name="agent_channel_brand">ကုန်အမှတ်တံဆိပ် :</string>
+    <string name="agent_channel_addText">အပိုစောင်းစာသား :</string>
     <string name="agent_channel_location">လက်ရှိတည်နေရာ :</string>
-    <string name="agent_channel_btn">အေးဂျင့်ထံသို့ပို့မည်</string>
+    <string name="agent_channel_btn">အေဂျင့်ထံသို့ပို့မည်</string>
 
     <!-- Sent -->
     <string name="buy_send_01_format">Hello!\nI want to buy <b>%1$s %2$s</b>.</string>

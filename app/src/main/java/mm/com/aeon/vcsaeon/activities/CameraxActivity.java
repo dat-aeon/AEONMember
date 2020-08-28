@@ -8,6 +8,7 @@ import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureConfig;
 import androidx.camera.core.Preview;
 import androidx.camera.core.PreviewConfig;
+
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
@@ -40,7 +41,6 @@ public class CameraxActivity extends AppCompatActivity {
 
     TextureView textureView;
     TextView textCamView;
-
     ViewGroup.LayoutParams layoutParams;
 
     private CameraX.LensFacing lensFacing = CameraX.LensFacing.FRONT;
@@ -67,11 +67,11 @@ public class CameraxActivity extends AppCompatActivity {
         double cameraWidth = 0.0;
         double cameraHeight = 0.0;
 
-        try{
+        try {
             //landscape camera view.
             cameraWidth = CameraX.getSurfaceManager().getPreviewSize().getWidth();
             cameraHeight = CameraX.getSurfaceManager().getPreviewSize().getHeight();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -79,16 +79,16 @@ public class CameraxActivity extends AppCompatActivity {
         Point size = new Point();
         display.getSize(size);
 
-        int width = (int)(cameraHeight);
-        int height = (int)(cameraWidth);
+        int width = (int) (cameraHeight);
+        int height = (int) (cameraWidth);
 
         //set on texture-view.
-        layoutParams = new RelativeLayout.LayoutParams(width,height);
+        layoutParams = new RelativeLayout.LayoutParams(width, height);
 
         PreviewConfig pConfig = new PreviewConfig.Builder()
                 .setLensFacing(lensFacing)
-                .setTargetAspectRatio(new Rational(width,height))
-                .setTargetResolution(new Size(width,height))
+                .setTargetAspectRatio(new Rational(width, height))
+                .setTargetResolution(new Size(width, height))
                 .setTargetRotation(getWindowManager().getDefaultDisplay().getRotation()).build();
 
         Preview preview = new Preview(pConfig);
@@ -96,7 +96,7 @@ public class CameraxActivity extends AppCompatActivity {
                 new Preview.OnPreviewOutputUpdateListener() {
                     //to update the surface texture we  have to destroy it first then re-add it
                     @Override
-                    public void onUpdated(Preview.PreviewOutput output){
+                    public void onUpdated(Preview.PreviewOutput output) {
                         ViewGroup parent = (ViewGroup) textureView.getParent();
                         parent.removeView(textureView);
                         parent.addView(textureView, 0);
@@ -122,7 +122,7 @@ public class CameraxActivity extends AppCompatActivity {
                     public void onImageSaved(@NonNull File file) {
                         Intent intent = new Intent();
                         intent.setData(Uri.parse(file.getAbsolutePath()));
-                        setResult(RESULT_OK,intent);
+                        setResult(RESULT_OK, intent);
                         finish();
                     }
 
@@ -131,7 +131,7 @@ public class CameraxActivity extends AppCompatActivity {
                         String msg = "Pic capture failed : " + message;
                         //Toast.makeText(getBaseContext(), msg,Toast.LENGTH_LONG).show();
                         displayMessage(getBaseContext(), msg);
-                        if(cause != null){
+                        if (cause != null) {
                             cause.printStackTrace();
                         }
                     }
@@ -143,7 +143,7 @@ public class CameraxActivity extends AppCompatActivity {
         CameraX.bindToLifecycle(this, preview, imgCap);
     }
 
-    private void updateTransform(){
+    private void updateTransform() {
         Matrix mx = new Matrix();
 
         float w = textureView.getMeasuredWidth();
@@ -153,9 +153,9 @@ public class CameraxActivity extends AppCompatActivity {
         float cY = h / 2f;
 
         int rotationDgr;
-        int rotation = (int)textureView.getRotation();
+        int rotation = (int) textureView.getRotation();
 
-        switch(rotation){
+        switch (rotation) {
             case Surface.ROTATION_0:
                 rotationDgr = 0;
                 break;
@@ -172,14 +172,14 @@ public class CameraxActivity extends AppCompatActivity {
                 return;
         }
 
-        mx.postRotate((float)rotationDgr, cX, cY);
+        mx.postRotate((float) rotationDgr, cX, cY);
         textureView.setAlpha(1.0f);
         textureView.setLayoutParams(layoutParams);
         textureView.setCameraDistance(10.0f);
         textureView.setTransform(mx);
     }
 
-    public void changeLabel(){
+    public void changeLabel() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         textCamView.setText(CommonUtils.getLocaleString(new Locale(language), R.string.camera_view_label, getApplicationContext()));
     }

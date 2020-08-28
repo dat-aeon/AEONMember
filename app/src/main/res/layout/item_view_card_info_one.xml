@@ -1,138 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/margin_medium"
-    android:background="@color/white">
-<!--
-
-    <ImageView
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:id="@+id/img_qr_code"
-        android:scaleType="fitXY"
-        android:layout_centerHorizontal="true"/>
--->
+    android:background="@color/white"
+    android:padding="@dimen/margin_medium">
 
     <RelativeLayout
+        android:id="@+id/layout_loan_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layout_loan_info"
         android:layout_alignParentTop="true">
 
         <RelativeLayout
+            android:id="@+id/layout_agreement_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/layout_agreement_no"
-            android:gravity="left|center"
-            android:layout_marginTop="@dimen/margin_small">
+            android:layout_marginTop="@dimen/margin_small"
+            android:gravity="left|center">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/title_agreement_no"
-                android:textColor="@color/membership_color"
-                android:textSize="@dimen/text_regular_2x"
+                android:layout_width="@dimen/member_card_qr_width"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/pyidaungsu_regular"
-                android:text="Contract ID : "/>
+                android:text="Contract ID : "
+                android:textColor="@color/membership_color"
+                android:textSize="@dimen/text_regular_2x" />
 
             <TextView
+                android:id="@+id/lbl_agreement_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/lbl_agreement_no"
-                android:textColor="@color/membership_color"
-                android:textSize="@dimen/text_regular_2x"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_toEndOf="@+id/title_agreement_no"
                 android:fontFamily="@font/pyidaungsu_regular"
                 android:text="0000-0-0000000000-0"
-                android:layout_toEndOf="@+id/title_agreement_no"/>
+                android:textColor="@color/membership_color"
+                android:textSize="@dimen/text_regular_2x" />
 
             <ImageView
                 android:layout_width="@dimen/ic_regular_2x"
                 android:layout_height="@dimen/ic_regular_2x"
-                android:layout_toEndOf="@+id/lbl_agreement_no"
                 android:layout_marginLeft="@dimen/margin_medium"
-                android:src="@drawable/calendar_icon"/>
+                android:layout_toEndOf="@+id/lbl_agreement_no"
+                android:src="@drawable/calendar_icon" />
 
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/layout_qr_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/layout_qr_code"
-            android:paddingLeft="@dimen/margin_medium_x"
             android:layout_below="@+id/layout_agreement_no"
-            android:gravity="left"
-            android:layout_marginTop="@dimen/margin_small">
+            android:layout_marginTop="@dimen/margin_small"
+            android:gravity="left">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/title_qr_code"
-                android:textColor="@color/membership_color"
-                android:textSize="@dimen/text_regular_2x"
+                android:layout_width="@dimen/member_card_qr_width"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/pyidaungsu_regular"
-                android:text="QR Code : "/>
+                android:text="QR Code     : "
+                android:textColor="@color/membership_color"
+                android:textSize="@dimen/text_regular_2x" />
 
             <ImageView
                 android:id="@+id/img_qr_code"
-                android:scaleType="fitXY"
                 android:layout_width="@dimen/aeon_qr_code"
                 android:layout_height="@dimen/aeon_qr_code"
                 android:layout_toEndOf="@+id/title_qr_code"
-                android:layout_marginLeft="@dimen/margin_medium"
-                android:src="@drawable/qr_code_512"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/qr_code_512" />
 
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/layout_contract"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/layout_contract"
-            android:gravity="left"
+            android:layout_below="@+id/layout_qr_code"
             android:layout_marginTop="@dimen/margin_small"
-            android:layout_below="@+id/layout_qr_code">
+            android:gravity="left">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/title_date"
-                android:textColor="@color/membership_color"
-                android:textSize="@dimen/text_regular_2x"
-                android:fontFamily="@font/pyidaungsu_regular"
-                android:text="Last receive day :"/>
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/lbl_last_payment_day"
-                android:layout_toEndOf="@+id/title_date"
-                android:textColor="@color/membership_color"
-                android:textSize="@dimen/text_regular_2x"
                 android:fontFamily="@font/pyidaungsu_regular"
-                android:layout_marginStart="@dimen/margin_medium_x"
-                android:text="2020/02/02"/>
+                android:text="@string/last_received_day"
+                android:textColor="@color/membership_color"
+                android:textSize="@dimen/text_regular_2x" />
+
+            <TextView
+                android:id="@+id/lbl_last_payment_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small_2x"
+                android:layout_toEndOf="@+id/title_date"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:textColor="@color/membership_color"
+                android:textSize="@dimen/text_regular_2x" />
 
             <include
                 android:id="@+id/include_pay_online"
                 layout="@layout/grid_view_pay_online"
-                android:layout_alignParentEnd="true"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
                 android:layout_margin="@dimen/margin_small_2x"
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/horizontal_line_height"
-            android:background="@color/dark_blue"
+            android:layout_below="@+id/layout_contract"
             android:layout_marginTop="@dimen/margin_medium"
-            android:layout_below="@+id/layout_contract"/>
-
+            android:background="@color/dark_blue" />
 
     </RelativeLayout>
 

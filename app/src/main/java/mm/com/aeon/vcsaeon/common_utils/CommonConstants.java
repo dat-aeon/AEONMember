@@ -3,11 +3,11 @@ package mm.com.aeon.vcsaeon.common_utils;
 public class CommonConstants {
 
     //App version update.
-    public static final int CHECK_REQUEST_TIMEOUT=180000;
-    public static final String VERSION_NAME_LABEL="Current Version";
-    public static final String REFERRER="http://www.google.com";
-    public static final String USER_AGENT="Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6";
-    public static final String G_PLAY_URL="https://play.google.com/store/apps/details?id=";
+    public static final int CHECK_REQUEST_TIMEOUT = 180000;
+    public static final String VERSION_NAME_LABEL = "Current Version";
+    public static final String REFERRER = "http://www.google.com";
+    public static final String USER_AGENT = "Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6";
+    public static final String G_PLAY_URL = "https://play.google.com/store/apps/details?id=";
 
     //Welcome Letter Link.
     public static final String WELCOME_LETTER_BASE_URL = "http://aeoncredit.com.mm:8081/scd/dpsh?agrNo=";
@@ -38,8 +38,8 @@ public class CommonConstants {
     public static final String NOT_VALID = "NOT_VALID";
 
     //QR-display
-    public static final String INFO_SHOW = "1";
-    public static final String QR_INFO_SHOW = "2";
+    public static final int INFO_SHOW = 1;
+    public static final int QR_INFO_SHOW = 2;
 
     //app_usage_info.
     public static final String OS_TYPE = "Android OS";
@@ -48,11 +48,11 @@ public class CommonConstants {
     public static final String OK = "OK";
 
     //version config.
-    public static final String MUST_UPDATE="MUST_UPDATE";
+    public static final String MUST_UPDATE = "MUST_UPDATE";
 
     //localization
-    public static final String LANG_MM="my";
-    public static final String LANG_EN="en";
+    public static final String LANG_MM = "my";
+    public static final String LANG_EN = "en";
 
     //phone-call
     public static final String PHONE_URI_PREFIX = "tel:";
@@ -65,6 +65,9 @@ public class CommonConstants {
     public static final String MESSAGING_SHARED_PREFERENCE = "MESSAGING_SHARED_PREFERENCE";
     public static final String SOCKET_INFO_SHARED_PREFERENCE = "SOCKET_INFO_SHARED_PREFERENCE";
     public static final int MESSAGE_DISPLAY_COUNT = 25;
+
+    public static final int TYPE_SEND_TEXT_MSG = 0;
+    public static final int TYPE_SEND_IMG_MSG = 1;
 
     public static final String BLANK = "";
     public static final String SPACE = " ";
@@ -99,17 +102,17 @@ public class CommonConstants {
     public static final String PASSWORD = "password";
     public static final String REFRESH_TOKEN = "refresh_token";
 
-    public static final String AUTH_USERNAME="vcs-api-client";
-    public static final String AUTH_PASSWORD="vcs-api-client";
+    public static final String AUTH_USERNAME = "vcs-api-client";
+    public static final String AUTH_PASSWORD = "vcs-api-client";
 
     //version check.
-    public static final int ANDROID_OS_TYPE=1;
+    public static final int ANDROID_OS_TYPE = 1;
 
     //account check.
-    public static final int ACCOUNT_LOCKED=1;
+    public static final int ACCOUNT_LOCKED = 1;
 
     //member-verification
-    public static final String AGREEMENT_NO_REGX="[0-9]{4}-[0-9]{1}-[0-9]{10}-[0-9]{1}";
+    public static final String AGREEMENT_NO_REGX = "[0-9]{4}-[0-9]{1}-[0-9]{10}-[0-9]{1}";
 
     //Error title
     public static final String NETWORK_ERROR = "Network Error!";
@@ -153,7 +156,7 @@ public class CommonConstants {
     public static final String SUBMIT_2 = "submit_2";
     public static final String SUBMIT_3 = "submit_3";
     public static final String SUBMIT_4 = "submit_4";
-    public static final String CORRECT= "data_correct";
+    public static final String CORRECT = "data_correct";
     public static final String INCORRECT = "data_incorrect";
     public static final String APPLICATION_DATA_VALID = "app_data_valid";
     public static final String OCCUPATION_DATA_VALID = "occupation_data_valid";
@@ -216,7 +219,7 @@ public class CommonConstants {
 
 
     public static final String[] ATTACHMENT_TYPES = {"Others", "Member Card", "Invoice", "Agreement", "Others"};
-    public static final String[] APPLICATION_ATTACHMENT_TYPES = {"Others", "NRC Front", "NRC Back", "Resident Proof", "Income Proof","Guarantor NRC Front","Guarantor NRC Back","Criminal Clearance","Applicant Photo","Applicant Signature","Guarantor Signature"};
+    public static final String[] APPLICATION_ATTACHMENT_TYPES = {"Others", "NRC Front", "NRC Back", "Resident Proof", "Income Proof", "Guarantor NRC Front", "Guarantor NRC Back", "Criminal Clearance", "Applicant Photo", "Applicant Signature", "Guarantor Signature"};
 
     public static final int CHANNEL_MOBILE = 1;
     //public static final int CHANNEL_WEB = 2;
@@ -246,6 +249,7 @@ public class CommonConstants {
     public static final String IMG = "img";
     public static final String UPLOAD_FILE_TYPE = ".jpeg";
     public static final int PHOTO_QUALITY_95 = 95;
+    public static final int PHOTO_QUALITY_80 = 80;
 
     public static final String DA_ATTACH_EDIT_PATH = "ATTACH";
 
@@ -256,11 +260,20 @@ public class CommonConstants {
     public static final String STATUS_APPROVE = "APPROVED";
     public static final String MODIFY_REQUEST = "MODIFY";
     public static final String MODIFY_UPLOAD = "MODIFY";
+    public static final String STATUS_CASH = "CASH";
+    public static final String STATUS_CASH_COMPLETED = "CASH_COMPLETED";
 
     public static final int LOCATION_REQUEST_CODE = 101;
-    public static final int  CALL_REQUEST_CODE = 320;
-    public static final int  CAMERA_REQUEST_CODE = 350;
-    public static final int  STORAGE_REQUEST_CODE = 1;
+    public static final int CALL_REQUEST_CODE = 320;
+    public static final int CAMERA_REQUEST_CODE = 350;
+    public static final int STORAGE_REQUEST_CODE = 1;
 
     public static final String AUTO_MESSAGE_REPLY = "AUTO_MESSAGE";
+
+    //AEON Social Media.
+    public static final String URL_AEON_FB_PAGE = "https://m.facebook.com/AEON-Microfinance-Myanmar-Co-Ltd-374820516619280/";
+
+    public static final int MSG_TYPE_GET_STARTED = 0;
+    public static final int MSG_TYPE_LANGUAGE = 1;
+
 }

@@ -4,30 +4,61 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
+    android:elevation="@dimen/margin_tiny"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/grid_layout_border"
     android:backgroundTint="@color/customer_service_color"
     android:padding="5dp">
 
-    <ImageView
-        android:layout_height="50dp"
-        android:id="@+id/imageView1"
-        android:layout_width="50dp"
-        android:src="@drawable/customer_service_512"
+    <RelativeLayout
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:id="@+id/layout_icon"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
-    </ImageView>
+
+        <!--<ImageView
+            android:layout_height="@dimen/category_ic_side"
+            android:id="@+id/imageView1"
+            android:layout_centerInParent="true"
+            android:layout_width="@dimen/category_ic_side"
+            android:src="@drawable/customer_service_512"/>-->
+
+        <ImageView
+            android:layout_height="@dimen/category_ic_side"
+            android:id="@+id/imageView1"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/margin_small_2x"
+            android:backgroundTint="@color/grayLight"
+            android:background="@drawable/messaging_container_frame"
+            android:layout_width="@dimen/category_ic_side"
+            android:src="@drawable/gd_ic_lv2_chat"/>
+
+        <TextView
+            android:layout_width="@dimen/margin_medium_3"
+            android:layout_height="@dimen/margin_medium_3"
+            android:id="@+id/lblL2MessageCount"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/text_smaller"
+            android:fontFamily="@font/pyidaungsu_bold"
+            android:background="@drawable/status_change_count"/>
+
+    </RelativeLayout>
 
     <TextView
         android:text="@string/main_contactus_title"
         android:layout_height="wrap_content"
         android:id="@+id/text_customer_service"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/imageView1"
+        android:layout_below="@+id/layout_icon"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/main_view_font_size"
+        android:textSize="@dimen/text_small"
+        android:lineSpacingExtra="-4dp"
         android:textAlignment="center"
-        android:fontFamily="@font/pyidaungsu_regular"
+        android:fontFamily="@font/vcsm_labels_font"
         android:textColor="@color/white"
         android:ellipsize="marquee"/>
 

@@ -83,7 +83,7 @@
                     android:inputType="phone"
                     android:maxLength="11"
                     android:hint="@string/reg_bio_phone_hint"
-                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:fontFamily="@font/input_text_font"
                     android:background="@drawable/edit_text_style"/>
 
             </LinearLayout>
@@ -126,7 +126,7 @@
                     android:inputType="textPassword"
                     android:maxLength="16"
                     android:hint="@string/register_password_holder"
-                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:fontFamily="@font/input_text_font"
                     android:background="@drawable/edit_text_style"/>
 
                 <TextView

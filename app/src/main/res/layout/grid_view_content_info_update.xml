@@ -1,35 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/grid_layout_border"
     android:backgroundTint="@color/info_update_color"
+    android:elevation="@dimen/margin_tiny"
+    android:gravity="center"
     android:padding="5dp">
 
-    <ImageView
-        android:layout_height="50dp"
+    <!--<ImageView
         android:id="@+id/image_info_update"
-        android:layout_width="50dp"
-        android:src="@drawable/info_update_icon_512"
+        android:layout_width="@dimen/category_ic_side"
+        android:layout_height="@dimen/category_ic_side"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-    </ImageView>
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/info_update_icon_512"/>-->
+
+    <ImageView
+        android:id="@+id/image_info_update"
+        android:layout_width="@dimen/category_ic_side"
+        android:layout_height="@dimen/category_ic_side"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/margin_medium"
+        android:backgroundTint="@color/grayLight"
+        android:background="@drawable/messaging_container_frame"
+        android:src="@drawable/gd_ic_update_info"/>
 
     <TextView
-        android:text="@string/welcome_info_update_title"
-        android:layout_height="wrap_content"
         android:id="@+id/text_info_update"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/image_info_update"
-        android:layout_margin = "@dimen/margin_tiny"
-        android:textAlignment="center"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/main_view_font_size"
-        android:fontFamily="@font/pyidaungsu_regular"
+        android:layout_margin="@dimen/margin_tiny"
+        android:ellipsize="marquee"
+        android:lineSpacingExtra="-4dp"
+        android:fontFamily="@font/vcsm_labels_font"
+        android:text="@string/welcome_info_update_title"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:ellipsize="marquee"/>
+        android:textSize="@dimen/main_view_font_size" />
 
 </RelativeLayout>

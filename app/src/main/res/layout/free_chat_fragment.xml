@@ -1,149 +1,551 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/freeChatViewGroup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.MainMenuActivityDrawer">
 
-    <LinearLayout
-        android:id="@+id/contact_view"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:orientation="horizontal"
-        android:background="@color/free_chat_color"
-        android:layout_alignParentTop="true"
-        android:weightSum="1"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/admin_phone"
-            android:layout_weight="0.8"
-            android:gravity="center_vertical"
-            android:fontFamily="@font/pyidaungsu_regular"
-            android:textColor="@color/dark_blue"
-            android:paddingStart="8dp"
-            android:textSize="8pt"
-            android:text="09xxxxxxxxx"/>
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/btn_admin_call"
-            android:layout_weight="0.2"
-            android:padding="4dp"
-            android:layout_gravity="center_vertical|right"
-            android:src="@drawable/free_chat_call_now"/>
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_message_list"
+    <RelativeLayout
+        android:id="@+id/rootView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/contact_view"
-        android:layout_marginBottom="50dp"
-        />
+        android:background="@color/white"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-    <LinearLayout
-        android:id="@+id/layout_chatbox"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="#ffffff"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:layout_alignParentBottom="true"
-        >
+        <LinearLayout
+            android:id="@+id/contact_view"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/free_chat_color"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="1">
 
-        <ImageView
-            android:layout_width="50dp"
+            <TextView
+                android:id="@+id/admin_phone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:fontFamily="@font/pyidaungsu_regular"
+                android:gravity="center_vertical"
+                android:paddingStart="8dp"
+                android:text="09xxxxxxxxx"
+                android:textColor="@color/dark_blue"
+                android:textSize="8pt" />
+
+            <ImageView
+                android:id="@+id/btn_admin_call"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|right"
+                android:layout_weight="0.2"
+                android:padding="4dp"
+                android:src="@drawable/free_chat_call_now" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_message_list"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/img_capture"
-            android:padding="3dp"
-            android:layout_marginLeft="5dp"
-            android:layout_gravity="left|center_vertical"
-            android:src="@drawable/ic_camera_alt_black_24dp"
-            android:visibility="gone"/>
+            android:layout_above="@+id/layoutChatInput"
+            android:layout_below="@+id/contact_view"
+            android:overScrollMode="never" />
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:id="@+id/img_browse"
-            android:padding="3dp"
-            android:layout_marginRight="5dp"
-            android:layout_gravity="left|center_vertical"
-            android:src="@drawable/ic_crop_original_black_24dp"
-            android:visibility="gone"/>
+        <RelativeLayout
+            android:id="@+id/layoutChatInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:id="@+id/img_send"
-            android:padding="3dp"
-            android:layout_marginRight="5dp"
-            android:layout_gravity="left|center_vertical"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_crop_original_black_24dp"
-            android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/layout_chatbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:gravity="bottom"
+                android:minHeight="?attr/actionBarSize"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/margin_medium"
+                android:paddingRight="@dimen/margin_small"
+                android:paddingBottom="@dimen/margin_medium">
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:id="@+id/img_add"
-            android:layout_gravity="left|center_vertical"
-            android:src="@drawable/ic_add_circle_black_freechat_24dp"
-            android:backgroundTint="@color/free_chat_color"
-            android:visibility="visible"/>
+                <ImageView
+                    android:id="@+id/img_capture"
+                    android:layout_width="@dimen/edit_text_height"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:background="@drawable/messaging_container_frame"
+                    android:backgroundTint="@color/grayLight"
+                    android:padding="@dimen/margin_small_2x"
+                    android:src="@drawable/ic_camera_alt_black_24dp"
+                    android:visibility="gone" />
 
-        <EditText
-            android:id="@+id/edittext_chatbox"
-            android:background="@drawable/edit_text_style"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:textColorHint="@color/quantum_grey"
-            android:backgroundTint="@color/grayLight"
-            android:hint="Enter message"
-            android:paddingLeft="8dp"
-            android:textSize="14dp"
-            android:maxLines="6"
-            android:paddingRight="5dp"
-            android:fontFamily="@font/pyidaungsu_regular"/>
+                <ImageView
+                    android:id="@+id/img_browse"
+                    android:layout_width="@dimen/edit_text_height"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:background="@drawable/messaging_container_frame"
+                    android:backgroundTint="@color/grayLight"
+                    android:padding="@dimen/margin_small_2x"
+                    android:src="@drawable/ic_crop_original_black_24dp"
+                    android:visibility="gone" />
 
-        <Button
-            android:id="@+id/button_chatbox_send"
-            android:layout_width="64dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:background="@drawable/grid_layout_border"
-            android:backgroundTint="@color/dark_green"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="SEND"
-            android:textColor="@color/white"
-            android:textSize="7pt"
-            android:fontFamily="@font/pyidaungsu_regular"/>
+                <ImageView
+                    android:id="@+id/img_send"
+                    android:layout_width="@dimen/edit_text_height"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:padding="@dimen/margin_tiny"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_crop_original_black_24dp"
+                    android:visibility="gone" />
 
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/img_add"
+                    android:layout_width="@dimen/edit_text_height"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:background="@drawable/messaging_container_frame"
+                    android:backgroundTint="@color/grayLight"
+                    android:padding="@dimen/margin_small"
+                    android:src="@drawable/ic_add_circle_black_freechat_24dp"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edittext_chatbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_small_2x"
+                    android:layout_weight="1"
+                    android:background="@drawable/messaging_container_frame"
+                    android:backgroundTint="@color/grayLight"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/input_text_font"
+                    android:gravity="center_vertical"
+                    android:hint="Enter message"
+                    android:maxLines="4"
+                    android:minHeight="@dimen/button_height"
+                    android:paddingLeft="@dimen/margin_medium_2"
+                    android:paddingRight="@dimen/margin_medium_2"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/quantum_grey"
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:id="@+id/imgBotMenu"
+                    android:layout_width="@dimen/edit_text_height"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:layout_marginRight="@dimen/margin_tiny"
+                    android:background="@drawable/messaging_container_frame"
+                    android:backgroundTint="@color/grayLight"
+                    android:padding="@dimen/margin_small_2x"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_menu_black_24dp"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/button_chatbox_send"
+                    android:layout_width="64dp"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:background="@drawable/messaging_container_frame"
+                    android:backgroundTint="@color/dark_green"
+                    android:clickable="true"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:gravity="center"
+                    android:text="SEND"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_small"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/layoutBotMenu"
+                android:layout_width="match_parent"
+                android:layout_height="268dp"
+                android:layout_below="@id/layout_chatbox"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/layoutHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/white"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ic_msgr_bot_home"
+                            android:layout_width="@dimen/edit_text_height"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/messaging_container_frame"
+                            android:padding="@dimen/margin_medium"
+                            android:src="@drawable/ic_baseline_home_24" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_medium"
+                            android:layout_toEndOf="@+id/ic_msgr_bot_home"
+                            android:background="@drawable/messaging_container_frame"
+                            android:backgroundTint="@color/grayLight"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/margin_medium_2"
+                            android:paddingTop="@dimen/margin_tiny"
+                            android:paddingRight="@dimen/margin_medium_2"
+                            android:text="Home"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_regular" />
+
+                        <View
+                            android:id="@+id/divider11"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="?android:attr/listDivider" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutGetStarted"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/white"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ic_msgr_bot_start"
+                            android:layout_width="@dimen/edit_text_height"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/messaging_container_frame"
+                            android:padding="@dimen/margin_small_2x"
+                            android:src="@drawable/ic_baseline_play_arrow_24" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_medium"
+                            android:layout_toEndOf="@+id/ic_msgr_bot_start"
+                            android:background="@drawable/messaging_container_frame"
+                            android:backgroundTint="@color/grayLight"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/margin_medium_2"
+                            android:paddingRight="@dimen/margin_medium_2"
+                            android:text="Get Started"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_regular" />
+
+                        <View
+                            android:id="@+id/divider12"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="?android:attr/listDivider"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutMyanmar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/white"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ic_msgr_bot_mm"
+                            android:layout_width="@dimen/edit_text_height"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/messaging_container_frame"
+                            android:padding="@dimen/margin_medium"
+                            android:src="@drawable/mm_flag" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_medium"
+                            android:layout_toEndOf="@+id/ic_msgr_bot_mm"
+                            android:background="@drawable/messaging_container_frame"
+                            android:backgroundTint="@color/grayLight"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/margin_medium_2"
+                            android:paddingTop="@dimen/margin_tiny"
+                            android:paddingRight="@dimen/margin_medium_2"
+                            android:text="မြန်မာ"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_regular" />
+
+                        <View
+                            android:id="@+id/divider13"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="?android:attr/listDivider" />
+
+
+                    </RelativeLayout>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:id="@+id/layoutMyanmar2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:minHeight="?attr/actionBarSize"
+                            android:visibility="gone">
+
+                            <ImageView
+                                android:id="@+id/ic_msgr_bot_mm_interest_rate"
+                                android:layout_width="@dimen/edit_text_height"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginTop="@dimen/margin_medium"
+                                android:background="@drawable/messaging_container_frame"
+                                android:padding="@dimen/margin_medium"
+                                android:src="@drawable/mm_flag" />
+
+                            <TextView
+                                android:id="@+id/labelMyanmar2InterestRate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginLeft="@dimen/margin_medium"
+                                android:layout_marginTop="@dimen/margin_medium"
+                                android:layout_toEndOf="@+id/ic_msgr_bot_mm_interest_rate"
+                                android:background="@drawable/messaging_container_frame"
+                                android:backgroundTint="@color/grayLight"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:text="အတိုးနှုန်းများ"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_regular" />
+
+                            <TextView
+                                android:id="@+id/labelMyanmar2PhoneNo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_below="@+id/labelMyanmar2InterestRate"
+                                android:layout_marginLeft="@dimen/margin_medium"
+                                android:layout_marginTop="@dimen/margin_medium"
+                                android:layout_toEndOf="@+id/ic_msgr_bot_mm_interest_rate"
+                                android:background="@drawable/messaging_container_frame"
+                                android:backgroundTint="@color/grayLight"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:text="ဖုန်းနံပါတ်များ"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_regular" />
+
+                            <TextView
+                                android:id="@+id/labelMyanmar2Address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_below="@+id/labelMyanmar2PhoneNo"
+                                android:layout_marginLeft="@dimen/margin_medium"
+                                android:layout_marginTop="@dimen/margin_medium"
+                                android:layout_toEndOf="@+id/ic_msgr_bot_mm_interest_rate"
+                                android:background="@drawable/messaging_container_frame"
+                                android:backgroundTint="@color/grayLight"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:text="ရုံးလိပ်စာများ"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_regular" />
+
+                        </RelativeLayout>
+
+                    </ScrollView>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutEnglish"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/white"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ic_msgr_bot_eng"
+                            android:layout_width="@dimen/edit_text_height"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/messaging_container_frame"
+                            android:padding="@dimen/margin_medium"
+                            android:src="@drawable/en_flags" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edit_text_height"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_medium"
+                            android:layout_toEndOf="@+id/ic_msgr_bot_eng"
+                            android:background="@drawable/messaging_container_frame"
+                            android:backgroundTint="@color/grayLight"
+                            android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/margin_medium_2"
+                            android:paddingRight="@dimen/margin_medium_2"
+                            android:text="English"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_regular" />
+
+                        <View
+                            android:id="@+id/divider14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="?android:attr/listDivider"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:id="@+id/layoutEnglish2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:minHeight="?attr/actionBarSize"
+                            android:visibility="gone">
+
+                            <ImageView
+                                android:id="@+id/ic_msgr_bot_eng_interest_rate"
+                                android:layout_width="@dimen/edit_text_height"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginTop="@dimen/margin_medium"
+                                android:background="@drawable/messaging_container_frame"
+                                android:padding="@dimen/margin_medium"
+                                android:src="@drawable/en_flags" />
+
+                            <TextView
+                                android:id="@+id/labelEnglishInterestRate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_marginLeft="@dimen/margin_medium"
+                                android:layout_marginTop="@dimen/margin_medium"
+                                android:layout_toEndOf="@+id/ic_msgr_bot_eng_interest_rate"
+                                android:background="@drawable/messaging_container_frame"
+                                android:backgroundTint="@color/grayLight"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:text="Interest Rate"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_regular" />
+
+                            <TextView
+                                android:id="@+id/labelEnglishPhoneNo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_below="@+id/labelEnglishInterestRate"
+                                android:layout_marginLeft="@dimen/margin_medium"
+                                android:layout_marginTop="@dimen/margin_medium"
+                                android:layout_toEndOf="@+id/ic_msgr_bot_eng_interest_rate"
+                                android:background="@drawable/messaging_container_frame"
+                                android:backgroundTint="@color/grayLight"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:text="Phone No."
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_regular" />
+
+                            <TextView
+                                android:id="@+id/labelEnglishAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_below="@+id/labelEnglishPhoneNo"
+                                android:layout_marginLeft="@dimen/margin_medium"
+                                android:layout_marginTop="@dimen/margin_medium"
+                                android:layout_toEndOf="@+id/ic_msgr_bot_eng_interest_rate"
+                                android:background="@drawable/messaging_container_frame"
+                                android:backgroundTint="@color/grayLight"
+                                android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="@dimen/margin_medium_2"
+                                android:paddingRight="@dimen/margin_medium_2"
+                                android:text="Offices' Address"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_regular" />
+
+                        </RelativeLayout>
+
+                    </ScrollView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/layout_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:id="@+id/layout_loading">
+        app:layout_anchor="@+id/rootView"
+        app:layout_anchorGravity="center">
+
         <ImageView
+            android:id="@+id/img_loading"
             android:layout_width="@dimen/loading_animation_side"
             android:layout_height="@dimen/loading_animation_side"
             android:layout_centerInParent="true"
-            android:id="@+id/img_loading"
-            android:src="@drawable/loading"/>
+            android:src="@drawable/loading" />
     </RelativeLayout>
 
-</RelativeLayout>
+    <!--<include layout="@layout/chat_input_bottom_sheet" />-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

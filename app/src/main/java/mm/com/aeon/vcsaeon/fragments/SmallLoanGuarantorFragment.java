@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -113,7 +112,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
     private TextView errCompanyName;
     private TextView errCompanyTel;
     private TextView errDepartment;
-    private TextView errPositon;
+    private TextView errPosition;
     private TextView errDob;
     private TextView errMonthlyIncome;
     private TextView errStayTime;
@@ -130,7 +129,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
     private Integer errCompanyNameLocale;
     private Integer errCompanyTelLocale;
     private Integer errDepartmentLocale;
-    private Integer errPositonLocale;
+    private Integer errPositionLocale;
     private Integer errDobLocale;
     private Integer errMonthlyIncomeLocale;
     private Integer errServiceLocale;
@@ -151,11 +150,12 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
     private TextView labelCompanyName;
     private TextView labelCompanyTel;
     private TextView labelDepartment;
-    private TextView labelPositon;
+    private TextView labelPosition;
     private TextView labelService;
     private TextView labelMonthlyIncome;
     private TextView labelTotalIncome;
     private TextView totalIncomeFilled;
+    private TextView currencyUnit;
     private TextView labelStayYear;
     private TextView labelStayMonth;
     private TextView labelServiceYear;
@@ -250,9 +250,9 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
 
     private LinearLayout backToEmerData;
     private LinearLayout goToLoanData;
-    private TextView loanDataTitle;
-    private TextView guarantorTitle;
-    private TextView emergencyTitle;
+    //private TextView loanDataTitle;
+    //private TextView guarantorTitle;
+    //private TextView emergencyTitle;
 
     private String nameCheck;
     private String dobCheck;
@@ -383,25 +383,25 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         view = inflater.inflate(R.layout.fragment_small_loan_guarantor, container, false);
         setHasOptionsMenu(true);
 
-        String[] pages = {"Application\nData", "Occupation\nData","Emergency\nContact", "Guarantor\nData", "Loan\nConfirmation"};
+        String[] pages = {"Application\nData", "Occupation\nData", "Emergency\nContact", "Guarantor\nData", "Loan\nConfirmation"};
         guarStepView = view.findViewById(R.id.guar_stepped_bar);
         guarStepView.setStateDescriptionData(pages);
         guarStepView.setOnStateItemClickListener(new OnStateItemClickListener() {
             @Override
             public void onStateItemClick(StateProgressBar stateProgressBar, StateItem stateItem, int stateNumber, boolean isCurrentState) {
-                if(stateNumber == 1){
+                if (stateNumber == 1) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(0, true);
-                }else if(stateNumber == 2){
+                } else if (stateNumber == 2) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(1, true);
-                }else if(stateNumber == 3){
+                } else if (stateNumber == 3) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(2, true);
-                }else if(stateNumber == 4){
+                } else if (stateNumber == 4) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(3, true);
-                }else if(stateNumber == 5){
+                } else if (stateNumber == 5) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(4, true);
                 }
@@ -504,7 +504,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         cityTownshipList = PreferencesManager.getCityListInfo(getActivity());
         setUpCityList(cityTownshipList);
         curCityName = cityList.get(0);
-        setUpCurrentTownshipList(cityTownshipList,curCityName);
+        setUpCurrentTownshipList(cityTownshipList, curCityName);
 
         // Current City
         ArrayAdapter<String> guaCurrentCity = new ArrayAdapter<String>(getActivity(), R.layout.nrc_spinner_item_2, cityList);
@@ -517,8 +517,8 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 currentGuarantorCity.setText((String) parent.getAdapter().getItem(position));
                 currentCity = cityId.get(position);
-                curCityName = (String)parent.getAdapter().getItem(position);
-                setUpCurrentTownshipList(cityTownshipList,curCityName);
+                curCityName = (String) parent.getAdapter().getItem(position);
+                setUpCurrentTownshipList(cityTownshipList, curCityName);
                 currentGuarantorTownship.setText(BLANK);
                 currentGuarantorTownship.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.mandatroy_edit_text_style));
 
@@ -585,16 +585,14 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             }
         });
 
-
-
         curStreet.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean focus) {
-                if(focus){
+                if (focus) {
                     curStreet.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
-                }else{
+                } else {
                     currentStreetCheck = curStreet.getText().toString();
-                    if(isEmptyOrNull(currentStreetCheck)){
+                    if (isEmptyOrNull(currentStreetCheck)) {
                         curStreet.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.mandatroy_edit_text_style));
                     }
                 }
@@ -602,7 +600,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         });
 
         perCityName = cityList.get(0);
-        setUpPermanentTownshipList(cityTownshipList,perCityName);
+        setUpPermanentTownshipList(cityTownshipList, perCityName);
 
         // Company City
         ArrayAdapter<String> guarCompanyCity = new ArrayAdapter<String>(getActivity(), R.layout.nrc_spinner_item_2, cityList);
@@ -616,8 +614,8 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 guarantorCompanyCity.setText((String) parent.getAdapter().getItem(position));
                 currentCompanyCity = cityId.get(position);
-                perCityName = (String)parent.getAdapter().getItem(position);
-                setUpPermanentTownshipList(cityTownshipList,perCityName);
+                perCityName = (String) parent.getAdapter().getItem(position);
+                setUpPermanentTownshipList(cityTownshipList, perCityName);
                 guarantorCompanyTownship.setText(BLANK);
                 guarantorCompanyTownship.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.mandatroy_edit_text_style));
 
@@ -654,8 +652,6 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             }
         });
 
-        //--------
-
         guarantorCompanyTownship.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -690,11 +686,11 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         perStreet.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean focus) {
-                if(focus){
+                if (focus) {
                     perStreet.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
-                }else{
+                } else {
                     companyStreetCheck = curStreet.getText().toString();
-                    if(isEmptyOrNull(companyStreetCheck)){
+                    if (isEmptyOrNull(companyStreetCheck)) {
                         perStreet.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.mandatroy_edit_text_style));
                     }
                 }
@@ -705,8 +701,8 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         ArrayAdapter<String> adapterType = new ArrayAdapter<String>(getActivity(), R.layout.da_nrc_spinner_item_1, nrcType);
         spinnerType.setAdapter(adapterType);
 
-        final String[] guarantorRealation = getResources().getStringArray(R.array.guarantor_relation);
-        ArrayAdapter<String> adapterRelation = new ArrayAdapter<String>(getActivity(), R.layout.relation_spinner, guarantorRealation);
+        final String[] guarantorRelation = getResources().getStringArray(R.array.guarantor_relation);
+        ArrayAdapter<String> adapterRelation = new ArrayAdapter<String>(getActivity(), R.layout.relation_spinner, guarantorRelation);
         spinnerRelation.setAdapter(adapterRelation);
 
         final String[] guarantorResident = getResources().getStringArray(R.array.applicant_resident_type);
@@ -734,7 +730,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         labelCompanyName = view.findViewById(R.id.guar_company_name);
         labelCompanyTel = view.findViewById(R.id.guar_company_Tel);
         labelDepartment = view.findViewById(R.id.guar_department);
-        labelPositon = view.findViewById(R.id.guar_position);
+        labelPosition = view.findViewById(R.id.guar_position);
         labelService = view.findViewById(R.id.guar_service);
         labelMonthlyIncome = view.findViewById(R.id.guar_monthly_income);
         labelTotalIncome = view.findViewById(R.id.guar_total_income);
@@ -752,7 +748,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         errCompanyName = view.findViewById(R.id.guarantor_err_company_name);
         errCompanyTel = view.findViewById(R.id.guarantor_err_companyTel);
         errDepartment = view.findViewById(R.id.guarantor_err_department);
-        errPositon = view.findViewById(R.id.guarantor_err_position);
+        errPosition = view.findViewById(R.id.guarantor_err_position);
         errDob = view.findViewById(R.id.guarantor_err_dob);
         errMonthlyIncome = view.findViewById(R.id.guarantor_err_basic_inocme);
         errService = view.findViewById(R.id.guarantor_err_service_year);
@@ -769,7 +765,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         errCompanyNameLocale = R.string.da_mesg_blank;
         errCompanyTelLocale = R.string.da_mesg_blank;
         errDepartmentLocale = R.string.da_mesg_blank;
-        errPositonLocale = R.string.da_mesg_blank;
+        errPositionLocale = R.string.da_mesg_blank;
         errDobLocale = R.string.da_mesg_blank;
         errMonthlyIncomeLocale = R.string.da_mesg_blank;
         errServiceLocale = R.string.da_mesg_blank;
@@ -788,6 +784,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         guar_position = view.findViewById(R.id.guarantor_position);
         guar_monthlyIncome = view.findViewById(R.id.guarantor_basic_income);
         totalIncomeFilled = view.findViewById(R.id.guarantor_total_income);
+        currencyUnit = view.findViewById(R.id.guarantor_total_income_cur_unit);
 
         radioNationality = view.findViewById(R.id.guar_radioNationality);
         radioGender = view.findViewById(R.id.guar_radioGender);
@@ -798,31 +795,31 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         guarServiceYear = view.findViewById(R.id.guar_spinner_service_year);
         guarServiceMonth = view.findViewById(R.id.guar_spinner_service_month);
 
-        guar_name.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(256)});
-        guar_companyName.setFilters(new InputFilter[]{ new InputFilter.AllCaps(),new InputFilter.LengthFilter(256)});
-        guar_nationalityDetail.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(256)});
-        guar_relaitonshipWith.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(256)});
-        guar_residentTypeDetail.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(256)});
-        guar_department.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(256)});
-        guar_position.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(256)});
-        curApartmentNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(100)});
-        curRoomNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(100)});
-        curFloorNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(100)});
-        curStreet.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(100)});
-        curQuarter.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(100)});
-        perApartmentNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(100)});
-        perRoomNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(100)});
-        perFloorNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(100)});
-        perStreet.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(100)});
-        perQuarter.setFilters(new InputFilter[]{new InputFilter.AllCaps(),new InputFilter.LengthFilter(100)});
+        guar_name.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(256)});
+        guar_companyName.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(256)});
+        guar_nationalityDetail.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(256)});
+        guar_relaitonshipWith.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(256)});
+        guar_residentTypeDetail.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(256)});
+        guar_department.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(256)});
+        guar_position.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(256)});
+        curApartmentNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(100)});
+        curRoomNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(100)});
+        curFloorNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(100)});
+        curStreet.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(100)});
+        curQuarter.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(100)});
+        perApartmentNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(100)});
+        perRoomNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(100)});
+        perFloorNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(100)});
+        perStreet.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(100)});
+        perQuarter.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(100)});
 
-        ScrollView scrollView=view.findViewById(R.id.guarator_scroll);
+        ScrollView scrollView = view.findViewById(R.id.guarator_scroll);
         scrollView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 // TODO Auto-generated method stub
-                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(view.getContext().INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(view.getContext().INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 return false;
             }
@@ -844,9 +841,9 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
 
                     String originalString = view.toString();
 
-                    if(originalString.equals(BLANK)){
+                    if (originalString.equals(BLANK)) {
                         totalIncomeFilled.setText(BLANK);
-                    }else{
+                    } else {
                         if (originalString.contains(",")) {
                             originalString = originalString.replaceAll(",", "");
                         }
@@ -953,10 +950,12 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                 }
             }
         });
+
         companyStatusCheck = guar_companyName.getText().toString();
         if (!isEmptyOrNull(companyStatusCheck)) {
             guar_companyName.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
         }
+
         guar_companyName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean focus) {
@@ -975,6 +974,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         if (!isEmptyOrNull(companyTelCheck)) {
             guar_companyTel.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
         }
+
         guar_companyTel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean focus) {
@@ -1028,10 +1028,12 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         spnLivingWith.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                livingWith = position+1;
+                livingWith = position + 1;
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
 
@@ -1051,27 +1053,9 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             }
         });
 
-        /*backToEmerData = view.findViewById(R.id.back_emer_data);
-        goToLoanData = view.findViewById(R.id.go_to_loan_data);*/
-        guarantorTitle = view.findViewById(R.id.da_gua_data_title);
-        emergencyTitle = view.findViewById(R.id.da_emer_data_title);
-        loanDataTitle = view.findViewById(R.id.da_loan_data_title);
-
-        /*backToEmerData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUpDataOnPageChanged();
-                viewPager.setCurrentItem( 2, true);
-            }
-        });
-
-        goToLoanData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUpDataOnPageChanged();
-                viewPager.setCurrentItem( 4, true);
-            }
-        });*/
+        //guarantorTitle = view.findViewById(R.id.da_gua_data_title);
+        //emergencyTitle = view.findViewById(R.id.da_emer_data_title);
+        //loanDataTitle = view.findViewById(R.id.da_loan_data_title);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -1081,8 +1065,8 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             @Override
             public void onPageSelected(int position) {
                 selectedPosition = position;
-                if(selectedPosition == 3){
-                    ((MainMenuActivityDrawer)getActivity()).setLanguageListener(SmallLoanGuarantorFragment.this);
+                if (selectedPosition == 3) {
+                    ((MainMenuActivityDrawer) getActivity()).setLanguageListener(SmallLoanGuarantorFragment.this);
                 }
             }
 
@@ -1100,7 +1084,6 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                     }
                 }
             }
-
         });
 
         final List<TownshipCodeResDto> townshipCodeResDtoList = PreferencesManager.getTownshipCode(getActivity());
@@ -1128,7 +1111,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                 if (!isInit) {
                     if (isEmptyOrNull(autoCompleteTwspCode.getText().toString())) {
                         autoCompleteTwspCode.setText(BLANK);
-                    }else if(!townshipCode.contains(autoCompleteTwspCode.getText().toString())){
+                    } else if (!townshipCode.contains(autoCompleteTwspCode.getText().toString())) {
                         autoCompleteTwspCode.setText(BLANK);
                     }
                 }
@@ -1213,6 +1196,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                 dialog.show(getChildFragmentManager(), "TAG");
             }
         });
+
         if (curLang.equals(LANG_MM)) {
             changeLabel(LANG_MM);
         } else {
@@ -1220,7 +1204,6 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         }
 
         replaceLastGuarantorInfo();
-        //Log.e("Page create", "Gurantor fragment");
 
         currentQuarterCheck = curQuarter.getText().toString();
         if (!isEmptyOrNull(currentQuarterCheck)) {
@@ -1353,6 +1336,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         if (!isEmptyOrNull(mobileNoCheck)) {
             guar_mobileNo.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
         }
+
         guar_mobileNo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean focus) {
@@ -1477,17 +1461,12 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                 }
             }
         });
-
-        Log.e("Township_1 : ", String.valueOf(perTownshipList.size()));
-
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        //replaceLastGuarantorInfo();
-        //Log.e("Resume", "=================Guarantor Fragment");
     }
 
     @Override
@@ -1495,27 +1474,22 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
 
         switch (item.getItemId()) {
             case R.id.action_favorite:
-                //this.languageFlag = item;
                 if (item.getTitle().equals(LANG_MM)) {
                     item.setIcon(R.drawable.en_flag2);
                     item.setTitle(LANG_EN);
                     changeLabel(LANG_MM);
-
                 } else if (item.getTitle().equals(LANG_EN)) {
                     item.setIcon(R.drawable.mm_flag);
                     item.setTitle(LANG_MM);
                     changeLabel(LANG_EN);
                 }
-
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void guarantorSaveToDatabase() {
-
         setUpGuarantorFormData();
-
         ApplicationRegisterSaveReqBean saveDataBean = new ApplicationRegisterSaveReqBean();
 
         if (PreferencesManager.isDaftSavedInfoExisted(getActivity())) {
@@ -1528,7 +1502,6 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
 
         GuarantorFormBean guarantorData = new GuarantorFormBean();
         guarantorData.setName(name);
-        Log.e("Guarantor Name Print", name);
         guarantorData.setDob(dateToString2(dob));
         guarantorData.setNrcNo(nrc);
         guarantorData.setNationalityOther(nationalityDetail);
@@ -1562,7 +1535,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         guarantorData.setCurrentAddressStreet(currentStreet);
         guarantorData.setCurrentAddressQtr(currentQuarter);
 
-        int city_id = getCityId(cityId, cityList,guarantorCity);
+        int city_id = getCityId(cityId, cityList, guarantorCity);
         int town_id = getTownshipId(cityTownshipList, city_id, guarantorTownship);
 
         guarantorData.setCurrentAddressCity(city_id);
@@ -1574,7 +1547,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         guarantorData.setCompanyAddressStreet(permanentStreet);
         guarantorData.setCompanyAddressQtr(permanentQuarter);
 
-        int com_city_id = getCityId(cityId, cityList,appCompanyCity);
+        int com_city_id = getCityId(cityId, cityList, appCompanyCity);
         int com_town_id = getTownshipId(cityTownshipList, com_city_id, appCompanyTownship);
 
         guarantorData.setCompanyAddressCity(com_city_id);
@@ -1599,21 +1572,14 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                 req.enqueue(new Callback<BaseResponse<ApplicationRegisterSaveReqBean>>() {
                     @Override
                     public void onResponse(Call<BaseResponse<ApplicationRegisterSaveReqBean>> call, Response<BaseResponse<ApplicationRegisterSaveReqBean>> response) {
-
                         if (response.isSuccessful()) {
-
                             BaseResponse baseResponse = response.body();
-
                             if (baseResponse != null) {
-
                                 if (baseResponse.getStatus().equals(SUCCESS)) {
-
                                     ApplicationRegisterSaveReqBean localSaveReqBean = (ApplicationRegisterSaveReqBean) baseResponse.getData();
                                     PreferencesManager.saveDaftSavedInfo(getActivity(), localSaveReqBean);
-
                                     saveDialog.dismiss();
                                     showSnackBarMessage("Guarantor Info. saved.");
-
                                 } else {
                                     saveDialog.dismiss();
                                     showSnackBarMessage("Guarantor Info. cannot be saved.");
@@ -1635,16 +1601,12 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                     }
                 });
             }
-
         } else {
             showSnackBarMessage("Guarantor Info. is required to save.");
         }
     }
 
     private void replaceLastGuarantorInfo() {
-
-        // replace error message
-        Log.e("replace Guarantor Data", PreferencesManager.isDaftSavedErrExisted(getActivity()) + "");
 
         if (PreferencesManager.isDaftSavedErrExisted(getActivity())) {
             ApplicationFormErrMesgBean savedInformation
@@ -1661,7 +1623,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             errCompanyNameLocale = savedInformation.getGuaCompanyName();
             errCompanyTelLocale = savedInformation.getGuaCompanyTelNo();
             errDepartmentLocale = savedInformation.getGuaCompanyDepartment();
-            errPositonLocale = savedInformation.getGuaCompanyPosition();
+            errPositionLocale = savedInformation.getGuaCompanyPosition();
             errServiceLocale = savedInformation.getGuaServiceYear();
             errMonthlyIncomeLocale = savedInformation.getGuaMonthlyIncome();
 
@@ -1761,9 +1723,9 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                 errDepartment.setVisibility(View.VISIBLE);
             }
 
-            if (errPositonLocale != R.string.da_mesg_blank) {
-                errPositon.setText(CommonUtils.getLocaleString(new Locale(curLang), errPositonLocale, getContext()));
-                errPositon.setVisibility(View.VISIBLE);
+            if (errPositionLocale != R.string.da_mesg_blank) {
+                errPosition.setText(CommonUtils.getLocaleString(new Locale(curLang), errPositionLocale, getContext()));
+                errPosition.setVisibility(View.VISIBLE);
             }
 
             if (errServiceLocale != R.string.da_mesg_blank) {
@@ -1778,7 +1740,6 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         }
 
         // saved form bean
-        Log.e("Replace Gua-Name", String.valueOf(PreferencesManager.isDaftSavedInfoExisted(getActivity())));
         if (PreferencesManager.isDaftSavedInfoExisted(getActivity())) {
 
             ApplicationRegisterSaveReqBean savedInformation
@@ -1790,7 +1751,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             try {
 
                 GuarantorFormBean guarantorDataBean = savedInformation.getGuarantorInfoDto();
-                if(guarantorDataBean.getNrcNo()!=BLANK){
+                if (guarantorDataBean.getNrcNo() != BLANK) {
                     NrcBean nrc = getNrcFromString(guarantorDataBean.getNrcNo(), getActivity());
                     setUpNrcInfo(nrc);
                 }
@@ -1819,23 +1780,24 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                 curFloorNo.setText(guarantorDataBean.getCurrentAddressFloor());
                 curStreet.setText(guarantorDataBean.getCurrentAddressStreet());
                 curQuarter.setText(guarantorDataBean.getCurrentAddressQtr());
-                if (guarantorDataBean.getCurrentAddressCity()==0){
+
+                if (guarantorDataBean.getCurrentAddressCity() == 0) {
                     currentGuarantorCity.setText("");
-                }else {
+                } else {
                     currentGuarantorCity.setText(getCity(cityId, cityList, guarantorDataBean.getCurrentAddressCity()));
                     this.setSelectedTownshipList(guarantorDataBean.getCurrentAddressCity().intValue(), CURRENT);
 
-                    setUpCurrentTownshipList(cityTownshipList,currentGuarantorCity.getText().toString());
+                    setUpCurrentTownshipList(cityTownshipList, currentGuarantorCity.getText().toString());
                     final ArrayAdapter<String> guaCurrentTownship = new ArrayAdapter<String>(getActivity(), R.layout.nrc_spinner_item_2, townshipList);
                     guaCurrentTownship.setDropDownViewResource(R.layout.dialog_nrc_division);
                     guaCurrentTownship.setNotifyOnChange(true);
                     currentGuarantorTownship.setThreshold(1);
                     currentGuarantorTownship.setAdapter(guaCurrentTownship);
                 }
-                if (guarantorDataBean.getCurrentAddressTownship()==0){
+                if (guarantorDataBean.getCurrentAddressTownship() == 0) {
                     currentGuarantorTownship.setText("");
-                }else {
-                    currentGuarantorTownship.setText(getTownship(cityTownshipList, guarantorDataBean.getCurrentAddressCity(), guarantorDataBean.getCurrentAddressTownship(),CURRENT));
+                } else {
+                    currentGuarantorTownship.setText(getTownship(cityTownshipList, guarantorDataBean.getCurrentAddressCity(), guarantorDataBean.getCurrentAddressTownship(), CURRENT));
                 }
 
                 perApartmentNo.setText(guarantorDataBean.getCompanyAddressBuildingNo());
@@ -1843,10 +1805,11 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                 perFloorNo.setText(guarantorDataBean.getCompanyAddressFloor());
                 perStreet.setText(guarantorDataBean.getCompanyAddressStreet());
                 perQuarter.setText(guarantorDataBean.getCompanyAddressQtr());
-                if (guarantorDataBean.getCompanyAddressCity()==0){
+
+                if (guarantorDataBean.getCompanyAddressCity() == 0) {
                     guarantorCompanyCity.setText("");
                     this.setSelectedTownshipList(guarantorDataBean.getCompanyAddressCity().intValue(), COMPANY);
-                }else {
+                } else {
                     guarantorCompanyCity.setText(getCity(cityId, cityList, guarantorDataBean.getCompanyAddressCity()));
                     // bing township list
                     setUpPermanentTownshipList(cityTownshipList, guarantorCompanyCity.getText().toString());
@@ -1855,12 +1818,12 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                     guaPermanentTownship.setNotifyOnChange(true);
                     currentGuarantorTownship.setThreshold(1);
                     currentGuarantorTownship.setAdapter(guaPermanentTownship);
-                    Log.e("Township : ", String.valueOf(perTownshipList.size()));
                 }
-                if (guarantorDataBean.getCompanyAddressTownship()==0){
+
+                if (guarantorDataBean.getCompanyAddressTownship() == 0) {
                     guarantorCompanyTownship.setText("");
-                }else {
-                    guarantorCompanyTownship.setText(getTownship(cityTownshipList, guarantorDataBean.getCompanyAddressCity(), guarantorDataBean.getCompanyAddressTownship(),COMPANY));
+                } else {
+                    guarantorCompanyTownship.setText(getTownship(cityTownshipList, guarantorDataBean.getCompanyAddressCity(), guarantorDataBean.getCompanyAddressTownship(), COMPANY));
                 }
 
                 if (nationality == 1) {
@@ -1901,132 +1864,109 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         if (errMesgBean == null) {
             errMesgBean = new ApplicationFormErrMesgBean();
         }
+
         /*Name*/
         if (CommonUtils.isEmptyOrNull(name)) {
             errName.setVisibility(View.VISIBLE);
             errName.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.register_name_err, getActivity()));
             errNameLocale = R.string.register_name_err;
-            errMesgBean.setGuaName(errNameLocale);
-
-        }else {
+        } else {
             errName.setVisibility(View.GONE);
             errNameLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaName(errNameLocale);
         }
+        errMesgBean.setGuaName(errNameLocale);
 
-        if(!CommonUtils.isEmptyOrNull(residentMobile)){
-            if(!CommonUtils.isNumberValid(residentMobile)){
+        if (!CommonUtils.isEmptyOrNull(residentMobile)) {
+            if (!CommonUtils.isTelPhoneNoValid(residentMobile)) {
                 errResidentTel.setVisibility(View.VISIBLE);
                 errResidentTel.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_residentTelNo_format_err, getActivity()));
                 errResidentTelLocale = R.string.da_otherPhoneNo_format_err;
-                errMesgBean.setGuaResidentTelNo(errResidentTelLocale);
-
             } else {
                 errResidentTel.setVisibility(View.GONE);
                 errResidentTelLocale = R.string.da_mesg_blank;
-                errMesgBean.setGuaResidentTelNo(errResidentTelLocale);
             }
         } else {
             errResidentTel.setVisibility(View.GONE);
             errResidentTelLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaResidentTelNo(errResidentTelLocale);
         }
+        errMesgBean.setGuaResidentTelNo(errResidentTelLocale);
 
         /*Current Quarter*/
         if (CommonUtils.isEmptyOrNull(currentQuarter)) {
             errGuarantorQuarter.setVisibility(View.VISIBLE);
             errGuarantorQuarter.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_quarter, getActivity()));
             errGuarantorQuarterLocale = R.string.da_err_quarter;
-            errMesgBean.setGuaQuarter(errGuarantorQuarterLocale);
-        }else {
+        } else {
             errGuarantorQuarter.setVisibility(View.GONE);
             errGuarantorQuarterLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaQuarter(errGuarantorQuarterLocale);
         }
+        errMesgBean.setGuaQuarter(errGuarantorQuarterLocale);
 
         /*Company Quarter*/
         if (CommonUtils.isEmptyOrNull(permanentQuarter)) {
             errGuarantorComQuarter.setVisibility(View.VISIBLE);
             errGuarantorComQuarter.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_quarter, getActivity()));
             errGuarantorComQuarterLocale = R.string.da_err_quarter;
-            errMesgBean.setGuaComQuarter(errGuarantorComQuarterLocale);
-        }else {
+        } else {
             errGuarantorComQuarter.setVisibility(View.GONE);
             errGuarantorComQuarterLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaComQuarter(errGuarantorComQuarterLocale);
         }
+        errMesgBean.setGuaComQuarter(errGuarantorComQuarterLocale);
 
         /*Date of Birth*/
         if (CommonUtils.isEmptyOrNull(dob)) {
             errDob.setVisibility(View.VISIBLE);
             errDob.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.register_dob_err, getActivity()));
             errDobLocale = R.string.register_dob_err;
-            errMesgBean.setGuaDob(errDobLocale);
-
         } else {
             errDob.setVisibility(View.GONE);
             errDobLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaDob(errDobLocale);
         }
-
-        /*currentStreet = curStreet.getText().toString();
-        permanentStreet = perStreet.getText().toString();
-        guarantorCity = currentGuarantorCity.getText().toString();
-        guarantorTownship = currentGuarantorTownship.getText().toString();
-        appCompanyCity = guarantorCompanyCity.getText().toString();
-        appCompanyTownship = guarantorCompanyTownship.getText().toString();*/
+        errMesgBean.setGuaDob(errDobLocale);
 
         /*guarantor street*/
         if (CommonUtils.isEmptyOrNull(currentStreet)) {
             errGuarantorStreet.setVisibility(View.VISIBLE);
             errGuarantorStreet.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_street, getActivity()));
             errGuarantorStreetLocale = R.string.da_err_street;
-            errMesgBean.setGuaStreet(errGuarantorStreetLocale);
-
         } else {
             errGuarantorStreet.setVisibility(View.GONE);
             errGuarantorStreetLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaStreet(errGuarantorStreetLocale);
         }
+        errMesgBean.setGuaStreet(errGuarantorStreetLocale);
 
         /*guarantor city*/
         if (CommonUtils.isEmptyOrNull(guarantorCity)) {
             errGuarantorCity.setVisibility(View.VISIBLE);
             errGuarantorCity.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_city, getActivity()));
             errGuarantorCityLocale = R.string.da_err_city;
-            errMesgBean.setGuaCity(errGuarantorCityLocale);
-
         } else {
             errGuarantorCity.setVisibility(View.GONE);
             errGuarantorCityLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaCity(errGuarantorCityLocale);
         }
+        errMesgBean.setGuaCity(errGuarantorCityLocale);
 
         /*guarantor township*/
         if (CommonUtils.isEmptyOrNull(guarantorTownship)) {
             errGuarantorTownship.setVisibility(View.VISIBLE);
             errGuarantorTownship.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_township, getActivity()));
             errGuarantorTownshipLocale = R.string.da_err_township;
-            errMesgBean.setGuaTownship(errGuarantorTownshipLocale);
-
         } else {
             errGuarantorTownship.setVisibility(View.GONE);
             errGuarantorTownshipLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaTownship(errGuarantorTownshipLocale);
         }
+        errMesgBean.setGuaTownship(errGuarantorTownshipLocale);
 
         /*company street*/
         if (CommonUtils.isEmptyOrNull(permanentStreet)) {
             errGuarantorComStreet.setVisibility(View.VISIBLE);
             errGuarantorComStreet.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_street, getActivity()));
             errGuarantorComStreetLocale = R.string.da_err_street;
-            errMesgBean.setGuaComStreet(errGuarantorComStreetLocale);
-
         } else {
             errGuarantorComStreet.setVisibility(View.GONE);
             errGuarantorComStreetLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaComStreet(errGuarantorComStreetLocale);
         }
+        errMesgBean.setGuaComStreet(errGuarantorComStreetLocale);
 
         /*company city */
         if (CommonUtils.isEmptyOrNull(appCompanyCity)) {
@@ -2046,30 +1986,27 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             errGuarantorComTownship.setVisibility(View.VISIBLE);
             errGuarantorComTownship.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_township, getActivity()));
             errGuarantorComTownshipLocale = R.string.da_err_township;
-            errMesgBean.setGuaComTownship(errGuarantorComTownshipLocale);
-
         } else {
             errGuarantorComTownship.setVisibility(View.GONE);
             errGuarantorComTownshipLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaComTownship(errGuarantorComTownshipLocale);
         }
+        errMesgBean.setGuaComTownship(errGuarantorComTownshipLocale);
 
         /*Nrc No.*/
-        if(nrcNumber==null || nrcNumber.equals(BLANK) ||
-                townshipCodeVal==null || townshipCodeVal.equals(BLANK)){
+        if (nrcNumber == null || nrcNumber.equals(BLANK) ||
+                townshipCodeVal == null || townshipCodeVal.equals(BLANK)) {
             errNrc.setVisibility(View.VISIBLE);
             errNrc.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.register_nrc_err, getActivity()));
             errNrcLocale = R.string.register_nrc_err;
             errMesgBean.setGuaNrc(errNrcLocale);
-        } else if(!isNrcCodeValid(nrcNumber)){
+        } else if (!isNrcCodeValid(nrcNumber)) {
             errNrc.setVisibility(View.VISIBLE);
             errNrc.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.register_nrc_format_err, getActivity()));
             errNrcLocale = R.string.register_nrc_format_err;
             errMesgBean.setGuaNrc(errNrcLocale);
-        } else if(!townshipCode.contains(autoCompleteTwspCode.getText().toString())){
+        } else if (!townshipCode.contains(autoCompleteTwspCode.getText().toString())) {
             autoCompleteTwspCode.setText(BLANK);
-            Log.e("township code", "blank");
-        }else{
+        } else {
             errNrc.setVisibility(View.GONE);
             errNrcLocale = R.string.register_nrc_err;
             errMesgBean.setGuaNrc(errDobLocale);
@@ -2098,13 +2035,11 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             errCompanyTel.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.register_phoneno_err, getActivity()));
             errCompanyTelLocale = R.string.register_phoneno_err;
             errMesgBean.setGuaCompanyTelNo(errCompanyTelLocale);
-
-        }else if(!CommonUtils.isPhoneNoValid(companyTel)){
+        } else if (!CommonUtils.isTelPhoneNoValid(companyTel)) {
             errCompanyTel.setVisibility(View.VISIBLE);
             errCompanyTel.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.register_tel_no_format_err_msg, getActivity()));
             errCompanyTelLocale = R.string.register_tel_no_format_err_msg;
             errMesgBean.setGuaCompanyTelNo(errCompanyTelLocale);
-
         } else {
             errCompanyTel.setVisibility(View.GONE);
             errCompanyTelLocale = R.string.da_mesg_blank;
@@ -2117,42 +2052,37 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
                 errNationalityDetail.setVisibility(View.VISIBLE);
                 errNationalityDetail.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_nationality_require_err, getActivity()));
                 errNationalityDetailLocale = R.string.da_nationality_require_err;
-                errMesgBean.setGuaNationality(errNationalityDetailLocale);
-
             } else {
                 errNationalityDetail.setVisibility(View.GONE);
                 errNationalityDetailLocale = R.string.da_mesg_blank;
-                errMesgBean.setGuaNationality(errNationalityDetailLocale);
             }
+            errMesgBean.setGuaNationality(errNationalityDetailLocale);
         }
 
         /*Relationship with Applicant*/
-        if(relationship == EMERGENCY_RELATION_OTHER){
-            if(relationshipDetail == null || relationshipDetail.equals(BLANK) || relationshipDetail.equals(SPACE)) {
+        if (relationship == EMERGENCY_RELATION_OTHER) {
+            if (relationshipDetail == null || relationshipDetail.equals(BLANK) || relationshipDetail.equals(SPACE)) {
                 errRelationshipDetail.setVisibility(View.VISIBLE);
                 errRelationshipDetail.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_relationship_require_err, getActivity()));
                 errRelationshipDetailLocale = R.string.da_relationship_require_err;
-                errMesgBean.setGuaRelationshipLocale(errRelationshipDetailLocale);
-
             } else {
                 errRelationshipDetail.setVisibility(View.GONE);
                 errRelationshipDetailLocale = R.string.da_mesg_blank;
-                errMesgBean.setGuaRelationshipLocale(errRelationshipDetailLocale);
             }
+            errMesgBean.setGuaRelationshipLocale(errRelationshipDetailLocale);
         }
 
         /*Type of Residence*/
-        if(residentType == CommonConstants.RESIDENT_OTHER){
+        if (residentType == CommonConstants.RESIDENT_OTHER) {
             if (residentTypeDetail == null || residentTypeDetail.equals(BLANK) || residentTypeDetail.equals(SPACE)) {
                 errResidentTypeDetail.setVisibility(View.VISIBLE);
                 errResidentTypeDetail.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_residentType_require_err, getActivity()));
                 errResidentTypeDetailLocale = R.string.da_residentType_require_err;
-                errMesgBean.setGuaTypeOfResident(errResidentTypeDetailLocale);
-            } else{
+            } else {
                 errResidentTypeDetail.setVisibility(View.GONE);
                 errResidentTypeDetailLocale = R.string.da_mesg_blank;
-                errMesgBean.setGuaTypeOfResident(errResidentTypeDetailLocale);
             }
+            errMesgBean.setGuaTypeOfResident(errResidentTypeDetailLocale);
         }
 
         /*Year of Stay*/
@@ -2161,20 +2091,15 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             errStayTime.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_yearStay_require_err, getActivity()));
             errStayTimeLocale = R.string.da_yearStay_require_err;
             errMesgBean.setGuaYearOfStay(errStayTimeLocale);
-
-
         } else if (stayMonth > 11) {
             errStayTime.setVisibility(View.VISIBLE);
             errStayTime.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_yearStayMonth_exceed_err, getActivity()));
             errStayTimeLocale = R.string.da_yearStayMonth_exceed_err;
             errMesgBean.setGuaYearOfStay(errStayTimeLocale);
-
-
         } else {
             errStayTime.setVisibility(View.GONE);
             errStayTimeLocale = R.string.da_mesg_blank;
             errMesgBean.setGuaYearOfStay(errStayTimeLocale);
-
         }
 
         /*Company Name*/
@@ -2182,74 +2107,55 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             errCompanyName.setVisibility(View.VISIBLE);
             errCompanyName.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_companyName_require_err, getActivity()));
             errCompanyNameLocale = R.string.da_companyName_require_err;
-            errMesgBean.setGuaCompanyName(errCompanyNameLocale);
-
-
         } else {
             errCompanyName.setVisibility(View.GONE);
             errCompanyNameLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaCompanyName(errCompanyNameLocale);
-
         }
+        errMesgBean.setGuaCompanyName(errCompanyNameLocale);
 
         /*Department*/
         if (CommonUtils.isEmptyOrNull(department)) {
             errDepartment.setVisibility(View.VISIBLE);
             errDepartment.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_department_require_err, getActivity()));
             errDepartmentLocale = R.string.da_department_require_err;
-            errMesgBean.setGuaCompanyDepartment(errDepartmentLocale);
-
-
         } else {
             errDepartment.setVisibility(View.GONE);
             errDepartmentLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaCompanyDepartment(errDepartmentLocale);
-
         }
+        errMesgBean.setGuaCompanyDepartment(errDepartmentLocale);
 
         /*Position*/
         if (CommonUtils.isEmptyOrNull(position)) {
-            errPositon.setVisibility(View.VISIBLE);
-            errPositon.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_position_require_err, getActivity()));
-            errPositonLocale = R.string.da_position_require_err;
-            errMesgBean.setGuaCompanyPosition(errPositonLocale);
-
-
+            errPosition.setVisibility(View.VISIBLE);
+            errPosition.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_position_require_err, getActivity()));
+            errPositionLocale = R.string.da_position_require_err;
         } else {
-            errPositon.setVisibility(View.GONE);
-            errPositonLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaCompanyPosition(errPositonLocale);
-
+            errPosition.setVisibility(View.GONE);
+            errPositionLocale = R.string.da_mesg_blank;
         }
+        errMesgBean.setGuaCompanyPosition(errPositionLocale);
 
         /*Year of Service*/
         if (serviceYear == 0 && serviceMonth == 0) {
             errService.setVisibility(View.VISIBLE);
             errService.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_serviceYear_require_err, getActivity()));
             errServiceLocale = R.string.da_serviceYear_require_err;
-            errMesgBean.setGuaServiceYear(errServiceLocale);
-
         } else {
             errService.setVisibility(View.GONE);
             errServiceLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaServiceYear(errServiceLocale);
-
         }
+        errMesgBean.setGuaServiceYear(errServiceLocale);
 
         /*Monthly Basic Income*/
         if (monthlyIncome == 0.0) {
             errMonthlyIncome.setVisibility(View.VISIBLE);
             errMonthlyIncome.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_basicIncome_require_err, getActivity()));
             errMonthlyIncomeLocale = R.string.da_basicIncome_require_err;
-            errMesgBean.setGuaMonthlyIncome(errMonthlyIncomeLocale);
-
-
         } else {
             errMonthlyIncome.setVisibility(View.GONE);
             errMonthlyIncomeLocale = R.string.da_mesg_blank;
-            errMesgBean.setGuaMonthlyIncome(errMonthlyIncomeLocale);
-
         }
+        errMesgBean.setGuaMonthlyIncome(errMonthlyIncomeLocale);
 
         PreferencesManager.saveErrorMesgInfo(getContext(), errMesgBean);
     }
@@ -2263,8 +2169,8 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         if (CommonUtils.isEmptyOrNull(name)) {
             validate = false;
         }
-        if(!CommonUtils.isEmptyOrNull(residentMobile)){
-            if(!CommonUtils.isNumberValid(residentMobile)) {
+        if (!CommonUtils.isEmptyOrNull(residentMobile)) {
+            if (!CommonUtils.isTelPhoneNoValid(residentMobile)) {
                 validate = false;
             }
         }
@@ -2306,14 +2212,13 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         }
 
         /*NRC NO.*/
-        if(nrcNumber==null || nrcNumber.equals(BLANK) ||
-                townshipCodeVal==null || townshipCodeVal.equals(BLANK)){
+        if (nrcNumber == null || nrcNumber.equals(BLANK) ||
+                townshipCodeVal == null || townshipCodeVal.equals(BLANK)) {
             validate = false;
-        } else if(!isNrcCodeValid(nrcNumber)){
+        } else if (!isNrcCodeValid(nrcNumber)) {
             validate = false;
-        } else if(!townshipCode.contains(autoCompleteTwspCode.getText().toString())){
+        } else if (!townshipCode.contains(autoCompleteTwspCode.getText().toString())) {
             autoCompleteTwspCode.setText(BLANK);
-            Log.e("township code", "blank");
             validate = false;
         }
 
@@ -2327,7 +2232,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         /*Company Tel No.*/
         if (CommonUtils.isEmptyOrNull(companyTel)) {
             validate = false;
-        } else if (!CommonUtils.isPhoneNoValid(companyTel)) {
+        } else if (!CommonUtils.isTelPhoneNoValid(companyTel)) {
             validate = false;
         }
 
@@ -2398,10 +2303,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
 
     public void changeLabel(String language) {
 
-        /*loanDataTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_loanConfirm_title, getContext()));
-        emergencyTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_emergency_title, getContext()));*/
-
-        guarantorTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_guarantor_title, getContext()));
+        //guarantorTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_guarantor_title, getContext()));
 
         labelName.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_applicant_name, getActivity()));
         errName.setText(CommonUtils.getLocaleString(new Locale(language), errNameLocale, getActivity()));
@@ -2453,8 +2355,8 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         labelDepartment.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_guarantor_department, getActivity()));
         errDepartment.setText(CommonUtils.getLocaleString(new Locale(language), errDepartmentLocale, getActivity()));
 
-        labelPositon.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_guarantor_position, getActivity()));
-        errPositon.setText(CommonUtils.getLocaleString(new Locale(language), errPositonLocale, getActivity()));
+        labelPosition.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_guarantor_position, getActivity()));
+        errPosition.setText(CommonUtils.getLocaleString(new Locale(language), errPositionLocale, getActivity()));
 
         labelService.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_guarantor_serviceyear, getActivity()));
         errService.setText(CommonUtils.getLocaleString(new Locale(language), errServiceLocale, getActivity()));
@@ -2487,6 +2389,8 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         labelServiceYear.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_guarantor_service_year, getActivity()));
         labelServiceMonth.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_guarantor_service_month, getActivity()));
 
+        currencyUnit.setText(CommonUtils.getLocaleString(new Locale(language), R.string.mem_card_amt_unit, getActivity()));
+
         btnNext.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_applicant_next_btn, getActivity()));
         btnSave.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_applicant_save_btn, getActivity()));
 
@@ -2505,9 +2409,9 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         nrcNumber = guar_nrc.getText().toString();
         townshipCodeVal = autoCompleteTwspCode.getText().toString();
         companyName = guar_companyName.getText().toString();
-        if(isEmptyOrNull(townshipCodeVal)||isEmptyOrNull(nrcNumber)){
+        if (isEmptyOrNull(townshipCodeVal) || isEmptyOrNull(nrcNumber)) {
             nrc = BLANK;
-        }else{
+        } else {
             nrc = stateDivCodeVal + "/" + townshipCodeVal + nrcTypeVal + nrcNumber;
         }
 
@@ -2570,21 +2474,19 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
     }
 
     void appLoadInputData() {
-
         setUpGuarantorFormData();
-
         ApplicationRegisterSaveReqBean registerSaveReqBean
                 = new ApplicationRegisterSaveReqBean();
         GuarantorFormBean guarantorFormBean
                 = new GuarantorFormBean();
+
         if (PreferencesManager.isDaftSavedInfoExisted(getActivity())) {
             registerSaveReqBean = PreferencesManager.getDaftSavedInfo(getActivity());
-
-            if(registerSaveReqBean.getGuarantorInfoDto()!= null){
+            if (registerSaveReqBean.getGuarantorInfoDto() != null) {
                 guarantorFormBean.setDaGuarantorInfoId(registerSaveReqBean.getGuarantorInfoDto().getDaGuarantorInfoId());
             }
-
         }
+
         guarantorFormBean.setName(name);
         guarantorFormBean.setDob(dob);
         guarantorFormBean.setNrcNo(nrc);
@@ -2617,7 +2519,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         guarantorFormBean.setCurrentAddressStreet(currentStreet);
         guarantorFormBean.setCurrentAddressQtr(currentQuarter);
 
-        int city_id = getCityId(cityId, cityList,guarantorCity);
+        int city_id = getCityId(cityId, cityList, guarantorCity);
         int town_id = getTownshipId(cityTownshipList, city_id, guarantorTownship);
 
         guarantorFormBean.setCurrentAddressCity(city_id);
@@ -2629,7 +2531,7 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         guarantorFormBean.setCompanyAddressStreet(permanentStreet);
         guarantorFormBean.setCompanyAddressQtr(permanentQuarter);
 
-        int company_city_id = getCityId(cityId, cityList,appCompanyCity);
+        int company_city_id = getCityId(cityId, cityList, appCompanyCity);
         int company_town_id = getTownshipId(cityTownshipList, company_city_id, guarantorCompanyTownship.getText().toString());
 
         guarantorFormBean.setCompanyAddressCity(company_city_id);
@@ -2643,12 +2545,12 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
     void setUpDataOnPageChanged() {
         appLoadInputData();
         MainMenuActivityDrawer.guraDataCorrect = checkGuarantorData();
-        //Log.e("Guarantor Data", String.valueOf(MainMenuActivityDrawer.guraDataCorrect));
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
         dobCheck = guarantorDob.getText().toString();
         if (!isEmptyOrNull(dobCheck)) {
             guarantorDob.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
@@ -2711,7 +2613,6 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //Log.e("fragment ", "on destroy");
     }
 
 
@@ -2744,14 +2645,6 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         }
     }
 
-    /*void displayLivingWithDesc() {
-        if (livingWith == 5) {
-            guar_livingWithDetail.setVisibility(View.VISIBLE);
-        } else {
-            guar_livingWithDetail.setVisibility(View.GONE);
-        }
-    }*/
-
     private String commaRemove(char[] chars) {
         int countChar = 0;
         for (int i = 0; i < chars.length; i++) {
@@ -2771,22 +2664,22 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         return input;
     }
 
-    void setUpCityList(List<CityTownshipResBean> cityTownshipList){
+    void setUpCityList(List<CityTownshipResBean> cityTownshipList) {
         cityList = new ArrayList<>();
         cityId = new ArrayList<>();
-        for(CityTownshipResBean listBean: cityTownshipList){
+        for (CityTownshipResBean listBean : cityTownshipList) {
             cityList.add(listBean.getName());
             cityId.add(listBean.getCityId());
         }
     }
 
-    void setUpCurrentTownshipList(List<CityTownshipResBean> cityTownshipList, String cityName){
+    void setUpCurrentTownshipList(List<CityTownshipResBean> cityTownshipList, String cityName) {
         townshipList = new ArrayList<>();
         townshipId = new ArrayList<>();
-        for(CityTownshipResBean listBean: cityTownshipList){
-            if(listBean.getName().equals(cityName)){
+        for (CityTownshipResBean listBean : cityTownshipList) {
+            if (listBean.getName().equals(cityName)) {
                 townshipBeanList = listBean.getTownshipInfoList();
-                for(TownshipListBean townshipBean : townshipBeanList){
+                for (TownshipListBean townshipBean : townshipBeanList) {
                     townshipList.add(townshipBean.getName());
                     townshipId.add(townshipBean.getTownshipId());
                 }
@@ -2794,13 +2687,13 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         }
     }
 
-    void setUpPermanentTownshipList(List<CityTownshipResBean> cityTownshipList, String cityName){
+    void setUpPermanentTownshipList(List<CityTownshipResBean> cityTownshipList, String cityName) {
         perTownshipList = new ArrayList<>();
         perTownshipId = new ArrayList<>();
-        for(CityTownshipResBean listBean: cityTownshipList){
-            if(listBean.getName().equals(cityName)){
+        for (CityTownshipResBean listBean : cityTownshipList) {
+            if (listBean.getName().equals(cityName)) {
                 townshipBeanList = listBean.getTownshipInfoList();
-                for(TownshipListBean townshipBean : townshipBeanList){
+                for (TownshipListBean townshipBean : townshipBeanList) {
                     perTownshipList.add(townshipBean.getName());
                     perTownshipId.add(townshipBean.getTownshipId());
                 }
@@ -2808,24 +2701,24 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         }
     }
 
-    String getCity(List<Integer> cityID,List<String> cityName, int cityId){
+    String getCity(List<Integer> cityID, List<String> cityName, int cityId) {
         String city = "";
-        for(int id = 0; id<cityID.size(); id++){
-            if(cityID.get(id) == cityId){
+        for (int id = 0; id < cityID.size(); id++) {
+            if (cityID.get(id) == cityId) {
                 city = cityName.get(id);
             }
         }
-        return  city;
+        return city;
     }
 
-    String getTownship(List<CityTownshipResBean> cityTownshipList, int cityId, int townId, int index){
+    String getTownship(List<CityTownshipResBean> cityTownshipList, int cityId, int townId, int index) {
         String township = "";
         townshipList = new ArrayList<>();
         townshipId = new ArrayList<>();
-        for(CityTownshipResBean listBean: cityTownshipList){
-            if(listBean.getCityId()== cityId){
+        for (CityTownshipResBean listBean : cityTownshipList) {
+            if (listBean.getCityId() == cityId) {
                 List<TownshipListBean> townshipBeanList = listBean.getTownshipInfoList();
-                for(TownshipListBean townshipBean : townshipBeanList){
+                for (TownshipListBean townshipBean : townshipBeanList) {
                     townshipList.add(townshipBean.getName());
                     townshipId.add(townshipBean.getTownshipId());
                 }
@@ -2846,8 +2739,8 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
             }
         }
 
-        for(int id = 0; id<townshipId.size(); id++){
-            if(townshipId.get(id) == townId){
+        for (int id = 0; id < townshipId.size(); id++) {
+            if (townshipId.get(id) == townId) {
                 township = townshipList.get(id);
             }
         }
@@ -2855,21 +2748,21 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         return township;
     }
 
-    int getCityId(List<Integer> cityID,List<String> cityName, String name){
-        for(int id = 0; id<cityName.size(); id++){
-            if(cityName.get(id).equals(name)){
+    int getCityId(List<Integer> cityID, List<String> cityName, String name) {
+        for (int id = 0; id < cityName.size(); id++) {
+            if (cityName.get(id).equals(name)) {
                 saveCityid = cityID.get(id);
             }
         }
-        return  saveCityid;
+        return saveCityid;
     }
 
-    private void setSelectedTownshipList(int cityId, int index){
+    private void setSelectedTownshipList(int cityId, int index) {
 
-        for(CityTownshipResBean listBean: cityTownshipList){
-            if(listBean.getCityId()== cityId){
+        for (CityTownshipResBean listBean : cityTownshipList) {
+            if (listBean.getCityId() == cityId) {
                 List<TownshipListBean> townshipBeanList = listBean.getTownshipInfoList();
-                for(TownshipListBean townshipBean : townshipBeanList){
+                for (TownshipListBean townshipBean : townshipBeanList) {
                     townshipList.add(townshipBean.getName());
                     townshipId.add(townshipBean.getTownshipId());
                 }
@@ -2891,25 +2784,23 @@ public class SmallLoanGuarantorFragment extends PagerRootFragment implements Lan
         }
     }
 
-    int getTownshipId(List<CityTownshipResBean> cityTownshipList, int cityId, String name){
+    int getTownshipId(List<CityTownshipResBean> cityTownshipList, int cityId, String name) {
         List<String> saveTownshipList = new ArrayList<>();
         List<Integer> saveTownshipId = new ArrayList<>();
-        for(CityTownshipResBean listBean: cityTownshipList){
-            if(listBean.getCityId()== cityId){
+        for (CityTownshipResBean listBean : cityTownshipList) {
+            if (listBean.getCityId() == cityId) {
                 List<TownshipListBean> townshipBeanList = listBean.getTownshipInfoList();
-                for(TownshipListBean townshipBean : townshipBeanList){
+                for (TownshipListBean townshipBean : townshipBeanList) {
                     saveTownshipList.add(townshipBean.getName());
                     saveTownshipId.add(townshipBean.getTownshipId());
                 }
             }
         }
-
-        for(int id = 0; id<saveTownshipList.size(); id++){
-            if(saveTownshipList.get(id).equals(name)){
+        for (int id = 0; id < saveTownshipList.size(); id++) {
+            if (saveTownshipList.get(id).equals(name)) {
                 saveCurTownshipid = saveTownshipId.get(id);
             }
         }
-
         return saveCurTownshipid;
     }
 

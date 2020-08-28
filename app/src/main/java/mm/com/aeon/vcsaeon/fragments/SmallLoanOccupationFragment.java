@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -91,7 +90,7 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
     private static String contactTimeFrom;
     private static String contactTimeTo;
     private static String companyDepartment;
-    private static String companyPostion;
+    private static String companyPosition;
     private static String companyStatusDetail;
     private static int salaryDate_company;
     private static String curLang;
@@ -127,6 +126,7 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
     private TextView labelTotalIncome;
     private TextView labelSalaryDate;
     private TextView totalIncomeAutoFilled;
+    private TextView currencyUnit;
     private TextView labelValServiceYear;
     private TextView labelValServiceMonth;
 
@@ -153,9 +153,9 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
     private Button btnSave;
     private LinearLayout backToAppData;
     private LinearLayout goToEmergencyData;
-    private TextView applicationTitle;
-    private TextView emergencyTitle;
-    private TextView occupationTitle;
+    //private TextView applicationTitle;
+    //private TextView emergencyTitle;
+    //private TextView occupationTitle;
 
     private String txtCompanyStatus;
     private int companyStatusId;
@@ -245,26 +245,26 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
         view = inflater.inflate(R.layout.fragment_small_loan_occupation, container, false);
         setHasOptionsMenu(true);
 
-        String[] pages = {"Application\nData", "Occupation\nData","Emergency\nContact", "Guarantor\nData", "Loan\nConfirmation"};
+        String[] pages = {"Application\nData", "Occupation\nData", "Emergency\nContact", "Guarantor\nData", "Loan\nConfirmation"};
         occuStepView = view.findViewById(R.id.occu_stepped_bar);
         occuStepView.setStateDescriptionData(pages);
 
         occuStepView.setOnStateItemClickListener(new OnStateItemClickListener() {
             @Override
             public void onStateItemClick(StateProgressBar stateProgressBar, StateItem stateItem, int stateNumber, boolean isCurrentState) {
-                if(stateNumber == 1){
+                if (stateNumber == 1) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(0, true);
-                }else if(stateNumber == 2){
+                } else if (stateNumber == 2) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(1, true);
-                }else if(stateNumber == 3){
+                } else if (stateNumber == 3) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(2, true);
-                }else if(stateNumber == 4){
+                } else if (stateNumber == 4) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(3, true);
-                }else if(stateNumber == 5){
+                } else if (stateNumber == 5) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(4, true);
                 }
@@ -280,8 +280,6 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
         companyStatus = getResources().getStringArray(R.array.occupation_company_status);
         validationPreferences = PreferencesManager.getCurrentUserPreferences(getActivity());
         customerId = PreferencesManager.getStringEntryFromPreferences(validationPreferences, CUSTOMER_ID);
-        /*sharedPreferences = PreferencesManager.getApplicationPreference(getActivity());
-        curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences, PARAM_LANG);*/
 
         StepsView stepsView = view.findViewById(R.id.stepsView_2);
         stepsView.setLabels(DA_TITLES)
@@ -321,9 +319,6 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
         // Company Address Spinner
         autoCurrentTownship = view.findViewById(R.id.company_township);
         autoCurrentCity = view.findViewById(R.id.company_city);
-
-        /*backToAppData = view.findViewById(R.id.back_app_data);
-        goToEmergencyData = view.findViewById(R.id.go_to_emergency);*/
 
         labelCompanyName = view.findViewById(R.id.occupation_text_name);
         errCompanyName = view.findViewById(R.id.occupation_err_name);
@@ -378,6 +373,8 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
         occu_companyStatusDetail = view.findViewById(R.id.company_status_detail);
         occu_monthlyIncome = view.findViewById(R.id.occupation_Basic_income);
         totalIncomeAutoFilled = view.findViewById(R.id.occupation_total_income);
+        currencyUnit = view.findViewById(R.id.occupation_total_income_cur_unit);
+
         occu_otherIncome = view.findViewById(R.id.occupation_other_income);
         autoCompleteCompanyStatus = view.findViewById(R.id.autocomplete_company_status);
 
@@ -571,30 +568,6 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
                 }
             }
         });
-        /*autoCurrentCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean focus) {
-                if(focus){
-                    autoCurrentCity.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
-                }else{
-                    if(isEmptyOrNull(autoCurrentCity.getText().toString())){
-                        autoCurrentCity.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.mandatroy_edit_text_style));
-                    }
-                }
-            }
-        });
-        autoCurrentTownship.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean focus) {
-                if(focus){
-                    autoCurrentTownship.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edit_text_style));
-                }else{
-                    if(isEmptyOrNull(autoCurrentTownship.getText().toString())){
-                        autoCurrentTownship.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.mandatroy_edit_text_style));
-                    }
-                }
-            }
-        });*/
 
         occu_monthlyIncome.addTextChangedListener(new TextWatcher() {
             @Override
@@ -603,20 +576,6 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-               /* long monthlyBasicIncome = 0;
-                long otherIncome = 0;
-                if (!occu_monthlyIncome.getText().toString().equals(BLANK)) {
-                    monthlyBasicIncome = Long.parseLong(occu_monthlyIncome.getText().toString().replaceAll(",", ""));
-                }
-                if (!occu_otherIncome.getText().toString().equals(BLANK)) {
-                    otherIncome = Long.parseLong(occu_otherIncome.getText().toString().replaceAll(",", ""));
-                }
-                long totalIncome = monthlyBasicIncome + otherIncome;
-                if (totalIncome > 0) {
-                    totalIncomeAutoFilled.setText(Long.toString(totalIncome));
-                } else {
-                    totalIncomeAutoFilled.setText("0");
-                }*/
             }
 
             @Override
@@ -678,20 +637,6 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                /*long monthlyBasicIncome = 0;
-                long otherIncome = 0;
-                if (!occu_monthlyIncome.getText().toString().equals(BLANK)) {
-                    monthlyBasicIncome = Long.parseLong(occu_monthlyIncome.getText().toString().replaceAll(",", ""));
-                }
-                if (!occu_otherIncome.getText().toString().equals(BLANK)) {
-                    otherIncome = Long.parseLong(occu_otherIncome.getText().toString().replaceAll(",", ""));
-                }
-                long totalIncome = monthlyBasicIncome + otherIncome;
-                if (totalIncome > 0) {
-                    totalIncomeAutoFilled.setText(Long.toString(totalIncome));
-                } else {
-                    totalIncomeAutoFilled.setText("0");
-                }*/
             }
 
             @Override
@@ -798,27 +743,9 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
             }
         });
 
-        /*backToAppData = view.findViewById(R.id.back_app_data);
-        goToEmergencyData = view.findViewById(R.id.go_to_emergency);*/
-        applicationTitle = view.findViewById(R.id.da_app_data_title);
-        emergencyTitle = view.findViewById(R.id.da_emer_data_title);
-        occupationTitle = view.findViewById(R.id.da_occu_title);
-
-        /*backToAppData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUpDataOnPageChanged();
-                viewPager.setCurrentItem(0, true);
-            }
-        });
-
-        goToEmergencyData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUpDataOnPageChanged();
-                viewPager.setCurrentItem(2, true);
-            }
-        });*/
+        //applicationTitle = view.findViewById(R.id.da_app_data_title);
+        //emergencyTitle = view.findViewById(R.id.da_emer_data_title);
+        //occupationTitle = view.findViewById(R.id.da_occu_title);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -829,8 +756,8 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
             @Override
             public void onPageSelected(int position) {
                 selectedPosition = position;
-                if(selectedPosition == 1){
-                    ((MainMenuActivityDrawer)getActivity()).setLanguageListener(SmallLoanOccupationFragment.this);
+                if (selectedPosition == 1) {
+                    ((MainMenuActivityDrawer) getActivity()).setLanguageListener(SmallLoanOccupationFragment.this);
                     MainMenuActivityDrawer.isOccupationLanguageFlag = true;
                 }
             }
@@ -848,37 +775,10 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
                         MainMenuActivityDrawer.isSubmitclickOccuData = false;
                         showValidationMsg(curLang);
                     }
-                    //Log.e("pager change ", "Application Data");
                 }
             }
 
         });
-
-        /*if (curLang.equals(LANG_MM)) {
-            changeLabel(LANG_MM);
-        } else {
-            changeLabel(LANG_EN);
-        }*/
-
-        /*salaryDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerFragmentDialog dialog
-                        = DatePickerFragmentDialog.newInstance(new DatePickerFragmentDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePickerFragmentDialog view, int year, int monthOfYear, int dayOfMonth) {
-                        final Calendar myCalendar = Calendar.getInstance();
-                        myCalendar.set(Calendar.YEAR, year);
-                        myCalendar.set(Calendar.MONTH, monthOfYear);
-                        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        SimpleDateFormat sdf = new SimpleDateFormat(BIRTH_DATE_FORMAT, Locale.JAPAN);
-                        salaryDate.setText(sdf.format(myCalendar.getTime()));
-                    }
-                });
-                dialog.setAccentColor(ContextCompat.getColor(getActivity(),R.color.colorPrimary));
-                dialog.show(getChildFragmentManager(), "TAG");
-            }
-        });*/
 
         occu_contactTimeFrom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1053,10 +953,8 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        //Log.e("occ refresh label", item.getTitle().toString());
         switch (item.getItemId()) {
             case R.id.action_favorite:
-                //this.languageFlag = item;
                 if (item.getTitle().equals(LANG_MM)) {
                     item.setIcon(R.drawable.en_flag2);
                     item.setTitle(LANG_EN);
@@ -1085,7 +983,7 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
         occupationData.setContactTimeFrom(contactTimeFrom);
         occupationData.setContactTimeTo(contactTimeTo);
         occupationData.setDepartment(companyDepartment);
-        occupationData.setPosition(companyPostion);
+        occupationData.setPosition(companyPosition);
         occupationData.setCompanyStatusOther(companyStatusDetail);
         occupationData.setYearOfServiceYear(serviceYear);
         occupationData.setYearOfServiceMonth(serviceMonth);
@@ -1118,7 +1016,6 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
         saveDataBean.setChannelType(CHANNEL_MOBILE);
 
         saveDataBean.setApplicantCompanyInfoDto(occupationData);
-        //Log.e("save com name", saveDataBean.getApplicantCompanyInfoDto().getCompanyName());
 
         if (saveDataBean.isBeanValid()) {
 
@@ -1137,21 +1034,14 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
                 req.enqueue(new Callback<BaseResponse<ApplicationRegisterSaveReqBean>>() {
                     @Override
                     public void onResponse(Call<BaseResponse<ApplicationRegisterSaveReqBean>> call, Response<BaseResponse<ApplicationRegisterSaveReqBean>> response) {
-
                         if (response.isSuccessful()) {
-
                             BaseResponse baseResponse = response.body();
-
                             if (baseResponse != null) {
-
                                 if (baseResponse.getStatus().equals(SUCCESS)) {
-
                                     ApplicationRegisterSaveReqBean localSaveReqBean = (ApplicationRegisterSaveReqBean) baseResponse.getData();
                                     PreferencesManager.saveDaftSavedInfo(getActivity(), localSaveReqBean);
-
                                     saveDialog.dismiss();
                                     showSnackBarMessage("Applicant Company Info. saved.");
-
                                 } else {
                                     saveDialog.dismiss();
                                     showSnackBarMessage("Applicant Company Info. cannot be saved.");
@@ -1267,14 +1157,9 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
         }
 
         if (PreferencesManager.isDaftSavedInfoExisted(getActivity())) {
-
             ApplicationRegisterSaveReqBean savedInformation
                     = PreferencesManager.getDaftSavedInfo(getActivity());
-
-            DecimalFormat df = new DecimalFormat("###");
-
             try {
-
                 OccupationDataFormBean occuLastData = savedInformation.getApplicantCompanyInfoDto();
                 occu_companyName.setText(occuLastData.getCompanyName());
                 occu_companyTel.setText(occuLastData.getCompanyTelNo());
@@ -1287,7 +1172,6 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
                 occu_otherIncome.setText(String.format("%,d", Long.valueOf(occuLastData.getOtherIncome().longValue())));
                 totalIncomeAutoFilled.setText(String.format("%,d", Long.valueOf(occuLastData.getTotalIncome().longValue())));
                 autoCompleteCompanyStatus.setText(getCompanyStatusName(companyStatus, occuLastData.getCompanyStatus()));
-                /*displayCompanyStatusDesc(autoCompleteCompanyStatus.getText().toString());*/
                 companyServiceYear.setSelection(occuLastData.getYearOfServiceYear());
                 companyServiceMonth.setSelection(occuLastData.getYearOfServiceMonth());
                 spinnerSalaryDate.setSelection(occuLastData.getSalaryDay() - 1);
@@ -1297,6 +1181,7 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
                 comFloorNo.setText(occuLastData.getCompanyAddressFloor());
                 comStreet.setText(occuLastData.getCompanyAddressStreet());
                 comQuarter.setText(occuLastData.getCompanyAddressQtr());
+
                 if (occuLastData.getCompanyAddressCity() == 0) {
                     autoCurrentCity.setText("");
                 } else {
@@ -1317,21 +1202,16 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
                 }
 
             } catch (NullPointerException e) {
-
                 occu_monthlyIncome.setText(BLANK);
                 occu_otherIncome.setText(BLANK);
                 totalIncomeAutoFilled.setText(BLANK);
-
             }
         }
     }
 
     private void showValidationMsg(String curLang) {
-
         setUpOccupationFormData();
-
         ApplicationFormErrMesgBean errOccuMesgBean = PreferencesManager.getErrMesgInfo(getContext());
-
         if (errOccuMesgBean == null) {
             errOccuMesgBean = new ApplicationFormErrMesgBean();
         }
@@ -1341,13 +1221,11 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
             errCompanyName.setVisibility(View.VISIBLE);
             errCompanyName.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_companyName_require_err, getActivity()));
             errCompanyNameLocale = R.string.da_companyName_require_err;
-            errOccuMesgBean.setOccCompanyNameLocale(errCompanyNameLocale);
-
         } else {
             errCompanyName.setVisibility(View.GONE);
             errCompanyNameLocale = R.string.da_mesg_blank;
-            errOccuMesgBean.setOccCompanyNameLocale(errCompanyNameLocale);
         }
+        errOccuMesgBean.setOccCompanyNameLocale(errCompanyNameLocale);
 
         /*Company Tel No.*/
         if (CommonUtils.isEmptyOrNull(companyTel)) {
@@ -1355,8 +1233,7 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
             errCompanyTel.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.register_phoneno_err, getActivity()));
             errCompanyTelLocale = R.string.register_phoneno_err;
             errOccuMesgBean.setOccCompanyTelLocale(errCompanyTelLocale);
-
-        } else if (!CommonUtils.isNumberValid(companyTel)) {
+        } else if (!CommonUtils.isTelPhoneNoValid(companyTel)) {
             errCompanyTel.setVisibility(View.VISIBLE);
             errCompanyTel.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.register_phoneno_format_err_msg, getActivity()));
             errCompanyTelLocale = R.string.register_phoneno_format_err_msg;
@@ -1372,79 +1249,66 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
             errCompanyStreet.setVisibility(View.VISIBLE);
             errCompanyStreet.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_street, getActivity()));
             errCompanyStreetLocale = R.string.da_err_street;
-            errOccuMesgBean.setOccCompanyStreetLocale(errCompanyStreetLocale);
-
         } else {
             errCompanyStreet.setVisibility(View.GONE);
             errCompanyStreetLocale = R.string.da_mesg_blank;
-            errOccuMesgBean.setOccCompanyStreetLocale(errCompanyStreetLocale);
         }
+        errOccuMesgBean.setOccCompanyStreetLocale(errCompanyStreetLocale);
 
         /*Company Quarter*/
         if (CommonUtils.isEmptyOrNull(companyQuarter)) {
             errCompanyQuarter.setVisibility(View.VISIBLE);
             errCompanyQuarter.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_quarter, getActivity()));
             errCompanyQuarterLocale = R.string.da_err_quarter;
-            errOccuMesgBean.setOccCompanyQuarterLocale(errCompanyQuarterLocale);
         } else {
             errCompanyQuarter.setVisibility(View.GONE);
             errCompanyQuarterLocale = R.string.da_mesg_blank;
-            errOccuMesgBean.setOccCompanyQuarterLocale(errCompanyQuarterLocale);
         }
+        errOccuMesgBean.setOccCompanyQuarterLocale(errCompanyQuarterLocale);
 
         /*Company City*/
         if (CommonUtils.isEmptyOrNull(appCompanyCity)) {
             errCompanyCity.setVisibility(View.VISIBLE);
             errCompanyCity.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_city, getActivity()));
             errCompanyCityLocale = R.string.da_err_city;
-            errOccuMesgBean.setOccCompanyCityLocale(errCompanyCityLocale);
-
         } else {
             errCompanyCity.setVisibility(View.GONE);
             errCompanyCityLocale = R.string.da_mesg_blank;
-            errOccuMesgBean.setOccCompanyCityLocale(errCompanyCityLocale);
         }
+        errOccuMesgBean.setOccCompanyCityLocale(errCompanyCityLocale);
 
         /*Company Township*/
         if (CommonUtils.isEmptyOrNull(appCompanyTownship)) {
             errCompanyTownship.setVisibility(View.VISIBLE);
             errCompanyTownship.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_err_township, getActivity()));
             errCompanyTownshipLocale = R.string.da_err_township;
-            errOccuMesgBean.setOccCompanyTownshipLocale(errCompanyTownshipLocale);
-
         } else {
             errCompanyTownship.setVisibility(View.GONE);
             errCompanyTownshipLocale = R.string.da_mesg_blank;
-            errOccuMesgBean.setOccCompanyTownshipLocale(errCompanyTownshipLocale);
         }
-
-
+        errOccuMesgBean.setOccCompanyTownshipLocale(errCompanyTownshipLocale);
 
         /*Company Department*/
         if (CommonUtils.isEmptyOrNull(companyDepartment)) {
             errCompanyDepartment.setVisibility(View.VISIBLE);
             errCompanyDepartment.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_department_require_err, getActivity()));
             errCompanyDepartmentLocale = R.string.da_department_require_err;
-            errOccuMesgBean.setOccCompanyDepartmentLocale(errCompanyDepartmentLocale);
-
         } else {
             errCompanyDepartment.setVisibility(View.GONE);
             errCompanyDepartmentLocale = R.string.da_mesg_blank;
-            errOccuMesgBean.setOccCompanyDepartmentLocale(errCompanyDepartmentLocale);
         }
+        errOccuMesgBean.setOccCompanyDepartmentLocale(errCompanyDepartmentLocale);
 
         /*Company Position*/
-        if (CommonUtils.isEmptyOrNull(companyPostion)) {
+        if (CommonUtils.isEmptyOrNull(companyPosition)) {
             errCompanyPosition.setVisibility(View.VISIBLE);
             errCompanyPosition.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_position_require_err, getActivity()));
             errCompanyPositionLocale = R.string.da_position_require_err;
-            errOccuMesgBean.setOccCompanyPositionLocale(errCompanyPositionLocale);
-
         } else {
             errCompanyPosition.setVisibility(View.GONE);
             errCompanyPositionLocale = R.string.da_mesg_blank;
-            errOccuMesgBean.setOccCompanyPositionLocale(errCompanyPositionLocale);
         }
+        errOccuMesgBean.setOccCompanyPositionLocale(errCompanyPositionLocale);
 
         /*Year of Service*/
         if (serviceYear == 0 && serviceMonth == 0) {
@@ -1452,13 +1316,11 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
             errServiceYear.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_serviceYear_require_err, getActivity()));
             errServiceYearLocale = R.string.da_serviceYear_require_err;
             errOccuMesgBean.setOccServiceYearLocale(errServiceYearLocale);
-
         } else if (serviceMonth > 11) {
             errServiceYear.setVisibility(View.VISIBLE);
             errServiceYear.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_yearStayMonth_exceed_err, getActivity()));
             errServiceYearLocale = R.string.da_yearStayMonth_exceed_err;
             errOccuMesgBean.setOccServiceYearLocale(errServiceYearLocale);
-
         } else {
             errServiceYear.setVisibility(View.GONE);
             errServiceYearLocale = R.string.da_mesg_blank;
@@ -1471,11 +1333,9 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
             errCompanyStatusLocale = R.string.da_companyStatus_require_err;
             errOccuMesgBean.setOccCompanyStatusLocale(errCompanyStatusLocale);
         } else {
-
             errCompanyStatus.setVisibility(View.GONE);
             errCompanyStatusLocale = R.string.da_mesg_blank;
             errOccuMesgBean.setOccCompanyStatusLocale(errCompanyStatusLocale);
-
             int id = getCompanyStatusId(companyStatus, txtCompanyStatus);
             if (id == COMPANY_STATUS_OTHER) {
                 if (isEmptyOrNull(companyStatusDetail)) {
@@ -1497,37 +1357,22 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
             errMonthlyIncome.setVisibility(View.VISIBLE);
             errMonthlyIncome.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_basicIncome_require_err, getActivity()));
             errMonthlyIncomeLocale = R.string.da_basicIncome_require_err;
-            errOccuMesgBean.setOccMonthlyIncomeLocale(errMonthlyIncomeLocale);
-
         } else {
             errMonthlyIncome.setVisibility(View.GONE);
             errMonthlyIncomeLocale = R.string.da_mesg_blank;
-            errOccuMesgBean.setOccMonthlyIncomeLocale(errMonthlyIncomeLocale);
         }
+        errOccuMesgBean.setOccMonthlyIncomeLocale(errMonthlyIncomeLocale);
 
         if ((!isEmptyOrNull(contactTimeFrom) && isEmptyOrNull(contactTimeTo)) || (isEmptyOrNull(contactTimeFrom) && !isEmptyOrNull(contactTimeTo))) {
             errContactTime.setVisibility(View.VISIBLE);
             errContactTime.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_contactTime_require_err, getActivity()));
             errContactTimeLocale = R.string.da_contactTime_require_err;
-            errOccuMesgBean.setOccContactTimeLocale(errContactTimeLocale);
         } else {
             errContactTime.setVisibility(View.GONE);
             errContactTimeLocale = R.string.da_mesg_blank;
-            errOccuMesgBean.setOccContactTimeLocale(errContactTimeLocale);
         }
+        errOccuMesgBean.setOccContactTimeLocale(errContactTimeLocale);
 
-        /*Total Income*//*
-        if (totalIncome == 0.0) {
-            errTotalIncome.setVisibility(View.VISIBLE);
-            errTotalIncome.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_totalIncome_require_err, getActivity()));
-            errTotalIncomeLocale = R.string.da_totalIncome_require_err;
-            errOccuMesgBean.setOccTotalIncomeLocale(errTotalIncomeLocale);
-        } else {
-            errTotalIncome.setVisibility(View.GONE);
-            errTotalIncomeLocale = R.string.da_mesg_blank;
-            errOccuMesgBean.setOccTotalIncomeLocale(errTotalIncomeLocale);
-        }
-*/
         PreferencesManager.saveErrorMesgInfo(getContext(), errOccuMesgBean);
     }
 
@@ -1537,7 +1382,6 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
         setUpOccupationFormData();
 
         /*Company Name*/
-
         if (CommonUtils.isEmptyOrNull(companyName)) {
             validate = false;
         } else if (!isPureAscii(companyName)) {
@@ -1562,7 +1406,7 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
 
         if (CommonUtils.isEmptyOrNull(companyTel)) {
             validate = false;
-        } else if (!CommonUtils.isNumberValid(companyTel)) {
+        } else if (!CommonUtils.isTelPhoneNoValid(companyTel)) {
             validate = false;
         }
 
@@ -1574,7 +1418,7 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
 
         /*Company Position*/
 
-        if (CommonUtils.isEmptyOrNull(companyPostion)) {
+        if (CommonUtils.isEmptyOrNull(companyPosition)) {
             validate = false;
         }
 
@@ -1623,9 +1467,7 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
     }
 
     public void changeLabel(String language) {
-        occupationTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_occupation_title, getContext()));
-        /*applicationTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_application_data_title, getContext()));
-        emergencyTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_emergency_title, getContext()));*/
+        //occupationTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_occupation_title, getContext()));
 
         labelCompanyName.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_occupation_companyName, getActivity()));
         errCompanyName.setText(CommonUtils.getLocaleString(new Locale(language), errCompanyNameLocale, getActivity()));
@@ -1676,6 +1518,8 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
         lblComCity.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_applicant_city, getActivity()));
         errCompanyCity.setText(CommonUtils.getLocaleString(new Locale(language), errCompanyCityLocale, getActivity()));
 
+        currencyUnit.setText((CommonUtils.getLocaleString(new Locale(language), R.string.mem_card_amt_unit, getActivity())));
+
         btnNext.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_applicant_next_btn, getActivity()));
         btnSave.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_applicant_save_btn, getActivity()));
 
@@ -1695,7 +1539,7 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
         contactTimeFrom = occu_contactTimeFrom.getText().toString();
         contactTimeTo = occu_contactTimeTo.getText().toString();
         companyDepartment = occu_companyDepartment.getText().toString();
-        companyPostion = occu_companyPosition.getText().toString();
+        companyPosition = occu_companyPosition.getText().toString();
         companyStatusDetail = occu_companyStatusDetail.getText().toString();
         txtCompanyStatus = autoCompleteCompanyStatus.getText().toString();
 
@@ -1752,7 +1596,7 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
         occupationDataFormBean.setContactTimeFrom(contactTimeFrom);
         occupationDataFormBean.setContactTimeTo(contactTimeTo);
         occupationDataFormBean.setDepartment(companyDepartment);
-        occupationDataFormBean.setPosition(companyPostion);
+        occupationDataFormBean.setPosition(companyPosition);
         occupationDataFormBean.setYearOfServiceYear(serviceYear);
         occupationDataFormBean.setYearOfServiceMonth(serviceMonth);
         occupationDataFormBean.setCompanyStatus(getCompanyStatusId(companyStatus, txtCompanyStatus));
@@ -1778,12 +1622,10 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
     }
 
     void setUpDataOnPageChanged() {
-
         curLang = PreferencesManager.getCurrentLanguage(getContext());
         changeLabel(curLang);
         appLoadInputData();
         MainMenuActivityDrawer.occuDataCorrect = checkOccupationData();
-        //Log.e("Occupation Data", String.valueOf(MainMenuActivityDrawer.occuDataCorrect));
     }
 
     @Override
@@ -1821,22 +1663,16 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
 
         super.onStart();
         setUpOccupationFormData();
-        //Log.e("TAG", "Occupation Data : onstart()");
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        //Log.e("TAG", "Occupation Data : onResume()");
-
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        //Log.e("TAG", "Occupation Data : onPause()");
-
     }
 
     void displayCompanyStatusDesc(String status) {
@@ -1990,18 +1826,15 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
                 }
             }
         }
-
         for (int id = 0; id < saveTownshipList.size(); id++) {
             if (saveTownshipList.get(id).equals(name)) {
                 saveTownshipid = saveTownshipId.get(id);
             }
         }
-
         return saveTownshipid;
     }
 
     int getCompanyStatusId(String[] statusList, String companyStatus) {
-
         for (int id = 0; id < statusList.length; id++) {
             if (statusList[id].equals(companyStatus)) {
                 companyStatusId = id + 1;
@@ -2021,11 +1854,11 @@ public class SmallLoanOccupationFragment extends PagerRootFragment implements La
     @Override
     public void changeLanguageTitle(String lang) {
         changeLabel(lang);
-        Log.e("Change Language", "Occupation Flag");
     }
 
     @Override
     public void clickMenuBarBackBtn() {
         replaceFragment(new MainMenuWelcomeFragment());
     }
+
 }

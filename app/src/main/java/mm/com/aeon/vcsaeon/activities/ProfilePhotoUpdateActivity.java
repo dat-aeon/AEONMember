@@ -15,7 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +25,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -106,7 +104,7 @@ public class ProfilePhotoUpdateActivity extends BaseActivity {
         myTitleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              changeLabel(myTitleBtn.getTag().toString());
+                changeLabel(myTitleBtn.getTag().toString());
             }
         });
 
@@ -125,7 +123,6 @@ public class ProfilePhotoUpdateActivity extends BaseActivity {
             }
         });
 
-
         Window window = this.getWindow();
         window.setStatusBarColor(getColor(R.color.statusBar));
 
@@ -135,7 +132,7 @@ public class ProfilePhotoUpdateActivity extends BaseActivity {
         txt2 = findViewById(R.id.txt_rule2);
 
         SharedPreferences sharedPreferences = PreferencesManager.getApplicationPreference(this);
-        final String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences,PARAM_LANG);
+        final String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences, PARAM_LANG);
         changeLabel(curLang);
 
         btnUpload.setOnClickListener(new View.OnClickListener() {
@@ -149,12 +146,12 @@ public class ProfilePhotoUpdateActivity extends BaseActivity {
                 dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 TextView textTitle = dialog.findViewById(R.id.text_message);
                 String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-                textTitle.setText(CommonUtils.getLocaleString(new Locale(curLang),R.string.title_conf_pwd,getApplicationContext()));
+                textTitle.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.title_conf_pwd, getApplicationContext()));
                 Button btnOk = dialog.findViewById(R.id.btn_ok);
-                Button btnCalcel = dialog.findViewById(R.id.btn_cancel);
+                Button btnCancel = dialog.findViewById(R.id.btn_cancel);
                 final EditText textPwd = dialog.findViewById(R.id.txt_coupon_pwd);
 
-                btnCalcel.setOnClickListener(new View.OnClickListener() {
+                btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
@@ -189,21 +186,19 @@ public class ProfilePhotoUpdateActivity extends BaseActivity {
                                 @Override
                                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                                     updCouponDialog.dismiss();
-                                    if(response.isSuccessful()){
+                                    if (response.isSuccessful()) {
                                         BaseResponse baseResponse = response.body();
-                                        if(baseResponse.getStatus().equals(SUCCESS)){
+                                        if (baseResponse.getStatus().equals(SUCCESS)) {
                                             dialog.dismiss();
-                                            if(allPermissionsGranted()){
+                                            if (allPermissionsGranted()) {
                                                 dispatchTakePictureIntent();
-                                            } else{
+                                            } else {
                                                 ActivityCompat.requestPermissions(ProfilePhotoUpdateActivity.this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
                                             }
                                         } else {
-                                            //Toast.makeText(ProfilePhotoUpdateActivity.this, getIncorrectPwdMsg(), Toast.LENGTH_SHORT).show();
                                             displayMessage(ProfilePhotoUpdateActivity.this, getIncorrectPwdMsg());
                                         }
                                     } else {
-                                        //Toast.makeText(ProfilePhotoUpdateActivity.this, getString(R.string.msg_password_check_failed), Toast.LENGTH_SHORT).show();
                                         displayMessage(ProfilePhotoUpdateActivity.this, getString(R.string.msg_password_check_failed));
                                     }
                                 }
@@ -211,7 +206,6 @@ public class ProfilePhotoUpdateActivity extends BaseActivity {
                                 @Override
                                 public void onFailure(Call<BaseResponse> call, Throwable t) {
                                     updCouponDialog.dismiss();
-                                    //Toast.makeText(ProfilePhotoUpdateActivity.this, getString(R.string.msg_password_check_failed), Toast.LENGTH_SHORT).show();
                                     displayMessage(ProfilePhotoUpdateActivity.this, getString(R.string.msg_password_check_failed));
                                 }
                             });
@@ -225,19 +219,17 @@ public class ProfilePhotoUpdateActivity extends BaseActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == PHOTO_REQUEST_CODE && resultCode == RESULT_OK && data!=null){
+        if (requestCode == PHOTO_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             mCurrentPhotoPath = data.getData().toString();
             SharedPreferences preferences = PreferencesManager.getCurrentUserPreferences(this);
-            PreferencesManager.addEntryToPreferences(preferences,"current_photo_path", mCurrentPhotoPath);
+            PreferencesManager.addEntryToPreferences(preferences, "current_photo_path", mCurrentPhotoPath);
             Intent intent = intentPhotoConfirming(ProfilePhotoUpdateActivity.this);
             startActivity(intent);
-        } else {
-
         }
     }
 
-    private static Intent intentPhotoConfirming(Context context){
-        Intent intent = new Intent(context,ProfilePhotoUpdateVerifyActivity.class);
+    private static Intent intentPhotoConfirming(Context context) {
+        Intent intent = new Intent(context, ProfilePhotoUpdateVerifyActivity.class);
         return intent;
     }
 
@@ -246,23 +238,23 @@ public class ProfilePhotoUpdateActivity extends BaseActivity {
         startActivityForResult(intent, PHOTO_REQUEST_CODE);
     }
 
-    private static Intent intentPhotoTaking(Context context){
+    private static Intent intentPhotoTaking(Context context) {
         Intent intent = new Intent(context, CameraxActivity.class);
         return intent;
     }
 
-    public void changeLabel(String language){
+    public void changeLabel(String language) {
         btnUpload.setText(CommonUtils.getLocaleString(new Locale(language), R.string.photoupload_update_button, this));
         txtTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.photoupload_announce_label, this));
         txt1.setText(CommonUtils.getLocaleString(new Locale(language), R.string.photoupload_notice1_label, this));
         txt2.setText(CommonUtils.getLocaleString(new Locale(language), R.string.photoupload_notice5_label, this));
 
-        PreferencesManager.setCurrentLanguage(this,language);
+        PreferencesManager.setCurrentLanguage(this, language);
     }
 
-    private boolean allPermissionsGranted(){
-        for(String permission : REQUIRED_PERMISSIONS){
-            if(ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED){
+    private boolean allPermissionsGranted() {
+        for (String permission : REQUIRED_PERMISSIONS) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
                 return false;
             }
         }
@@ -271,28 +263,15 @@ public class ProfilePhotoUpdateActivity extends BaseActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == REQUEST_CODE_PERMISSIONS){
-            if(allPermissionsGranted()){
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
                 dispatchTakePictureIntent();
-            } else{
-                showSnackBarMessage(getString(R.string.message_permission_deniled));
             }
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        /*getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        final String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        if(curLang.equals(LANG_MM)){
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
-            menu.getItem(0).setTitle(LANG_EN);
-            changeLabel(LANG_MM);
-        } else {
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
-            menu.getItem(0).setTitle(LANG_MM);
-            changeLabel(LANG_EN);
-        }*/
         return true;
     }
 
@@ -305,12 +284,12 @@ public class ProfilePhotoUpdateActivity extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_favorite) {
-            if(item.getTitle().equals(LANG_MM)){
+            if (item.getTitle().equals(LANG_MM)) {
                 item.setIcon(R.drawable.en_flag2);
                 item.setTitle(LANG_EN);
                 changeLabel(LANG_MM);
                 addValueToPreference(LANG_MM);
-            } else if(item.getTitle().equals(LANG_EN)){
+            } else if (item.getTitle().equals(LANG_EN)) {
                 item.setIcon(R.drawable.mm_flag);
                 item.setTitle(LANG_MM);
                 changeLabel(LANG_EN);
@@ -321,16 +300,16 @@ public class ProfilePhotoUpdateActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void addValueToPreference(String lang){
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),lang);
+    private void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), lang);
     }
 
-    private String getIncorrectPwdMsg(){
+    private String getIncorrectPwdMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         return CommonUtils.getLocaleString(new Locale(language), R.string.invalid_coupon_pwd, getApplicationContext());
     }
 
-    private String getEmptyPwdMsg(){
+    private String getEmptyPwdMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         return CommonUtils.getLocaleString(new Locale(language), R.string.no_coupon_pwd, getApplicationContext());
     }

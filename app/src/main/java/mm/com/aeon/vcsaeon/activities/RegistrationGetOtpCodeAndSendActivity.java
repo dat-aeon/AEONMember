@@ -3,7 +3,6 @@ package mm.com.aeon.vcsaeon.activities;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -11,9 +10,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
@@ -34,6 +32,7 @@ import java.io.File;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import mm.com.aeon.vcsaeon.BuildConfig;
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.beans.BiometricSensorStatus;
 import mm.com.aeon.vcsaeon.beans.CurrentUserInformationResBean;
@@ -88,7 +87,7 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
     File imgFile;
     SharedPreferences preferences;
 
-    private static int msgType=0;
+    private static int msgType = 0;
 
     ImageView myTitleBtn;
     ImageView engTitleBtn;
@@ -163,7 +162,7 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
         txtOtpTitle = findViewById(R.id.txt_otp_title);
 
         final String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        if(curLang.equals(LANG_MM)){
+        if (curLang.equals(LANG_MM)) {
             changeLabel(LANG_MM);
         } else {
             changeLabel(LANG_EN);
@@ -192,11 +191,11 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
             @Override
             public void onResponse(Call<BaseResponse<OTPInfoResBean>> call, Response<BaseResponse<OTPInfoResBean>> response) {
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     BaseResponse baseResponse = response.body();
 
-                    if(baseResponse.getStatus().equals(SUCCESS)){
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
 
                         closeDialog(reqOtpDialog);
 
@@ -208,25 +207,29 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
                         //waiting minutes for again OTP.
                         new CountDownTimer(120000, 1000) {
                             public void onTick(long millisUntilFinished) {
-                                txtTimer.setText(""+String.format("%02d:%02d",
+                                txtTimer.setText("" + String.format("%02d:%02d",
                                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
                                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
                                                         toMinutes(millisUntilFinished))));
                             }
+
                             public void onFinish() {
                                 txtTimer.setText(getString(R.string.init_timer_text));
                                 btnResend.setEnabled(true);
                                 btnResend.setBackground(getDrawable(R.drawable.button_border));
-                                PreferencesManager.addEntryToPreferences(preferences,"otp_status",OTP_STATUS_EXPIRED);
+                                PreferencesManager.addEntryToPreferences(preferences, "otp_status", OTP_STATUS_EXPIRED);
                             }
                         }.start();
 
-                        showSnackBarMessage("OTP Code : " + otpInfoResBean.getOtpCode());
+                        //hide keyboard | otp snack-bar display with development url.
+                        if (!BuildConfig.IS_PRODUCTION) {
+                            showSnackBarMessage("OTP Code : " + otpInfoResBean.getOtpCode());
+                        }
 
-                        PreferencesManager.addEntryToPreferences(preferences,"otp_code",otpInfoResBean.getOtpCode());
-                        if(otpInfoResBean!=null){
-                            PreferencesManager.addEntryToPreferences(preferences,"otp_status",OTP_STATUS_VALID);
+                        PreferencesManager.addEntryToPreferences(preferences, "otp_code", otpInfoResBean.getOtpCode());
+                        if (otpInfoResBean != null) {
+                            PreferencesManager.addEntryToPreferences(preferences, "otp_status", OTP_STATUS_VALID);
                         }
 
                         btnOk.setOnClickListener(new View.OnClickListener() {
@@ -234,36 +237,36 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
                             public void onClick(View v) {
 
                                 //(1) Get Otp.
-                                final String resOtpCode = PreferencesManager.getStringEntryFromPreferences(preferences,"otp_code");
-                                final String otpStatus = PreferencesManager.getStringEntryFromPreferences(preferences,"otp_status");
+                                final String resOtpCode = PreferencesManager.getStringEntryFromPreferences(preferences, "otp_code");
+                                final String otpStatus = PreferencesManager.getStringEntryFromPreferences(preferences, "otp_status");
                                 String inputOtpCode = textOtp.getText().toString();
                                 boolean validation = true;
                                 txtErrOtp.setVisibility(View.GONE);
 
                                 //(2) Validate OTP Format.
                                 //otp has expired after 2".
-                                if(otpStatus.equals(OTP_STATUS_VALID)){
+                                if (otpStatus.equals(OTP_STATUS_VALID)) {
 
-                                    if(inputOtpCode.equals(BLANK)){
+                                    if (inputOtpCode.equals(BLANK)) {
 
                                         textOtp.setText(BLANK);
                                         txtErrOtp.setText(getBlankOtpErrMsg());
                                         txtErrOtp.setVisibility(View.VISIBLE);
-                                        validation=false;
+                                        validation = false;
 
-                                    } else if(inputOtpCode.length()!=4){
+                                    } else if (inputOtpCode.length() != 4) {
 
                                         textOtp.setText(BLANK);
                                         txtErrOtp.setText(getInvalidOtpLengthMsg());
                                         txtErrOtp.setVisibility(View.VISIBLE);
-                                        validation=false;
+                                        validation = false;
 
-                                    } else if(!resOtpCode.equals(inputOtpCode)){
+                                    } else if (!resOtpCode.equals(inputOtpCode)) {
 
                                         textOtp.setText(BLANK);
                                         txtErrOtp.setText(getWrongOTPMsg());
                                         txtErrOtp.setVisibility(View.VISIBLE);
-                                        validation=false;
+                                        validation = false;
 
                                     } else {
 
@@ -275,16 +278,16 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
                                     textOtp.setText(BLANK);
                                     txtErrOtp.setText(getExpiredOtpMsg());
                                     txtErrOtp.setVisibility(View.VISIBLE);
-                                    validation=false;
+                                    validation = false;
                                 }
 
                                 if (validation) {
 
                                     if (!CommonUtils.isNetworkAvailable(getApplicationContext())) {
-                                        showNetworkErrorDialog(RegistrationGetOtpCodeAndSendActivity.this,getNetErrMsg());
+                                        showNetworkErrorDialog(RegistrationGetOtpCodeAndSendActivity.this, getNetErrMsg());
                                     } else {
 
-                                        if(imgFile.exists()){
+                                        if (imgFile.exists()) {
 
                                             byte[] bytes = CommonUtils.encodedFileToByteArray(imgFile);
 
@@ -312,12 +315,12 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
                     } else {
                         closeDialog(reqOtpDialog);
                         btnOk.setEnabled(false);
-                        showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this,getString(R.string.opt_request_failed));
+                        showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this, getString(R.string.opt_request_failed));
                     }
                 } else {
                     closeDialog(reqOtpDialog);
                     btnOk.setEnabled(false);
-                    showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this,getString(R.string.opt_request_failed));
+                    showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this, getString(R.string.opt_request_failed));
                 }
             }
 
@@ -325,7 +328,7 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
             public void onFailure(Call<BaseResponse<OTPInfoResBean>> call, Throwable t) {
                 closeDialog(reqOtpDialog);
                 btnOk.setEnabled(false);
-                showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this,getString(R.string.service_unavailable));
+                showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this, getString(R.string.service_unavailable));
             }
         });
 
@@ -360,12 +363,12 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_favorite) {
-            if(item.getTitle().equals(LANG_MM)){
+            if (item.getTitle().equals(LANG_MM)) {
                 item.setIcon(R.drawable.en_flag2);
                 item.setTitle(LANG_EN);
                 changeLabel(LANG_MM);
                 addValueToPreference(LANG_MM);
-            } else if(item.getTitle().equals(LANG_EN)){
+            } else if (item.getTitle().equals(LANG_EN)) {
                 item.setIcon(R.drawable.mm_flag);
                 item.setTitle(LANG_MM);
                 changeLabel(LANG_EN);
@@ -381,35 +384,39 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
         showSnackBarMessage(getString(R.string.message_back_disable));
     }
 
-    private void addValueToPreference(String lang){
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),lang);
+    private void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), lang);
     }
 
-    private void changeLabel(String language){
+    private void changeLabel(String language) {
 
         txtOtpTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.otp_title, getApplicationContext()));
         btnOk.setText(CommonUtils.getLocaleString(new Locale(language), R.string.otp_btn_ok, getApplicationContext()));
         btnResend.setText(CommonUtils.getLocaleString(new Locale(language), R.string.otp_btn_resend, getApplicationContext()));
         textOtp.setHint(CommonUtils.getLocaleString(new Locale(language), R.string.otp_code_hint, getApplicationContext()));
 
-        switch (msgType){
-            case 1 : txtErrOtp.setText(CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_blank, getApplicationContext()));
-            break;
-            case 2 : txtErrOtp.setText(CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_length, getApplicationContext()));
-            break;
-            case 3 : txtErrOtp.setText(CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_wrong, getApplicationContext()));
-            break;
-            case 4 : txtErrOtp.setText(CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_expired, getApplicationContext()));
-            break;
+        switch (msgType) {
+            case 1:
+                txtErrOtp.setText(CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_blank, getApplicationContext()));
+                break;
+            case 2:
+                txtErrOtp.setText(CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_length, getApplicationContext()));
+                break;
+            case 3:
+                txtErrOtp.setText(CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_wrong, getApplicationContext()));
+                break;
+            case 4:
+                txtErrOtp.setText(CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_expired, getApplicationContext()));
+                break;
         }
     }
 
-    private String getBioSuggessionAlertMsg(String language){
+    private String getBioSuggessionAlertMsg(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.bio_dialog_reg, getApplicationContext());
     }
 
     //Show Dialog and go to Login Screen.
-    private void goToLoginScreen(){
+    private void goToLoginScreen() {
         final Dialog dialog = new Dialog(RegistrationGetOtpCodeAndSendActivity.this);
         dialog.setContentView(R.layout.success_message_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -431,36 +438,36 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
         dialog.show();
     }
 
-    private String getNetErrMsg(){
+    private String getNetErrMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         return CommonUtils.getLocaleString(new Locale(language), R.string.network_connection_err, getApplicationContext());
     }
 
-    private String getBlankOtpErrMsg(){
+    private String getBlankOtpErrMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        msgType=1;
+        msgType = 1;
         return CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_blank, getApplicationContext());
     }
 
-    private String getInvalidOtpLengthMsg(){
+    private String getInvalidOtpLengthMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        msgType=2;
+        msgType = 2;
         return CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_length, getApplicationContext());
     }
 
-    private String getWrongOTPMsg(){
+    private String getWrongOTPMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        msgType=3;
+        msgType = 3;
         return CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_wrong, getApplicationContext());
     }
 
-    private String getExpiredOtpMsg(){
+    private String getExpiredOtpMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        msgType=4;
+        msgType = 4;
         return CommonUtils.getLocaleString(new Locale(language), R.string.otp_err_expired, getApplicationContext());
     }
 
-    private class RegisterOldCustomerAsynTask extends AsyncTask<ExistedMemberRegistrationInfoReqBean, Integer, String>{
+    private class RegisterOldCustomerAsynTask extends AsyncTask<ExistedMemberRegistrationInfoReqBean, Integer, String> {
 
         ProgressDialog regDialog;
 
@@ -495,30 +502,30 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
                         if (response.isSuccessful()) {
 
                             final BaseResponse baseResponse = response.body();
-                            if(baseResponse.getStatus().equals(SUCCESS)){
+                            if (baseResponse.getStatus().equals(SUCCESS)) {
 
                                 //(6) Do login.
                                 Service loginService = APIClient.getAuthUserService();
                                 Call<BaseResponse<LoginAccessTokenInfo>> loginReq = loginService.doLogin(registrationInfoReqBean.getPhoneNo(),
-                                        registrationInfoReqBean.getPassword(),PASSWORD, getLoginDeviceId());
+                                        registrationInfoReqBean.getPassword(), PASSWORD, getLoginDeviceId());
 
                                 loginReq.enqueue(new Callback<BaseResponse<LoginAccessTokenInfo>>() {
                                     @Override
                                     public void onResponse(Call<BaseResponse<LoginAccessTokenInfo>> call, Response<BaseResponse<LoginAccessTokenInfo>> response) {
 
-                                        if(response.isSuccessful()){
+                                        if (response.isSuccessful()) {
 
                                             BaseResponse baseResponse1 = response.body();
 
-                                            if(baseResponse1.getStatus().equals(SUCCESS)){
+                                            if (baseResponse1.getStatus().equals(SUCCESS)) {
 
                                                 closeDialog(regDialog);
 
                                                 LoginAccessTokenInfo loginAccessTokenInfo = (LoginAccessTokenInfo) baseResponse1.getData();
 
                                                 //set token infos to preferences.
-                                                PreferencesManager.keepAccessToken(getApplicationContext(),loginAccessTokenInfo.getAccessToken());
-                                                PreferencesManager.keepRefreshToken(getApplicationContext(),loginAccessTokenInfo.getRefreshToken());
+                                                PreferencesManager.keepAccessToken(getApplicationContext(), loginAccessTokenInfo.getAccessToken());
+                                                PreferencesManager.keepRefreshToken(getApplicationContext(), loginAccessTokenInfo.getRefreshToken());
 
                                                 final CurrentUserInformationResBean curUserInfo = loginAccessTokenInfo.getUserInformationResDto();
 
@@ -535,21 +542,21 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
                                                 userInformationFormBean.setDateOfBirth(curUserInfo.getDateOfBirth());
                                                 userInformationFormBean.setNrcNo(curUserInfo.getNrcNo());
                                                 userInformationFormBean.setHotlinePhone(curUserInfo.getHotlinePhone());
-                                                userInformationFormBean.setPhotoPath(PROFILE_URL+curUserInfo.getPhotoPath());
+                                                userInformationFormBean.setPhotoPath(PROFILE_URL + curUserInfo.getPhotoPath());
                                                 userInformationFormBean.setMemberNo(curUserInfo.getMemberNo());
                                                 userInformationFormBean.setMemberNoValid(curUserInfo.isMemberNoValid());
                                                 userInformationFormBean.setCustAgreementListDtoList(curUserInfo.getCustomerAgreementDtoList());
 
                                                 String userInfoFormJson = new Gson().toJson(userInformationFormBean);
-                                                PreferencesManager.setCurrentUserInfo(getApplicationContext(),userInfoFormJson);
-                                                PreferencesManager.setCurrentLoginPhoneNo(getApplicationContext(),userInformationFormBean.getPhoneNo());
-                                                PreferencesManager.setBiometricRegPhoneNo(getApplicationContext(),userInformationFormBean.getPhoneNo());
+                                                PreferencesManager.setCurrentUserInfo(getApplicationContext(), userInfoFormJson);
+                                                PreferencesManager.setCurrentLoginPhoneNo(getApplicationContext(), userInformationFormBean.getPhoneNo());
+                                                PreferencesManager.setBiometricRegPhoneNo(getApplicationContext(), userInformationFormBean.getPhoneNo());
 
-                                                PreferencesManager.setRegistrationCompleted(getApplicationContext(),true);
+                                                PreferencesManager.setRegistrationCompleted(getApplicationContext(), true);
                                                 //Check biometric sensor in device.
                                                 BiometricSensorStatus biometricSensorStatus = CommonUtils.checkBiometricSensor(getApplicationContext());
 
-                                                switch (biometricSensorStatus){
+                                                switch (biometricSensorStatus) {
 
                                                     case BIOMETRIC_OK:
                                                         //Biometric Registration Suggestion.
@@ -557,7 +564,7 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
                                                         biometricDialog.setCancelable(false);
                                                         biometricDialog.setContentView(R.layout.biometric_registration_dialog);
                                                         biometricDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                                                        biometricDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                                                        biometricDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                                                         TextView textView = biometricDialog.findViewById(R.id.text_message);
                                                         textView.setText(getBioSuggessionAlertMsg(curLang));
                                                         Button btnYes = biometricDialog.findViewById(R.id.btn_yes);
@@ -614,43 +621,43 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
 
                                 closeDialog(regDialog);
 
-                                if(baseResponse.getMessageCode().equals(PASSWORD_WEAK)){
-                                    showWarningDialog(RegistrationGetOtpCodeAndSendActivity.this,"Password Weak. [temp]");
+                                if (baseResponse.getMessageCode().equals(PASSWORD_WEAK)) {
+                                    showWarningDialog(RegistrationGetOtpCodeAndSendActivity.this, "Password Weak. [temp]");
 
-                                } else if(baseResponse.getMessageCode().equals(DUPLICATED_PHONE_NO)){
+                                } else if (baseResponse.getMessageCode().equals(DUPLICATED_PHONE_NO)) {
                                     showWarningDialog(RegistrationGetOtpCodeAndSendActivity.this, getString(R.string.register_ph_no_dup));
 
-                                } else if(baseResponse.getMessageCode().equals(DUPLICATED_NRC_NO)){
+                                } else if (baseResponse.getMessageCode().equals(DUPLICATED_NRC_NO)) {
                                     showWarningDialog(RegistrationGetOtpCodeAndSendActivity.this, getString(R.string.register_nrc_dup));
 
-                                } else if(baseResponse.getMessageCode().equals(DUPLICATED_CUSTOMER_INFO)){
+                                } else if (baseResponse.getMessageCode().equals(DUPLICATED_CUSTOMER_INFO)) {
                                     showWarningDialog(RegistrationGetOtpCodeAndSendActivity.this, getString(R.string.register_duplicate));
 
-                                } else if(baseResponse.getMessageCode().equals(IMPORT_PH_DUPLICATE)){
-                                    showWarningDialog(RegistrationGetOtpCodeAndSendActivity.this,getString(R.string.register_imp_phone_no_duplicate));
+                                } else if (baseResponse.getMessageCode().equals(IMPORT_PH_DUPLICATE)) {
+                                    showWarningDialog(RegistrationGetOtpCodeAndSendActivity.this, getString(R.string.register_imp_phone_no_duplicate));
                                 } else {
-                                    showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this,getString(R.string.register_failed));
+                                    showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this, getString(R.string.register_failed));
                                 }
                             }
 
                         } else {
                             closeDialog(regDialog);
                             //Display Message Detail.
-                            showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this,getString(R.string.register_failed));
+                            showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this, getString(R.string.register_failed));
                         }
                     }
 
                     @Override
                     public void onFailure(Call<BaseResponse> call, Throwable t) {
                         closeDialog(regDialog);
-                        showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this,getString(R.string.service_unavailable));
+                        showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this, getString(R.string.service_unavailable));
                     }
 
                 });
 
             } catch (Exception e) {
                 closeDialog(regDialog);
-                showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this,getString(R.string.register_failed));
+                showErrorDialog(RegistrationGetOtpCodeAndSendActivity.this, getString(R.string.register_failed));
             }
 
             return null;
@@ -662,21 +669,21 @@ public class RegistrationGetOtpCodeAndSendActivity extends BaseActivity {
         }
     }
 
-    private static Intent intentMainMenuDrawer(Context context){
+    private static Intent intentMainMenuDrawer(Context context) {
         PreferencesManager.clearCouponInfo(context);
         Intent intent = new Intent(context, MainMenuActivityDrawer.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         return intent;
     }
 
-    private static Intent intentBiometricRegister(Context context){
+    private static Intent intentBiometricRegister(Context context) {
         Intent intent = new Intent(context, BiometricRegistrationInRegister.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         return intent;
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         changeLabel(PreferencesManager.getCurrentLanguage(this));
     }

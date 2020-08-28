@@ -14,9 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -28,6 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.beans.OutletListInfoResBean;
 import mm.com.aeon.vcsaeon.fragments.OutletLocationTabFragment;
@@ -50,7 +54,7 @@ public class OutletListAdapter extends RecyclerView.Adapter {
     private Context context;
 
     public OutletListAdapter(List<OutletListInfoResBean> outletListInfoResBeanList, Context context) {
-        this.context=context;
+        this.context = context;
         this.outletListInfoResBeanList = outletListInfoResBeanList;
     }
 
@@ -72,7 +76,7 @@ public class OutletListAdapter extends RecyclerView.Adapter {
         return outletListInfoResBeanList.size();
     }
 
-    private class OutletInfoViewHolder extends RecyclerView.ViewHolder{
+    private class OutletInfoViewHolder extends RecyclerView.ViewHolder {
 
         TextView outletName;
         TextView outletAddress;
@@ -87,24 +91,32 @@ public class OutletListAdapter extends RecyclerView.Adapter {
             imgNav = itemView.findViewById(R.id.img_navigation);
         }
 
-        public void bind(final OutletListInfoResBean outletListInfoResBean){
+        public void bind(final OutletListInfoResBean outletListInfoResBean) {
 
             DecimalFormat df = new DecimalFormat("###");
-            outletDistance.setText(df.format(outletListInfoResBean.getDistanceInMeter())+" m");
+            outletDistance.setText(df.format(outletListInfoResBean.getDistanceInMeter()) + " m");
 
             outletName.setText(outletListInfoResBean.getOutletName());
             outletAddress.setText(outletListInfoResBean.getOutletAddress());
 
             int roleId = outletListInfoResBean.getRoleId();
-            switch (roleId){
-                case ROLE_MOBILE : imgNav.setImageResource(R.drawable.ic_location_mobile);break;
-                case ROLE_NON_MOBILE : imgNav.setImageResource(R.drawable.ic_location_non_mobile);break;
-                case ROLE_M_LOAN : imgNav.setImageResource(R.drawable.ic_location_motorcycle);break;
-                case ROLE_MULTIPLE : imgNav.setImageResource(R.drawable.ic_location_multiple_loan);break;
+            switch (roleId) {
+                case ROLE_MOBILE:
+                    Glide.with(itemView).load(R.drawable.ic_location_mobile).into(imgNav);
+                    break;
+                case ROLE_NON_MOBILE:
+                    Glide.with(itemView).load(R.drawable.ic_location_non_mobile).into(imgNav);
+                    break;
+                case ROLE_M_LOAN:
+                    Glide.with(itemView).load(R.drawable.ic_location_motorcycle).into(imgNav);
+                    break;
+                case ROLE_MULTIPLE:
+                    Glide.with(itemView).load(R.drawable.ic_location_multiple_loan).into(imgNav);
+                    break;
             }
 
-            if(outletListInfoResBean.isAeon()){
-                imgNav.setImageResource(R.drawable.aeon_logo_white);
+            if (outletListInfoResBean.isAeon()) {
+                Glide.with(itemView).load(R.drawable.aeon_msg_logo).circleCrop().into(imgNav);
             }
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -125,8 +137,14 @@ public class OutletListAdapter extends RecyclerView.Adapter {
                         }
                     });
 
-                    TextView textPhoneNo = dialog.findViewById(R.id.text_telephone_no);
-                    textPhoneNo.setText(outletListInfoResBean.getPhoneNo());
+                    RelativeLayout callLayout = dialog.findViewById(R.id.laout_phone);
+                    if (outletListInfoResBean.getPhoneNo() == null || outletListInfoResBean.getPhoneNo().isEmpty()) {
+                        callLayout.setVisibility(View.GONE);
+                    } else {
+                        TextView textPhoneNo = dialog.findViewById(R.id.text_telephone_no);
+                        textPhoneNo.setText(outletListInfoResBean.getPhoneNo());
+                        callLayout.setVisibility(View.VISIBLE);
+                    }
 
                     TextView textOutletName = dialog.findViewById(R.id.outletName);
                     textOutletName.setText(outletListInfoResBean.getOutletName());
@@ -136,9 +154,9 @@ public class OutletListAdapter extends RecyclerView.Adapter {
 
                     final ImageView outletImage = dialog.findViewById(R.id.outlet_img);
                     String imgFileName = outletListInfoResBean.getImagePath();
-                    final String imagePath = OUTLET_URL+imgFileName;
+                    final String imagePath = OUTLET_URL + imgFileName;
 
-                    if(imgFileName == null || imgFileName.equals(BLANK)){
+                    if (imgFileName == null || imgFileName.equals(BLANK)) {
                         //do something.
                     } else {
                         Picasso.get().load(imagePath).into(outletImage, new Callback() {
@@ -146,6 +164,7 @@ public class OutletListAdapter extends RecyclerView.Adapter {
                             public void onSuccess() {
                                 Picasso.get().load(imagePath).into(outletImage);
                             }
+
                             @Override
                             public void onError(Exception e) {
                                 //do something.
@@ -172,10 +191,9 @@ public class OutletListAdapter extends RecyclerView.Adapter {
 
                                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                                         Uri.parse(getMapUri(OutletLocationTabFragment.latLng, destPosition)));
-                                if(intent.resolveActivity(context.getPackageManager()) != null){
+                                if (intent.resolveActivity(context.getPackageManager()) != null) {
                                     context.startActivity(intent);
                                 } else {
-                                    //Toast.makeText(context, context.getString(R.string.message_gmap_not_support), Toast.LENGTH_SHORT).show();
                                     displayMessage(context, context.getString(R.string.message_gmap_not_support));
                                 }
 
@@ -196,13 +214,12 @@ public class OutletListAdapter extends RecyclerView.Adapter {
                                 makeCallRequest();
                             } else {
                                 String outletPhone = outletListInfoResBean.getPhoneNo();
-                                if(outletPhone!=null){
+                                if (outletPhone != null) {
                                     Intent callIntent = new Intent(Intent.ACTION_CALL);
-                                    callIntent.setData(Uri.parse(PHONE_URI_PREFIX+outletPhone));
+                                    callIntent.setData(Uri.parse(PHONE_URI_PREFIX + outletPhone));
                                     context.startActivity(callIntent);
                                 } else {
-                                    //Toast.makeText(context,context.getString(R.string.message_call_not_available), Toast.LENGTH_SHORT).show();
-                                    displayMessage(context,context.getString(R.string.message_call_not_available));
+                                    displayMessage(context, context.getString(R.string.message_call_not_available));
                                 }
                             }
                         }
@@ -215,13 +232,13 @@ public class OutletListAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private String getMapUri(LatLng curPosition, LatLng destPosition){
+    private String getMapUri(LatLng curPosition, LatLng destPosition) {
         double curLat = curPosition.latitude;
         double curLng = curPosition.longitude;
         double destLat = destPosition.latitude;
         double destLng = destPosition.longitude;
-        String url = "http://maps.google.com/maps?saddr="+curLat+","+curLng+"&daddr="+destLat+","+destLng;
-        Log.d("TAG",url);
+        String url = "http://maps.google.com/maps?saddr=" + curLat + "," + curLng + "&daddr=" + destLat + "," + destLng;
+        Log.d("TAG", url);
         return url;
     }
 

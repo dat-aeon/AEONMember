@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -40,83 +40,49 @@
             android:id="@+id/app_data_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
             android:orientation="vertical">
-
-            <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/go_to_occupation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp">
-
-                    <TextView
-                        android:id="@+id/da_occu_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="1dp"
-                        android:text="@string/da_occupation_title"
-                        android:layout_gravity="end"
-                        android:textAlignment="viewEnd"
-                        android:textColor="@color/da_label_color"
-                        android:fontFamily="@font/pyidaungsu_bold"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/text_regular_2x"
-                        android:layout_weight="0.9"/>
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="right"
-                        android:src="@drawable/right_sign_32" />
-
-                </LinearLayout>
-            </LinearLayout>-->
 
             <com.kofigyan.stateprogressbar.StateProgressBar
                 android:id="@+id/app_stepped_bar"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:spb_currentStateNumber="one"
-                app:spb_maxStateNumber="five"
-                app:spb_stateBackgroundColor="@color/color_disable"
-                app:spb_stateForegroundColor="@color/da_button__color"
-                app:spb_stateNumberBackgroundColor="@color/white"
-                app:spb_stateNumberForegroundColor="@color/white"
-                app:spb_currentStateDescriptionColor="@color/da_button__color"
-                app:spb_stateDescriptionColor="@color/color_disable"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
                 app:spb_animateToCurrentProgressState="true"
                 app:spb_checkStateCompleted="false"
-                app:spb_stateDescriptionSize="12sp"
-                app:spb_descriptionTopSpaceIncrementer="2dp"/>
+                app:spb_currentStateDescriptionColor="@color/da_button__color"
+                app:spb_currentStateNumber="one"
+                app:spb_descriptionTopSpaceIncrementer="2dp"
+                app:spb_maxStateNumber="five"
+                app:spb_stateBackgroundColor="@color/color_disable"
+                app:spb_stateDescriptionColor="@color/color_disable"
+                app:spb_stateDescriptionSize="@dimen/text_small"
+                app:spb_stateForegroundColor="@color/da_button__color"
+                app:spb_stateNumberBackgroundColor="@color/white"
+                app:spb_stateNumberForegroundColor="@color/white" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/da_app_data_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/pyidaungsu_bold"
                 android:gravity="center"
                 android:text="@string/da_application_data_title"
-                android:fontFamily="@font/pyidaungsu_bold"
-                android:layout_marginBottom="5dp"
                 android:textColor="@color/da_label_color"
                 android:textSize="@dimen/text_regular_3x"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:background="?android:attr/listDivider" />
 
         </LinearLayout>
 
@@ -162,29 +128,29 @@
                             android:layout_width="150dp"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_bold"
                             android:text="@string/register_name_label"
                             android:textColor="@color/da_label_color"
-                            android:fontFamily="@font/pyidaungsu_bold"
                             android:textSize="@dimen/text_regular"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_bold"
                             android:text=" : "
                             android:textColor="@color/da_label_color"
-                            android:fontFamily="@font/pyidaungsu_bold"
                             android:textSize="@dimen/text_regular"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/applicant_input_name"
                             android:layout_width="match_parent"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:textColor="@color/da_value_color"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_value_color"
                             android:textSize="@dimen/text_regular" />
 
                     </LinearLayout>
@@ -243,9 +209,9 @@
                             android:layout_width="150dp"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_bold"
                             android:text="@string/register_dob_label"
                             android:textColor="@color/da_label_color"
-                            android:fontFamily="@font/pyidaungsu_bold"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
 
@@ -253,9 +219,9 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_bold"
                             android:text=" : "
                             android:textColor="@color/da_label_color"
-                            android:fontFamily="@font/pyidaungsu_bold"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
 
@@ -264,8 +230,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:textColor="@color/da_value_color"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_value_color"
                             android:textSize="@dimen/text_regular" />
 
                     </LinearLayout>
@@ -321,9 +287,9 @@
                             android:layout_width="150dp"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_bold"
                             android:text="@string/register_nrc_label"
                             android:textColor="@color/da_label_color"
-                            android:fontFamily="@font/pyidaungsu_bold"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
 
@@ -331,9 +297,9 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_bold"
                             android:text=" : "
                             android:textColor="@color/da_label_color"
-                            android:fontFamily="@font/pyidaungsu_bold"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
 
@@ -342,8 +308,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:textColor="@color/da_value_color"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:textColor="@color/da_value_color"
                             android:textSize="@dimen/text_regular" />
                     </LinearLayout>
                     <!--<LinearLayout
@@ -424,9 +390,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
+                        android:fontFamily="@font/pyidaungsu_bold"
                         android:text="Father's Name *"
                         android:textColor="@color/da_label_color"
-                        android:fontFamily="@font/pyidaungsu_bold"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
 
@@ -435,8 +401,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Father's Name is required."
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Father's Name is required."
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -446,9 +412,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/mandatroy_edit_text_style"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="Father's Name"
                         android:inputType="textCapCharacters"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:maxLength="128"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
@@ -478,10 +444,10 @@
                     <Spinner
                         android:id="@+id/app_spinner_education"
                         android:layout_width="match_parent"
-                        android:paddingLeft="@dimen/margin_small"
-                        android:paddingRight="@dimen/margin_small"
                         android:layout_height="@dimen/edit_text_height"
-                        android:background="@drawable/spinner_drop_arrow"/>
+                        android:background="@drawable/spinner_drop_arrow"
+                        android:paddingLeft="@dimen/margin_small"
+                        android:paddingRight="@dimen/margin_small" />
 
                 </LinearLayout>
 
@@ -500,10 +466,10 @@
                             android:id="@+id/applicant_nationality"
                             android:layout_width="120dp"
                             android:layout_height="match_parent"
+                            android:fontFamily="@font/pyidaungsu_bold"
                             android:paddingTop="6dp"
                             android:text="Nationality *"
                             android:textColor="@color/da_label_color"
-                            android:fontFamily="@font/pyidaungsu_bold"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
 
@@ -519,8 +485,8 @@
                                 android:layout_height="wrap_content"
                                 android:buttonTint="@color/da_label_color"
                                 android:checked="true"
-                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:configChanges="orientation|screenSize"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:text="Myanmar"
                                 android:textColor="@color/da_label_color" />
 
@@ -547,8 +513,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="Please Enter Some Descriptions."
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="Please Enter Some Descriptions."
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -558,11 +524,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:background="@drawable/mandatroy_edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint="Description"
                             android:inputType="textCapCharacters"
                             android:maxLength="256"
                             android:paddingLeft="@dimen/margin_medium"
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:singleLine="true"
                             android:textColor="@color/da_value_color"
                             android:textColorHint="@color/grayLight"
@@ -584,10 +550,10 @@
                         android:id="@+id/applicant_gender"
                         android:layout_width="120dp"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/pyidaungsu_bold"
                         android:paddingTop="6dp"
                         android:text="Gender *"
                         android:textColor="@color/da_label_color"
-                        android:fontFamily="@font/pyidaungsu_bold"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
 
@@ -602,8 +568,8 @@
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:buttonTint="@color/da_label_color"
-                            android:fontFamily="@font/pyidaungsu_bold"
                             android:checked="true"
+                            android:fontFamily="@font/pyidaungsu_bold"
                             android:text="Male"
                             android:textColor="@color/da_label_color" />
 
@@ -630,10 +596,10 @@
                         android:id="@+id/applicant_marital_status"
                         android:layout_width="120dp"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/pyidaungsu_bold"
                         android:paddingTop="6dp"
                         android:text="Marital Status *"
                         android:textColor="@color/da_label_color"
-                        android:fontFamily="@font/pyidaungsu_bold"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
 
@@ -648,8 +614,8 @@
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:buttonTint="@color/da_label_color"
-                            android:fontFamily="@font/pyidaungsu_bold"
                             android:checked="true"
+                            android:fontFamily="@font/pyidaungsu_bold"
                             android:text="Single"
                             android:textColor="@color/da_label_color" />
 
@@ -676,8 +642,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:gravity="center_vertical"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:gravity="center_vertical"
                         android:text="Current Address"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_medium"
@@ -695,8 +661,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_apartment_no"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -708,10 +674,10 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
-                            android:paddingLeft="@dimen/margin_medium"
                             android:maxLength="100"
+                            android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
                             android:textColor="@color/da_value_color"
                             android:textColorHint="@color/grayLight"
@@ -731,8 +697,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_room_no"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -744,8 +710,8 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:maxLength="100"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -767,8 +733,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_floor_no"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -780,8 +746,8 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:maxLength="100"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -802,8 +768,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="@string/da_err_street"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="@string/da_err_street"
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -817,10 +783,10 @@
                             <TextView
                                 android:id="@+id/applicant_street"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/edit_text_height"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.5"
-                                android:gravity="center_vertical"
                                 android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
                                 android:text="@string/da_applicant_street"
                                 android:textColor="@color/da_label_color"
                                 android:textSize="@dimen/text_regular"
@@ -832,8 +798,8 @@
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.5"
                                 android:background="@drawable/mandatroy_edit_text_style"
+                                android:fontFamily="@font/input_text_font"
                                 android:hint=""
-                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:maxLength="100"
                                 android:paddingLeft="@dimen/margin_medium"
                                 android:singleLine="true"
@@ -855,8 +821,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="@string/da_err_street"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="@string/da_err_street"
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -872,8 +838,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.5"
-                                android:gravity="center_vertical"
                                 android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
                                 android:text="@string/da_applicant_quarter"
                                 android:textColor="@color/da_label_color"
                                 android:textSize="@dimen/text_regular"
@@ -885,8 +851,8 @@
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.5"
                                 android:background="@drawable/mandatroy_edit_text_style"
+                                android:fontFamily="@font/input_text_font"
                                 android:hint=""
-                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:maxLength="100"
                                 android:paddingLeft="@dimen/margin_medium"
                                 android:singleLine="true"
@@ -908,8 +874,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="@string/da_err_city"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="@string/da_err_city"
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -925,23 +891,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.5"
-                                android:gravity="center_vertical"
                                 android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
                                 android:text="@string/da_applicant_city"
                                 android:textColor="@color/da_label_color"
                                 android:textSize="@dimen/text_regular"
                                 android:textStyle="bold" />
-
-                            <!--<Spinner
-                                android:id="@+id/app_cur_city"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/edit_text_height"
-                                android:layout_marginLeft="@dimen/margin_tiny"
-                                android:layout_weight="0.5"
-                                android:fontFamily="@font/pyidaungsu_regular"
-                                android:background="@drawable/spinner_drop_arrow"
-                                android:paddingLeft="@dimen/margin_small"
-                                android:paddingRight="@dimen/margin_small" />-->
 
                             <AutoCompleteTextView
                                 android:id="@+id/app_cur_city"
@@ -952,15 +907,15 @@
                                 android:background="@drawable/mandatroy_edit_text_style"
                                 android:focusable="true"
                                 android:focusableInTouchMode="true"
-                                android:maxLength="100"
+                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:gravity="center"
                                 android:longClickable="false"
+                                android:maxLength="100"
                                 android:paddingLeft="@dimen/margin_medium_2"
                                 android:paddingRight="@dimen/margin_medium_2"
                                 android:singleLine="true"
                                 android:textAlignment="center"
                                 android:textColor="@color/da_value_color"
-                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:textSize="@dimen/text_regular" />
 
                         </LinearLayout>
@@ -976,8 +931,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="@string/da_err_township"
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="@string/da_err_township"
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -993,8 +948,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.5"
-                                android:gravity="center_vertical"
                                 android:fontFamily="@font/pyidaungsu_bold"
+                                android:gravity="center_vertical"
                                 android:text="@string/da_applicant_township"
                                 android:textColor="@color/da_label_color"
                                 android:textSize="@dimen/text_regular"
@@ -1009,15 +964,15 @@
                                 android:background="@drawable/mandatroy_edit_text_style"
                                 android:focusable="true"
                                 android:focusableInTouchMode="true"
-                                android:maxLength="100"
+                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:gravity="center"
                                 android:longClickable="false"
+                                android:maxLength="100"
                                 android:paddingLeft="@dimen/margin_medium_2"
                                 android:paddingRight="@dimen/margin_medium_2"
                                 android:singleLine="true"
                                 android:textAlignment="center"
                                 android:textColor="@color/da_value_color"
-                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:textSize="@dimen/text_regular" />
 
                         </LinearLayout>
@@ -1036,8 +991,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:gravity="center_vertical"
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:gravity="center_vertical"
                         android:text="Permanent Address"
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_medium"
@@ -1046,16 +1001,17 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginBottom="@dimen/margin_medium"
+                        android:orientation="horizontal"
                         android:weightSum="1.0">
+
                         <TextView
                             android:id="@+id/app_txt_apartment_no"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_apartment_no"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -1067,8 +1023,8 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:maxLength="100"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -1080,8 +1036,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginBottom="@dimen/margin_medium"
+                        android:orientation="horizontal"
                         android:weightSum="1.0">
 
                         <TextView
@@ -1089,8 +1045,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_room_no"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -1102,8 +1058,8 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:maxLength="100"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -1116,8 +1072,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginBottom="@dimen/margin_medium"
+                        android:orientation="horizontal"
                         android:weightSum="1.0">
 
                         <TextView
@@ -1125,8 +1081,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_floor_no"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -1138,8 +1094,8 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:maxLength="100"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -1161,8 +1117,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_street"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -1174,8 +1130,8 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:maxLength="100"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -1197,8 +1153,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_quarter"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -1210,8 +1166,8 @@
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
                             android:background="@drawable/edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint=""
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:maxLength="100"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -1219,11 +1175,12 @@
                             android:textColorHint="@color/grayLight"
                             android:textSize="@dimen/text_regular" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginBottom="@dimen/margin_medium"
+                        android:orientation="horizontal"
                         android:weightSum="1.0">
 
                         <TextView
@@ -1231,8 +1188,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_city"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -1258,15 +1215,15 @@
                             android:background="@drawable/edit_text_style"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
-                            android:maxLength="100"
+                            android:fontFamily="@font/pyidaungsu_regular"
                             android:gravity="center"
                             android:longClickable="false"
+                            android:maxLength="100"
                             android:paddingLeft="@dimen/margin_medium_2"
                             android:paddingRight="@dimen/margin_medium_2"
                             android:singleLine="true"
                             android:textAlignment="center"
                             android:textColor="@color/da_value_color"
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:textSize="@dimen/text_regular" />
                     </LinearLayout>
 
@@ -1281,8 +1238,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.5"
-                            android:gravity="center_vertical"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:gravity="center_vertical"
                             android:text="@string/da_applicant_township"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
@@ -1297,15 +1254,15 @@
                             android:background="@drawable/edit_text_style"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
-                            android:maxLength="100"
+                            android:fontFamily="@font/pyidaungsu_regular"
                             android:gravity="center"
                             android:longClickable="false"
+                            android:maxLength="100"
                             android:paddingLeft="@dimen/margin_medium_2"
                             android:paddingRight="@dimen/margin_medium_2"
                             android:singleLine="true"
                             android:textAlignment="center"
                             android:textColor="@color/da_value_color"
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:textSize="@dimen/text_regular" />
                     </LinearLayout>
                 </LinearLayout>
@@ -1327,9 +1284,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_bold"
                             android:text="Type of Residence *"
                             android:textColor="@color/da_label_color"
-                            android:fontFamily="@font/pyidaungsu_bold"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
 
@@ -1366,10 +1323,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:background="@drawable/mandatroy_edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint="Description"
                             android:maxLength="256"
                             android:paddingLeft="@dimen/margin_medium"
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:singleLine="true"
                             android:textColor="@color/da_value_color"
                             android:textColorHint="@color/grayLight"
@@ -1408,8 +1365,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:layout_weight="0.1"
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:background="@drawable/spinner_drop_arrow"
+                            android:fontFamily="@font/pyidaungsu_regular"
                             android:paddingLeft="@dimen/margin_small"
                             android:paddingRight="@dimen/margin_small" />
 
@@ -1425,8 +1382,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="Descriptions is required."
                             android:fontFamily="@font/pyidaungsu_regular"
+                            android:text="Descriptions is required."
                             android:textColor="@color/da_err_msg_color"
                             android:textSize="@dimen/text_regular"
                             android:visibility="gone" />
@@ -1436,8 +1393,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edit_text_height"
                             android:background="@drawable/mandatroy_edit_text_style"
+                            android:fontFamily="@font/input_text_font"
                             android:hint="Description"
-                            android:fontFamily="@font/pyidaungsu_regular"
                             android:maxLength="256"
                             android:paddingLeft="@dimen/margin_medium"
                             android:singleLine="true"
@@ -1487,17 +1444,17 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="0.5"
                             android:orientation="horizontal"
-                            android:weightSum="1"
-                            android:layout_weight="0.5">
+                            android:weightSum="1">
 
                             <Spinner
                                 android:id="@+id/app_spinner_stay_year"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_weight="0.3"
-                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:background="@drawable/spinner_drop_arrow"
+                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:paddingLeft="@dimen/margin_small"
                                 android:paddingRight="@dimen/margin_small" />
 
@@ -1505,23 +1462,22 @@
                                 android:id="@+id/lbl_app_stay_year"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="0.7"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="0.7"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingLeft="10dp"
                                 android:text="@string/register_stay_year"
                                 android:textColor="@color/da_label_color"
-                                android:textSize="@dimen/text_regular"
-                                android:fontFamily="@font/pyidaungsu_bold"/>
-
+                                android:textSize="@dimen/text_regular" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="0.5"
                             android:orientation="horizontal"
-                            android:weightSum="1"
-                            android:layout_weight="0.5">
+                            android:weightSum="1">
 
                             <Spinner
                                 android:id="@+id/app_spinner_stay_month"
@@ -1529,8 +1485,8 @@
                                 android:layout_height="@dimen/edit_text_height"
                                 android:layout_marginLeft="@dimen/margin_tiny"
                                 android:layout_weight="0.3"
-                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:background="@drawable/spinner_drop_arrow"
+                                android:fontFamily="@font/pyidaungsu_regular"
                                 android:paddingLeft="@dimen/margin_small"
                                 android:paddingRight="@dimen/margin_small" />
 
@@ -1538,47 +1494,15 @@
                                 android:id="@+id/lbl_app_stay_month"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="0.7"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="0.7"
+                                android:fontFamily="@font/pyidaungsu_bold"
                                 android:paddingLeft="10dp"
                                 android:text="@string/register_stay_month"
                                 android:textColor="@color/da_label_color"
-                                android:textSize="@dimen/text_regular"
-                                android:fontFamily="@font/pyidaungsu_bold"/>
+                                android:textSize="@dimen/text_regular" />
 
                         </LinearLayout>
-
-                        <!--<EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/edit_text_height"
-                            android:layout_weight="0.5"
-                            android:id="@+id/applicant_input_year"
-                            android:paddingLeft="@dimen/margin_medium"
-                            android:textSize="@dimen/text_regular"
-                            android:inputType="number"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/grayLight"
-                            android:maxLength="2"
-                            android:hint="Year"
-                            android:singleLine="true"
-                            android:background="@drawable/edit_text_style"/>
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/edit_text_height"
-                            android:layout_weight="0.5"
-                            android:layout_marginLeft="@dimen/margin_tiny"
-                            android:id="@+id/applicant_input_month"
-                            android:paddingLeft="@dimen/margin_medium"
-                            android:inputType="number"
-                            android:textSize="@dimen/text_regular"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/grayLight"
-                            android:maxLength="2"
-                            android:hint="Month"
-                            android:singleLine="true"
-                            android:background="@drawable/edit_text_style"/>-->
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -1610,8 +1534,8 @@
                             android:layout_width="150dp"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
-                            android:text="Mobile No. *"
                             android:fontFamily="@font/pyidaungsu_bold"
+                            android:text="Mobile No. *"
                             android:textColor="@color/da_label_color"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
@@ -1620,9 +1544,9 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginBottom="@dimen/margin_small"
+                            android:fontFamily="@font/pyidaungsu_bold"
                             android:text=" : "
                             android:textColor="@color/da_label_color"
-                            android:fontFamily="@font/pyidaungsu_bold"
                             android:textSize="@dimen/text_regular"
                             android:textStyle="bold" />
 
@@ -1665,8 +1589,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Resident Tel No. "
                         android:fontFamily="@font/pyidaungsu_bold"
+                        android:text="Resident Tel No. "
                         android:textColor="@color/da_label_color"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
@@ -1687,12 +1611,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/edit_text_style"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="@string/register_phoneno_holder"
                         android:inputType="phone"
                         android:maxLength="11"
                         android:paddingLeft="@dimen/margin_medium"
                         android:singleLine="true"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:textColor="@color/da_value_color"
                         android:textColorHint="@color/grayLight"
                         android:textSize="@dimen/text_regular" />
@@ -1710,9 +1634,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
+                        android:fontFamily="@font/pyidaungsu_bold"
                         android:text="Other Phone No."
                         android:textColor="@color/da_label_color"
-                        android:fontFamily="@font/pyidaungsu_bold"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
 
@@ -1732,7 +1656,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/edit_text_style"
-                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="@string/register_phoneno_holder"
                         android:inputType="phone"
                         android:maxLength="11"
@@ -1755,9 +1679,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
+                        android:fontFamily="@font/pyidaungsu_bold"
                         android:text="Email *"
                         android:textColor="@color/da_label_color"
-                        android:fontFamily="@font/pyidaungsu_bold"
                         android:textSize="@dimen/text_regular"
                         android:textStyle="bold" />
 
@@ -1766,8 +1690,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_small"
-                        android:text="Email is required."
                         android:fontFamily="@font/pyidaungsu_regular"
+                        android:text="Email is required."
                         android:textColor="@color/da_err_msg_color"
                         android:textSize="@dimen/text_regular"
                         android:visibility="gone" />
@@ -1777,8 +1701,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_height"
                         android:background="@drawable/edit_text_style"
+                        android:fontFamily="@font/input_text_font"
                         android:hint="johnsmith@gmail.com"
-                        android:fontFamily="@font/pyidaungsu_regular"
                         android:inputType="textEmailAddress"
                         android:maxLength="50"
                         android:paddingLeft="@dimen/margin_medium"
@@ -1797,9 +1721,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
             android:orientation="horizontal">
 
             <Button
@@ -1807,11 +1730,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_small"
                 android:layout_weight="0.5"
                 android:background="@drawable/button_border"
                 android:backgroundTint="@color/da_button__color"
-                android:text="Save"
                 android:fontFamily="@font/pyidaungsu_bold"
+                android:text="Save"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -1820,15 +1745,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/margin_tiny"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_medium"
                 android:layout_weight="0.5"
                 android:background="@drawable/button_border"
                 android:backgroundTint="@color/da_button__color"
-                android:text="Next"
                 android:fontFamily="@font/pyidaungsu_bold"
+                android:text="Next"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
-
 
         </LinearLayout>
     </RelativeLayout>

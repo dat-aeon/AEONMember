@@ -1,55 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:theme="@style/AppTheme"
-    android:paddingTop="8dp">
+    android:paddingTop="8dp"
+    android:theme="@style/AppTheme">
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
         android:id="@+id/img_admin"
+        android:layout_width="@dimen/ic_messaging_height"
+        android:layout_height="@dimen/ic_messaging_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:gravity="center"
         android:padding="@dimen/margin_tiny"
         android:scaleType="centerCrop"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="@dimen/margin_medium"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/aeon_logo_white"/>
+        android:src="@drawable/aeon_logo_white"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_message_body"
-        android:text="Hello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_regular"
-        android:maxWidth="250dp"
-        android:minWidth="0dp"
-        android:padding="@dimen/margin_medium_x"
-        android:gravity="center_vertical"
-        android:textIsSelectable="true"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_toEndOf="@+id/img_admin"
+        android:background="@drawable/messaging_container_frame"
         android:backgroundTint="@color/free_chat_color"
         android:fontFamily="@font/pyidaungsu_regular"
-        android:background="@drawable/message_text_style"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="2dp"
+        android:maxWidth="250dp"
+        android:minWidth="0dp"
+        android:minHeight="@dimen/edit_text_height"
+        android:paddingLeft="@dimen/margin_medium_2"
+        android:paddingTop="@dimen/margin_medium_x"
+        android:paddingRight="@dimen/margin_medium_2"
+        android:paddingBottom="@dimen/margin_medium"
+        android:text="Hello"
         android:textColor="@color/black"
-        android:layout_marginTop="@dimen/margin_small"
-        android:layout_below="@+id/img_admin"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="@dimen/margin_small" />
-
-    <!--<TextView
-        android:id="@+id/text_message_time"
-        android:text="10/10/2018 10:00 PM"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10sp"
-        android:layout_marginLeft="@dimen/margin_medium_3"
-        android:layout_marginTop="@dimen/margin_small"
-        android:layout_alignParentLeft="true"
-        android:fontFamily="@font/pyidaungsu_regular"
-        android:layout_below="@+id/text_message_body"/>-->
+        android:textIsSelectable="true"
+        android:textSize="@dimen/text_regular" />
 
 </RelativeLayout>

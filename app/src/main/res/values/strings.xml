@@ -16,8 +16,8 @@
     <string name="menu_level_two">Lv.2 : Login User</string>
     <string name="menu_level_three">Lv.3 : Member User</string>
 
-    <string name="home_login_button">LOGIN</string>
-    <string name="home_register_button">REGISTER</string>
+    <string name="home_login_button">Login</string>
+    <string name="home_register_button">Register</string>
 
     <string name="home_aboutus_button">ABOUT US</string>
     <string name="home_faq_button">FAQ</string>
@@ -29,7 +29,7 @@
     <string name="main_findus_title">Find Us</string>
     <string name="main_news_title">Good News</string>
 
-    <string name="main_ourservice_title">Our Service</string>
+    <string name="main_ourservice_title">Our\nServices</string>
     <string name="main_facebook_title">Facebook</string>
     <string name="main_help_title">FAQ</string>
     <string name="main_announce_title">Announcement</string>
@@ -40,7 +40,7 @@
     <string name="main_membership">Membership</string>
     <string name="main_info_update">Information Update</string>
 
-    <string name="welcome_loan_app_title">LOAN Application</string>
+    <string name="welcome_loan_app_title">Loan Application</string>
     <string name="welcome_membership_title">Membership</string>
     <string name="welcome_agent_channel_title">Ask Product</string>
     <string name="welcome_info_update_title">Information\nUpdate</string>
@@ -84,7 +84,7 @@
     <string name="resetpass_conpass_err2">Password and Confirmed Passwords must be same.</string>
 
     <string name="resetpass_sq_wrong">Question and answer are not matched.</string>
-    <string name="resetpass_sq_nrc_ph_not_exist">NRC or Phone No does not exist.</string>
+    <string name="resetpass_sq_nrc_ph_not_exist">NRC or Phone No. does not exist.</string>
 
     <!--REGISTER Screen--><!---->
     <string name="register_title">REGISTRATION</string>
@@ -110,9 +110,9 @@
     <string name="register_name_err">Please enter Name.</string>
     <string name="register_dob_err">Please enter Date Of Birth.</string>
     <string name="register_nrc_err">Please enter NRC No.</string>
-    <string name="register_nrc_format_err">NRC(No) must be 6 numbers only.</string>
+    <string name="register_nrc_format_err">NRC(No.) must be 6 numbers only.</string>
     <string name="register_phoneno_err">Please enter Phone No.</string>
-    <string name="register_tel_no_err">Please enter Tel No.</string>
+    <string name="register_tel_no_err">Please enter Tel. No.</string>
     <string name="register_password_err">Please enter Password.</string>
     <string name="register_conpassword_err">Please enter Confirm Password.</string>
     <string name="register_pwd_format_err_msg">Length of Password must between 6 and 16.</string>
@@ -186,7 +186,7 @@
     <string name="membership_card2_photo_label">This photo can use for securing your Member Card.</string>
     <string name="membership_tab_card1">Card Info 1</string>
     <string name="membership_tab_card2">Card Info 2</string>
-    <string name="last_received_day">Last Received Day : </string>
+    <string name="last_received_day">Last Received Date - </string>
     <string name="received_day_warning_text">If you have any concerned about last received day, please contact to AEON.</string>
 
     <!--INFORMATION UPDATE Screen-->
@@ -227,15 +227,15 @@
     <string name="da_applicant_livingWith">Living With *</string>
     <string name="da_applicant_yearStay">Year of Stay *</string>
     <string name="da_applicant_mobileNo">Mobile No. *</string>
-    <string name="da_applicant_residentNo">Resident Tel No. </string>
+    <string name="da_applicant_residentNo">Resident Tel. No. </string>
     <string name="da_applicant_otherPhone">Other Phone No.</string>
     <string name="da_applicant_email">Email</string>
     <string name="da_applicant_next_btn">NEXT</string>
     <string name="da_applicant_save_btn">SAVE</string>
 
-    <string name="da_applicant_apartment_no">Building No</string>
-    <string name="da_applicant_room_no">Room No</string>
-    <string name="da_applicant_floor_no">Floor No</string>
+    <string name="da_applicant_apartment_no">Building No.</string>
+    <string name="da_applicant_room_no">Room No.</string>
+    <string name="da_applicant_floor_no">Floor No.</string>
     <string name="da_applicant_street">Street *</string>
     <string name="da_applicant_quarter">Quarter *</string>
     <string name="da_applicant_permanent_quarter">Quarter</string>
@@ -249,7 +249,7 @@
 
     <string name="da_occupation_companyName">Company Name *</string>
     <string name="da_occupation_companyAdd">Company Address *</string>
-    <string name="da_occupation_companyTelNo">Company Tel No. *</string>
+    <string name="da_occupation_companyTelNo">Company Tel. No. *</string>
     <string name="da_occupation_contactTime">Contact Time </string>
     <string name="da_occupation_department">Department *</string>
     <string name="da_occupation_position">Position *</string>
@@ -264,7 +264,7 @@
     <string name="da_emergency_relationship">Relationship with Applicant *</string>
     <string name="da_emergency_currAddress">Current Address *</string>
     <string name="da_emergency_mobileNo">Mobile No. *</string>
-    <string name="da_emergency_residentTelNo">Resident Tel No.</string>
+    <string name="da_emergency_residentTelNo">Resident Tel. No.</string>
     <string name="da_emergency_otherPhoneNo">Other Phone No.</string>
 
     <string name="da_guarantor_name">Name *</string>
@@ -272,7 +272,7 @@
     <string name="da_guarantor_nrc">NRC No. *</string>
     <string name="da_guarantor_nationality">Nationality *</string>
     <string name="da_guarantor_mobileNo">Mobile No. *</string>
-    <string name="da_guarantor_residentTelNo">Resident Tel No. </string>
+    <string name="da_guarantor_residentTelNo">Resident Tel. No. </string>
     <string name="da_guarantor_relationship">Relationship with Applicant *</string>
     <string name="da_guarantor_currAddress">Current Address *</string>
     <string name="da_guarantor_residenceType">Type of Residence *</string>
@@ -281,7 +281,7 @@
     <string name="da_guarantor_marital">Marital Status *</string>
     <string name="da_guarantor_yearStay">Year of Stay *</string>
     <string name="da_guarantor_companyName">Company Name *</string>
-    <string name="da_guarantor_companyTelNo">Company Tel No.*</string>
+    <string name="da_guarantor_companyTelNo">Company Tel. No.*</string>
     <string name="da_guarantor_companyAdd">Company Address</string>
     <string name="da_guarantor_department">Department *</string>
     <string name="da_guarantor_position">Position *</string>
@@ -325,7 +325,7 @@
     <!--Inquiry-->
     <string name="da_in_application_no">Application No.</string>
     <string name="da_in_application_date">Application Date</string>
-    <string name="da_in_member_card_no">Member Card No</string>
+    <string name="da_in_member_card_no">Member Card No.</string>
 
     <string name="da_in_app_data_name">Name</string>
     <string name="da_in_app_data_dob">Date of Birth</string>
@@ -341,13 +341,13 @@
     <string name="da_in_app_data_living_with">Living With</string>
     <string name="da_in_app_data_year_of_stay">Year of Stay</string>
     <string name="da_in_app_data_mobile_no">Mobile No.</string>
-    <string name="da_in_app_data_resident_tel_no">Resident Tel No.</string>
+    <string name="da_in_app_data_resident_tel_no">Resident Tel. No.</string>
     <string name="da_in_app_data_other_phone_no">Other Phone No.</string>
     <string name="da_in_app_data_email">Email</string>
 
     <string name="da_in_occu_company_name">Company Name</string>
     <string name="da_in_occu_company_address">Company Address</string>
-    <string name="da_in_occu_company_tel_no">Company Tel No.</string>
+    <string name="da_in_occu_company_tel_no">Company Tel. No.</string>
     <string name="da_in_occu_contact_time">Contact Time</string>
     <string name="da_in_occu_department">Department</string>
     <string name="da_in_occu_position">Position</string>
@@ -362,7 +362,7 @@
     <string name="da_in_eme_relationship_with_applier">Relationship With Applicant</string>
     <string name="da_in_eme_current_address">Current Address</string>
     <string name="da_in_eme_mobile_no">Mobile No.</string>
-    <string name="da_in_eme_resident_tel_no">Resident Tel No.</string>
+    <string name="da_in_eme_resident_tel_no">Resident Tel. No.</string>
     <string name="da_in_eme_other_phone_no">Other Phone No.</string>
 
     <string name="da_in_gur_name">Name</string>
@@ -370,7 +370,7 @@
     <string name="da_in_gur_nrc_no">NRC No.</string>
     <string name="da_in_gur_nationality">Nationality</string>
     <string name="da_in_gur_mobile_no">Mobile No.</string>
-    <string name="da_in_gur_resident_tel_no">Resident Tel No.</string>
+    <string name="da_in_gur_resident_tel_no">Resident Tel. No.</string>
     <string name="da_in_gur_relationship_with_applier">Relationship With Applicant</string>
     <string name="da_in_gur_current_address">Current Address</string>
     <string name="da_in_gur_type_of_resident">Type of Resident</string>
@@ -380,7 +380,7 @@
     <string name="da_in_gur_year_of_stay">Year of Stay</string>
     <string name="da_in_gur_company_name">Company Name</string>
     <string name="da_in_gur_company_address">Company Address</string>
-    <string name="da_in_gur_company_tel_no">Company Tel No.</string>
+    <string name="da_in_gur_company_tel_no">Company Tel. No.</string>
     <string name="da_in_gur_department">Department</string>
     <string name="da_in_gur_position">Position</string>
     <string name="da_in_gur_year_of_service">Year of Service</string>
@@ -413,7 +413,7 @@
     <string name="purchase_brand">Brand</string>
     <string name="purchase_model">Model</string>
     <string name="purchase_price">Price</string>
-    <string name="purchase_cashdown_amount">Cashdown Amount</string>
+    <string name="purchase_cashdown_amount">Cash Down Amount</string>
     <string name="purchase_date">Purchase Date</string>
     <string name="purchase_invoice_no">Invoice No.</string>
     <string name="purchase_agreement_no">Agreement No.</string>
@@ -451,8 +451,8 @@
     <string name="da_yearStay_require_err">Please choose Year of Stay.</string>
     <string name="da_yearStayMonth_require_err">Please enter Month.</string>
     <string name="da_yearStayMonth_exceed_err">Month should be less than 12.</string>
-    <string name="da_residentTelNo_require_err">Please enter Resident Tel No.</string>
-    <string name="da_residentTelNo_format_err">Resident Tel No. is not telephone number.</string>
+    <string name="da_residentTelNo_require_err">Please enter Resident Tel. No.</string>
+    <string name="da_residentTelNo_format_err">Resident Tel. No. is not telephone number.</string>
     <string name="da_MobileNo_require_err">Please enter Mobile No.</string>
     <string name="da_MobileNo_format_err">Mobile No. is not valid.</string>
     <string name="da_otherPhoneNo_require_err">Please enter Other Phone No.</string>
@@ -462,8 +462,8 @@
 
     <string name="da_companyName_require_err">Please enter Company Name.</string>
     <string name="da_companyAddress_require_err">Please enter Company Address.</string>
-    <string name="da_companyTelNo_require_err">Please enter Company Tel No.</string>
-    <string name="da_companyTelNo_format_err">Company Tel No. is not phone number.</string>
+    <string name="da_companyTelNo_require_err">Please enter Company Tel. No.</string>
+    <string name="da_companyTelNo_format_err">Company Tel. No. is not phone number.</string>
     <string name="da_contactTime_require_err">Please enter Contact Time.</string>
     <string name="da_contactTimeAM_require_err">Please enter Contact Time(AM).</string>
     <string name="da_contactTimePM_require_err">Please enter Contact Time(PM).</string>
@@ -527,7 +527,7 @@
     <string name="logout_title">LOGOUT</string>
     <string name="logout_in_progress">Logging out ...</string>
     <string name="logout_success">Logout</string>
-    <string name="logout_unsuccess">Logout Unsuccess.</string>
+    <string name="logout_unsuccess">Logout Un-success.</string>
     <string name="logout_unavailable">Logout Service Unavailable!</string>
     <string name="logout_on_failure">Logout Failed!</string>
     <string name="logout_alert_in_back">Double BACK click is to logout.</string>
@@ -811,7 +811,7 @@ The customer agrees to allow AEON to contact via mobile phone, email, Website, A
     <string name="verified_ph_no_alert_biometric_not_ok">Upgrade to Member process is success.\nPlease login with Phone No. [phoneNo] which registered at AEON.</string>
     <string name="sec_ans_update">SECURITY QUESTION UPDATE</string>
     <string name="bio_dialog_reg">Would you register Fingerprint Login?</string>
-    <string name="read_more">read more</string>
+    <string name="read_more">Read more</string>
     <string name="session_time_out_msg">Your session is expired.</string>
     <string name="new_version_msg">New version is available on Play Store. \n\nUpdated features are \n(1) News \n(2) Announcement \n(3) Messenger \n\nEnjoy new features!</string>
 
@@ -887,7 +887,7 @@ The customer agrees to allow AEON to contact via mobile phone, email, Website, A
     <string name="message_sec_scrren_unavailable">Secure lock screen not enabled.</string>
     <string name="message_logout_failed">Logout info update failed.</string>
     <string name="logout_info_updated">Logout info updated.</string>
-    <string name="message_back_click">Please click BACK again to exit</string>
+    <string name="message_back_click">Please click BACK again to exit.</string>
     <string name="message_permission_deniled">Permissions not granted by the user.</string>
     <string name="progress_checking_member">Checking Member ...</string>
     <string name="progress_otp_request">OTP Requesting ...</string>
@@ -936,7 +936,7 @@ The customer agrees to allow AEON to contact via mobile phone, email, Website, A
     <!--Dialog string-->
     <string name="agent_channel_category">Category :</string>
     <string name="agent_channel_brand">Brand :</string>
-    <string name="agent_channel_addText">Addtional Text :</string>
+    <string name="agent_channel_addText">Additional Text :</string>
     <string name="agent_channel_location">Current Location :</string>
     <string name="agent_channel_btn">SEND TO AGENT</string>
 
@@ -945,8 +945,8 @@ The customer agrees to allow AEON to contact via mobile phone, email, Website, A
     <string name="btn_purchase_detail">Purchase Detail</string>
     <string name="btn_attachment_edit">Attachment Edit</string>
     <string name="btn_cancel">Cancel</string>
-    <string name="lbl_application_no">Application No</string>
-    <string name="lbl_agreement_no">Agreement No</string>
+    <string name="lbl_application_no">Application No.</string>
+    <string name="lbl_agreement_no">Agreement No.</string>
     <string name="lbl_apply_date">Apply Date \t\t\t</string>
     <string name="lbl_loan_amount">Loan Amount</string>
     <string name="lbl_approve_amount">Approved Amount</string>
@@ -955,6 +955,7 @@ The customer agrees to allow AEON to contact via mobile phone, email, Website, A
     <string name="lbl_detail">DETAIL</string>
     <string name="login_alert_dialog_message">Another Login Occurred!</string>
     <string name="login_alert_dialog_title">Alert!</string>
+    <string name="prod_detail_loan_type">Loan Type</string>
 
     <string-array name="applicant_resident_type">
         <item>Owner</item>
@@ -1018,7 +1019,7 @@ The customer agrees to allow AEON to contact via mobile phone, email, Website, A
         <item>Smart Phone</item>
         <item>IT</item>
         <item>Furniture</item>
-        <item>Aircon</item>
+        <item>Air-Con</item>
         <item>Refrigerator</item>
     </string-array>
 
@@ -1211,5 +1212,7 @@ The customer agrees to allow AEON to contact via mobile phone, email, Website, A
         <item>University</item>
         <item>Graduated</item>
     </string-array>
+
+    <integer name="action_bar_size">?attr/actionBarSize</integer>
 
 </resources>

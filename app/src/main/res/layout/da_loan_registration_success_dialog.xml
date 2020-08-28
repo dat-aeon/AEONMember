@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:layout_gravity="center"
+    android:background="@drawable/alert_dialog_bg"
+    android:layout_width="@dimen/message_dialogs_width"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin_large_2"
+    android:layout_marginRight="@dimen/margin_large_2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_check_circle_black_24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_title"
+            android:textColor="@color/green"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:textSize="@dimen/text_regular"
+            android:fontFamily="@font/pyidaungsu_regular"
+            android:layout_gravity="center_vertical"
+            android:text="Registration Success!"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/margin_medium_x"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        android:layout_marginBottom="@dimen/margin_tiny"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_message_00"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular"
+            android:text="Application No. -"
+            android:fontFamily="@font/pyidaungsu_regular"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblRegisteredNo"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular"
+            android:text="AA000000"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:fontFamily="@font/pyidaungsu_regular"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/mini_button_height"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_medium_2"
+        android:background="@drawable/dialog_button_border"
+        android:fontFamily="@font/pyidaungsu_regular"
+        android:text="Done"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/green"
+        android:textSize="@dimen/text_regular" />
+
+</LinearLayout>

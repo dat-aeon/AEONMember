@@ -1,34 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/grid_layout_border"
     android:backgroundTint="@color/announcement_color"
+    android:gravity="center"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <!--<ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="@dimen/category_ic_side"
+            android:layout_height="@dimen/category_ic_side"
+            android:layout_marginTop="@dimen/margin_small"
+            android:src="@drawable/announce_icon_512" />-->
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="@dimen/category_ic_side"
+            android:layout_height="@dimen/category_ic_side"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@drawable/messaging_container_frame"
+            android:backgroundTint="@color/grayLight"
+            android:padding="@dimen/margin_small_2x"
+            android:src="@drawable/gd_ic_announcement" />
+
+        <TextView
+            android:id="@+id/text_announce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:ellipsize="end"
+            android:fontFamily="@font/vcsm_labels_font"
+            android:text="@string/main_announce_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_view_font_size" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+    <!-- for DA version.
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/grid_layout_border"
+    android:backgroundTint="@color/announcement_color"
+    android:gravity="center"
     android:padding="5dp">
 
     <ImageView
-        android:layout_height="50dp"
         android:id="@+id/imageView1"
-        android:layout_width="50dp"
-        android:src="@drawable/announce_icon_512"
-        android:layout_marginLeft="5dp"
-        android:layout_centerVertical="true">
-    </ImageView>
-
-    <TextView
-        android:text="@string/main_announce_title"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_announce"
-        android:layout_width="match_parent"
-        android:layout_toRightOf="@+id/imageView1"
+        android:layout_width="@dimen/category_ic_side"
+        android:layout_height="@dimen/category_ic_side"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
-        android:textSize="@dimen/main_view_font_size"
-        android:fontFamily="@font/pyidaungsu_regular"
-        android:textColor="@color/blue"
-        android:ellipsize="marquee"/>
+        android:src="@drawable/announce_icon_512"></ImageView>
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/text_announce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/imageView1"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/pyidaungsu_regular"
+        android:text="@string/main_announce_title"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/main_view_font_size" />
+
+</RelativeLayout>-->

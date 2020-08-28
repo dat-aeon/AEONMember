@@ -2,8 +2,10 @@ package mm.com.aeon.vcsaeon.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.widget.Toolbar;
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +28,7 @@ import mm.com.aeon.vcsaeon.activities.MainMenuActivityDrawer;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
 import mm.com.aeon.vcsaeon.adapters.EventsAndNewsAdapter;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
+import mm.com.aeon.vcsaeon.common_utils.UiUtils;
 import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_EN;
@@ -37,7 +41,7 @@ public class NavEventsAndNewsFragment extends BaseFragment implements LanguageCh
     Toolbar toolbar;
 
     private TabLayout tabLayout;
-    public static int EventsNewsTabPosition=0;
+    public static int EventsNewsTabPosition = 0;
 
     @Nullable
     @Override
@@ -52,7 +56,9 @@ public class NavEventsAndNewsFragment extends BaseFragment implements LanguageCh
             ((MainMenuActivityDrawer) getActivity()).setLanguageListener(this);
             toolbar = ((MainMenuActivityDrawer) getActivity()).findViewById(R.id.toolbar_home);
         }
+
         LinearLayout menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+        menuBackBtn.setAnimation(UiUtils.animSlideToRight(getActivity()));
         menuBackBtn.setVisibility(View.VISIBLE);
 
         String tab1;
@@ -60,27 +66,27 @@ public class NavEventsAndNewsFragment extends BaseFragment implements LanguageCh
         String tab3;
 
         SharedPreferences sharedPreferences = PreferencesManager.getApplicationPreference(getActivity());
-        String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences,PARAM_LANG);
-        if(curLang.equals(LANG_MM)){
-            tab1=CommonUtils.getLocaleString(new Locale(LANG_MM), R.string.event_news_tab1, getActivity());
+        String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences, PARAM_LANG);
+        if (curLang.equals(LANG_MM)) {
+            tab1 = CommonUtils.getLocaleString(new Locale(LANG_MM), R.string.event_news_tab1, getActivity());
             //tab2=CommonUtils.getLocaleString(new Locale(LANG_MM), R.string.event_news_tab2, getActivity());
-            tab3=CommonUtils.getLocaleString(new Locale(LANG_MM), R.string.event_news_tab3, getActivity());
+            tab3 = CommonUtils.getLocaleString(new Locale(LANG_MM), R.string.event_news_tab3, getActivity());
         } else {
-            tab1=CommonUtils.getLocaleString(new Locale(LANG_EN), R.string.event_news_tab1, getActivity());
+            tab1 = CommonUtils.getLocaleString(new Locale(LANG_EN), R.string.event_news_tab1, getActivity());
             //tab2=CommonUtils.getLocaleString(new Locale(LANG_EN), R.string.event_news_tab2, getActivity());
-            tab3=CommonUtils.getLocaleString(new Locale(LANG_EN), R.string.event_news_tab3, getActivity());
+            tab3 = CommonUtils.getLocaleString(new Locale(LANG_EN), R.string.event_news_tab3, getActivity());
         }
 
         tabLayout = view.findViewById(R.id.tabLayout2);
         tabLayout.addTab(tabLayout.newTab().setText(tab1));
         //tabLayout.addTab(tabLayout.newTab().setText(tab2));
         tabLayout.addTab(tabLayout.newTab().setText(tab3));
-        tabLayout.setTabTextColors(getActivity().getColor(R.color.white),getActivity().getColor(R.color.white));
+        tabLayout.setTabTextColors(getActivity().getColor(R.color.white), getActivity().getColor(R.color.white));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = view.findViewById(R.id.viewPager2);
         final EventsAndNewsAdapter adapter = new
-                EventsAndNewsAdapter(getActivity().getSupportFragmentManager(),tabLayout.getTabCount());
+                EventsAndNewsAdapter(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
 
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -90,12 +96,14 @@ public class NavEventsAndNewsFragment extends BaseFragment implements LanguageCh
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                EventsNewsTabPosition=tab.getPosition();
+                EventsNewsTabPosition = tab.getPosition();
             }
+
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
             }
+
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
@@ -105,7 +113,7 @@ public class NavEventsAndNewsFragment extends BaseFragment implements LanguageCh
         return view;
     }
 
-    public void replaceFragment(Fragment fragment, int containerViewId){
+    public void replaceFragment(Fragment fragment, int containerViewId) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(containerViewId, fragment, "TAG");
@@ -114,7 +122,7 @@ public class NavEventsAndNewsFragment extends BaseFragment implements LanguageCh
 
     @Override
     public void changeLanguageTitle(String lang) {
-        PreferencesManager.setCurrentLanguage(getContext(),lang);
+        PreferencesManager.setCurrentLanguage(getContext(), lang);
         if (PreferencesManager.getMainNavFlag(getActivity())) {
             replaceFragment(new EventNewsTabFragment(), R.id.content_new_main_drawer);
         } else {

@@ -5,15 +5,14 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-
     <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/margin_medium_3"
+        android:layout_margin="@dimen/margin_medium"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        card_view:cardCornerRadius="10dp">
+        card_view:cardCornerRadius="@dimen/margin_medium">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -27,46 +26,59 @@
                 android:orientation="vertical"
                 android:padding="@dimen/margin_medium_2">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/pro_pic_cv"
+                    android:layout_width="@dimen/member_photo"
+                    android:layout_height="@dimen/member_photo"
+                    android:layout_marginBottom="@dimen/margin_small_2x"
+                    android:padding="@dimen/margin_small"
+                    android:layout_gravity="center"
+                    card_view:cardCornerRadius="@dimen/margin_medium_3">
 
-                    <ImageView
-                        android:id="@+id/member_photo"
-                        android:layout_width="@dimen/member_photo"
-                        android:layout_height="@dimen/member_photo"
-                        android:layout_gravity="center"
-                        android:src="@drawable/aeon_logo_white" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/ic_edit_bg"
-                        android:layout_width="@dimen/ic_regular_2x"
-                        android:layout_height="@dimen/ic_regular_2x"
-                        android:layout_alignParentBottom="true"
-                        android:layout_toRightOf="@id/member_photo"
-                        android:src="@drawable/ic_camera_alt_black_24dp"
-                        android:visibility="visible" />
+                        <ImageView
+                            android:id="@+id/member_photo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/aeon_logo_white" />
 
+                        <ImageView
+                            android:id="@+id/ic_edit_bg"
+                            android:layout_width="@dimen/ic_regular_2x"
+                            android:layout_height="@dimen/ic_regular_2x"
+                            android:background="@drawable/message_sent_text_style"
+                            android:src="@drawable/ic_baseline_camera_alt_24"
+                            android:layout_alignParentRight="true"
+                            android:padding="@dimen/margin_small"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:layout_marginBottom="@dimen/margin_small"
+                            android:visibility="visible" />
 
-                </RelativeLayout>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/margin_medium">
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/title_customer_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/member_card_info_width"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pyidaungsu_bold"
                         android:paddingLeft="@dimen/margin_medium_x"
-                        android:text="Customer No : "
+                        android:text="Customer No. :"
                         android:textColor="@color/membership_color"
                         android:textSize="@dimen/text_regular_2x" />
-
 
                     <TextView
                         android:id="@+id/lbl_customer_id"
@@ -76,27 +88,26 @@
                         android:paddingLeft="@dimen/margin_medium_x"
                         android:text="2019012354"
                         android:textColor="@color/membership_color"
-                        android:textSize="@dimen/text_regular_2x" />
-
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/margin_medium">
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/title_member_id"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/member_card_info_width"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pyidaungsu_bold"
                         android:paddingLeft="@dimen/margin_medium_x"
-                        android:text="Member ID : "
+                        android:text="Member ID     :"
                         android:textColor="@color/membership_color"
                         android:textSize="@dimen/text_regular_2x" />
-
 
                     <TextView
                         android:id="@+id/lbl_member_id"
@@ -106,8 +117,8 @@
                         android:paddingLeft="@dimen/margin_medium_x"
                         android:text="2019012354"
                         android:textColor="@color/membership_color"
-                        android:textSize="@dimen/text_regular_2x" />
-
+                        android:textSize="@dimen/text_regular_2x"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -115,127 +126,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/horizontal_line_height"
                     android:layout_marginLeft="@dimen/margin_medium_x"
-                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_medium_2"
                     android:layout_marginRight="@dimen/margin_medium_x"
                     android:background="@color/membership_color" />
-
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_card_one"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/margin_medium" />
-
-
-                <!--<RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/layout_agreement_no"
-                    android:paddingLeft="@dimen/margin_medium_x"
-                    android:gravity="left"
-                    android:layout_marginTop="@dimen/margin_small">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/lbl_agreement_no"
-                        android:textColor="@color/membership_color"
-                        android:textSize="@dimen/text_regular_2x"
-                        android:fontFamily="@font/pyidaungsu_regular"
-                        android:text="Contract ID : 2019-1-0000002020-2"/>
-
-                    <ImageView
-                        android:layout_width="@dimen/ic_regular"
-                        android:layout_height="@dimen/ic_regular"
-                        android:layout_toEndOf="@+id/lbl_agreement_no"
-                        android:layout_marginLeft="@dimen/margin_medium"
-                        android:src="@drawable/calendar_icon"/>
-
-                </RelativeLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/horizontal_line_height"
-                    android:layout_marginTop="@dimen/margin_medium"
-                    android:layout_marginLeft="@dimen/margin_medium_x"
-                    android:layout_marginRight="@dimen/margin_medium_x"
-                    android:background="@color/membership_color"/>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/layout_qr_code"
-                    android:paddingLeft="@dimen/margin_medium_x"
-                    android:gravity="left"
-                    android:layout_marginTop="@dimen/margin_small">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/lbl_qr_code"
-                        android:textColor="@color/membership_color"
-                        android:textSize="@dimen/text_regular_2x"
-                        android:fontFamily="@font/pyidaungsu_regular"
-                        android:text="QR Code : "/>
-
-                    <ImageView
-                        android:layout_width="@dimen/aeon_logo_side_small"
-                        android:layout_height="@dimen/aeon_logo_side_small"
-                        android:layout_toEndOf="@+id/lbl_qr_code"
-                        android:layout_marginLeft="@dimen/margin_medium"
-                        android:src="@drawable/qr_code_512"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/layout_contract"
-                    android:paddingLeft="@dimen/margin_medium_x"
-                    android:gravity="left"
-                    android:layout_marginTop="@dimen/margin_small">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/lbl_contract2"
-                        android:textColor="@color/membership_color"
-                        android:textSize="@dimen/text_regular_2x"
-                        android:fontFamily="@font/pyidaungsu_regular"
-                        android:text="Contract ID : 2019-5-0000001320-2"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/lbl_last_payment_day"
-                        android:layout_below="@+id/lbl_contract2"
-                        android:textColor="@color/membership_color"
-                        android:textSize="@dimen/text_regular_2x"
-                        android:fontFamily="@font/pyidaungsu_regular"
-                        android:layout_alignParentStart="true"
-                        android:layout_toLeftOf="@+id/include_pay_online"
-                        android:text="Last receive day : 2020/02/02"/>
-                    <include
-                        android:id="@+id/include_pay_online"
-                        layout="@layout/grid_view_pay_online"
-                        android:layout_alignParentEnd="true"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="@dimen/margin_small_2x"
-                        android:layout_marginEnd="20dp"
-                        android:layout_weight="1"
-                        android:visibility="gone"/>
-
-                </RelativeLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/horizontal_line_height"
-                    android:layout_marginTop="@dimen/margin_medium"
-                    android:layout_marginLeft="@dimen/margin_medium_x"
-                    android:layout_marginRight="@dimen/margin_medium_x"
-                    android:background="@color/membership_color"/>
-    -->
+                    android:layout_marginTop="@dimen/margin_small_2x" />
 
             </LinearLayout>
 

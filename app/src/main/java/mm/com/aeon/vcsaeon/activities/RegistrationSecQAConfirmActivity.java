@@ -10,9 +10,11 @@ import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.Toolbar;
+
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.Display;
@@ -38,6 +40,7 @@ import java.util.List;
 import java.util.Locale;
 
 import androidx.core.content.res.ResourcesCompat;
+
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.beans.AnsweredSecurityQuestionReqBean;
 import mm.com.aeon.vcsaeon.beans.AppUsageInfoReqBean;
@@ -72,6 +75,7 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_MM;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.MEMBER;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.PASSWORD;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.SUCCESS;
+import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.hideKeyboard;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.isPureAscii;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.isUnique;
 import static mm.com.aeon.vcsaeon.common_utils.UiUtils.closeDialog;
@@ -92,13 +96,13 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
     TextView menuBarDate;
     TextView menuBarPhoneNo;
     TextView menuBarName;
-    LinearLayout menuBackbtn;
+    LinearLayout menuBackBtn;
 
     TextView textTitle;
     TextView textDuplicateQuestion;
 
-    static int numSecQues=0;
-    static int numAnsCharacter=0;
+    static int numSecQues = 0;
+    static int numAnsCharacter = 0;
 
     private static List<TextView> textViewList = new ArrayList<TextView>();
     private static List<EditText> editTextList = new ArrayList<EditText>();
@@ -151,8 +155,8 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
         toolbar.setTitleTextColor(getColor(R.color.white));
         setSupportActionBar(toolbar);
 
-        menuBackbtn = toolbar.findViewById(R.id.menu_back_btn_view);
-        menuBackbtn.setVisibility(View.VISIBLE);
+        menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+        menuBackBtn.setVisibility(View.VISIBLE);
 
         menuBarName = toolbar.findViewById(R.id.menu_bar_name);
         menuBarLevelInfo = toolbar.findViewById(R.id.menu_bar_level);
@@ -185,7 +189,7 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
             }
         });
 
-        menuBackbtn.setOnClickListener(new View.OnClickListener() {
+        menuBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -235,175 +239,173 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
         final Call<BaseResponse<RegSecurityQuestionInfoResBean>> req = getSecurityQuestionService.getSecurityQuestion();
 
         req.enqueue(new Callback<BaseResponse<RegSecurityQuestionInfoResBean>>() {
-                @Override
-                public void onResponse(Call<BaseResponse<RegSecurityQuestionInfoResBean>> call, Response<BaseResponse<RegSecurityQuestionInfoResBean>> response) {
+            @Override
+            public void onResponse(Call<BaseResponse<RegSecurityQuestionInfoResBean>> call, Response<BaseResponse<RegSecurityQuestionInfoResBean>> response) {
 
-                    if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
-                        BaseResponse baseResponse = response.body();
+                    BaseResponse baseResponse = response.body();
 
-                        if(baseResponse.getStatus().equals(SUCCESS)){
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
 
-                            try{
+                        try {
 
-                                RegSecurityQuestionInfoResBean regSecurityQuestionInfoResBean =
-                                        (RegSecurityQuestionInfoResBean) baseResponse.getData();
+                            RegSecurityQuestionInfoResBean regSecurityQuestionInfoResBean =
+                                    (RegSecurityQuestionInfoResBean) baseResponse.getData();
 
-                                LinearLayout securityAQLayout = findViewById(R.id.security_qa_layout_fp);
-                                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                params.setMargins(0,0,0,5);
+                            LinearLayout securityAQLayout = findViewById(R.id.security_qa_layout_fp);
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                            params.setMargins(0, 0, 0, 5);
 
-                                LinearLayout separatorLayout0 = new LinearLayout(getApplicationContext());
-                                LinearLayout.LayoutParams sLayout0 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2);
-                                sLayout0.setMargins(0,0,0,5);
-                                separatorLayout0.setLayoutParams(sLayout0);
-                                separatorLayout0.setBackgroundColor(getColor(R.color.grayLight));
-                                securityAQLayout.addView(separatorLayout0);
+                            LinearLayout separatorLayout0 = new LinearLayout(getApplicationContext());
+                            LinearLayout.LayoutParams sLayout0 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2);
+                            sLayout0.setMargins(0, 0, 0, 5);
+                            separatorLayout0.setLayoutParams(sLayout0);
+                            separatorLayout0.setBackgroundColor(getColor(R.color.grayLight));
+                            securityAQLayout.addView(separatorLayout0);
 
-                                textViewList.clear();
-                                editTextList.clear();
-                                spinnerList.clear();
+                            textViewList.clear();
+                            editTextList.clear();
+                            spinnerList.clear();
 
-                                numSecQues = regSecurityQuestionInfoResBean.getNumOfSecQues();
-                                numAnsCharacter = regSecurityQuestionInfoResBean.getNumOfAnsChar();
-                                securityQuestionResDtoList = regSecurityQuestionInfoResBean.getSecurityQuestionDtoList();
+                            numSecQues = regSecurityQuestionInfoResBean.getNumOfSecQues();
+                            numAnsCharacter = regSecurityQuestionInfoResBean.getNumOfAnsChar();
+                            securityQuestionResDtoList = regSecurityQuestionInfoResBean.getSecurityQuestionDtoList();
 
-                                //create 3 linear layout.
-                                for(int i=0;i<numSecQues;i++){
+                            //create 3 linear layout.
+                            for (int i = 0; i < numSecQues; i++) {
 
-                                    //Question Layout
-                                    LinearLayout questionLayout = new LinearLayout(getApplicationContext());
-                                    LinearLayout.LayoutParams queLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                    queLayoutParam.setMargins(0,0,0,5);
-                                    questionLayout.setOrientation(LinearLayout.HORIZONTAL);
+                                //Question Layout
+                                LinearLayout questionLayout = new LinearLayout(getApplicationContext());
+                                LinearLayout.LayoutParams queLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                queLayoutParam.setMargins(0, 0, 0, 5);
+                                questionLayout.setOrientation(LinearLayout.HORIZONTAL);
 
-                                    //TextQues
-                                    TextView questionLabel = new TextView(getApplicationContext());
-                                    questionLabel.setText("Q"+(i+1)+":");
-                                    questionLabel.setMinWidth(70);
-                                    questionLabel.setTextSize(12);
-                                    questionLabel.setGravity(Gravity.RIGHT);
-                                    questionLabel.setTextColor(getColor(R.color.colorPrimary));
-                                    questionLabel.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.pyidaungsu_regular));
-                                    questionLayout.addView(questionLabel);
+                                //TextQues
+                                TextView questionLabel = new TextView(getApplicationContext());
+                                questionLabel.setText("Q" + (i + 1) + ":");
+                                questionLabel.setMinWidth(70);
+                                questionLabel.setTextSize(12);
+                                questionLabel.setGravity(Gravity.RIGHT);
+                                questionLabel.setTextColor(getColor(R.color.colorPrimary));
+                                questionLabel.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.pyidaungsu_regular));
+                                questionLayout.addView(questionLabel);
 
-                                    //Answer Layout.
-                                    LinearLayout answerLayout = new LinearLayout(getApplicationContext());
-                                    LinearLayout.LayoutParams ansLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, getDp(40));
-                                    ansLayoutParam.setMargins(5,0,0,15);
-                                    answerLayout.setLayoutParams(ansLayoutParam);
-                                    answerLayout.setOrientation(LinearLayout.HORIZONTAL);
+                                //Answer Layout.
+                                LinearLayout answerLayout = new LinearLayout(getApplicationContext());
+                                LinearLayout.LayoutParams ansLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, getDp(40));
+                                ansLayoutParam.setMargins(5, 0, 0, 15);
+                                answerLayout.setLayoutParams(ansLayoutParam);
+                                answerLayout.setOrientation(LinearLayout.HORIZONTAL);
 
-                                    TextView ansLabel = new TextView(getApplicationContext());
-                                    ansLabel.setText("Ans"+(i+1)+": ");
-                                    ansLabel.setTextColor(getColor(R.color.colorPrimary));
-                                    ansLabel.setMinWidth(70);
-                                    ansLabel.setTextSize(12);
-                                    ansLabel.setGravity(Gravity.RIGHT);
-                                    ansLabel.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.pyidaungsu_regular));
-                                    answerLayout.addView(ansLabel);
+                                TextView ansLabel = new TextView(getApplicationContext());
+                                ansLabel.setText("Ans" + (i + 1) + ": ");
+                                ansLabel.setTextColor(getColor(R.color.colorPrimary));
+                                ansLabel.setMinWidth(70);
+                                ansLabel.setTextSize(12);
+                                ansLabel.setGravity(Gravity.RIGHT);
+                                ansLabel.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.pyidaungsu_regular));
+                                answerLayout.addView(ansLabel);
 
-                                    //Question Spinner
-                                    Spinner appCompatSpinner = new Spinner(getApplicationContext());
-                                    appCompatSpinner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                                    appCompatSpinner.setGravity(Gravity.CENTER_VERTICAL);
+                                //Question Spinner
+                                Spinner appCompatSpinner = new Spinner(getApplicationContext());
+                                appCompatSpinner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                                appCompatSpinner.setGravity(Gravity.CENTER_VERTICAL);
 
-                                    final List<String> questionList = new ArrayList<>();
+                                final List<String> questionList = new ArrayList<>();
 
-                                    for (SecurityQuestionResDto securityQuestionResDto : securityQuestionResDtoList) {
-                                        if(curLang.equals(LANG_MM)){
-                                            questionList.add(securityQuestionResDto.getQuestionMM());
-                                        } else {
-                                            questionList.add(securityQuestionResDto.getQuestionEN());
-                                        }
+                                for (SecurityQuestionResDto securityQuestionResDto : securityQuestionResDtoList) {
+                                    if (curLang.equals(LANG_MM)) {
+                                        questionList.add(securityQuestionResDto.getQuestionMM());
+                                    } else {
+                                        questionList.add(securityQuestionResDto.getQuestionEN());
                                     }
-
-                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.security_qa_spinner_item, questionList);
-                                    appCompatSpinner.setAdapter(adapter);
-                                    appCompatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                        @Override
-                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {}
-                                        @Override
-                                        public void onNothingSelected(AdapterView<?> parent) {}
-                                    });
-
-                                    //Indexing previous selected questions-indexes.
-                                    if(tempSpinnerPosition!=null){
-                                        if(tempSpinnerPosition.size()>i){
-                                            appCompatSpinner.setSelection(tempSpinnerPosition.get(i));
-                                        } else {
-                                            tempSpinnerPosition.add(0);
-                                            appCompatSpinner.setSelection(tempSpinnerPosition.get(i));
-                                        }
-                                    }
-
-                                    //questionLayout.addView(imageView);
-                                    questionLayout.addView(appCompatSpinner);
-                                    questionLayout.setLayoutParams(params);
-
-                                    //Error for answer textbox.
-                                    TextView errTextView = new TextView(getApplicationContext());
-                                    errTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                                    errTextView.setVisibility(View.GONE);
-                                    errTextView.setPadding(80,0,0,0);
-                                    errTextView.setText(getString(R.string.secquest_err_ans_blank));
-                                    errTextView.setTextColor(getColor(R.color.red));
-                                    errTextView.setTextSize(14);
-                                    errTextView.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.pyidaungsu_regular));
-
-                                    //Answer TextBox
-                                    EditText textInputLayout = new EditText(getApplicationContext());
-                                    textInputLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-                                    textInputLayout.setTextSize(14);
-                                    textInputLayout.setHeight(40);
-                                    textInputLayout.setPadding(8,0,0,0);
-                                    textInputLayout.setTextColor(getResources().getColor(R.color.black));
-                                    textInputLayout.setSingleLine(true);
-                                    InputFilter[] FilterArray = new InputFilter[1];
-                                    FilterArray[0] = new InputFilter.LengthFilter(numAnsCharacter);
-                                    textInputLayout.setFilters(FilterArray);
-                                    textInputLayout.setHintTextColor(getResources().getColor(R.color.grayLight));
-                                    textInputLayout.setBackground(getDrawable(R.drawable.edit_text_style));
-                                    if(tempAnswers!=null){
-                                        //Indexing previous entered answers.
-                                        if(tempAnswers.size()>i){
-                                            textInputLayout.setText(tempAnswers.get(i));
-                                        } else {
-                                            tempAnswers.add(BLANK);
-                                            textInputLayout.setText(tempAnswers.get(i));
-                                        }
-                                    }
-                                    textInputLayout.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.pyidaungsu_regular));
-                                    answerLayout.addView(textInputLayout);
-
-                                    textViewList.add(errTextView);
-                                    editTextList.add(textInputLayout);
-                                    spinnerList.add(appCompatSpinner);
-
-                                    LinearLayout separatorLayout = new LinearLayout(getApplicationContext());
-                                    LinearLayout.LayoutParams sLayout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2);
-                                    sLayout.setMargins(0,10,0,5);
-                                    separatorLayout.setLayoutParams(sLayout);
-                                    separatorLayout.setBackgroundColor(getColor(R.color.grayLight));
-
-                                    securityAQLayout.addView(questionLayout);
-                                    securityAQLayout.addView(errTextView);
-                                    securityAQLayout.addView(answerLayout);
-                                    securityAQLayout.addView(separatorLayout);
-
                                 }
 
-                                btnSave.setEnabled(true);
-                                closeDialog(loadSecQuesDialog);
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.security_qa_spinner_item, questionList);
+                                appCompatSpinner.setAdapter(adapter);
+                                appCompatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                    }
 
-                            } catch (Exception e){
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> parent) {
+                                    }
+                                });
 
-                                e.printStackTrace();
-                                closeDialog(loadSecQuesDialog);
-                                serviceUnavailable.setVisibility(View.VISIBLE);
+                                //Indexing previous selected questions-indexes.
+                                if (tempSpinnerPosition != null) {
+                                    if (tempSpinnerPosition.size() > i) {
+                                        appCompatSpinner.setSelection(tempSpinnerPosition.get(i));
+                                    } else {
+                                        tempSpinnerPosition.add(0);
+                                        appCompatSpinner.setSelection(tempSpinnerPosition.get(i));
+                                    }
+                                }
+
+                                //questionLayout.addView(imageView);
+                                questionLayout.addView(appCompatSpinner);
+                                questionLayout.setLayoutParams(params);
+
+                                //Error for answer textbox.
+                                TextView errTextView = new TextView(getApplicationContext());
+                                errTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                                errTextView.setVisibility(View.GONE);
+                                errTextView.setPadding(80, 0, 0, 0);
+                                errTextView.setText(getString(R.string.secquest_err_ans_blank));
+                                errTextView.setTextColor(getColor(R.color.red));
+                                errTextView.setTextSize(14);
+                                errTextView.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.pyidaungsu_regular));
+
+                                //Answer TextBox
+                                EditText textInputLayout = new EditText(getApplicationContext());
+                                textInputLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                                textInputLayout.setTextSize(14);
+                                textInputLayout.setHeight(40);
+                                textInputLayout.setPadding(8, 0, 0, 0);
+                                textInputLayout.setTextColor(getResources().getColor(R.color.black));
+                                textInputLayout.setSingleLine(true);
+                                InputFilter[] FilterArray = new InputFilter[1];
+                                FilterArray[0] = new InputFilter.LengthFilter(numAnsCharacter);
+                                textInputLayout.setFilters(FilterArray);
+                                textInputLayout.setHintTextColor(getResources().getColor(R.color.grayLight));
+                                textInputLayout.setBackground(getDrawable(R.drawable.edit_text_style));
+                                if (tempAnswers != null) {
+                                    //Indexing previous entered answers.
+                                    if (tempAnswers.size() > i) {
+                                        textInputLayout.setText(tempAnswers.get(i));
+                                    } else {
+                                        tempAnswers.add(BLANK);
+                                        textInputLayout.setText(tempAnswers.get(i));
+                                    }
+                                }
+                                textInputLayout.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.pyidaungsu_regular));
+                                answerLayout.addView(textInputLayout);
+
+                                textViewList.add(errTextView);
+                                editTextList.add(textInputLayout);
+                                spinnerList.add(appCompatSpinner);
+
+                                LinearLayout separatorLayout = new LinearLayout(getApplicationContext());
+                                LinearLayout.LayoutParams sLayout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2);
+                                sLayout.setMargins(0, 10, 0, 5);
+                                separatorLayout.setLayoutParams(sLayout);
+                                separatorLayout.setBackgroundColor(getColor(R.color.grayLight));
+
+                                securityAQLayout.addView(questionLayout);
+                                securityAQLayout.addView(errTextView);
+                                securityAQLayout.addView(answerLayout);
+                                securityAQLayout.addView(separatorLayout);
+
                             }
 
-                        } else {
+                            btnSave.setEnabled(true);
+                            closeDialog(loadSecQuesDialog);
+
+                        } catch (Exception e) {
+
+                            e.printStackTrace();
                             closeDialog(loadSecQuesDialog);
                             serviceUnavailable.setVisibility(View.VISIBLE);
                         }
@@ -412,15 +414,20 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
                         closeDialog(loadSecQuesDialog);
                         serviceUnavailable.setVisibility(View.VISIBLE);
                     }
-                }
 
-                @Override
-                public void onFailure(Call<BaseResponse<RegSecurityQuestionInfoResBean>> call, Throwable t) {
-                    //network error.
+                } else {
                     closeDialog(loadSecQuesDialog);
                     serviceUnavailable.setVisibility(View.VISIBLE);
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<RegSecurityQuestionInfoResBean>> call, Throwable t) {
+                //network error.
+                closeDialog(loadSecQuesDialog);
+                serviceUnavailable.setVisibility(View.VISIBLE);
+            }
+        });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -431,7 +438,7 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
                 String[] answers = new String[numSecQues];
                 int[] spinnerPosition = new int[numSecQues];
                 int[] spinnerPosition2 = new int[numSecQues]; //for check questions duplication.
-                int errShowCount=0;
+                int errShowCount = 0;
 
                 //check and set answered information.
                 for (int i = 0; i < editTextList.size(); i++) {
@@ -439,7 +446,7 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
                     String answer = editTextList.get(i).getText().toString().trim();
                     spinnerPosition2[i] = spinnerList.get(i).getSelectedItemPosition();
 
-                    if(answer!=null && answer.length()>0){
+                    if (answer != null && answer.length() > 0) {
                         answers[i] = answer;
                         spinnerPosition[i] = spinnerList.get(i).getSelectedItemPosition();
                         textViewList.get(i).setVisibility(View.GONE);
@@ -449,24 +456,24 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
                         errShowCount++;
                     }
 
-                    if(answer.isEmpty()){
+                    if (answer.isEmpty()) {
                         textViewList.get(i).setText(getAnsBlankErrMsg(curLang));
                         textViewList.get(i).setVisibility(View.VISIBLE);
-                        validation=false;
+                        validation = false;
                         errShowCount++;
-                    } else if(!isPureAscii(answer)) {
+                    } else if (!isPureAscii(answer)) {
                         textViewList.get(i).setText(getAnsCharErrMsg(curLang));
                         textViewList.get(i).setVisibility(View.VISIBLE);
-                        validation=false;
+                        validation = false;
                         errShowCount++;
                     }
 
                 }
 
                 //check duplication question selected.
-                if((!isUnique(spinnerPosition2)) && (errShowCount==0)){
+                if ((!isUnique(spinnerPosition2)) && (errShowCount == 0)) {
                     textDuplicateQuestion.setVisibility(View.VISIBLE);
-                    validation=false;
+                    validation = false;
                 } else {
                     textDuplicateQuestion.setVisibility(View.GONE);
                 }
@@ -474,7 +481,7 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
                 if (validation) {
 
                     if (!CommonUtils.isNetworkAvailable(getApplicationContext())) {
-                        showNetworkErrorDialog(RegistrationSecQAConfirmActivity.this,getNetErrMsg());
+                        showNetworkErrorDialog(RegistrationSecQAConfirmActivity.this, getNetErrMsg());
 
                     } else {
 
@@ -496,7 +503,7 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
                             existedMemberRegistrationInfoReqBean.setAppUsageInfoDto(appUsageInfoReqBean);
                             existedMemberRegistrationInfoReqBean.setCustomerSecurityQuestionDtoList(securityAnsweredInfoList);
 
-                            PreferencesManager.setRegistrationCompleted(getApplicationContext(),true);
+                            PreferencesManager.setRegistrationCompleted(getApplicationContext(), true);
                             Intent intent = new Intent(RegistrationSecQAConfirmActivity.this, RegistrationPhotoUploadActivity.class);
                             intent.putExtra(EXISTED_REG_MEM_INFO, existedMemberRegistrationInfoReqBean);
                             startActivity(intent);
@@ -530,31 +537,31 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
 
                                         final BaseResponse baseResponse = response.body();
 
-                                        if(baseResponse.getStatus().equals(SUCCESS)){
+                                        if (baseResponse.getStatus().equals(SUCCESS)) {
 
                                             //do login. | call login api.
                                             Service loginService = APIClient.getAuthUserService();
 
                                             Call<BaseResponse<LoginAccessTokenInfo>> loginReq = loginService.doLogin(customerRegistrationFormBean.getPhoneNo(),
-                                                    customerRegistrationFormBean.getPassword(),PASSWORD,getLoginDeviceId());
+                                                    customerRegistrationFormBean.getPassword(), PASSWORD, getLoginDeviceId());
 
                                             loginReq.enqueue(new Callback<BaseResponse<LoginAccessTokenInfo>>() {
                                                 @Override
                                                 public void onResponse(Call<BaseResponse<LoginAccessTokenInfo>> call, Response<BaseResponse<LoginAccessTokenInfo>> response) {
 
-                                                    if(response.isSuccessful()){
+                                                    if (response.isSuccessful()) {
 
                                                         final BaseResponse loginBaseResponse = response.body();
 
-                                                        if(loginBaseResponse.getStatus().equals(SUCCESS)){
+                                                        if (loginBaseResponse.getStatus().equals(SUCCESS)) {
 
                                                             closeDialog(registerNewDialog);
 
                                                             LoginAccessTokenInfo loginAccessTokenInfo = (LoginAccessTokenInfo) loginBaseResponse.getData();
 
                                                             //set token info to preferences.
-                                                            PreferencesManager.keepAccessToken(getApplicationContext(),loginAccessTokenInfo.getAccessToken());
-                                                            PreferencesManager.keepRefreshToken(getApplicationContext(),loginAccessTokenInfo.getRefreshToken());
+                                                            PreferencesManager.keepAccessToken(getApplicationContext(), loginAccessTokenInfo.getAccessToken());
+                                                            PreferencesManager.keepRefreshToken(getApplicationContext(), loginAccessTokenInfo.getRefreshToken());
 
                                                             //set current user-info to preference.
                                                             final CurrentUserInformationResBean curUserInfo = loginAccessTokenInfo.getUserInformationResDto();
@@ -574,15 +581,15 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
 
                                                             final String userInfoFormJson = new Gson().toJson(userInformationFormBean);
                                                             preferences = PreferencesManager.getCurrentUserPreferences(getApplicationContext());
-                                                            PreferencesManager.setCurrentUserInfo(getApplicationContext(),userInfoFormJson);
-                                                            PreferencesManager.setCurrentLoginPhoneNo(getApplicationContext(),userInformationFormBean.getPhoneNo());
-                                                            PreferencesManager.setBiometricRegPhoneNo(getApplicationContext(),userInformationFormBean.getPhoneNo());
+                                                            PreferencesManager.setCurrentUserInfo(getApplicationContext(), userInfoFormJson);
+                                                            PreferencesManager.setCurrentLoginPhoneNo(getApplicationContext(), userInformationFormBean.getPhoneNo());
+                                                            PreferencesManager.setBiometricRegPhoneNo(getApplicationContext(), userInformationFormBean.getPhoneNo());
 
-                                                            PreferencesManager.setRegistrationCompleted(getApplicationContext(),true);
+                                                            PreferencesManager.setRegistrationCompleted(getApplicationContext(), true);
                                                             //Check biometric sensor in device.
                                                             BiometricSensorStatus biometricSensorStatus = CommonUtils.checkBiometricSensor(getApplicationContext());
 
-                                                            switch (biometricSensorStatus){
+                                                            switch (biometricSensorStatus) {
 
                                                                 case BIOMETRIC_OK:
                                                                     //Biometric Registration Suggestion.
@@ -590,7 +597,7 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
                                                                     dialog.setCancelable(false);
                                                                     dialog.setContentView(R.layout.biometric_registration_dialog);
                                                                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                                                                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                                                                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                                                                     TextView textView = dialog.findViewById(R.id.text_message);
                                                                     textView.setText(getBioSuggessionAlertMsg(curLang));
                                                                     Button btnYes = dialog.findViewById(R.id.btn_yes);
@@ -649,16 +656,16 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
 
                                             closeDialog(registerNewDialog);
 
-                                            if(baseResponse.getMessageCode().equals(DUPLICATED_PHONE_NO)){
+                                            if (baseResponse.getMessageCode().equals(DUPLICATED_PHONE_NO)) {
                                                 showWarningDialog(RegistrationSecQAConfirmActivity.this, getDuplicatePhoneNo(curLang));
 
-                                            } else if(baseResponse.getMessageCode().equals(DUPLICATED_NRC_NO)){
+                                            } else if (baseResponse.getMessageCode().equals(DUPLICATED_NRC_NO)) {
                                                 showWarningDialog(RegistrationSecQAConfirmActivity.this, getDuplicateNrcNo(curLang));
 
-                                            } else if(baseResponse.getMessageCode().equals(DUPLICATED_CUSTOMER_INFO)){
+                                            } else if (baseResponse.getMessageCode().equals(DUPLICATED_CUSTOMER_INFO)) {
                                                 showWarningDialog(RegistrationSecQAConfirmActivity.this, getDuplicateCustomerInfo(curLang));
 
-                                            } else if(baseResponse.getMessageCode().equals(IMPORT_PH_DUPLICATE)){
+                                            } else if (baseResponse.getMessageCode().equals(IMPORT_PH_DUPLICATE)) {
                                                 showWarningDialog(RegistrationSecQAConfirmActivity.this, getImportPhoneNoDuplicate(curLang));
                                             } else {
                                                 showErrorDialog(RegistrationSecQAConfirmActivity.this, getRegisterFailedMsg(curLang));
@@ -674,7 +681,7 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
                                 @Override
                                 public void onFailure(Call<BaseResponse> call, Throwable t) {
                                     closeDialog(registerNewDialog);
-                                    showErrorDialog(RegistrationSecQAConfirmActivity.this,getString(R.string.service_unavailable));
+                                    showErrorDialog(RegistrationSecQAConfirmActivity.this, getString(R.string.service_unavailable));
                                 }
                             });
                         }
@@ -685,7 +692,7 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         changeLabel(PreferencesManager.getCurrentLanguage(this));
     }
@@ -718,13 +725,13 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_favorite) {
 
-            if(item.getTitle().equals(LANG_MM)){
+            if (item.getTitle().equals(LANG_MM)) {
                 item.setIcon(R.drawable.en_flag2);
                 item.setTitle(LANG_EN);
                 changeLabel(LANG_MM);
                 addValueToPreference(LANG_MM);
                 recreate();
-            } else if(item.getTitle().equals(LANG_EN)){
+            } else if (item.getTitle().equals(LANG_EN)) {
                 item.setIcon(R.drawable.mm_flag);
                 item.setTitle(LANG_MM);
                 changeLabel(LANG_EN);
@@ -745,56 +752,56 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
         return size.x + "x" + size.y;
     }
 
-    private void addValueToPreference(String lang){
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),lang);
+    private void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), lang);
     }
 
-    private void changeLabel(String language){
+    private void changeLabel(String language) {
         btnSave.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_save_button, getApplicationContext()));
-        textTitle.setText(CommonUtils.getLocaleString(new Locale(language),R.string.sec_qa_reg_title,getApplicationContext()));
-        textDuplicateQuestion.setText(CommonUtils.getLocaleString(new Locale(language),R.string.secquest_err_que_same,getApplicationContext()));
+        textTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.sec_qa_reg_title, getApplicationContext()));
+        textDuplicateQuestion.setText(CommonUtils.getLocaleString(new Locale(language), R.string.secquest_err_que_same, getApplicationContext()));
         addValueToPreference(language);
     }
 
     //get Messages
-    private String getAnsBlankErrMsg(String language){
+    private String getAnsBlankErrMsg(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.reg_sec_ans_blank, getApplicationContext());
     }
 
-    private String getAnsCharErrMsg(String language){
+    private String getAnsCharErrMsg(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.secquest_ans_err, getApplicationContext());
     }
 
-    private String getBioSuggessionAlertMsg(String language){
+    private String getBioSuggessionAlertMsg(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.bio_dialog_reg, getApplicationContext());
     }
 
-    private String getDuplicatePhoneNo(String language){
+    private String getDuplicatePhoneNo(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.register_ph_no_dup, getApplicationContext());
     }
 
-    private String getDuplicateNrcNo(String language){
+    private String getDuplicateNrcNo(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.register_nrc_dup, getApplicationContext());
     }
 
-    private String getDuplicateCustomerInfo(String language){
+    private String getDuplicateCustomerInfo(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.register_duplicate, getApplicationContext());
     }
 
-    private String getImportPhoneNoDuplicate(String language){
+    private String getImportPhoneNoDuplicate(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.register_imp_phone_no_duplicate, getApplicationContext());
     }
 
-    private String getRegisterFailedMsg(String language){
+    private String getRegisterFailedMsg(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.register_failed, getApplicationContext());
     }
 
     //Show Dialog and go to Login Screen.
-    private void goToLoginScreen(){
+    private void goToLoginScreen() {
         final Dialog dialog = new Dialog(RegistrationSecQAConfirmActivity.this);
         dialog.setContentView(R.layout.success_message_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setCancelable(false);
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         TextView messageBody = dialog.findViewById(R.id.text_message);
@@ -812,27 +819,33 @@ public class RegistrationSecQAConfirmActivity extends BaseActivity {
         dialog.show();
     }
 
-    private String getNetErrMsg(){
+    private String getNetErrMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         return CommonUtils.getLocaleString(new Locale(language), R.string.network_connection_err, getApplicationContext());
     }
 
     //convert int to dp.
-    private int getDp(int pixel){
+    private int getDp(int pixel) {
         final float scale = getApplicationContext().getResources().getDisplayMetrics().density;
         int dp = (int) (pixel * scale + 0.5f);
         return dp;
     }
 
-    private static Intent intentMainMenuDrawer(Context context){
+    private static Intent intentMainMenuDrawer(Context context) {
         Intent intent = new Intent(context, MainMenuActivityDrawer.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         return intent;
     }
 
-    private static Intent intentBiometricRegister(Context context){
+    private static Intent intentBiometricRegister(Context context) {
         Intent intent = new Intent(context, BiometricRegistrationInRegister.class);
         //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         return intent;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        recreate();
     }
 }

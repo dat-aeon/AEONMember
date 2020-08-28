@@ -1,6 +1,7 @@
 package mm.com.aeon.vcsaeon.fragments;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.LinearLayout;
 import java.util.List;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.activities.MainActivity;
 import mm.com.aeon.vcsaeon.activities.MainMenuActivityDrawer;
@@ -24,6 +27,7 @@ import mm.com.aeon.vcsaeon.beans.EventsNewsInfoResBean;
 import mm.com.aeon.vcsaeon.beans.LoginAccessTokenInfo;
 import mm.com.aeon.vcsaeon.adapters.EventsNewsListAdapter;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
+import mm.com.aeon.vcsaeon.common_utils.UiUtils;
 import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 import mm.com.aeon.vcsaeon.networking.APIClient;
 import mm.com.aeon.vcsaeon.networking.BaseResponse;
@@ -57,6 +61,7 @@ public class EventNewsTabFragment extends BaseFragment implements LanguageChange
             ((MainActivity) getActivity()).setLanguageListener(this);
             toolbar = ((MainActivity) getActivity()).findViewById(R.id.toolbar_main_home);
             LinearLayout menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+            menuBackBtn.setAnimation(UiUtils.animSlideToRight(getActivity()));
             menuBackBtn.setVisibility(View.VISIBLE);
         }
 
@@ -84,7 +89,7 @@ public class EventNewsTabFragment extends BaseFragment implements LanguageChange
         return view;
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content_new_main_drawer, fragment, "TAG");
@@ -92,7 +97,7 @@ public class EventNewsTabFragment extends BaseFragment implements LanguageChange
     }
 
     //load data to recycler-view.
-    private void loadGoodsNewsDataToRV(final Bundle mBundle){
+    private void loadGoodsNewsDataToRV(final Bundle mBundle) {
 
         swipeRefreshLayout.setRefreshing(true);
 
@@ -102,26 +107,25 @@ public class EventNewsTabFragment extends BaseFragment implements LanguageChange
         req.enqueue(new Callback<BaseResponse<List<EventsNewsInfoResBean>>>() {
             @Override
             public void onResponse(Call<BaseResponse<List<EventsNewsInfoResBean>>> call, Response<BaseResponse<List<EventsNewsInfoResBean>>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     BaseResponse baseResponse = response.body();
-                    if(baseResponse.getStatus().equals(SUCCESS)){
-                        try{
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
+                        try {
                             eventsNewsInfoResBeanList = (List<EventsNewsInfoResBean>) baseResponse.getData();
-
                             swipeRefreshLayout.setRefreshing(false);
 
-                            if(eventsNewsInfoResBeanList.size()==0){
+                            if (eventsNewsInfoResBeanList.size() == 0) {
                                 newsNotFoundView.setVisibility(View.VISIBLE);
                             } else {
                                 newsNotFoundView.setVisibility(View.GONE);
                                 //Bind Coupon List data to RecyclerView.
                                 eventsNewsInfoRecyclerView = view.findViewById(R.id.recycler_view_events_news);
-                                eventsNewsListAdapter = new EventsNewsListAdapter(getActivity(),eventsNewsInfoResBeanList,eventsNewsInfoRecyclerView, mBundle);
+                                eventsNewsListAdapter = new EventsNewsListAdapter(getActivity(), eventsNewsInfoResBeanList, eventsNewsInfoRecyclerView, mBundle);
                                 eventsNewsInfoRecyclerView.setAdapter(eventsNewsListAdapter);
                                 eventsNewsInfoRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                             }
 
-                        } catch (Exception e){
+                        } catch (Exception e) {
 
                             swipeRefreshLayout.setRefreshing(false);
                             newsNotFoundView.setVisibility(View.VISIBLE);
@@ -132,30 +136,30 @@ public class EventNewsTabFragment extends BaseFragment implements LanguageChange
                         newsNotFoundView.setVisibility(View.VISIBLE);
                     }
 
-                } else if(response.code()==CODE_TOKEN_TIMEOUT){
+                } else if (response.code() == CODE_TOKEN_TIMEOUT) {
 
                     //Refresh Token.
                     Service refreshTokenService = APIClient.getAuthUserService();
 
                     Call<BaseResponse<LoginAccessTokenInfo>> refreshToken = refreshTokenService.refreshToken(
-                            REFRESH_TOKEN,PreferencesManager.getRefreshToken(getActivity())
+                            REFRESH_TOKEN, PreferencesManager.getRefreshToken(getActivity())
                     );
 
                     refreshToken.enqueue(new Callback<BaseResponse<LoginAccessTokenInfo>>() {
                         @Override
                         public void onResponse(Call<BaseResponse<LoginAccessTokenInfo>> call, Response<BaseResponse<LoginAccessTokenInfo>> response) {
 
-                            if(response.isSuccessful()){
+                            if (response.isSuccessful()) {
 
                                 BaseResponse baseResponse = response.body();
 
                                 swipeRefreshLayout.setRefreshing(false);
 
-                                if(baseResponse.getStatus().equals(SUCCESS)){
+                                if (baseResponse.getStatus().equals(SUCCESS)) {
 
                                     LoginAccessTokenInfo loginAccessTokenInfo = (LoginAccessTokenInfo) baseResponse.getData();
-                                    PreferencesManager.keepAccessToken(getActivity(),loginAccessTokenInfo.getAccessToken());
-                                    PreferencesManager.keepRefreshToken(getActivity(),loginAccessTokenInfo.getRefreshToken());
+                                    PreferencesManager.keepAccessToken(getActivity(), loginAccessTokenInfo.getAccessToken());
+                                    PreferencesManager.keepRefreshToken(getActivity(), loginAccessTokenInfo.getRefreshToken());
                                     replaceFragment(new EventNewsTabFragment());
                                 } else {
 
@@ -168,6 +172,7 @@ public class EventNewsTabFragment extends BaseFragment implements LanguageChange
                                 newsNotFoundView.setVisibility(View.VISIBLE);
                             }
                         }
+
                         @Override
                         public void onFailure(Call<BaseResponse<LoginAccessTokenInfo>> call, Throwable t) {
 
@@ -194,7 +199,7 @@ public class EventNewsTabFragment extends BaseFragment implements LanguageChange
 
     @Override
     public void changeLanguageTitle(String lang) {
-        PreferencesManager.setCurrentLanguage(getContext(),lang);
+        PreferencesManager.setCurrentLanguage(getContext(), lang);
         if (PreferencesManager.getMainNavFlag(getActivity())) {
             replaceFragment(new EventNewsTabFragment());
         }

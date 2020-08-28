@@ -3,13 +3,23 @@ package mm.com.aeon.vcsaeon.beans;
 import java.io.Serializable;
 
 public class AutoReplyMessageBean implements Serializable {
-    private String message;
 
-    public String getMessage() {
-        return message;
+    private String messageEng;
+    private String messageMya;
+
+    public String getMessageEng() {
+        return messageEng;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessageEng(String messageEng) {
+        this.messageEng = messageEng;
+    }
+
+    public String getMessageMya() {
+        return messageMya;
+    }
+
+    public void setMessageMya(String messageMya) {
+        this.messageMya = messageMya;
     }
 }

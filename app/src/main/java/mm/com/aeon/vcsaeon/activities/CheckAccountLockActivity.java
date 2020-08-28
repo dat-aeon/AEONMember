@@ -3,9 +3,11 @@ package mm.com.aeon.vcsaeon.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import androidx.core.content.ContextCompat;
+
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -83,7 +85,7 @@ public class CheckAccountLockActivity extends BaseActivity {
     TextView menuBarDate;
     TextView menuBarPhoneNo;
     TextView menuBarName;
-    LinearLayout menuBackbtn;
+    LinearLayout menuBackBtn;
 
     static List<String> townshipCode = new ArrayList<>();
 
@@ -92,12 +94,12 @@ public class CheckAccountLockActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password_verify);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_main_home);
+        toolbar = findViewById(R.id.toolbar_main_home);
         toolbar.setTitleTextColor(getColor(R.color.white));
         setSupportActionBar(toolbar);
 
-        menuBackbtn = toolbar.findViewById(R.id.menu_back_btn_view);
-        menuBackbtn.setVisibility(View.VISIBLE);
+        menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+        menuBackBtn.setVisibility(View.VISIBLE);
 
         menuBarName = toolbar.findViewById(R.id.menu_bar_name);
         menuBarLevelInfo = toolbar.findViewById(R.id.menu_bar_level);
@@ -106,6 +108,7 @@ public class CheckAccountLockActivity extends BaseActivity {
 
         menuBarDate.setText(CommonUtils.getCurTimeStringForLogout());
         menuBarLevelInfo.setText(R.string.menu_level_one);
+
         //get logged in phone number from fragment.
         String installPhone = PreferencesManager.getInstallPhoneNo(getApplicationContext()).trim();
         menuBarPhoneNo.setText(installPhone);
@@ -128,7 +131,7 @@ public class CheckAccountLockActivity extends BaseActivity {
             }
         });
 
-        menuBackbtn.setOnClickListener(new View.OnClickListener() {
+        menuBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -158,7 +161,7 @@ public class CheckAccountLockActivity extends BaseActivity {
         textPhoneNo.setSelection(textPhoneNo.getText().length());
 
         final String[] nrcType = getResources().getStringArray(R.array.nrc_type);
-        ArrayAdapter<String> adapterType = new ArrayAdapter<String>(getApplicationContext(),R.layout.nrc_spinner_item_3, nrcType);
+        ArrayAdapter<String> adapterType = new ArrayAdapter<String>(getApplicationContext(), R.layout.nrc_spinner_item_3, nrcType);
 
         spinnerDivCode = findViewById(R.id.spinner_div_code);
         autoCompleteTwspCode = findViewById(R.id.auto_comp_twsp_code2);
@@ -180,23 +183,16 @@ public class CheckAccountLockActivity extends BaseActivity {
         req.enqueue(new Callback<BaseResponse<List<TownshipCodeResDto>>>() {
             @Override
             public void onResponse(Call<BaseResponse<List<TownshipCodeResDto>>> call, Response<BaseResponse<List<TownshipCodeResDto>>> response) {
-
-                if(response.isSuccessful()){
-
+                if (response.isSuccessful()) {
                     BaseResponse baseResponse = response.body();
-
-                    if(baseResponse.getStatus().equals(SUCCESS)){
-
-                        try{
-
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
+                        try {
                             final List<TownshipCodeResDto> townshipCodeResDtoList =
-                                    (List<TownshipCodeResDto>)baseResponse.getData();
-
-                            townshipCode=townshipCodeResDtoList.get(0).getTownshipCodeList();
-
+                                    (List<TownshipCodeResDto>) baseResponse.getData();
+                            townshipCode = townshipCodeResDtoList.get(0).getTownshipCodeList();
 
                             final String[] stateDivCode = getResources().getStringArray(R.array.div_code);
-                            ArrayAdapter<String> adapterDiv = new ArrayAdapter<String>(getApplicationContext(),R.layout.nrc_spinner_item_1, stateDivCode);
+                            ArrayAdapter<String> adapterDiv = new ArrayAdapter<String>(getApplicationContext(), R.layout.nrc_spinner_item_1, stateDivCode);
 
                             spinnerDivCode.setAdapter(adapterDiv);
                             stateDivCodeVal = stateDivCode[0];
@@ -205,16 +201,17 @@ public class CheckAccountLockActivity extends BaseActivity {
                             spinnerDivCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 @Override
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                                     stateDivCodeVal = stateDivCode[position];
-                                    for (TownshipCodeResDto townshipCodeResDto :townshipCodeResDtoList) {
-                                        if(String.valueOf(townshipCodeResDto.getStateId()).equals(stateDivCodeVal)){
-                                            townshipCode=townshipCodeResDto.getTownshipCodeList();
+                                    for (TownshipCodeResDto townshipCodeResDto : townshipCodeResDtoList) {
+                                        if (String.valueOf(townshipCodeResDto.getStateId()).equals(stateDivCodeVal)) {
+                                            townshipCode = townshipCodeResDto.getTownshipCodeList();
                                             break;
                                         }
                                     }
 
                                     autoCompleteTwspCode.setText(BLANK);
-                                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(),R.layout.nrc_spinner_item_2, townshipCode);
+                                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(), R.layout.nrc_spinner_item_2, townshipCode);
                                     adapter2.setDropDownViewResource(R.layout.dialog_nrc_division);
                                     adapter2.setNotifyOnChange(true);
                                     autoCompleteTwspCode.setThreshold(1);
@@ -223,7 +220,6 @@ public class CheckAccountLockActivity extends BaseActivity {
                                     autoCompleteTwspCode.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                            //townshipCodeVal = (String) parent.getAdapter().getItem(position);
                                             autoCompleteTwspCode.setText((String) parent.getAdapter().getItem(position));
                                         }
                                     });
@@ -231,8 +227,8 @@ public class CheckAccountLockActivity extends BaseActivity {
                                     autoCompleteTwspCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                                         @Override
                                         public void onFocusChange(View v, boolean hasFocus) {
-                                            if(!hasFocus){
-                                                if(!townshipCode.contains(autoCompleteTwspCode.getText().toString())){
+                                            if (!hasFocus) {
+                                                if (!townshipCode.contains(autoCompleteTwspCode.getText().toString())) {
                                                     autoCompleteTwspCode.setText(BLANK);
                                                 }
                                             } else {
@@ -250,8 +246,8 @@ public class CheckAccountLockActivity extends BaseActivity {
                                 }
 
                                 @Override
-                                public void onNothingSelected(AdapterView<?> parent) {}
-
+                                public void onNothingSelected(AdapterView<?> parent) {
+                                }
                             });
 
                             spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -259,15 +255,14 @@ public class CheckAccountLockActivity extends BaseActivity {
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                     nrcTypeVal = nrcType[position];
                                 }
-                                @Override
-                                public void onNothingSelected(AdapterView<?> parent) {}
-                            });
 
+                                @Override
+                                public void onNothingSelected(AdapterView<?> parent) {
+                                }
+                            });
                             btnNext.setEnabled(true);
                             closeDialog(twspCodeDialog);
-
-                        } catch (Exception e){
-
+                        } catch (Exception e) {
                             closeDialog(twspCodeDialog);
                             serviceUnavailable.setVisibility(View.VISIBLE);
                         }
@@ -299,27 +294,27 @@ public class CheckAccountLockActivity extends BaseActivity {
 
                 boolean validation = true;
 
-                if(phoneNo==null || phoneNo.equals(BLANK)){
+                if (phoneNo == null || phoneNo.equals(BLANK)) {
                     txtErrPhone.setVisibility(View.VISIBLE);
-                    validation=false;
-                } else if(!CommonUtils.isPhoneNoValid(phoneNo)){
+                    validation = false;
+                } else if (!CommonUtils.isPhoneNoValid(phoneNo)) {
                     txtErrPhone.setText(getString(R.string.login_phoneno_format_err_msg));
                     changeErrPhone(curLang);
                     txtErrPhone.setVisibility(View.VISIBLE);
-                    validation=false;
+                    validation = false;
                 } else {
                     txtErrPhone.setVisibility(View.GONE);
                 }
 
-                if(textRegCodeVal==null || textRegCodeVal.equals(BLANK)|| townshipCodeVal==null || townshipCodeVal.equals(BLANK)){
+                if (textRegCodeVal == null || textRegCodeVal.equals(BLANK) || townshipCodeVal == null || townshipCodeVal.equals(BLANK)) {
                     txtErrNrc.setVisibility(View.VISIBLE);
                     validation = false;
-                } else if(!isNrcCodeValid(textRegCodeVal)){
+                } else if (!isNrcCodeValid(textRegCodeVal)) {
                     txtErrNrc.setText(getString(R.string.register_nrc_format_err));
                     changeErrNrc(curLang);
                     txtErrNrc.setVisibility(View.VISIBLE);
                     validation = false;
-                } else if(!townshipCode.contains(autoCompleteTwspCode.getText().toString())){
+                } else if (!townshipCode.contains(autoCompleteTwspCode.getText().toString())) {
                     autoCompleteTwspCode.setText(BLANK);
                     txtErrNrc.setVisibility(View.VISIBLE);
                     validation = false;
@@ -327,10 +322,10 @@ public class CheckAccountLockActivity extends BaseActivity {
                     txtErrNrc.setVisibility(View.GONE);
                 }
 
-                if(validation){
+                if (validation) {
 
-                    if(!isNetworkAvailable(getApplicationContext())){
-                        showNetworkErrorDialog(CheckAccountLockActivity.this,getNetErrMsg());
+                    if (!isNetworkAvailable(getApplicationContext())) {
+                        showNetworkErrorDialog(CheckAccountLockActivity.this, getNetErrMsg());
                     } else {
 
                         CheckAccountLockActivity.this.setTheme(R.style.MessageDialogTheme);
@@ -340,69 +335,57 @@ public class CheckAccountLockActivity extends BaseActivity {
                         checkAccInfoDialog.show();
 
                         Service checkAccountLock = APIClient.getUserService();
-                        Call<BaseResponse<CheckAccountLockResBean>> req = checkAccountLock.checkAccountLock(new CheckAccountLockReqBean(phoneNo,nrcNo));
+                        Call<BaseResponse<CheckAccountLockResBean>> req = checkAccountLock.checkAccountLock(new CheckAccountLockReqBean(phoneNo, nrcNo));
 
                         req.enqueue(new Callback<BaseResponse<CheckAccountLockResBean>>() {
                             @Override
                             public void onResponse(Call<BaseResponse<CheckAccountLockResBean>> call, Response<BaseResponse<CheckAccountLockResBean>> response) {
-
-                                if(response.isSuccessful()){
-
+                                if (response.isSuccessful()) {
                                     BaseResponse baseResponse = response.body();
-
-                                    if(baseResponse.getStatus().equals(SUCCESS)){
-
+                                    if (baseResponse.getStatus().equals(SUCCESS)) {
                                         closeDialog(checkAccInfoDialog);
 
                                         CheckAccountLockResBean checkAccountLockResBean = (CheckAccountLockResBean) baseResponse.getData();
-
                                         ForceResetPasswordReqBean forceResetPasswordReqBean = new ForceResetPasswordReqBean();
                                         forceResetPasswordReqBean.setPhoneNo(phoneNo);
                                         forceResetPasswordReqBean.setNrcNo(nrcNo);
 
-                                        if(checkAccountLockResBean.getLockStatus()==ACCOUNT_LOCKED){
+                                        if (checkAccountLockResBean.getLockStatus() == ACCOUNT_LOCKED) {
                                             //Go to Change Password.
                                             Intent intent = new Intent(CheckAccountLockActivity.this, ForcePasswordResetActivity.class);
-                                            intent.putExtra("force_password_reset_bean",forceResetPasswordReqBean);
+                                            intent.putExtra("force_password_reset_bean", forceResetPasswordReqBean);
                                             startActivity(intent);
-
                                         } else {
-
                                             //clear sec-question-ans data.
-                                            SecurityConfirmationActivity.tempAnswers=null;
-                                            SecurityConfirmationActivity.tempSpinnerPosition=null;
-
+                                            SecurityConfirmationActivity.tempAnswers = null;
+                                            SecurityConfirmationActivity.tempSpinnerPosition = null;
                                             //Go Security Questions Answers Check.
                                             PreferencesManager.setHotlinePhone(getApplicationContext(), checkAccountLockResBean.getHotlinePhone());
                                             Intent intent = new Intent(CheckAccountLockActivity.this, SecurityConfirmationActivity.class);
-                                            intent.putExtra("force_password_reset_bean",forceResetPasswordReqBean);
-                                            intent.putExtra("num_sec_question",checkAccountLockResBean.getCustomerSecurityQuestionCount());
+                                            intent.putExtra("force_password_reset_bean", forceResetPasswordReqBean);
+                                            intent.putExtra("num_sec_question", checkAccountLockResBean.getCustomerSecurityQuestionCount());
                                             startActivity(intent);
                                         }
-
                                     } else {
-
                                         closeDialog(checkAccInfoDialog);
-
-                                        if(baseResponse.getMessageCode().equals(NOT_EXIST_CUSTOMER_INFO)){
-                                            showWarningDialog(CheckAccountLockActivity.this,getNoUserInfoMsg(curLang));
-                                        } else if(baseResponse.getMessageCode().equals(REQUIRED_INPUT)){
-                                            showWarningDialog(CheckAccountLockActivity.this,getString(R.string.ph_nrc_input_required));
+                                        if (baseResponse.getMessageCode().equals(NOT_EXIST_CUSTOMER_INFO)) {
+                                            showWarningDialog(CheckAccountLockActivity.this, getNoUserInfoMsg(curLang));
+                                        } else if (baseResponse.getMessageCode().equals(REQUIRED_INPUT)) {
+                                            showWarningDialog(CheckAccountLockActivity.this, getString(R.string.ph_nrc_input_required));
                                         } else {
-                                            showErrorDialog(CheckAccountLockActivity.this,getString(R.string.message_check_lock_failed));
+                                            showErrorDialog(CheckAccountLockActivity.this, getString(R.string.message_check_lock_failed));
                                         }
                                     }
-
                                 } else {
                                     closeDialog(checkAccInfoDialog);
-                                    showErrorDialog(CheckAccountLockActivity.this,getString(R.string.message_check_lock_failed));
+                                    showErrorDialog(CheckAccountLockActivity.this, getString(R.string.message_check_lock_failed));
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<BaseResponse<CheckAccountLockResBean>> call, Throwable t) {
                                 closeDialog(checkAccInfoDialog);
-                                showErrorDialog(CheckAccountLockActivity.this,getString(R.string.message_check_lock_failed));
+                                showErrorDialog(CheckAccountLockActivity.this, getString(R.string.message_check_lock_failed));
                             }
                         });
                     }
@@ -415,27 +398,12 @@ public class CheckAccountLockActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         SharedPreferences sharedPreferences = PreferencesManager.getApplicationPreference(getApplicationContext());
-        String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences,"lang");
+        String curLang = PreferencesManager.getStringEntryFromPreferences(sharedPreferences, "lang");
         changeLabel(curLang);
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-       /* getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        SharedPreferences langPreference = PreferencesManager.getApplicationPreference(getApplicationContext());
-        String curLang = PreferencesManager.getStringEntryFromPreferences(langPreference,"lang");
-
-        if(curLang.equals(LANG_MM)){
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
-            menu.getItem(0).setTitle(LANG_EN);
-            changeLabel(LANG_MM);
-        } else {
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
-            menu.getItem(0).setTitle(LANG_MM);
-            changeLabel(LANG_EN);
-        }*/
         return true;
     }
 
@@ -448,13 +416,12 @@ public class CheckAccountLockActivity extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_favorite) {
-
-            if(item.getTitle().equals(LANG_MM)){
+            if (item.getTitle().equals(LANG_MM)) {
                 item.setIcon(R.drawable.en_flag2);
                 item.setTitle(LANG_EN);
                 changeLabel(LANG_MM);
                 addValueToPreference(LANG_MM);
-            } else if(item.getTitle().equals(LANG_EN)){
+            } else if (item.getTitle().equals(LANG_EN)) {
                 item.setIcon(R.drawable.mm_flag);
                 item.setTitle(LANG_MM);
                 changeLabel(LANG_EN);
@@ -465,11 +432,11 @@ public class CheckAccountLockActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addValueToPreference(String lang){
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),lang);
+    public void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), lang);
     }
 
-    public void changeLabel(String language){
+    public void changeLabel(String language) {
         txtPhone.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_phoneno_label, getApplicationContext()));
         txtNrc.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_nrc_label, getApplicationContext()));
         txtErrPhone.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_phoneno_err, getApplicationContext()));
@@ -480,19 +447,19 @@ public class CheckAccountLockActivity extends BaseActivity {
         addValueToPreference(language);
     }
 
-    public void changeErrPhone(String language){
+    public void changeErrPhone(String language) {
         txtErrPhone.setText(CommonUtils.getLocaleString(new Locale(language), R.string.login_phoneno_format_err_msg, getApplicationContext()));
     }
 
-    public void changeErrNrc(String language){
+    public void changeErrNrc(String language) {
         txtErrNrc.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_nrc_format_err, getApplicationContext()));
     }
 
-    public String getNoUserInfoMsg(String language){
+    public String getNoUserInfoMsg(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.no_acc_info, getApplicationContext());
     }
 
-    private String getNetErrMsg(){
+    private String getNetErrMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         return CommonUtils.getLocaleString(new Locale(language), R.string.network_connection_err, getApplicationContext());
     }

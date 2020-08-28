@@ -29,12 +29,16 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
-    <style name="CustomTextAppearanceTab" parent="TextAppearance.Design.Tab">
-        <item name="textAllCaps">false</item>
+    <style name="CustomTextAppearanceTab" parent="Widget.Design.TabLayout">
         <item name="android:textSize">@dimen/text_small</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:typeface">sans</item>
-        <item name="android:fontFamily">@font/pyidaungsu_regular</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/input_text_font</item>
+        <item name="android:lineSpacingExtra">-4dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:padding">@dimen/margin_tiny</item>
+        <item name="android:layout_marginTop">@dimen/margin_tiny</item>
     </style>
 
     <style name="NoActionBar" parent="Theme.AppCompat.NoActionBar">
@@ -44,7 +48,7 @@
 
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="android:fontFamily">@font/pyidaungsu_regular</item>
@@ -63,7 +67,7 @@
         <item name="android:fontFamily">@font/pyidaungsu_regular</item>
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
-    
+
     <style name="CheckBoxTheme" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <item name="android:textSize">@dimen/text_regular</item>
         <item name="colorAccent">@color/colorPrimary</item>
@@ -72,7 +76,9 @@
     <style name="Theme.LoginDialog" parent="Theme.AppCompat.Dialog">
         <item name="windowNoTitle">true</item>
         <item name="android:windowTitleStyle">@style/MyOwnDialogTitle</item>
+        <item name="background">@drawable/alert_dialog_bg</item>
     </style>
+
     <style name="Theme.PhoneDialog" parent="@style/Theme.AppCompat.Light.Dialog">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">true</item>
@@ -84,4 +90,10 @@
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <!-- Activities' Styles -->
+    <style name="Theme.AppCompat.Main" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/statusBar</item>
+    </style>
+
 </resources>

@@ -1,134 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@drawable/dialog_bg"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_medium"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_height="?attr/actionBarSize"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/btn_outlet_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_close"/>
-
+            android:layout_marginLeft="@dimen/margin_medium_3"
+            android:src="@drawable/ic_close" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:layout_marginRight="@dimen/margin_medium"
-        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginLeft="@dimen/margin_medium_3"
+        android:layout_marginRight="@dimen/margin_medium_3"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/outletName"
-            android:textSize="@dimen/text_regular_3x"
-            android:textStyle="bold"
-            android:fontFamily="@font/pyidaungsu_bold"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Outlet Name"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            android:id="@+id/outletAddress"
-            android:textSize="@dimen/text_regular"
-            android:fontFamily="@font/pyidaungsu_regular"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Address Address Address"/>
-
-    </LinearLayout>
-
-    <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="1dp"
-        android:layout_marginTop="@dimen/margin_medium_2"
-        android:layout_marginRight="@dimen/margin_medium"
-        android:layout_marginLeft="@dimen/margin_medium"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:id="@+id/outlet_img"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium_2"
-        android:layout_marginRight="@dimen/margin_medium"
-        android:layout_marginLeft="@dimen/margin_medium"
-        android:weightSum="1"
-        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/margin_medium"
-            android:layout_weight="0.5"
-            android:background="@drawable/rounded_background"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/btn_outlet_call"
+            <TextView
+                android:id="@+id/outletName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:src="@drawable/call_now_color" />
+                android:fontFamily="@font/pyidaungsu_bold"
+                android:text="Outlet Name"
+                android:lineSpacingExtra="-8dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_regular_3x"
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/text_outlet_call"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small">
+
+                <ImageView
+                    android:id="@+id/ic_loc"
+                    android:layout_width="@dimen/ic_regular"
+                    android:layout_height="@dimen/ic_regular"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="@dimen/margin_card_medium_n"
+                    android:padding="@dimen/margin_tiny"
+                    android:src="@drawable/ic_baseline_location_on_24" />
+
+                <TextView
+                    android:id="@+id/outletAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_toEndOf="@+id/ic_loc"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="-4dp"
+                    android:paddingTop="@dimen/margin_tiny"
+                    android:text="Address Address Address"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_small" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/laout_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                android:fontFamily="@font/pyidaungsu_regular"
-                android:text="Call Now"
-                android:textColor="@color/colorPrimaryDark" />
+                android:visibility="gone">
 
-            <TextView
-                android:id="@+id/text_telephone_no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginBottom="@dimen/margin_medium"
-                android:fontFamily="@font/pyidaungsu_regular"
-                android:textColor="@color/colorPrimaryDark" />
+                <ImageView
+                    android:id="@+id/ic_ph"
+                    android:layout_width="@dimen/ic_regular"
+                    android:layout_height="@dimen/ic_regular"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="@dimen/margin_small_n"
+                    android:padding="@dimen/margin_tiny"
+                    android:src="@drawable/ic_baseline_local_phone_24" />
+
+                <TextView
+                    android:id="@+id/text_telephone_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_tiny"
+                    android:layout_toEndOf="@+id/ic_ph"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="-8dp"
+                    android:paddingTop="@dimen/margin_tiny"
+                    android:text="09XXXXXXXXX"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_small" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
+        <mm.com.aeon.vcsaeon.views.customviews.SendMessageImageView
+            android:id="@+id/outlet_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:adjustViewBounds="true"
+            android:minHeight="1dp"
+            android:scaleType="centerCrop" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:background="@drawable/rounded_background"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btn_map_nav"
-                android:src="@drawable/ic_near_me_black_24dp_detail"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_weight="0.5"
+                android:background="@drawable/rounded_background"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_map_navigation"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:fontFamily="@font/pyidaungsu_regular"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="Map Navigation"/>
+                <ImageView
+                    android:id="@+id/btn_outlet_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:src="@drawable/call_now_color" />
+
+                <TextView
+                    android:id="@+id/text_outlet_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Call Now"
+                    android:textColor="@color/colorPrimaryDark" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/rounded_background"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/btn_map_nav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:src="@drawable/ic_near_me_black_24dp_detail" />
+
+                <TextView
+                    android:id="@+id/text_map_navigation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:text="Map Navigation"
+                    android:textColor="@color/colorPrimaryDark" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

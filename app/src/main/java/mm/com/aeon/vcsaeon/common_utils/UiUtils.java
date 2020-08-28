@@ -5,9 +5,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+
 import androidx.appcompat.app.AlertDialog;
+
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,11 +21,11 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.NETWORK_ERROR;
 
 public class UiUtils {
 
-    public static void showWarningDialog(Context mContext, String message){
+    public static void showWarningDialog(Context mContext, String message) {
         final Dialog dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.warning_message_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         TextView messageBody = dialog.findViewById(R.id.text_message);
         messageBody.setText(message);
@@ -34,11 +38,11 @@ public class UiUtils {
         dialog.show();
     }
 
-    public static void showErrorDialog(Context mContext, String message){
+    public static void showErrorDialog(Context mContext, String message) {
         final Dialog dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.error_message_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         TextView messageBody = dialog.findViewById(R.id.text_message);
         messageBody.setText(message);
@@ -51,11 +55,11 @@ public class UiUtils {
         dialog.show();
     }
 
-    public static void showNetworkErrorDialog(Context mContext, String message){
+    public static void showNetworkErrorDialog(Context mContext, String message) {
         final Dialog dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.error_message_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         TextView messageBody = dialog.findViewById(R.id.text_message);
         TextView textTitle = dialog.findViewById(R.id.text_title);
@@ -70,11 +74,11 @@ public class UiUtils {
         dialog.show();
     }
 
-    public static void showSuccessDialog(Context mContext, String message){
+    public static void showSuccessDialog(Context mContext, String message) {
         final Dialog dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.success_message_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         TextView messageBody = dialog.findViewById(R.id.text_message);
         messageBody.setText(message);
@@ -87,7 +91,7 @@ public class UiUtils {
         dialog.show();
     }
 
-    public static void showMessageDialog(Context mContext, String message){
+    public static void showMessageDialog(Context mContext, String message) {
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setMessage(message);
@@ -97,9 +101,31 @@ public class UiUtils {
         dialog.show();
     }
 
-    public static void closeDialog(ProgressDialog dialog){
+    public static void closeDialog(ProgressDialog dialog) {
         if (dialog != null || dialog.isShowing()) {
             dialog.dismiss();
         }
+    }
+
+    public static Animation animSlideToRight(Context context) {
+        return AnimationUtils.loadAnimation(context, R.anim.anim_slide_right);
+    }
+
+    public static Animation animSlideToLeft(Context context) {
+        return AnimationUtils.loadAnimation(context, R.anim.anim_slide_left);
+    }
+
+    public static Animation rvAnimSlideToLeft(Context context, long durationInMilSeconds) {
+        Animation anim = AnimationUtils.loadAnimation(context, R.anim.anim_slide_left);
+        anim.setDuration(durationInMilSeconds);
+        return anim;
+    }
+
+    public static Animation animSlideToDown(Context context) {
+        return AnimationUtils.loadAnimation(context, R.anim.anim_slide_up);
+    }
+
+    public static Animation animSlideToUp(Context context) {
+        return AnimationUtils.loadAnimation(context, R.anim.anim_slide_down);
     }
 }

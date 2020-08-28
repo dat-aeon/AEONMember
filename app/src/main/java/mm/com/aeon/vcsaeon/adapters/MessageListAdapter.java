@@ -6,15 +6,19 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,11 +48,11 @@ import static mm.com.aeon.vcsaeon.fragments.MessagingTabFragment.mesgSocketClien
 
 public class MessageListAdapter extends RecyclerView.Adapter {
 
-    private static final int VIEW_TYPE_MESSAGE_SENT=1;
-    private static final int VIEW_TYPE_MESSAGE_RECEIVED=2;
-    private static final int VIEW_TYPE_MORE_MESSAGE=3;
-    private static final int VIEW_TYPE_IMAGE_SENT=4;
-    private static final int VIEW_TYPE_FREE_CHAT=5;
+    private static final int VIEW_TYPE_MESSAGE_SENT = 1;
+    private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
+    private static final int VIEW_TYPE_MORE_MESSAGE = 3;
+    private static final int VIEW_TYPE_IMAGE_SENT = 4;
+    private static final int VIEW_TYPE_FREE_CHAT = 5;
 
     UserInformationFormBean userInformationFormBean;
 
@@ -57,14 +61,14 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     private String currentRoom;
     private MessagingTabFragment messagingTabFragment;
 
-    public MessageListAdapter(Context context, List<MessageInfoBean> messageList,Fragment fragment,String currentRoom) {
+    public MessageListAdapter(Context context, List<MessageInfoBean> messageList, Fragment fragment, String currentRoom) {
         mContext = context;
         mMessageList = messageList;
-        messagingTabFragment=(MessagingTabFragment) fragment;
+        messagingTabFragment = (MessagingTabFragment) fragment;
         userInformationFormBean = new UserInformationFormBean();
         final String userInfoFormJson = PreferencesManager.getCurrentUserInfo(context);
         userInformationFormBean = new Gson().fromJson(userInfoFormJson, UserInformationFormBean.class);
-        this.currentRoom=currentRoom;
+        this.currentRoom = currentRoom;
     }
 
     @Override
@@ -78,19 +82,19 @@ public class MessageListAdapter extends RecyclerView.Adapter {
 
         MessageInfoBean message = mMessageList.get(position);
 
-        if(message.isButton()){
+        if (message.isButton()) {
             return VIEW_TYPE_MORE_MESSAGE;
         }
 
-        if(message.isPhoto()){
+        if (message.isPhoto()) {
             return VIEW_TYPE_IMAGE_SENT;
         }
 
-        if(message.isIntro()) {
+        if (message.isIntro()) {
             return VIEW_TYPE_FREE_CHAT;
         }
 
-        if(message.isReceiveMesg()){
+        if (message.isReceiveMesg()) {
             return VIEW_TYPE_MESSAGE_RECEIVED;
         } else {
             return VIEW_TYPE_MESSAGE_SENT;
@@ -104,33 +108,33 @@ public class MessageListAdapter extends RecyclerView.Adapter {
 
         View view;
 
-        if(viewType==VIEW_TYPE_MORE_MESSAGE){
-            view= LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.more_message_button,viewGroup,false);
+        if (viewType == VIEW_TYPE_MORE_MESSAGE) {
+            view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.more_message_button, viewGroup, false);
             return new MoreMessageHolder(view);
         }
 
-        if(viewType==VIEW_TYPE_IMAGE_SENT){
-            view= LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.image_message_sent,viewGroup,false);
+        if (viewType == VIEW_TYPE_IMAGE_SENT) {
+            view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.image_message_sent, viewGroup, false);
             return new SentImageHolder(view);
         }
 
-        if(viewType==VIEW_TYPE_MESSAGE_SENT){
-            view= LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.item_message_sent,viewGroup,false);
+        if (viewType == VIEW_TYPE_MESSAGE_SENT) {
+            view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.item_message_sent, viewGroup, false);
             return new SentMessageHolder(view);
         }
 
-        if(viewType==VIEW_TYPE_MESSAGE_RECEIVED){
-            view= LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.item_message_received,viewGroup,false);
+        if (viewType == VIEW_TYPE_MESSAGE_RECEIVED) {
+            view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.item_message_received, viewGroup, false);
             return new ReceivedMessageHolder(view);
         }
 
-        if(viewType==VIEW_TYPE_FREE_CHAT){
-            view= LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.item_free_chat_introduction,viewGroup,false);
+        if (viewType == VIEW_TYPE_FREE_CHAT) {
+            view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.item_free_chat_introduction, viewGroup, false);
             return new FreeChatMessageHolder(view);
         }
 
@@ -142,7 +146,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
 
         MessageInfoBean message = mMessageList.get(position);
 
-        switch (viewHolder.getItemViewType()){
+        switch (viewHolder.getItemViewType()) {
 
             case VIEW_TYPE_MESSAGE_SENT:
                 ((SentMessageHolder) viewHolder).bind(message);
@@ -162,12 +166,12 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private class SentMessageHolder extends RecyclerView.ViewHolder{
+    private class SentMessageHolder extends RecyclerView.ViewHolder {
 
         TextView sentMsgBody;
         TextView sentDate;
 
-        SentMessageHolder(View itemView){
+        SentMessageHolder(View itemView) {
             super(itemView);
             sentMsgBody = itemView.findViewById(R.id.text_message_body_send);
             sentDate = itemView.findViewById(R.id.text_message_time);
@@ -182,12 +186,12 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private class SentImageHolder extends RecyclerView.ViewHolder{
+    private class SentImageHolder extends RecyclerView.ViewHolder {
 
         SendMessageImageView sentImage;
         TextView sentDate;
 
-        SentImageHolder(View itemView){
+        SentImageHolder(View itemView) {
             super(itemView);
             sentImage = itemView.findViewById(R.id.img_message_body);
             sentDate = itemView.findViewById(R.id.text_message_time);
@@ -198,14 +202,14 @@ public class MessageListAdapter extends RecyclerView.Adapter {
 
             //Coupon Img.
             final String imagePath = message.getMessage();
-            if(imagePath==null || imagePath==BLANK) {
+            if (imagePath == null || imagePath == BLANK) {
                 Picasso.get().load(R.drawable.noimage).into(sentImage);
             } else {
 
                 Picasso.get().load(imagePath).into(sentImage, new com.squareup.picasso.Callback() {
                     @Override
                     public void onSuccess() {
-                        try{
+                        try {
 
                             //Adjust Image Orientation.
                             Picasso.get().load(imagePath).into(new Target() {
@@ -215,15 +219,15 @@ public class MessageListAdapter extends RecyclerView.Adapter {
                                     int width = bitmap.getWidth();
                                     int height = bitmap.getHeight();
 
-                                    if(height>width){
-                                        sentImage.getLayoutParams().height=532;
-                                        sentImage.getLayoutParams().width=400;
-                                    } else if(height==width){
-                                        sentImage.getLayoutParams().height=532;
-                                        sentImage.getLayoutParams().width=532;
+                                    if (height > width) {
+                                        sentImage.getLayoutParams().height = 532;
+                                        sentImage.getLayoutParams().width = 400;
+                                    } else if (height == width) {
+                                        sentImage.getLayoutParams().height = 532;
+                                        sentImage.getLayoutParams().width = 532;
                                     } else {
-                                        sentImage.getLayoutParams().height=400;
-                                        sentImage.getLayoutParams().width=532;
+                                        sentImage.getLayoutParams().height = 400;
+                                        sentImage.getLayoutParams().width = 532;
                                     }
 
                                     Picasso.get().load(imagePath).into(sentImage);
@@ -249,23 +253,25 @@ public class MessageListAdapter extends RecyclerView.Adapter {
                                         }
                                     });
                                 }
+
                                 @Override
                                 public void onBitmapFailed(Exception e, Drawable errorDrawable) {
                                     //decodeStringToBitmap
-                                    Log.d("TAG","-------------- onBitmapFailed() ");
+                                    Log.d("TAG", "-------------- onBitmapFailed() ");
                                     Picasso.get().load(R.drawable.noimage).into(sentImage);
                                 }
+
                                 @Override
                                 public void onPrepareLoad(Drawable placeHolderDrawable) {
-                                    Log.d("TAG","-------------- onPrepareLoad() ");
+                                    Log.d("TAG", "-------------- onPrepareLoad() ");
                                     Picasso.get().load(R.drawable.noimage).into(sentImage);
                                 }
                             });
 
-                        } catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                             Picasso.get().load(R.drawable.noimage).into(sentImage);
-                            Log.d("TAG","-------------- Exception() ");
+                            Log.d("TAG", "-------------- Exception() ");
                         }
                     }
 
@@ -274,22 +280,22 @@ public class MessageListAdapter extends RecyclerView.Adapter {
 
                         final Bitmap bitmap = decodeStringToBitmap(imagePath);
 
-                        if(bitmap==null){
+                        if (bitmap == null) {
                             Picasso.get().load(R.drawable.noimage).into(sentImage);
                         } else {
 
                             int width = bitmap.getWidth();
                             int height = bitmap.getHeight();
 
-                            if(height>width){
-                                sentImage.getLayoutParams().height=532;
-                                sentImage.getLayoutParams().width=400;
-                            } else if(height==width){
-                                sentImage.getLayoutParams().height=532;
-                                sentImage.getLayoutParams().width=532;
+                            if (height > width) {
+                                sentImage.getLayoutParams().height = 532;
+                                sentImage.getLayoutParams().width = 400;
+                            } else if (height == width) {
+                                sentImage.getLayoutParams().height = 532;
+                                sentImage.getLayoutParams().width = 532;
                             } else {
-                                sentImage.getLayoutParams().height=400;
-                                sentImage.getLayoutParams().width=532;
+                                sentImage.getLayoutParams().height = 400;
+                                sentImage.getLayoutParams().width = 532;
                             }
 
                             sentImage.setImageBitmap(bitmap);
@@ -300,13 +306,13 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private class ReceivedMessageHolder extends RecyclerView.ViewHolder{
+    private class ReceivedMessageHolder extends RecyclerView.ViewHolder {
 
         ImageView adminImg;
         TextView receivedMsgBody;
         TextView receivedDate;
 
-        ReceivedMessageHolder(View itemView){
+        ReceivedMessageHolder(View itemView) {
             super(itemView);
             adminImg = itemView.findViewById(R.id.img_admin);
             receivedMsgBody = itemView.findViewById(R.id.text_message_body);
@@ -320,16 +326,16 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             String text = purifyMessage(message.getMessage());
             receivedMsgBody.setText(Html.fromHtml(text));
             receivedDate.setText(message.getSendTime());
-            Picasso.get().load(R.drawable.aeon_logo_white).transform(new CircleTransform()).into(adminImg);
+            Picasso.get().load(R.drawable.aeon_msg_logo).transform(new CircleTransform()).into(adminImg);
         }
     }
 
-    private class MoreMessageHolder extends RecyclerView.ViewHolder{
+    private class MoreMessageHolder extends RecyclerView.ViewHolder {
 
         Button btnMoreMessage;
         //TextView textView;
 
-        MoreMessageHolder(View itemView){
+        MoreMessageHolder(View itemView) {
             super(itemView);
             btnMoreMessage = itemView.findViewById(R.id.more_message_btn);
 
@@ -337,10 +343,10 @@ public class MessageListAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
 
-                    if(CommonUtils.isNetworkAvailable(mContext)){
+                    if (CommonUtils.isNetworkAvailable(mContext)) {
 
-                        int msgId=getMsgId();
-                        Log.e("MessagingListAdapter","send(mobile_old_msgid:"+ msgId + "room:" + currentRoom);
+                        int msgId = getMsgId();
+                        Log.e("MessagingListAdapter", "send(mobile_old_msgid:" + msgId + "room:" + currentRoom);
                         mesgSocketClient.send("mobile_old_msgid:" + msgId + "room:" + currentRoom);
 
                     } else {
@@ -356,12 +362,12 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private class FreeChatMessageHolder extends RecyclerView.ViewHolder{
+    private class FreeChatMessageHolder extends RecyclerView.ViewHolder {
 
         ImageView adminImg;
         TextView receivedMsgBody;
 
-        FreeChatMessageHolder(View itemView){
+        FreeChatMessageHolder(View itemView) {
             super(itemView);
             adminImg = itemView.findViewById(R.id.img_admin);
             receivedMsgBody = itemView.findViewById(R.id.text_message_body);
@@ -373,7 +379,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             receivedMsgBody.setMovementMethod(LinkMovementMethod.getInstance());
             String text = purifyMessage(message.getMessage());
             receivedMsgBody.setText(Html.fromHtml(text));
-            Picasso.get().load(R.drawable.aeon_logo_white).transform(new CircleTransform()).into(adminImg);
+            Picasso.get().load(R.drawable.aeon_msg_logo).transform(new CircleTransform()).into(adminImg);
         }
     }
 

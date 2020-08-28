@@ -156,7 +156,6 @@ public class ResetPasswordActivity extends BaseActivity {
         btnResetPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
 
                 final String newPwd = textNewPwd.getText().toString();
                 final String confNewPwd = textConfNewPwd.getText().toString();
@@ -293,20 +292,6 @@ public class ResetPasswordActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        /*getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-
-        final String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        if(curLang.equals(LANG_MM)){
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
-            menu.getItem(0).setTitle(LANG_EN);
-            changeLabel(LANG_MM);
-        } else {
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
-            menu.getItem(0).setTitle(LANG_MM);
-            changeLabel(LANG_EN);
-        }*/
-
         return true;
     }
 

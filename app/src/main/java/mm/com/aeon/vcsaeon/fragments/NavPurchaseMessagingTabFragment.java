@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -13,7 +15,6 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +22,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -72,6 +72,7 @@ import mm.com.aeon.vcsaeon.beans.CategoryResponse;
 import mm.com.aeon.vcsaeon.beans.UserInformationFormBean;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
+import mm.com.aeon.vcsaeon.common_utils.UiUtils;
 import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 import mm.com.aeon.vcsaeon.delegates.PurchaseEventDelegate;
 import mm.com.aeon.vcsaeon.networking.WebSocketClientListener;
@@ -81,7 +82,7 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.PHONE_URI_PREFIX;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.getChangeTimestampToString3;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.getCurrentTimeStamp;
 
-public class NavPurchaseMessagingTabFragment extends BaseFragment implements PurchaseEventDelegate, LocationListener , LanguageChangeListener {
+public class NavPurchaseMessagingTabFragment extends BaseFragment implements PurchaseEventDelegate, LocationListener, LanguageChangeListener {
 
     View view;
 
@@ -106,6 +107,7 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
     private TextView labelAddText;
     private TextView labelLocation;
     private Button btnSendMsg;
+    private TextView lblAskProductTitle;
 
     private static Spinner spinnerCategory;
     private static Spinner spinnerBrand;
@@ -113,7 +115,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
     private Button btnShopping;
 
     public static List<BuyMessagesBean> messageListForUI;
-    //public static List<BuyMessagesBean> unreadMessageListForUI;
 
     public WebSocketClientListener webSocketClientListener;
     public static WebSocketClient webSocketClient;
@@ -151,13 +152,14 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.purchase_messaging_tab_layout, container, false);
         setHasOptionsMenu(true);
-        Log.e("onCreate", "Agent Channel Fragment");
 
         // set listener
-        ((MainMenuActivityDrawer)getActivity()).setLanguageListener(this);
+        ((MainMenuActivityDrawer) getActivity()).setLanguageListener(this);
         ((MainMenuActivityDrawer) getActivity()).setLanguageListener(this);
         Toolbar toolbar = ((MainMenuActivityDrawer) getActivity()).findViewById(R.id.toolbar_home);
+
         LinearLayout menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+        menuBackBtn.setAnimation(UiUtils.animSlideToRight(getActivity()));
         menuBackBtn.setVisibility(View.VISIBLE);
 
         String userInfo = PreferencesManager.getCurrentUserInfo(getActivity());
@@ -170,7 +172,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
 
         //Conversation List.
         messageListForUI = new ArrayList();
-        //unreadMessageListForUI = new ArrayList();
 
         startingIndexList = new ArrayList<>();
 
@@ -185,9 +186,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
 
             @Override
             public void onOpen(ServerHandshake serverHandshake) {
-                Log.e("TAG", "shopping-chat --------------- onOpen()." +
-                        "\nHttp Status Code : " + serverHandshake.getHttpStatus() + "" +
-                        "\nHttp Status Message : " + serverHandshake.getHttpStatusMessage());
 
                 BuyReqBean<BuyMsgReqInfo> historyReqBean = new BuyReqBean();
                 historyReqBean.setApi("get-message-history");
@@ -195,7 +193,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                 buyMsgReqInfo.setCustomerId(userId);
                 historyReqBean.setParam(buyMsgReqInfo);
                 final String get_message_history = new Gson().toJson(historyReqBean);
-                Log.e("TAG", "get_message_history : " + get_message_history);
                 webSocketClient.send(get_message_history);
 
                 //get brands and categories.
@@ -203,70 +200,49 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                 brandsReqBean.setApi("get-device-brands");
                 final String get_brand_api = new Gson().toJson(brandsReqBean);
                 webSocketClient.send(get_brand_api);
-                Log.e("TAG", "JSON : " + get_brand_api);
 
                 BuyReqBean categoriesReqBean = new BuyReqBean();
                 categoriesReqBean.setApi("get-device-categories");
                 final String get_category_api = new Gson().toJson(categoriesReqBean);
                 webSocketClient.send(get_category_api);
-                Log.e("TAG", "JSON : " + get_category_api);
 
             }
 
             @Override
             public void onMessage(final String message) {
 
-                //
-                //
-                //
-                // Log.e("TAG", "shopping-chat --------------- onMessage(). " + message);
-
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
                         try {
-                            Log.e("TAG", "Running on UI Thread .......");
                             JSONObject object = new JSONObject(message);
                             String type = object.getString("type");
-                            Log.e("Message Type", type);
 
                             if (type.equals("get-categories")) {
-
                                 final String categoriesJson = object.getString("data");
-                                Log.e("TAG", "Categories : " + categoriesJson);
                                 List<CategoryResponse> categoryResponses = new Gson().fromJson(categoriesJson, new TypeToken<List<CategoryResponse>>() {
                                 }.getType());
                                 PreferencesManager.saveCategories(getActivity(), categoryResponses);
 
                             } else if (type.equals("get-brands")) {
-
                                 final String brandsJson = object.getString("data");
-                                Log.e("TAG", "Brands : " + brandsJson);
                                 List<BrandResponse> brandResponses = new Gson().fromJson(brandsJson, new TypeToken<List<BrandResponse>>() {
                                 }.getType());
                                 PreferencesManager.saveBrands(getActivity(), brandResponses);
 
                             } else if (type.equals("post-buy-ok")) {
-
-                                final String okJson = object.getString("data");
-                                Log.e("TAG", "Post Buy OK. DATA : " + okJson);
+                                //final String okJson = object.getString("data");
 
                             } else if (type.equals("post-buy-not-ok")) {
-
-                                final String notOkJson = object.getString("data");
-                                Log.e("TAG", "Post Buy Not OK. DATA : " + notOkJson);
+                                //final String notOkJson = object.getString("data");
 
                             } else if (type.equals("get-unread-messages")) {
 
                                 final String receiveMessageJson = object.getString("data");
-                                Log.e("TAG", "un-Read Message : " + receiveMessageJson);
-
                                 TypeToken<List<BuyResInfo>> token = new TypeToken<List<BuyResInfo>>() {
                                 };
                                 List<BuyResInfo> buyResInfoList = new Gson().fromJson(receiveMessageJson, token.getType());
-
-                                //BuyMessagesBean tempBuyMessagesBean = new BuyMessagesBean();
 
                                 // read-flag change object
                                 BuyReqBean<BuyResInfo> brandsReqBean;
@@ -293,7 +269,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                                     brandsReqBean.setApi("read-messages");
                                     brandsReqBean.setParam(buyResInfo);
                                     final String change_read_messages = new Gson().toJson(brandsReqBean);
-                                    Log.e("TAG", "read-messages : " + change_read_messages);
                                     webSocketClient.send(change_read_messages);
                                 }
 
@@ -301,6 +276,7 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                                     adapter.notifyDataSetChanged();
                                     rvBuyMessage.smoothScrollToPosition(messageListForUI.size());
                                 }
+
                                 int newMsgCount = buyResInfoList.size();
                                 if (newMsgCount > 1) {
                                     Toast.makeText(getActivity(), "You have received " + newMsgCount + " new messages.", Toast.LENGTH_LONG).show();
@@ -308,23 +284,17 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                                     Toast.makeText(getActivity(), "You have received " + newMsgCount + " new message.", Toast.LENGTH_LONG).show();
                                 }
 
-
                             } else if (type.equals("get-msg-history")) {
 
                                 final String msgHistoryJson = object.getString("data");
-                                Log.e("Messages", msgHistoryJson);
 
                                 TypeToken<List<BuyResInfo>> token = new TypeToken<List<BuyResInfo>>() {
                                 };
                                 buyResInfoList = new Gson().fromJson(msgHistoryJson, token.getType());
 
                                 if (buyResInfoList != null) {
-
                                     int ListSize = buyResInfoList.size();
-                                    Log.e("Size", "" + ListSize);
-
                                     int startingIndex = ListSize - DISPLAY_LIMIT;
-                                    Log.e("Starting index", "" + startingIndex);
 
                                     if (ListSize > DISPLAY_LIMIT) {
                                         addInitMessageUI(true, startingIndex);
@@ -335,7 +305,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
 
                                 adapter = new ShoppingMessageListAdapter(messageListForUI, NavPurchaseMessagingTabFragment.this);
                                 rvBuyMessage.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
-                                Log.e("message list size", messageListForUI.size() + "");
                                 rvBuyMessage.setAdapter(adapter);
                                 rvBuyMessage.smoothScrollToPosition(messageListForUI.size());
 
@@ -354,7 +323,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                                         buyMsgReqInfo.setCustomerId(userId);
                                         historyReqBean.setParam(buyMsgReqInfo);
                                         final String get_unread_messages = new Gson().toJson(historyReqBean);
-                                        //Log.e("TAG", "get-unread-messages : " + get_unread_messages);
 
                                         try {
                                             webSocketClient.send(get_unread_messages);
@@ -372,10 +340,7 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                                 };
                                 timer.start();
                             } else if (type.equals("update-call-count")) {
-
                                 final String categoriesJson = object.getString("data");
-                                Log.e("Result for Update Call", categoriesJson);
-
                             }
 
                         } catch (WebsocketNotConnectedException e) {
@@ -384,29 +349,24 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                             } catch (URISyntaxException urie) {
                                 urie.printStackTrace();
                             }
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
                     }
                 });
             }
 
             @Override
             public void onClose(int i, String message, boolean b) {
-                Log.e("Socket Closed", message);
                 timer.cancel();
             }
-
         };
-
         webSocketClientListener = new WebSocketClientListener(getActivity(), listener, BuildConfig.PL_CHAT_URL);
 
         try {
             webSocketClient = webSocketClientListener.connectWebsocket();
-        } catch (URISyntaxException urie) {
-            urie.printStackTrace();
+        } catch (URISyntaxException uriException) {
+            uriException.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -416,8 +376,10 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
             public void onClick(View v) {
 
                 try {
+
                     dialog = new Dialog(getActivity());
                     dialog.setContentView(R.layout.shopping_dialog_layout);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                     if (categories == null) {
                         categories = new ArrayList<>();
@@ -434,15 +396,25 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                     labelBrand = dialog.findViewById(R.id.lbl_brand);
                     labelAddText = dialog.findViewById(R.id.lbl_additional_text);
                     labelLocation = dialog.findViewById(R.id.lbl_location);
+                    lblAskProductTitle = dialog.findViewById(R.id.lblAskProductTitle);
 
-                    final TextView errAddtext = dialog.findViewById(R.id.err_add_text);
+                    final TextView errAddText = dialog.findViewById(R.id.err_add_text);
                     final TextView errLocation = dialog.findViewById(R.id.err_location);
+
+                    final ImageView imgClose = dialog.findViewById(R.id.close_ask_product);
+                    imgClose.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
 
                     curLang = PreferencesManager.getCurrentLanguage(getContext());
                     labelCategory.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.agent_channel_category, getContext()));
                     labelBrand.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.agent_channel_brand, getContext()));
                     labelAddText.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.agent_channel_addText, getContext()));
                     labelLocation.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.agent_channel_location, getContext()));
+                    lblAskProductTitle.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.welcome_agent_channel_title, getContext()));
 
                     List<CategoryResponse> categoryResponses = PreferencesManager.getCategories(getActivity());
 
@@ -463,7 +435,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
 
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {
-
                         }
                     });
 
@@ -498,17 +469,15 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
 
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {
-
                         }
                     });
-
 
                     //set location.
                     textLocation = dialog.findViewById(R.id.txt_location);
                     getUpdatedCurLocation();
 
                     Button btnBuy = dialog.findViewById(R.id.btn_shopping);
-                    btnBuy.setText(CommonUtils.getLocaleString(new Locale(curLang),R.string.btn_send, getContext()));
+                    btnBuy.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.btn_send, getContext()));
 
                     btnBuy.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -531,11 +500,11 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
 
                             if (CommonUtils.isEmptyOrNull(additionalText)) {
                                 isBuyFormValid = false;
-                                errAddtext.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.at_add_text_err, getContext()));
-                                errAddtext.setVisibility(View.VISIBLE);
+                                errAddText.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.at_add_text_err, getContext()));
+                                errAddText.setVisibility(View.VISIBLE);
 
                             } else {
-                                errAddtext.setVisibility(View.GONE);
+                                errAddText.setVisibility(View.GONE);
                             }
 
                             if (CommonUtils.isEmptyOrNull(location)) {
@@ -551,7 +520,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                                 try {
                                     if (webSocketClient.isClosed()) {
                                         webSocketClientListener.connectWebsocket();
-                                        Log.e("TAG", "Reconnect web-socket listener ....");
                                     }
 
                                     BuyReqInfo mBuySendInfo = new BuyReqInfo();
@@ -572,7 +540,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
 
                                     final String post_buy_info = new Gson().toJson(buyReqBean);
                                     webSocketClient.send(post_buy_info);
-                                    Log.e("TAG", "JSON : " + post_buy_info);
 
                                     BuySendMsgUIBean buySendMsgUIBean = new BuySendMsgUIBean();
                                     buySendMsgUIBean.setBrandId(brandId);
@@ -590,25 +557,20 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                                     messageListForUI.add(tempBuyMessagesBean);
                                     adapter.notifyDataSetChanged();
                                     rvBuyMessage.smoothScrollToPosition(messageListForUI.size());
-
                                     dialog.dismiss();
 
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-
                             }
                         }
                     });
-
                     dialog.show();
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-
         return view;
     }
 
@@ -621,10 +583,8 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.action_favorite:
-                //this.languageFlag = item;
                 if (item.getTitle().equals(LANG_MM)) {
                     item.setIcon(R.drawable.en_flag2);
                     item.setTitle(LANG_EN);
@@ -670,25 +630,19 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
 
                 final String update_call_count = new Gson().toJson(buyReqBean);
                 webSocketClient.send(update_call_count);
-                Log.e("TAG", "JSON : " + update_call_count);
-
                 startActivity(callIntent);
             }
         }
     }
 
-
     @Override
     public void onTouchReadMore(int currentIndex, int endingIndex) {
-
         int previousIndex = startingIndexList.get(startingIndexList.size() - 1);
-
         if (previousIndex > DISPLAY_LIMIT) {
             addInitMessageUI(true, currentIndex);
         } else {
             addInitMessageUI(false, currentIndex);
         }
-
         adapter = new ShoppingMessageListAdapter(messageListForUI, NavPurchaseMessagingTabFragment.this);
         rvBuyMessage.setAdapter(adapter);
         rvBuyMessage.scrollToPosition(DISPLAY_LIMIT - 1);
@@ -708,9 +662,7 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
     }
 
     void addMessagesToUI(BuyResInfo newMessage) {
-
         int opSendFlag = newMessage.getOpSendFlag();
-
         BuyMessagesBean tempBuyMessagesBean = new BuyMessagesBean();
         BuyReqBean<BuyMsgReqInfo> brandsReqBean = new BuyReqBean();
         brandsReqBean.setApi("read-messages");
@@ -733,7 +685,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                 break;
 
             case 1:
-
                 //set message
                 BuyReceiveMsgUIBean buyReceiveMsgUIBean = new BuyReceiveMsgUIBean();
                 buyReceiveMsgUIBean.setMessageId(newMessage.getMessageId());
@@ -779,7 +730,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
             int endingIndex = startingIndex + DISPLAY_LIMIT - 1;
             int currentIndex = startingIndex - DISPLAY_LIMIT;
 
-            Log.e("start end ", endingIndex +","+ currentIndex);
             BuyMoreMessageUIBean buyMoreMessageUIBean = new BuyMoreMessageUIBean();
             buyMoreMessageUIBean.setEndingIndex(endingIndex);
             buyMoreMessageUIBean.setCurrentIndex(currentIndex);
@@ -826,7 +776,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
     @Override
     public void onLocationChanged(Location location) {
         mCurLocation = location;
-        Log.e("TAG", "Lat : " + mCurLocation.getLatitude() + " | Long : " + mCurLocation.getLongitude());
         getAddressFromLocation(mCurLocation);
         mLocationManager.removeUpdates(this);
     }
@@ -853,9 +802,7 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
     }
 
     private void getAddressFromLocation(Location location) {
-
         if (location != null) {
-
             //Current Location.
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
@@ -872,27 +819,20 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
 
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.e("TAG", "Could not get address..!");
             }
-
         } else {
             textLocation.setText(BLANK);
-            Log.e("TAG", "Location is null.");
         }
     }
 
     String getAddressString(Address address) {
-
         String fullAddress = BLANK;
 
         if (address != null) {
-
             String road = address.getThoroughfare();
             String township = address.getSubLocality();
             String city = address.getLocality();
             String countryName = address.getCountryName();
-
-            Log.e("TAG", "getAddressString().");
 
             if (road != null) {
                 fullAddress = fullAddress + road;
@@ -922,7 +862,6 @@ public class NavPurchaseMessagingTabFragment extends BaseFragment implements Pur
                 }
             }
         }
-
         return fullAddress;
     }
 

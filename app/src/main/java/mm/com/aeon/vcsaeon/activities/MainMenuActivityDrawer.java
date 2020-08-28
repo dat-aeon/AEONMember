@@ -84,6 +84,7 @@ import mm.com.aeon.vcsaeon.delegates.LanguageChangeListener;
 import mm.com.aeon.vcsaeon.delegates.AccessPermissionResultDelegate;
 import mm.com.aeon.vcsaeon.delegates.LogoutDelegate;
 import mm.com.aeon.vcsaeon.delegates.MenuNavigatorDelegate;
+import mm.com.aeon.vcsaeon.delegates.MultipleCheckDelegate;
 import mm.com.aeon.vcsaeon.fragments.DAEnquiryFragment;
 import mm.com.aeon.vcsaeon.fragments.EventNewsTabFragment;
 import mm.com.aeon.vcsaeon.fragments.MainMenuWelcomeFragment;
@@ -132,7 +133,7 @@ import static mm.com.aeon.vcsaeon.common_utils.UiUtils.showNetworkErrorDialog;
 import static mm.com.aeon.vcsaeon.networking.NetworkingConstants.CODE_TOKEN_TIMEOUT;
 
 public class MainMenuActivityDrawer extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MenuNavigatorDelegate, LogoutDelegate {
+        implements NavigationView.OnNavigationItemSelectedListener, MenuNavigatorDelegate, LogoutDelegate, MultipleCheckDelegate {
 
     static UserInformationFormBean userInformationFormBean;
 
@@ -291,14 +292,10 @@ public class MainMenuActivityDrawer extends BaseActivity
         if (curLang.equals(LANG_MM)) {
             changeNavLabel(LANG_MM);
         } else {
+
             changeNavLabel(LANG_EN);
         }
 
-       /* int permission = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION);
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            makeLocationRequest();
-        }*/
         CameraUtil.isCameraAllowed(this);
         CameraUtil.isStorageAllowed(this);
 
@@ -327,146 +324,6 @@ public class MainMenuActivityDrawer extends BaseActivity
         fragment.setLogoutDelegate(MainMenuActivityDrawer.this);
         replaceFragment(fragment);
 
-        /*drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        drawer.setMinimumWidth(20);
-
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        if (navigationView != null) {
-            Log.e("draw setup", ":::::::::::true");
-            setupDrawerContent(navigationView);
-        }
-
-
-        this.mainMenuList = new ArrayList<>();
-        prepareListData();
-        Log.e("menu list", Integer.toString(mainMenuList.size()));
-        mRecyclerView  = findViewById(R.id.menuRecycler);
-        menuListRecyclerAdapter = new MenuListRecyclerAdapter(this,mainMenuList, MainMenuActivityDrawer.this);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(menuListRecyclerAdapter);
-        mRecyclerView.setHasFixedSize(true);
-
-        //Header-View
-        View headerView = navigationView.getHeaderView(0);
-        final ImageView profileImgView = headerView.findViewById(R.id.profileImg);
-        imgEditBackground = headerView.findViewById(R.id.ic_edit_bg);
-        imgEditCamera = headerView.findViewById(R.id.ic_edit_camera);
-        TextView textUserName = headerView.findViewById(R.id.user_name);
-        textUserName.setText(userInformationFormBean.getName());
-        TextView textCustNo = headerView.findViewById(R.id.customer_no);
-        textCustNo.setText(userInformationFormBean.getCustomerNo());
-
-        if(userInformationFormBean.getCustomerTypeId()==CUSTOMER_TYPE_MEMBER){
-            imgEditBackground.setVisibility(View.VISIBLE);
-            imgEditCamera.setVisibility(View.VISIBLE);
-        }
-
-        //Set Profile Image.
-        final String imagePath = userInformationFormBean.getPhotoPath();
-        if(imagePath==null || imagePath==BLANK) {
-            Picasso.get().load(R.drawable.no_profile_image).into(profileImgView);
-        } else {
-            Picasso.get().load(imagePath).into(profileImgView, new com.squareup.picasso.Callback() {
-                @Override
-                public void onSuccess() {
-                    Picasso.get().load(imagePath).transform(new CircleTransform()).into(profileImgView);
-                }
-                @Override
-                public void onError(Exception e) {
-                    Picasso.get().load(R.drawable.no_profile_image).into(profileImgView);
-                }
-            });
-        }
-
-        profileImgView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final int customerTypeId = userInformationFormBean.getCustomerTypeId();
-                if(customerTypeId == CUSTOMER_TYPE_MEMBER){
-                    Intent intent = intentProfilePhotoEdit(MainMenuActivityDrawer.this);
-                    startActivity(intent);
-                }else{
-                    final Dialog dialog = new Dialog(MainMenuActivityDrawer.this);
-                    dialog.setContentView(R.layout.profile_edit_info);
-                    dialog.setCancelable(false);
-                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                    Button btnOk = dialog.findViewById(R.id.button_ok);
-                    btnOk.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-                    dialog.show();
-                }
-            }
-        });
-
-        drawer.setDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {}
-            @Override
-            public void onDrawerOpened(@NonNull View drawerView) {
-                hideKeyboard(MainMenuActivityDrawer.this);
-                curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-                changeNavLabel(curLang);
-                Log.e("drawer open", curLang);
-                if(menuSocketClient != null){
-                    //socketClient.close();
-                    if (menuSocketClient.isClosed()) {
-                        displayUnreadMessageCount();
-                        mainMenuList.get(7).setMessageCount(0);
-                    } else {
-                        menuSocketClient.send("unReadMesgCount:");
-                    }
-                } else {
-                    mainMenuList.get(7).setMessageCount(0);
-                    displayUnreadMessageCount();
-                }
-
-                if(menuBuySocketClient != null){
-
-                    if (menuBuySocketClient.isClosed()){
-                        mainMenuList.get(9).setMessageCount(0);
-                        displayUnreadBuyMsgCount();
-
-                    } else {
-                        BuyReqBean<BuyMsgReqInfo> brandsReqBean = new BuyReqBean();
-                        brandsReqBean.setApi("get-unread-message-count");
-                        BuyMsgReqInfo buyMsgReqInfo = new BuyMsgReqInfo();
-                        buyMsgReqInfo.setCustomerId(userInformationFormBean.getCustomerId());
-                        brandsReqBean.setParam(buyMsgReqInfo);
-                        final String get_unread_message_count = new Gson().toJson(brandsReqBean);
-                        menuBuySocketClient.send(get_unread_message_count);
-                    }
-
-                } else {
-                    displayUnreadBuyMsgCount();
-                }
-                menuListRecyclerAdapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onDrawerClosed(@NonNull View drawerView) {
-                if(menuSocketClient!=null){
-                    //menuSocketClient.close();
-                }
-                if(menuBuySocketClient!=null){
-                    //menuBuySocketClient.close();
-                }
-            }
-            @Override
-            public void onDrawerStateChanged(int newState) {}
-        });
-        */
-
-        setUpViewModel();
         setUpTimerTask();
     }
 
@@ -511,7 +368,6 @@ public class MainMenuActivityDrawer extends BaseActivity
                 break;
         }
 
-        //drawer.closeDrawer(GravityCompat.START);
     }
 
     @Override
@@ -834,7 +690,6 @@ public class MainMenuActivityDrawer extends BaseActivity
 
         } else {
             if (doubleBackToExitPressedOnce) {
-                //doLogout(userInformationFormBean);
                 PreferencesManager.clearCurrentUserInfo(getApplicationContext());
                 PreferencesManager.clearCouponInfo(getApplicationContext());
                 PreferencesManager.keepMainNavFlag(getApplicationContext(), true);
@@ -869,17 +724,6 @@ public class MainMenuActivityDrawer extends BaseActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        /*getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        final String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        if(curLang.equals(LANG_MM)){
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.en_flag2));
-            menu.getItem(0).setTitle(LANG_EN);
-            changeNavLabel(LANG_MM);
-        } else {
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.mm_flag));
-            menu.getItem(0).setTitle(LANG_MM);
-            changeNavLabel(LANG_EN);
-        }*/
         return true;
     }
 
@@ -1225,7 +1069,6 @@ public class MainMenuActivityDrawer extends BaseActivity
         logoutDialog.setTitle(getString(R.string.logout_title));
         logoutDialog.setMessage(getString(R.string.logout_in_progress));
         logoutDialog.setCancelable(false);
-        //logoutDialog.show();
 
         reqLogout.enqueue(new Callback<BaseResponse>() {
             @Override
@@ -1242,8 +1085,7 @@ public class MainMenuActivityDrawer extends BaseActivity
                         closeDialog();
                         keepLastActivatedInfo(true);
                     }
-
-                    startActivity(new Intent(MainMenuActivityDrawer.this, MainActivity.class));
+                    finish();
 
                 } else if (response.code() == CODE_TOKEN_TIMEOUT) {
 
@@ -1556,7 +1398,7 @@ public class MainMenuActivityDrawer extends BaseActivity
                             Intent intent = new Intent(MainMenuActivityDrawer.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
-
+                            finish();
                         }
                     });
 
@@ -1694,7 +1536,7 @@ public class MainMenuActivityDrawer extends BaseActivity
         public void run() {
             SingleLoginCheck singleLoginCheck =
                     PreferencesManager.getSingleLoginCheck(getApplicationContext());
-            SingleLoginStatusRepository.getInstance().getSingleLoginStatus(singleLoginCheck);
+            SingleLoginStatusRepository.getInstance().getSingleLoginStatus(singleLoginCheck, MainMenuActivityDrawer.this);
         }
     }
 
@@ -1714,10 +1556,22 @@ public class MainMenuActivityDrawer extends BaseActivity
         dialog.findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doLogout(userInformationFormBean);
+                PreferencesManager.clearCurrentUserInfo(getApplicationContext());
+                PreferencesManager.clearCouponInfo(getApplicationContext());
+                PreferencesManager.keepMainNavFlag(getApplicationContext(), true);
+                Intent intent = new Intent(MainMenuActivityDrawer.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+                return;
             }
         });
         dialog.show();
     }
 
+    @Override
+    public void onDialogDisplay() {
+        cancelTimerTask();
+        displayAlertDialog();
+    }
 }

@@ -26,73 +26,19 @@
             android:layout_weight="1"
             android:layout_marginRight="@dimen/margin_small"
             android:orientation="horizontal">
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/edit_text_height"
-                android:maxLength="4"
+                android:maxLength="11"
                 android:background="@null"
-                android:hint="AppNo"
-                android:inputType="number"
+                android:hint="Application No."
+                android:inputType="text"
+                android:fontFamily="@font/input_text_font"
                 android:id="@+id/text_application_no1"
                 android:gravity="center_vertical"
                 android:textSize="12sp"
-                android:padding="@dimen/margin_medium"
-                android:layout_weight="1"/>
-            <TextView
-                android:layout_width="5dp"
-                android:layout_height="wrap_content"
-                android:text="-"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height"
-                android:id="@+id/text_application_no2"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:maxLength="3"
-                android:inputType="number"
-                android:textSize="12sp"
-                android:background="@null"
-                android:padding="@dimen/margin_medium"
-                android:layout_weight="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height"
-                android:id="@+id/text_application_no3"
-                android:gravity="center_vertical"
-                android:maxLength="3"
-                android:inputType="number"
-                android:textSize="12sp"
-                android:background="@null"
-                android:padding="@dimen/margin_medium"
-                android:layout_weight="1"/>
-            <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/layout_01"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:background="@drawable/edit_text_style"
-                    android:layout_marginRight="@dimen/margin_small"
-                    android:layout_weight="1"
-                    android:hint="Applied Date"
-                    android:id="@+id/text_applied_date"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/text_regular"
-                    android:padding="@dimen/margin_medium"
-                    android:focusable="false"
-                    android:drawableRight="@drawable/ic_date_range_black_24dp"/>
-
-            </LinearLayout>-->
-
+                android:padding="@dimen/margin_medium"/>
         </LinearLayout>
 
         <LinearLayout
@@ -117,24 +63,12 @@
                 android:textSize="@dimen/text_regular"
                 android:padding="@dimen/margin_medium"
                 android:focusable="false"
+                android:fontFamily="@font/input_text_font"
                 android:drawableRight="@drawable/ic_date_range_black_24dp"/>
 
         </LinearLayout>
-
-        <!--<Spinner
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_text_height"
-            android:id="@+id/spinner_loan_type"
-            android:background="@drawable/edit_text_style"
-            android:layout_marginLeft="@dimen/margin_small"
-            android:layout_weight="1"
-            android:gravity="center"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_keyboard_arrow_down_black_24dp"/>-->
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -144,27 +78,6 @@
         android:id="@+id/error_application_no"
         android:text="Application No is not Valid."
         android:layout_below="@id/layout_1"/>
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/margin_tiny"
-        android:id="@+id/layout_2"
-        android:layout_below="@id/layout_1"
-        android:padding="@dimen/margin_tiny"
-        android:layout_marginLeft="@dimen/margin_medium"
-        android:layout_marginRight="@dimen/margin_medium">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/id_searched_label"
-            android:text="-"
-            android:fontFamily="@font/pyidaungsu_bold"
-            android:textSize="@dimen/text_regular"
-            android:gravity="center_vertical"/>
-
-    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -202,13 +115,14 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/text_regular" />
-
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/layout_02"
         android:id="@+id/rv_application_list"
+        android:overScrollMode="never"
         android:layout_margin="@dimen/margin_medium"/>
 
 </RelativeLayout>

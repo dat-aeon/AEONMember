@@ -28,7 +28,7 @@
         android:layout_marginRight="@dimen/margin_medium_3"
         android:text="10/10/2018 11:40 PM"
         android:textSize="@dimen/text_smaller"
-        android:fontFamily="@font/pyidaungsu_regular"
+        android:fontFamily="@font/vcsm_chat_msg_font"
         android:layout_below="@+id/img_message_body"
         android:layout_alignParentRight="true"/>
 

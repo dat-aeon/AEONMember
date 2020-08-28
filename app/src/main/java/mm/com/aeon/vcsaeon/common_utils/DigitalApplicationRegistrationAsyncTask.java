@@ -1,10 +1,14 @@
 package mm.com.aeon.vcsaeon.common_utils;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -21,6 +25,7 @@ import java.util.List;
 
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.activities.MainMenuActivityDrawer;
+import mm.com.aeon.vcsaeon.activities.RegistrationActivity;
 import mm.com.aeon.vcsaeon.beans.ApplicationFormErrMesgBean;
 import mm.com.aeon.vcsaeon.beans.ApplicationInfoAttachmentFormBean;
 import mm.com.aeon.vcsaeon.beans.ApplicationRegisterReqBean;
@@ -76,9 +81,6 @@ public class DigitalApplicationRegistrationAsyncTask extends AsyncTask<Void, Voi
     protected String doInBackground(Void... voids) {
         Service regService = APIClient.getApplicationRegisterService();
 
-        //String requestParam = new Gson().toJson(purchaseFinalRegisterReqBean);
-        //RequestBody uploadObj = RequestBody.create(MediaType.parse(CommonConstants.MEDIA_TYPE), requestParam);
-
         Call<BaseResponse<RegisterSuccessResponseBean>> request = regService.registerLoanApplication(
                 accessToken, registerBean, multipartFiles);
 
@@ -99,10 +101,7 @@ public class DigitalApplicationRegistrationAsyncTask extends AsyncTask<Void, Voi
                         MainMenuActivityDrawer.isSubmitclickConfirmData = false;
                         RegisterSuccessResponseBean registerSuccessResponseBean = (RegisterSuccessResponseBean) baseResponse.getData();
                         applicationNo = registerSuccessResponseBean.getApplicationNo();
-                        String ymNo=applicationNo.substring(0,4);
-                        String middleNo=applicationNo.substring(4,7);
-                        String lastNo=applicationNo.substring(7,10);
-                        showSuccessDialog("Application No is : " + ymNo+"-"+middleNo+"-"+lastNo);
+                        showSuccessDialog(applicationNo);
 
                         // clear error message
                         textErrMsg.setVisibility(View.GONE);
@@ -119,23 +118,21 @@ public class DigitalApplicationRegistrationAsyncTask extends AsyncTask<Void, Voi
                     } else {
                         closeDialog(registerDialog);
                         showMessageDialog("Registration Un-success : " + baseResponse.getMessage());
-                        textErrMsg.setVisibility(View.VISIBLE);
-                        textErrMsg.setText(baseResponse.getMessage());
-
+                        //textErrMsg.setVisibility(View.VISIBLE);
+                        //textErrMsg.setText(baseResponse.getMessage());
                         savedInformation.setConfBusinessErrLocale(baseResponse.getMessage());
                     }
-
                     PreferencesManager.saveErrorMesgInfo(context, savedInformation);
                 } else {
                     closeDialog(registerDialog);
-                    showMessageDialog("Response is null.");
+                    showMessageDialog("Registration Failed.");
                 }
             }
 
             @Override
             public void onFailure(Call<BaseResponse<RegisterSuccessResponseBean>> call, Throwable t) {
                 closeDialog(registerDialog);
-                showMessageDialog("Request Failed.");
+                showMessageDialog("Registration Failed.");
             }
         });
         return null;
@@ -157,8 +154,31 @@ public class DigitalApplicationRegistrationAsyncTask extends AsyncTask<Void, Voi
     }
 
     void showSuccessDialog(String message) {
-        final AlertDialog alertDialog = new MaterialAlertDialogBuilder(context)
+
+        final Dialog alertDialog = new Dialog(context);
+        alertDialog.setContentView(R.layout.da_loan_registration_success_dialog);
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        alertDialog.setCancelable(false);
+
+        TextView lblAgreementNo = alertDialog.findViewById(R.id.lblRegisteredNo);
+        lblAgreementNo.setText(message);
+
+        Button btnDone = alertDialog.findViewById(R.id.btn_ok);
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainMenuActivityDrawer.doRegistrationSuccess = true;
+                replaceFragment(new DAEnquiryFragment());
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+
+        /*final AlertDialog alertDialog = new MaterialAlertDialogBuilder(context)
                 .setTitle(REGISTER_SUCCESS)
+                .setCancelable(false)
                 .setMessage(message)
                 .setPositiveButton("OK", null)
                 .show();
@@ -171,7 +191,9 @@ public class DigitalApplicationRegistrationAsyncTask extends AsyncTask<Void, Voi
                 replaceFragment(new DAEnquiryFragment());
                 alertDialog.dismiss();
             }
-        });
+        });*/
+
+
     }
 
     public void replaceFragment(Fragment fragment) {

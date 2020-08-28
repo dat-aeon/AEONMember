@@ -145,8 +145,8 @@ public class SmallLoanApplicationDataFragment extends PagerRootFragment implemen
     private Button btnAppSave;
 
     private LinearLayout nextOccupation;
-    private TextView occupationTitle;
-    private TextView applicationTitle;
+    //private TextView occupationTitle;
+    //private TextView applicationTitle;
 
     private static String stateDivCodeVal;
     private static String nrcTypeVal;
@@ -317,33 +317,33 @@ public class SmallLoanApplicationDataFragment extends PagerRootFragment implemen
         isInit = true;
         setHasOptionsMenu(true);
 
-        String[] pages = {"Application\nData", "Occupation\nData","Emergency\nContact", "Guarantor\nData", "Loan\nConfirmation"};
+        String[] pages = {"Application\nData", "Occupation\nData", "Emergency\nContact", "Guarantor\nData", "Loan\nConfirmation"};
         appStepView = view.findViewById(R.id.app_stepped_bar);
         appStepView.setStateDescriptionData(pages);
         appStepView.setOnStateItemClickListener(new OnStateItemClickListener() {
             @Override
             public void onStateItemClick(StateProgressBar stateProgressBar, StateItem stateItem, int stateNumber, boolean isCurrentState) {
-                if(stateNumber == 1){
+                if (stateNumber == 1) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(0, true);
-                }else if(stateNumber == 2){
+                } else if (stateNumber == 2) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(1, true);
-                }else if(stateNumber == 3){
+                } else if (stateNumber == 3) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(2, true);
-                }else if(stateNumber == 4){
+                } else if (stateNumber == 4) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(3, true);
-                }else if(stateNumber == 5){
+                } else if (stateNumber == 5) {
                     setUpDataOnPageChanged();
                     viewPager.setCurrentItem(4, true);
                 }
             }
         });
 
-        if(!MainMenuActivityDrawer.isOccupationLanguageFlag){
-            ((MainMenuActivityDrawer)getActivity()).setLanguageListener(SmallLoanApplicationDataFragment.this);
+        if (!MainMenuActivityDrawer.isOccupationLanguageFlag) {
+            ((MainMenuActivityDrawer) getActivity()).setLanguageListener(SmallLoanApplicationDataFragment.this);
         }
 
         Toolbar toolbar = ((MainMenuActivityDrawer) getActivity()).findViewById(R.id.toolbar_home);
@@ -734,7 +734,7 @@ public class SmallLoanApplicationDataFragment extends PagerRootFragment implemen
         applicantEducation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                appEducation = position+1;
+                appEducation = position + 1;
             }
 
             @Override
@@ -858,8 +858,8 @@ public class SmallLoanApplicationDataFragment extends PagerRootFragment implemen
             @Override
             public void onPageSelected(int position) {
                 selectedPosition = position;
-                if(selectedPosition == 0){
-                    ((MainMenuActivityDrawer)getActivity()).setLanguageListener(SmallLoanApplicationDataFragment.this);
+                if (selectedPosition == 0) {
+                    ((MainMenuActivityDrawer) getActivity()).setLanguageListener(SmallLoanApplicationDataFragment.this);
                 }
             }
 
@@ -882,8 +882,8 @@ public class SmallLoanApplicationDataFragment extends PagerRootFragment implemen
 
         });
 
-        occupationTitle = view.findViewById(R.id.da_occu_title);
-        applicationTitle = view.findViewById(R.id.da_app_data_title);
+        //occupationTitle = view.findViewById(R.id.da_occu_title);
+        //applicationTitle = view.findViewById(R.id.da_app_data_title);
 
         /*nextOccupation = view.findViewById(R.id.go_to_occupation);
         nextOccupation.setOnClickListener(new View.OnClickListener() {
@@ -1199,7 +1199,7 @@ public class SmallLoanApplicationDataFragment extends PagerRootFragment implemen
                 txtphoneNo.setText(userInformationFormBean.getPhoneNo());
 
                 fatherName.setText(savedInformation.getFatherName());
-                applicantEducation.setSelection(savedInformation.getHighestEducationTypeId()-1);
+                applicantEducation.setSelection(savedInformation.getHighestEducationTypeId() - 1);
                 radio_Nation_detail.setText(savedInformation.getNationalityOther());
                 residentTypeDes.setText(savedInformation.getTypeOfResidenceOther());
                 livingWithDes.setText(savedInformation.getLivingWithOther());
@@ -1739,22 +1739,19 @@ public class SmallLoanApplicationDataFragment extends PagerRootFragment implemen
 
         /*Residence No.*/
         if (appResidentPhone != null && !appResidentPhone.equals(BLANK)) {
-            if (!CommonUtils.isNumberValid(appResidentPhone)) {
+            if (!CommonUtils.isTelPhoneNoValid(appResidentPhone)) {
                 errResidenceTelNo.setVisibility(View.VISIBLE);
                 errResidenceTelNo.setText(CommonUtils.getLocaleString(new Locale(curLang), R.string.da_residentTelNo_format_err, getActivity()));
                 errResidenceTelNoLocale = R.string.da_residentTelNo_format_err;
-                errAppMesgBean.setAppResidentMobileNoLocale(errResidenceTelNoLocale);
-
             } else {
                 errResidenceTelNo.setVisibility(View.GONE);
                 errResidenceTelNoLocale = R.string.da_mesg_blank;
-                errAppMesgBean.setAppResidentMobileNoLocale(errResidenceTelNoLocale);
             }
         } else {
             errResidenceTelNo.setVisibility(View.GONE);
             errResidenceTelNoLocale = R.string.da_mesg_blank;
-            errAppMesgBean.setAppResidentMobileNoLocale(errResidenceTelNoLocale);
         }
+        errAppMesgBean.setAppResidentMobileNoLocale(errResidenceTelNoLocale);
 
         /*Other Phone No.*/
         if (appResidentOtherPhone != null && !appResidentOtherPhone.equals(BLANK)) {
@@ -1871,8 +1868,9 @@ public class SmallLoanApplicationDataFragment extends PagerRootFragment implemen
             validate = false;
         }
 
+        /*Resident Tel. No.*/
         if (appResidentPhone != null && !appResidentPhone.equals(BLANK)) {
-            if (!CommonUtils.isNumberValid(appResidentPhone)) {
+            if (!CommonUtils.isTelPhoneNoValid(appResidentPhone)) {
                 validate = false;
             }
         }
@@ -1902,7 +1900,7 @@ public class SmallLoanApplicationDataFragment extends PagerRootFragment implemen
 
     public void changeLabel(String language) {
         /*occupationTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_occupation_title, getContext()));*/
-        applicationTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_application_data_title, getContext()));
+        //applicationTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_application_data_title, getContext()));
 
         labelName.setText(CommonUtils.getLocaleString(new Locale(language), R.string.da_applicant_name, getActivity()));
         errName.setText(CommonUtils.getLocaleString(new Locale(language), errNameLocale, getActivity()));

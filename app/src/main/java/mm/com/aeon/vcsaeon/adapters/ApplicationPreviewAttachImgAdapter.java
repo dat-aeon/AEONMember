@@ -16,12 +16,12 @@ import mm.com.aeon.vcsaeon.views.viewholders.ApplicationPreviewAttachViewHolder;
 
 public class ApplicationPreviewAttachImgAdapter extends RecyclerView.Adapter {
 
-    List<ApplicationInfoPhotoBean> applicationttachmentBeanList;
+    List<ApplicationInfoPhotoBean> applicationAttachmentBeanList;
     ApplicationDetailAttachDelegate delegate;
 
-    public ApplicationPreviewAttachImgAdapter(List<ApplicationInfoPhotoBean> applicationttachmentBeanList,
+    public ApplicationPreviewAttachImgAdapter(List<ApplicationInfoPhotoBean> applicationAttachmentBeanList,
                                               ApplicationDetailAttachDelegate delegate) {
-        this.applicationttachmentBeanList = applicationttachmentBeanList;
+        this.applicationAttachmentBeanList = applicationAttachmentBeanList;
         this.delegate = delegate;
     }
 
@@ -35,13 +35,13 @@ public class ApplicationPreviewAttachImgAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ApplicationInfoPhotoBean applicationInfoPhotoBean
-                = applicationttachmentBeanList.get(position);
+                = applicationAttachmentBeanList.get(position);
         ((ApplicationPreviewAttachViewHolder) holder).bindView(applicationInfoPhotoBean);
     }
 
     @Override
     public int getItemCount() {
-        return applicationttachmentBeanList.size();
+        return applicationAttachmentBeanList.size();
     }
 
 }

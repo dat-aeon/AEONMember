@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -33,6 +34,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import androidx.core.content.res.ResourcesCompat;
+
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.beans.ForceResetPasswordReqBean;
 import mm.com.aeon.vcsaeon.beans.RegSecurityQuestionInfoResBean;
@@ -73,10 +75,10 @@ public class SecurityConfirmationActivity extends BaseActivity {
     TextView textDuplicateQuestion;
 
     Service getSecurityQuestionService;
-    List<Map<String,String>> securityQAMapList;
+    List<Map<String, String>> securityQAMapList;
 
-    static int numSecQues=0;
-    static int numAnsCharacter=0;
+    static int numSecQues = 0;
+    static int numAnsCharacter = 0;
 
     private static List<TextView> textViewList = new ArrayList<TextView>();
     private static List<EditText> editTextList = new ArrayList<EditText>();
@@ -121,7 +123,7 @@ public class SecurityConfirmationActivity extends BaseActivity {
         setContentView(R.layout.security_confirmation);
 
         forceResetPasswordReqBean = (ForceResetPasswordReqBean) getIntent().getSerializableExtra("force_password_reset_bean");
-        numSecQues=getIntent().getIntExtra("num_sec_question",0);
+        numSecQues = getIntent().getIntExtra("num_sec_question", 0);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_main_home);
         toolbar.setTitleTextColor(getColor(R.color.white));
@@ -184,7 +186,7 @@ public class SecurityConfirmationActivity extends BaseActivity {
         securityQAMapList = new ArrayList<>();
 
         final String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        if(curLang.equals(LANG_MM)){
+        if (curLang.equals(LANG_MM)) {
             changeLabel(LANG_MM);
         } else {
             changeLabel(LANG_EN);
@@ -203,24 +205,24 @@ public class SecurityConfirmationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<BaseResponse<RegSecurityQuestionInfoResBean>> call, Response<BaseResponse<RegSecurityQuestionInfoResBean>> response) {
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     BaseResponse baseResponse = response.body();
 
-                    if(baseResponse.getStatus().equals(SUCCESS)){
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
 
-                        try{
+                        try {
 
                             final RegSecurityQuestionInfoResBean regSecurityQuestionInfoResBean =
-                                    (RegSecurityQuestionInfoResBean)baseResponse.getData();
+                                    (RegSecurityQuestionInfoResBean) baseResponse.getData();
 
                             LinearLayout securityAQLayout = findViewById(R.id.security_qa_layout_fp);
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                            params.setMargins(0,0,0,5);
+                            params.setMargins(0, 0, 0, 5);
 
                             LinearLayout separatorLayout0 = new LinearLayout(getApplicationContext());
                             LinearLayout.LayoutParams sLayout0 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2);
-                            sLayout0.setMargins(0,0,0,5);
+                            sLayout0.setMargins(0, 0, 0, 5);
                             separatorLayout0.setLayoutParams(sLayout0);
                             separatorLayout0.setBackgroundColor(getColor(R.color.grayLight));
                             securityAQLayout.addView(separatorLayout0);
@@ -234,18 +236,18 @@ public class SecurityConfirmationActivity extends BaseActivity {
                             spinnerList.clear();
 
                             //create 3 linear layout.
-                            for(int i=0;i<numSecQues;i++){
+                            for (int i = 0; i < numSecQues; i++) {
 
                                 //Question Layout
                                 LinearLayout questionLayout = new LinearLayout(getApplicationContext());
                                 LinearLayout.LayoutParams queLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                queLayoutParam.setMargins(5,0,0,5);
+                                queLayoutParam.setMargins(5, 0, 0, 5);
                                 questionLayout.setLayoutParams(queLayoutParam);
                                 questionLayout.setOrientation(LinearLayout.HORIZONTAL);
 
                                 //TextQues
                                 TextView questionLabel = new TextView(getApplicationContext());
-                                questionLabel.setText("Q"+(i+1)+":");
+                                questionLabel.setText("Q" + (i + 1) + ":");
                                 questionLabel.setMinWidth(70);
                                 questionLabel.setTextSize(12);
                                 questionLabel.setGravity(Gravity.RIGHT);
@@ -256,13 +258,13 @@ public class SecurityConfirmationActivity extends BaseActivity {
                                 //Answer Layout.
                                 LinearLayout answerLayout = new LinearLayout(getApplicationContext());
                                 LinearLayout.LayoutParams ansLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, getDp(40));
-                                ansLayoutParam.setMargins(5,0,0,15);
+                                ansLayoutParam.setMargins(5, 0, 0, 15);
                                 answerLayout.setLayoutParams(ansLayoutParam);
                                 answerLayout.setGravity(Gravity.CENTER_VERTICAL);
                                 answerLayout.setOrientation(LinearLayout.HORIZONTAL);
 
                                 TextView ansLabel = new TextView(getApplicationContext());
-                                ansLabel.setText("Ans"+(i+1)+": ");
+                                ansLabel.setText("Ans" + (i + 1) + ": ");
                                 ansLabel.setTextColor(getColor(R.color.colorPrimary));
                                 ansLabel.setMinWidth(70);
                                 ansLabel.setTextSize(12);
@@ -278,19 +280,20 @@ public class SecurityConfirmationActivity extends BaseActivity {
                                 final List<String> questionList = new ArrayList<>();
 
                                 for (SecurityQuestionResDto securityQuestionResDto : securityQuestionResDtoList) {
-                                    if(curLang.equals(LANG_MM)){
+                                    if (curLang.equals(LANG_MM)) {
                                         questionList.add(securityQuestionResDto.getQuestionMM());
                                     } else {
                                         questionList.add(securityQuestionResDto.getQuestionEN());
                                     }
                                 }
 
-                                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.security_qa_spinner_item, questionList);
+                                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.security_qa_spinner_item, questionList);
                                 appCompatSpinner.setAdapter(adapter);
                                 appCompatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                     @Override
                                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                     }
+
                                     @Override
                                     public void onNothingSelected(AdapterView<?> parent) {
 
@@ -298,8 +301,8 @@ public class SecurityConfirmationActivity extends BaseActivity {
                                 });
 
                                 //Indexing previous selected questions-indexes.
-                                if(tempSpinnerPosition!=null){
-                                    if(tempSpinnerPosition.size()>i){
+                                if (tempSpinnerPosition != null) {
+                                    if (tempSpinnerPosition.size() > i) {
                                         appCompatSpinner.setSelection(tempSpinnerPosition.get(i));
                                     } else {
                                         tempSpinnerPosition.add(0);
@@ -314,7 +317,7 @@ public class SecurityConfirmationActivity extends BaseActivity {
                                 //Error for answer textbox.
                                 TextView errTextView = new TextView(getApplicationContext());
                                 errTextView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                                errTextView.setPadding(80,0,0,0);
+                                errTextView.setPadding(80, 0, 0, 0);
                                 errTextView.setVisibility(View.GONE);
                                 errTextView.setText(getString(R.string.secquest_err_ans_blank));
                                 errTextView.setTextColor(getColor(R.color.red));
@@ -324,19 +327,19 @@ public class SecurityConfirmationActivity extends BaseActivity {
                                 //Answer TextBox
                                 EditText textInputLayout = new EditText(getApplicationContext());
                                 final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                                lparams.setMargins(10,0,0,0);
+                                lparams.setMargins(10, 0, 0, 0);
                                 textInputLayout.setLayoutParams(lparams);
                                 textInputLayout.setTextSize(14);
                                 textInputLayout.setHeight(40);
-                                textInputLayout.setPadding(8,10,0,10);
+                                textInputLayout.setPadding(8, 10, 0, 10);
                                 textInputLayout.setTextColor(getResources().getColor(R.color.black));
                                 textInputLayout.setSingleLine(true);
                                 textInputLayout.setHintTextColor(getResources().getColor(R.color.grayLight));
                                 textInputLayout.setBackground(getDrawable(R.drawable.edit_text_style));
                                 textInputLayout.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.pyidaungsu_regular));
-                                if(tempAnswers!=null){
+                                if (tempAnswers != null) {
                                     //Indexing previous entered answers.
-                                    if(tempAnswers.size()>i){
+                                    if (tempAnswers.size() > i) {
                                         textInputLayout.setText(tempAnswers.get(i));
                                     } else {
                                         tempAnswers.add(BLANK);
@@ -351,7 +354,7 @@ public class SecurityConfirmationActivity extends BaseActivity {
 
                                 LinearLayout separatorLayout = new LinearLayout(getApplicationContext());
                                 LinearLayout.LayoutParams sLayout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2);
-                                sLayout.setMargins(0,10,0,5);
+                                sLayout.setMargins(0, 10, 0, 5);
                                 separatorLayout.setLayoutParams(sLayout);
                                 separatorLayout.setBackgroundColor(getColor(R.color.grayLight));
 
@@ -364,7 +367,7 @@ public class SecurityConfirmationActivity extends BaseActivity {
                             btnConfirm.setEnabled(true);
                             closeDialog(loadSecQuesDialog);
 
-                        } catch (Exception e){
+                        } catch (Exception e) {
 
                             closeDialog(loadSecQuesDialog);
                             serviceUnavailable.setVisibility(View.VISIBLE);
@@ -401,12 +404,12 @@ public class SecurityConfirmationActivity extends BaseActivity {
                 String[] answers = new String[numSecQues];
                 int[] spinnerPosition = new int[numSecQues];
                 int[] spinnerPosition2 = new int[numSecQues]; //for check questions duplication.
-                int errShowCount=0;
+                int errShowCount = 0;
 
                 for (int i = 0; i < editTextList.size(); i++) {
                     String answer = editTextList.get(i).getText().toString().trim();
                     spinnerPosition2[i] = spinnerList.get(i).getSelectedItemPosition();
-                    if(answer!=null && answer.length()>0){
+                    if (answer != null && answer.length() > 0) {
                         answers[i] = answer;
                         spinnerPosition[i] = spinnerList.get(i).getSelectedItemPosition();
                         textViewList.get(i).setVisibility(View.GONE);
@@ -416,31 +419,31 @@ public class SecurityConfirmationActivity extends BaseActivity {
                         errShowCount++;
                     }
 
-                    if(answer.isEmpty()){
+                    if (answer.isEmpty()) {
                         textViewList.get(i).setText(getAnsBlankErrMsg(curLang));
                         textViewList.get(i).setVisibility(View.VISIBLE);
-                        validation=false;
+                        validation = false;
                         errShowCount++;
-                    } else if(!isPureAscii(answer)) {
+                    } else if (!isPureAscii(answer)) {
                         textViewList.get(i).setText(getAnsCharErrMsg(curLang));
                         textViewList.get(i).setVisibility(View.VISIBLE);
-                        validation=false;
+                        validation = false;
                         errShowCount++;
                     }
                 }
 
                 //check duplication question selected.
-                if((!isUnique(spinnerPosition2)) && (errShowCount==0)){
+                if ((!isUnique(spinnerPosition2)) && (errShowCount == 0)) {
                     textDuplicateQuestion.setVisibility(View.VISIBLE);
-                    validation=false;
+                    validation = false;
                 } else {
                     textDuplicateQuestion.setVisibility(View.GONE);
                 }
 
-                if(validation){
+                if (validation) {
 
                     if (!CommonUtils.isNetworkAvailable(getApplicationContext())) {
-                        showNetworkErrorDialog(SecurityConfirmationActivity.this,getNetErrMsg());
+                        showNetworkErrorDialog(SecurityConfirmationActivity.this, getNetErrMsg());
                     } else {
 
                         for (int j = 0; j < editTextList.size(); j++) {
@@ -476,7 +479,7 @@ public class SecurityConfirmationActivity extends BaseActivity {
 
                                     BaseResponse baseResponse = response.body();
 
-                                    if(baseResponse.getStatus().equals(SUCCESS)){
+                                    if (baseResponse.getStatus().equals(SUCCESS)) {
 
                                         closeDialog(checkPwdInfoDialog);
 
@@ -491,23 +494,23 @@ public class SecurityConfirmationActivity extends BaseActivity {
 
                                         closeDialog(checkPwdInfoDialog);
 
-                                        if(baseResponse.getMessageCode().equals(INVALID_CUSTOMER_ANSWER)){
-                                            showWarningDialog(SecurityConfirmationActivity.this,getQAIncorrectMsg(curLang));
-                                        } else if(baseResponse.getMessageCode().equals(NOT_EXIST_CUSTOMER_INFO)){
-                                            showWarningDialog(SecurityConfirmationActivity.this,"Invalid Phone or NRC number.");
+                                        if (baseResponse.getMessageCode().equals(INVALID_CUSTOMER_ANSWER)) {
+                                            showWarningDialog(SecurityConfirmationActivity.this, getQAIncorrectMsg(curLang));
+                                        } else if (baseResponse.getMessageCode().equals(NOT_EXIST_CUSTOMER_INFO)) {
+                                            showWarningDialog(SecurityConfirmationActivity.this, "Invalid Phone or NRC number.");
                                         }
                                     }
 
                                 } else {
                                     closeDialog(checkPwdInfoDialog);
-                                    showWarningDialog(SecurityConfirmationActivity.this,"Checking unsuccessful!");
+                                    showWarningDialog(SecurityConfirmationActivity.this, "Checking unsuccessful!");
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<BaseResponse<ResetPasswordConfirmedInfoResBean>> call, Throwable t) {
                                 closeDialog(checkPwdInfoDialog);
-                                showErrorDialog(SecurityConfirmationActivity.this,getString(R.string.service_unavailable));
+                                showErrorDialog(SecurityConfirmationActivity.this, getString(R.string.service_unavailable));
                             }
                         });
                     }
@@ -518,13 +521,13 @@ public class SecurityConfirmationActivity extends BaseActivity {
         btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isCallAllowed()){
+                if (isCallAllowed()) {
                     final String hotlinePhoneNo = PreferencesManager.getHotlinePhone(getApplicationContext());
-                    if(hotlinePhoneNo==null || hotlinePhoneNo.equals(BLANK)){
+                    if (hotlinePhoneNo == null || hotlinePhoneNo.equals(BLANK)) {
                         showSnackBarMessage(getString(R.string.message_call_not_available));
                     } else {
                         Intent callIntent = new Intent(Intent.ACTION_CALL);
-                        callIntent.setData(Uri.parse(PHONE_URI_PREFIX+hotlinePhoneNo));
+                        callIntent.setData(Uri.parse(PHONE_URI_PREFIX + hotlinePhoneNo));
                         startActivity(callIntent);
                     }
                 }
@@ -538,7 +541,7 @@ public class SecurityConfirmationActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        if(curLang.equals(LANG_MM)){
+        if (curLang.equals(LANG_MM)) {
             changeLabel(LANG_MM);
         } else {
             changeLabel(LANG_EN);
@@ -573,13 +576,13 @@ public class SecurityConfirmationActivity extends BaseActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_favorite) {
 
-            if(item.getTitle().equals(LANG_MM)){
+            if (item.getTitle().equals(LANG_MM)) {
                 item.setIcon(R.drawable.en_flag2);
                 item.setTitle(LANG_EN);
                 changeLabel(LANG_MM);
                 addValueToPreference(LANG_MM);
                 recreate();
-            } else if(item.getTitle().equals(LANG_EN)){
+            } else if (item.getTitle().equals(LANG_EN)) {
                 item.setIcon(R.drawable.mm_flag);
                 item.setTitle(LANG_MM);
                 changeLabel(LANG_EN);
@@ -593,27 +596,27 @@ public class SecurityConfirmationActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addValueToPreference(String lang){
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),lang);
+    public void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), lang);
     }
 
-    public void changeLabel(String language){
+    public void changeLabel(String language) {
         btnConfirm.setText(CommonUtils.getLocaleString(new Locale(language), R.string.secquestconfirm_confrim_button, getApplicationContext()));
         btnCall.setText(CommonUtils.getLocaleString(new Locale(language), R.string.aboutus_all_now_button, getApplicationContext()));
         textTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.secquestconfirm_title, getApplicationContext()));
-        textDuplicateQuestion.setText(CommonUtils.getLocaleString(new Locale(language),R.string.secquest_err_que_same,getApplicationContext()));
+        textDuplicateQuestion.setText(CommonUtils.getLocaleString(new Locale(language), R.string.secquest_err_que_same, getApplicationContext()));
         addValueToPreference(language);
     }
 
-    public String getAnsBlankErrMsg(String language){
+    public String getAnsBlankErrMsg(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.reg_sec_ans_blank, getApplicationContext());
     }
 
-    public String getAnsCharErrMsg(String language){
+    public String getAnsCharErrMsg(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.secquest_ans_err, getApplicationContext());
     }
 
-    public String getQAIncorrectMsg(String language){
+    public String getQAIncorrectMsg(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.resetpass_sq_wrong, getApplicationContext());
     }
 
@@ -633,18 +636,18 @@ public class SecurityConfirmationActivity extends BaseActivity {
         }
     }
 
-    private String getNetErrMsg(){
+    private String getNetErrMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         return CommonUtils.getLocaleString(new Locale(language), R.string.network_connection_err, getApplicationContext());
     }
 
-    private int getDp(int pixel){
+    private int getDp(int pixel) {
         final float scale = getApplicationContext().getResources().getDisplayMetrics().density;
         int dp = (int) (pixel * scale + 0.5f);
         return dp;
     }
 
-    private static Intent intentResetPassword(Context context, ResetPasswordConfirmedInfoResBean resetPwdInfo, String phoneNo){
+    private static Intent intentResetPassword(Context context, ResetPasswordConfirmedInfoResBean resetPwdInfo, String phoneNo) {
         Intent intent = new Intent(context, ResetPasswordActivity.class);
         intent.putExtra("reset_pwd_conf_res_bean", resetPwdInfo);
         intent.putExtra("phone_no", phoneNo);

@@ -77,6 +77,7 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.SUCCESS;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.isAsciiString;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.isNrcCodeValid;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.isPureAscii;
+import static mm.com.aeon.vcsaeon.common_utils.UiUtils.animSlideToUp;
 import static mm.com.aeon.vcsaeon.common_utils.UiUtils.closeDialog;
 import static mm.com.aeon.vcsaeon.common_utils.UiUtils.showErrorDialog;
 import static mm.com.aeon.vcsaeon.common_utils.UiUtils.showNetworkErrorDialog;
@@ -222,7 +223,7 @@ public class RegistrationActivity extends BaseActivity {
         serviceUnavailable.setVisibility(View.GONE);
 
         final String[] nrcType = getResources().getStringArray(R.array.nrc_type);
-        ArrayAdapter<String> adapterType = new ArrayAdapter<String>(getApplicationContext(),R.layout.nrc_spinner_item_3, nrcType);
+        ArrayAdapter<String> adapterType = new ArrayAdapter<String>(getApplicationContext(), R.layout.nrc_spinner_item_3, nrcType);
 
         spinnerDivCode = findViewById(R.id.spinner_div_code);
         autoCompleteTwspCode = findViewById(R.id.auto_comp_twsp_code);
@@ -231,7 +232,7 @@ public class RegistrationActivity extends BaseActivity {
 
         btnSave = findViewById(R.id.btn_save_registration);
 
-        final ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.MATCH_PARENT));
+        final ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
         params.width = 140;
 
         final String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
@@ -254,22 +255,22 @@ public class RegistrationActivity extends BaseActivity {
             @Override
             public void onResponse(Call<BaseResponse<List<TownshipCodeResDto>>> call, Response<BaseResponse<List<TownshipCodeResDto>>> response) {
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     BaseResponse baseResponse = response.body();
 
-                    if(baseResponse.getStatus().equals(SUCCESS)){
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
 
-                        try{
+                        try {
 
                             final List<TownshipCodeResDto> townshipCodeResDtoList =
-                                    (List<TownshipCodeResDto>)baseResponse.getData();
+                                    (List<TownshipCodeResDto>) baseResponse.getData();
 
-                            townshipCode=townshipCodeResDtoList.get(0).getTownshipCodeList();
+                            townshipCode = townshipCodeResDtoList.get(0).getTownshipCodeList();
 
                             final String[] stateDivCode = getResources().getStringArray(R.array.div_code);
 
-                            ArrayAdapter<String> adapterDiv = new ArrayAdapter<String>(getApplicationContext(),R.layout.nrc_spinner_item_1, stateDivCode);
+                            ArrayAdapter<String> adapterDiv = new ArrayAdapter<String>(getApplicationContext(), R.layout.nrc_spinner_item_1, stateDivCode);
                             spinnerDivCode.setAdapter(adapterDiv);
 
                             stateDivCodeVal = stateDivCode[0];
@@ -283,15 +284,15 @@ public class RegistrationActivity extends BaseActivity {
                                     autoCompleteTwspCode.setText(BLANK);
 
                                     stateDivCodeVal = stateDivCode[position];
-                                    for (TownshipCodeResDto townshipCodeResDto :townshipCodeResDtoList) {
-                                        if(String.valueOf(townshipCodeResDto.getStateId()).equals(stateDivCodeVal)){
-                                            townshipCode=townshipCodeResDto.getTownshipCodeList();
+                                    for (TownshipCodeResDto townshipCodeResDto : townshipCodeResDtoList) {
+                                        if (String.valueOf(townshipCodeResDto.getStateId()).equals(stateDivCodeVal)) {
+                                            townshipCode = townshipCodeResDto.getTownshipCodeList();
                                             break;
                                         }
                                     }
 
                                     autoCompleteTwspCode.setText(BLANK);
-                                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(),R.layout.nrc_spinner_item_2, townshipCode);
+                                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(), R.layout.nrc_spinner_item_2, townshipCode);
                                     adapter2.setDropDownViewResource(R.layout.dialog_nrc_division);
                                     adapter2.setNotifyOnChange(true);
                                     autoCompleteTwspCode.setThreshold(1);
@@ -307,8 +308,8 @@ public class RegistrationActivity extends BaseActivity {
                                     autoCompleteTwspCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                                         @Override
                                         public void onFocusChange(View v, boolean hasFocus) {
-                                            if(!hasFocus){
-                                                if(!townshipCode.contains(autoCompleteTwspCode.getText().toString())){
+                                            if (!hasFocus) {
+                                                if (!townshipCode.contains(autoCompleteTwspCode.getText().toString())) {
                                                     autoCompleteTwspCode.setText(BLANK);
                                                 }
                                             } else {
@@ -327,7 +328,8 @@ public class RegistrationActivity extends BaseActivity {
                                 }
 
                                 @Override
-                                public void onNothingSelected(AdapterView<?> parent) {}
+                                public void onNothingSelected(AdapterView<?> parent) {
+                                }
 
                             });
 
@@ -336,14 +338,16 @@ public class RegistrationActivity extends BaseActivity {
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                     nrcTypeVal = nrcType[position];
                                 }
+
                                 @Override
-                                public void onNothingSelected(AdapterView<?> parent) {}
+                                public void onNothingSelected(AdapterView<?> parent) {
+                                }
                             });
 
                             btnSave.setEnabled(true);
                             closeDialog(twspCodeDialog);
 
-                        } catch (Exception e){
+                        } catch (Exception e) {
 
                             closeDialog(twspCodeDialog);
                             serviceUnavailable.setVisibility(View.VISIBLE);
@@ -387,86 +391,102 @@ public class RegistrationActivity extends BaseActivity {
 
                 //form validation
                 if (name == null || name.equals(BLANK) || name.equals(SPACE)) {
+                    txtErrName.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrName.setVisibility(View.VISIBLE);
                     validate = false;
                 } else if (!isPureAscii(name)) {
                     txtErrName.setText(getNameCharErrMsg(curLang2));
                     textName.setText(BLANK);
+                    txtErrName.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrName.setVisibility(View.VISIBLE);
                     validate = false;
                 } else {
                     txtErrName.setVisibility(View.GONE);
                 }
 
-                if(dateOfBirth == null || dateOfBirth.equals(BLANK)){
+                if (dateOfBirth == null || dateOfBirth.equals(BLANK)) {
+                    txtErrDob.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrDob.setVisibility(View.VISIBLE);
                     validate = false;
                 } else {
                     txtErrDob.setVisibility(View.GONE);
                 }
 
-                if(textRegCodeVal==null || textRegCodeVal.equals(BLANK) ||
-                townshipCodeVal==null || townshipCodeVal.equals(BLANK)){
+                if (textRegCodeVal == null || textRegCodeVal.equals(BLANK) ||
+                        townshipCodeVal == null || townshipCodeVal.equals(BLANK)) {
+                    txtErrNrc.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrNrc.setVisibility(View.VISIBLE);
                     validate = false;
-                } else if(!isNrcCodeValid(textRegCodeVal)){
+                } else if (!isNrcCodeValid(textRegCodeVal)) {
                     changeErrRegCode(curLang2);
+                    txtErrNrc.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrNrc.setVisibility(View.VISIBLE);
                     validate = false;
-                } else if(!townshipCode.contains(autoCompleteTwspCode.getText().toString())){
+                } else if (!townshipCode.contains(autoCompleteTwspCode.getText().toString())) {
                     autoCompleteTwspCode.setText(BLANK);
+                    txtErrNrc.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrNrc.setVisibility(View.VISIBLE);
                     validate = false;
                 } else {
                     txtErrNrc.setVisibility(View.GONE);
                 }
 
-                if(phoneNo == null || phoneNo.equals(BLANK)){
+                if (phoneNo == null || phoneNo.equals(BLANK)) {
+                    txtErrorPhNo.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrorPhNo.setVisibility(View.VISIBLE);
                     validate = false;
-                } else if(!CommonUtils.isPhoneNoValid(phoneNo)){
+                } else if (!CommonUtils.isPhoneNoValid(phoneNo)) {
                     txtErrorPhNo.setText(getString(R.string.register_phoneno_format_err_msg));
                     changeErrPhone(curLang2);
+                    txtErrorPhNo.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrorPhNo.setVisibility(View.VISIBLE);
                     validate = false;
                 } else {
                     txtErrorPhNo.setVisibility(View.GONE);
                 }
 
-                if(password == null || password.equals(BLANK)){
+                if (password == null || password.equals(BLANK)) {
+                    txtErrPwd.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrPwd.setVisibility(View.VISIBLE);
                     validate = false;
-                } if(!isAsciiString(password)) {
+                }
+                if (!isAsciiString(password)) {
                     txtErrPwd.setText(getNameCharErrMsg(curLang2));
                     textPwd.setText(BLANK);
+                    txtErrPwd.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrPwd.setVisibility(View.VISIBLE);
                     validate = false;
-                } else if(password.length()<6 || password.length()>16 || password.equals(SPACE)){
+                } else if (password.length() < 6 || password.length() > 16 || password.equals(SPACE)) {
                     txtErrPwd.setText(getString(R.string.register_pwd_format_err_msg));
                     changeErrPwd(curLang2);
+                    txtErrPwd.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrPwd.setVisibility(View.VISIBLE);
                     validate = false;
                 } else {
                     txtErrPwd.setVisibility(View.GONE);
                 }
 
-                if(confPwd == null || confPwd.equals(BLANK)){
+                if (confPwd == null || confPwd.equals(BLANK)) {
+                    txtErrConfPwd.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrConfPwd.setVisibility(View.VISIBLE);
                     validate = false;
-                } else if(confPwd.length()<6 || confPwd.length()>16){
+                } else if (confPwd.length() < 6 || confPwd.length() > 16) {
                     txtErrConfPwd.setText(getString(R.string.register_pwd_format_err_msg));
                     changeErrConfPwd(curLang2);
+                    txtErrConfPwd.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrConfPwd.setVisibility(View.VISIBLE);
                     validate = false;
-                } else if(!confPwd.equals(password)){
+                } else if (!confPwd.equals(password)) {
                     txtErrConfPwd.setText(getString(R.string.register_confpwd_format_err_msg));
                     changeErrConfPwd(curLang2);
                     textConfPwd.setText(BLANK);
+                    txtErrConfPwd.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrConfPwd.setVisibility(View.VISIBLE);
                     validate = false;
-                } else if(!isAsciiString(password)) {
+                } else if (!isAsciiString(password)) {
                     txtErrConfPwd.setText(getNameCharErrMsg(curLang2));
                     textConfPwd.setText(BLANK);
+                    txtErrConfPwd.setAnimation(animSlideToUp(getApplicationContext())); //Anim.
                     txtErrConfPwd.setVisibility(View.VISIBLE);
                     validate = false;
                 } else {
@@ -477,7 +497,7 @@ public class RegistrationActivity extends BaseActivity {
                 if (validate) {
 
                     if (!CommonUtils.isNetworkAvailable(getApplicationContext())) {
-                        showNetworkErrorDialog(RegistrationActivity.this,getNetErrMsg());
+                        showNetworkErrorDialog(RegistrationActivity.this, getNetErrMsg());
                     } else {
 
                         RegistrationActivity.this.setTheme(R.style.MessageDialogTheme);
@@ -510,10 +530,10 @@ public class RegistrationActivity extends BaseActivity {
                                     if (baseResponse.getStatus().equals(SUCCESS)) {
 
                                         //clear sec-question-ans data.
-                                        RegistrationSecQAConfirmActivity.tempAnswers=null;
-                                        RegistrationSecQAConfirmActivity.tempSpinnerPosition=null;
+                                        RegistrationSecQAConfirmActivity.tempAnswers = null;
+                                        RegistrationSecQAConfirmActivity.tempSpinnerPosition = null;
 
-                                        final CustomerInfoBean customerInfoBean = (CustomerInfoBean)baseResponse.getData();
+                                        final CustomerInfoBean customerInfoBean = (CustomerInfoBean) baseResponse.getData();
                                         final String memberStatus = customerInfoBean.getMemberStatus();
                                         final String memberPhoneNo = customerInfoBean.getMemberPhoneNo();
 
@@ -595,38 +615,38 @@ public class RegistrationActivity extends BaseActivity {
 
                                         closeDialog(checkMemberDialog);
 
-                                        if(baseResponse.getMessageCode().equals(PASSWORD_WEAK)){
+                                        if (baseResponse.getMessageCode().equals(PASSWORD_WEAK)) {
                                             changePwdStrength(curLang2);
                                             txtErrPwd.setVisibility(View.VISIBLE);
                                         }
 
-                                        if(baseResponse.getMessageCode().equals(DUPLICATED_PHONE_NO)){
+                                        if (baseResponse.getMessageCode().equals(DUPLICATED_PHONE_NO)) {
                                             txtErrorPhNo.setText(getString(R.string.register_ph_no_dup));
                                             txtErrorPhNo.setVisibility(View.VISIBLE);
                                             changeDuplicatePh(curLang2);
                                         }
 
-                                        if(baseResponse.getMessageCode().equals(DUPLICATED_NRC_NO)){
+                                        if (baseResponse.getMessageCode().equals(DUPLICATED_NRC_NO)) {
                                             txtErrNrc.setText(getString(R.string.register_nrc_dup));
                                             txtErrNrc.setVisibility(View.VISIBLE);
                                             changeDuplicateNrc(curLang2);
                                         }
 
-                                        if(baseResponse.getMessageCode().equals(DUPLICATED_CUSTOMER_INFO)){
-                                            showWarningDialog(RegistrationActivity.this,geDuplicateUserInfoMessage(curLang2));
+                                        if (baseResponse.getMessageCode().equals(DUPLICATED_CUSTOMER_INFO)) {
+                                            showWarningDialog(RegistrationActivity.this, geDuplicateUserInfoMessage(curLang2));
                                         }
 
-                                        if(baseResponse.getMessageCode().equals(IMPORT_PH_DUPLICATE)){
+                                        if (baseResponse.getMessageCode().equals(IMPORT_PH_DUPLICATE)) {
                                             showWarningDialog(RegistrationActivity.this, getString(R.string.register_imp_phone_no_duplicate));
                                         }
 
-                                        if(baseResponse.getMessageCode().equals(DUPLICATED_NRC_NO_CORE_SYSTEM)){
+                                        if (baseResponse.getMessageCode().equals(DUPLICATED_NRC_NO_CORE_SYSTEM)) {
                                             showWarningDialog(RegistrationActivity.this, getString(R.string.register_duplicate_core));
                                         }
                                     }
                                 } else {
                                     closeDialog(checkMemberDialog);
-                                    showErrorDialog(RegistrationActivity.this,getString(R.string.service_unavailable));
+                                    showErrorDialog(RegistrationActivity.this, getString(R.string.service_unavailable));
                                 }
                             }
 
@@ -634,7 +654,7 @@ public class RegistrationActivity extends BaseActivity {
                             public void onFailure(Call<BaseResponse<CustomerInfoBean>> call, Throwable t) {
                                 //Network Error.
                                 closeDialog(checkMemberDialog);
-                                showErrorDialog(RegistrationActivity.this,getString(R.string.service_unavailable));
+                                showErrorDialog(RegistrationActivity.this, getString(R.string.service_unavailable));
                             }
                         });
                     }
@@ -659,7 +679,7 @@ public class RegistrationActivity extends BaseActivity {
                     }
                 });
                 myCalendar.add(Calendar.YEAR, -MIN_AGE);
-                dialog.setAccentColor(ContextCompat.getColor(getApplicationContext(),R.color.colorPrimary));
+                dialog.setAccentColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
                 dialog.setMaxDate(myCalendar.getTimeInMillis());
                 dialog.show(getSupportFragmentManager(), "TAG");
             }
@@ -695,12 +715,12 @@ public class RegistrationActivity extends BaseActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_favorite) {
 
-            if(item.getTitle().equals(LANG_MM)){
+            if (item.getTitle().equals(LANG_MM)) {
                 item.setIcon(R.drawable.en_flag2);
                 item.setTitle(LANG_EN);
                 changeLabel(LANG_MM);
                 addValueToPreference(LANG_MM);
-            } else if(item.getTitle().equals(LANG_EN)){
+            } else if (item.getTitle().equals(LANG_EN)) {
                 item.setIcon(R.drawable.mm_flag);
                 item.setTitle(LANG_MM);
                 changeLabel(LANG_EN);
@@ -713,8 +733,8 @@ public class RegistrationActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void addValueToPreference(String lang){
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),lang);
+    private void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), lang);
     }
 
     private void changeLabel(String language) {
@@ -746,53 +766,53 @@ public class RegistrationActivity extends BaseActivity {
 
         txtAgeLimit.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_age_limit, getApplicationContext()));
         txtPwdLimit.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_pwd_limit, getApplicationContext()));
-        PreferencesManager.setCurrentLanguage(getApplicationContext(),language);
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), language);
     }
 
-    private String getMemberMessage(String memberPhoneNo){
+    private String getMemberMessage(String memberPhoneNo) {
         String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         String message = CommonUtils.getLocaleString(new Locale(language), R.string.reg_sq_conf_info, getApplicationContext());
         return CommonUtils.replacePhoneNo(message, memberPhoneNo);
     }
 
-    private String getMemberMessage2(){
+    private String getMemberMessage2() {
         String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         return CommonUtils.getLocaleString(new Locale(language), R.string.reg_sq_conf_info2, getApplicationContext());
     }
 
-    private void changeErrPhone(String language){
+    private void changeErrPhone(String language) {
         txtErrorPhNo.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_phoneno_format_err_msg, getApplicationContext()));
     }
 
-    private void changeErrPwd(String language){
+    private void changeErrPwd(String language) {
         txtErrPwd.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_pwd_format_err_msg, getApplicationContext()));
     }
 
-    private void changePwdStrength(String language){
+    private void changePwdStrength(String language) {
         txtErrPwd.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_pwd_strength_err_msg, getApplicationContext()));
     }
 
-    private void changeErrConfPwd(String language){
+    private void changeErrConfPwd(String language) {
         txtErrConfPwd.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_confpwd_format_err_msg, getApplicationContext()));
     }
 
-    private void changeErrRegCode(String language){
+    private void changeErrRegCode(String language) {
         txtErrNrc.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_nrc_format_err, getApplicationContext()));
     }
 
-    private void changeDuplicateNrc(String language){
+    private void changeDuplicateNrc(String language) {
         txtErrNrc.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_nrc_dup, getApplicationContext()));
     }
 
-    private void changeDuplicatePh(String language){
+    private void changeDuplicatePh(String language) {
         txtErrorPhNo.setText(CommonUtils.getLocaleString(new Locale(language), R.string.register_ph_no_dup, getApplicationContext()));
     }
 
-    private String geDuplicateUserInfoMessage(String language){
+    private String geDuplicateUserInfoMessage(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.register_duplicate, getApplicationContext());
     }
 
-    private String getNameCharErrMsg(String language){
+    private String getNameCharErrMsg(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.register_name_format_err, getApplicationContext());
     }
 
@@ -812,36 +832,37 @@ public class RegistrationActivity extends BaseActivity {
         }
     }
 
-    private void getPhoneNo(){
+    private void getPhoneNo() {
         Service service = APIClient.getUserService();
         Call<BaseResponse<HotlineInfoResBean>> reqPh = service.getHotlineInfo();
         reqPh.enqueue(new Callback<BaseResponse<HotlineInfoResBean>>() {
             @Override
             public void onResponse(Call<BaseResponse<HotlineInfoResBean>> call, Response<BaseResponse<HotlineInfoResBean>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     BaseResponse baseResponse = response.body();
-                    if(baseResponse.getStatus().equals(SUCCESS)){
+                    if (baseResponse.getStatus().equals(SUCCESS)) {
                         HotlineInfoResBean hotlineInfoResBean = (HotlineInfoResBean) baseResponse.getData();
-                        hotlinePhoneNo=hotlineInfoResBean.getHotlinePhone();
+                        hotlinePhoneNo = hotlineInfoResBean.getHotlinePhone();
                     } else {
-                        hotlinePhoneNo=BLANK;
+                        hotlinePhoneNo = BLANK;
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<BaseResponse<HotlineInfoResBean>> call, Throwable t) {
-                hotlinePhoneNo=BLANK;
+                hotlinePhoneNo = BLANK;
             }
         });
     }
 
-    private String getNetErrMsg(){
+    private String getNetErrMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         return CommonUtils.getLocaleString(new Locale(language), R.string.network_connection_err, getApplicationContext());
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         Log.e("Register", "start");
         changeLabel(PreferencesManager.getCurrentLanguage(this));

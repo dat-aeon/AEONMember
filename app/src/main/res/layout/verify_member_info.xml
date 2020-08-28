@@ -82,7 +82,7 @@
                     android:inputType="text"
                     android:maxLength="19"
                     android:hint="@string/verify_agreementno_holder"
-                    android:fontFamily="@font/pyidaungsu_regular"
+                    android:fontFamily="@font/input_text_font"
                     android:background="@drawable/edit_text_style"/>
 
             </LinearLayout>
@@ -152,7 +152,7 @@
                         android:layout_weight="0.9"
                         android:focusable="false"
                         android:hint="@string/verify_dob_holder"
-                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:fontFamily="@font/input_text_font"
                         android:background="@drawable/edit_text_style"/>
 
                 </LinearLayout>
@@ -246,7 +246,7 @@
                         android:textAlignment="center"
                         android:hint="Reg Code"
                         android:gravity="center"
-                        android:fontFamily="@font/pyidaungsu_regular"
+                        android:fontFamily="@font/input_text_font"
                         android:background="@drawable/edit_text_style"/>
 
                 </LinearLayout>

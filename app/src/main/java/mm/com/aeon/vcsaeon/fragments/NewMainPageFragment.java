@@ -46,6 +46,7 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.gson.Gson;
 
 import java.util.Locale;
 
@@ -74,11 +75,14 @@ import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_EN;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_MM;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LOCATION_REQUEST_CODE;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.SUCCESS;
+import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.URL_AEON_FB_PAGE;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.hideKeyboard;
 import static mm.com.aeon.vcsaeon.common_utils.CommonUtils.isNetworkAvailable;
 import static mm.com.aeon.vcsaeon.common_utils.UiUtils.showNetworkErrorDialog;
 
-public class NewMainPageFragment extends BaseFragment implements LanguageChangeListener , AccessPermissionResultDelegate, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
+public class NewMainPageFragment extends BaseFragment
+        implements LanguageChangeListener, AccessPermissionResultDelegate,
+        GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
 
     View view;
     View viewLogin;
@@ -106,7 +110,6 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
     TextView textGoodNews;
     TextView textFindUs;
 
-    TextView textAboutUs;
     TextView textOurService;
     TextView textFacebook;
 
@@ -128,18 +131,18 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
         layoutLoading = view.findViewById(R.id.layout_loading);
         imgLoading = view.findViewById(R.id.img_loading);
 
-        ((MainActivity)getActivity()).setLanguageListener(this);
-        ((MainActivity)getActivity()).setLocationDelegate(this);
+        ((MainActivity) getActivity()).setLanguageListener(this);
+        ((MainActivity) getActivity()).setLocationDelegate(this);
         Toolbar toolbar = ((MainActivity) getActivity()).findViewById(R.id.toolbar_main_home);
         LinearLayout menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
         menuBackBtn.setVisibility(View.GONE);
 
-        try{
+        try {
             textVersion = view.findViewById(R.id.text_version);
             PackageInfo packageInfo = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), 0);
             curVersion = packageInfo.versionName;
             textVersion.setText(curVersion);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -158,8 +161,6 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
         viewHowToUse = view.findViewById(R.id.include_howToUse);
         viewShare = view.findViewById(R.id.include_share);
 
-        //View aboutUs = findViewById(R.id.include_about_us);
-
         textLogin = viewLogin.findViewById(R.id.text_login);
         textRegisterNow = viewRegister.findViewById(R.id.text_register);
 
@@ -176,39 +177,35 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
         textShare = viewShare.findViewById(R.id.text_share);
 
         textVersionLbl = view.findViewById(R.id.text_version_lbl);
-        //textAboutUs = aboutUs.findViewById(R.id.textView1);
 
         String curLang = PreferencesManager.getCurrentLanguage(getContext());
-        if(curLang.equals(LANG_MM)){
+        if (curLang.equals(LANG_MM)) {
             changeLabel(LANG_MM);
         } else {
             changeLabel(LANG_EN);
         }
 
-        PreferencesManager.keepMainNavFlag(getActivity(),true);
+        PreferencesManager.keepMainNavFlag(getActivity(), true);
+
         //click login.
         viewLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!isNetworkAvailable(getContext())) {
-                    showNetworkErrorDialog(getActivity(),getNetErrMsg());
+                    showNetworkErrorDialog(getActivity(), getNetErrMsg());
                 } else {
-                    //startActivity(new Intent(getContext(), LoginActivity.class));
-                    //delegate.startActivityFromMain();
-
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);
-                    //showLoginPopup();
                 }
             }
         });
 
         //click register.
-        viewRegister.setOnClickListener(new View.OnClickListener(){
+        viewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!isNetworkAvailable(getContext())) {
-                    showNetworkErrorDialog(getContext(),getNetErrMsg());
+                    showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
                     startActivity(new Intent(getActivity(), RegistrationActivity.class));
                 }
@@ -220,7 +217,7 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
             @Override
             public void onClick(View v) {
                 if (!isNetworkAvailable(getContext())) {
-                    showNetworkErrorDialog(getContext(),getNetErrMsg());
+                    showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
 
                     Service freeMessageService = APIClient.getUserService();
@@ -235,11 +232,12 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
 
                                 if (baseResponse != null) {
                                     if (baseResponse.getStatus().equals(SUCCESS)) {
-                                        AutoReplyMessageBean messageReply = (AutoReplyMessageBean)baseResponse.getData();
-                                        String message = messageReply.getMessage();
+
+                                        AutoReplyMessageBean messageReply = (AutoReplyMessageBean) baseResponse.getData();
+                                        String message = new Gson().toJson(messageReply);
 
                                         SharedPreferences preferences = PreferencesManager.getCurrentUserPreferences(getActivity());
-                                        PreferencesManager.addEntryToPreferences(preferences, AUTO_MESSAGE_REPLY,message);
+                                        PreferencesManager.addEntryToPreferences(preferences, AUTO_MESSAGE_REPLY, message);
 
                                         setFreMessageRoom();
 
@@ -270,9 +268,8 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
             @Override
             public void onClick(View v) {
                 if (!isNetworkAvailable(getActivity())) {
-                    showNetworkErrorDialog(getContext(),getNetErrMsg());
+                    showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
-                    //startActivity(new Intent(getContext(), FAQActivity.class));
                     replaceFragment(new NavLoanCalculationFragment());
                 }
             }
@@ -283,9 +280,8 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
             @Override
             public void onClick(View v) {
                 if (!isNetworkAvailable(getActivity())) {
-                    showNetworkErrorDialog(getContext(),getNetErrMsg());
+                    showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
-                    //startActivity(new Intent(getContext(), FAQActivity.class));
                     replaceFragment(new EventNewsTabFragment());
                 }
             }
@@ -296,21 +292,15 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
             @Override
             public void onClick(View v) {
                 if (!isNetworkAvailable(getContext())) {
-                    showNetworkErrorDialog(getContext(),getNetErrMsg());
+                    showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
-                    //startActivity(new Intent(getContext(), FAQActivity.class));
-
                     int permission = ContextCompat.checkSelfPermission(getActivity(),
                             Manifest.permission.ACCESS_FINE_LOCATION);
-
                     if (permission != PackageManager.PERMISSION_GRANTED) {
                         makeLocationRequest();
-
                     } else {
                         openGoogleAPIClient();
-                       // replaceFragment(new NavFindNearOutletFragment());
                     }
-
                 }
             }
         });
@@ -320,21 +310,19 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
             @Override
             public void onClick(View v) {
                 if (!isNetworkAvailable(getContext())) {
-                    showNetworkErrorDialog(getContext(),getNetErrMsg());
+                    showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
-                    //startActivity(new Intent(getContext(), AboutUsInfoActivity.class));
                     replaceFragment(new NavFAQFragment());
                 }
             }
         });
 
         //click Facebook.
-        viewFacebook
-                .setOnClickListener(new View.OnClickListener() {
+        viewFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!isNetworkAvailable(getActivity())) {
-                    showNetworkErrorDialog(getContext(),getNetErrMsg());
+                    showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
                     startActivity(getOpenFacebookIntent(getContext()));
                 }
@@ -346,7 +334,7 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
             @Override
             public void onClick(View v) {
                 if (!isNetworkAvailable(getActivity())) {
-                    showNetworkErrorDialog(getContext(),getNetErrMsg());
+                    showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
                     replaceFragment(new PromotionTabFragment());
                 }
@@ -358,7 +346,7 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
             @Override
             public void onClick(View v) {
                 if (!isNetworkAvailable(getActivity())) {
-                    showNetworkErrorDialog(getContext(),getNetErrMsg());
+                    showNetworkErrorDialog(getContext(), getNetErrMsg());
                 } else {
                     startActivity(new Intent(getContext(), VideoPlayActivity.class));
                 }
@@ -373,25 +361,22 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, "VCS Member");
-                    String shareMessage= "\nLet me recommend you this application\n\n";
-                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                    String shareMessage = "\nLet me recommend you this application\n\n";
+                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                     startActivity(Intent.createChooser(shareIntent, "Please choose one."));
-                } catch(Exception e) {
+                } catch (Exception e) {
                     //e.toString();
                 }
             }
         });
 
         hideKeyboard(getActivity());
-
-//        setFreMessageRoom();
-
         return view;
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         changeLabel(PreferencesManager.getCurrentLanguage(getContext()));
 
@@ -423,7 +408,7 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
                                     Log.e("Free chat create", SUCCESS);
                                     closeLoading();
                                     FreeMessageUserResBean freeMessageUserResBean = (FreeMessageUserResBean) baseResponse.getData();
-                                    PreferencesManager.setCurrentFreeChatId(getContext(),freeMessageUserResBean.getFreeCustomerInfoId());
+                                    PreferencesManager.setCurrentFreeChatId(getContext(), freeMessageUserResBean.getFreeCustomerInfoId());
                                     Log.e("Free chat create", freeMessageUserResBean.getFreeCustomerInfoId());
                                     replaceFragment(new NavFreeChatFragment());
 
@@ -467,10 +452,9 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
         ActivityCompat.requestPermissions(getActivity(),
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 LOCATION_REQUEST_CODE);
-        Log.e("oulet","request permission location");
     }
 
-    private void showLoginPopup(){
+    private void showLoginPopup() {
         try {
             Dialog dialog = new Dialog(getActivity());
             dialog.setContentView(R.layout.login);
@@ -482,7 +466,7 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
         }
     }
 
-    public void replaceFragment(Fragment fragment){
+    public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content_new_main_drawer, fragment, "TAG");
@@ -490,56 +474,32 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
         transaction.commit();
     }
 
-    private String getNetErrMsg(){
+    private String getNetErrMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getContext());
         return CommonUtils.getLocaleString(new Locale(language), R.string.network_connection_err, getContext());
     }
 
     private static Intent getOpenFacebookIntent(Context context) {
-
-        String url = "https://m.facebook.com/AEON-Microfinance-Myanmar-Co-Ltd-374820516619280/";
-
-        /*try {
-            context.getPackageManager().getPackageInfo("com.facebook.katana", 0);
-            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/374820516619280"));
-        } catch (Exception e) {
-            return new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.facebook.com/AEON-Microfinance-Myanmar-Co-Ltd-374820516619280/"));
-        }*/
-
         Uri uri;
         try {
             context.getPackageManager().getPackageInfo("com.facebook.katana", 0);
-
-            //if (PackageInfo. != null) {
-                //uri = Uri.parse("fb://facewebmodal/f?href=" + url);
-                uri = Uri.parse("fb://page/374820516619280");
-            //}
-            // http://stackoverflow.com/a/24547437/1048340
-
+            uri = Uri.parse("fb://page/374820516619280");
         } catch (PackageManager.NameNotFoundException e) {
-            uri = Uri.parse(url);
+            uri = Uri.parse(URL_AEON_FB_PAGE);
         } catch (ActivityNotFoundException e) {
-            uri = Uri.parse(url);
+            uri = Uri.parse(URL_AEON_FB_PAGE);
         }
-
         return new Intent(Intent.ACTION_VIEW, uri);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_myFlag:
-                //this.languageFlag = item;
                 Log.e("update flag", item.getTitle().toString());
-                if(item.getTitle().equals(LANG_MM)){
-                    //item.setIcon(R.drawable.en_flag2);
-                    //item.setTitle(LANG_EN);
+                if (item.getTitle().equals(LANG_MM)) {
                     changeLabel(LANG_MM);
-
-                } else if(item.getTitle().equals(LANG_EN)){
-                    //item.setIcon(R.drawable.mm_flag);
-                    //item.setTitle(LANG_MM);
+                } else if (item.getTitle().equals(LANG_EN)) {
                     changeLabel(LANG_EN);
                 }
                 changeLabel(LANG_MM);
@@ -552,7 +512,7 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
         return super.onOptionsItemSelected(item);
     }
 
-    public void changeLabel(String language){
+    public void changeLabel(String language) {
         textLogin.setText(CommonUtils.getLocaleString(new Locale(language), R.string.home_login_button, getContext()));
         textRegisterNow.setText(CommonUtils.getLocaleString(new Locale(language), R.string.home_register_button, getContext()));
 
@@ -568,11 +528,8 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
         textHowToUse.setText(CommonUtils.getLocaleString(new Locale(language), R.string.main_video_title, getContext()));
         textShare.setText(CommonUtils.getLocaleString(new Locale(language), R.string.main_share_title, getContext()));
 
-        //textFAQ.setText(CommonUtils.getLocaleString(new Locale(language), R.string.home_faq_button, getApplicationContext()));
         textVersionLbl.setText(CommonUtils.getLocaleString(new Locale(language), R.string.home_version_label, getContext()));
-
-        //textAboutUs.setText(CommonUtils.getLocaleString(new Locale(language), R.string.home_aboutus_button, getApplicationContext()));
-
+        
         PreferencesManager.setCurrentLanguage(getActivity(), language);
     }
 
@@ -592,11 +549,9 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
             case LOCATION_REQUEST_CODE:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openGoogleAPIClient();
-                    //replaceFragment(new NavFindNearOutletFragment());
-
                 } else {
                     // Permission Denied
-                    showWarningDialog(getActivity(),"Please access to know the outlet information.");
+                    showWarningDialog(getActivity(), "Please access to know the outlet information.");
                 }
                 break;
             default:
@@ -604,11 +559,11 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
         }
     }
 
-    private static void showWarningDialog(final Activity mContext, String message){
+    private static void showWarningDialog(final Activity mContext, String message) {
         final Dialog dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.warning_message_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         TextView messageBody = dialog.findViewById(R.id.text_message);
         messageBody.setText(message);
@@ -616,15 +571,12 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-//                ActivityCompat.requestPermissions(mContext,
-//                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                        LOCATION_REQUEST_CODE);
             }
         });
         dialog.show();
     }
 
-    private void openGoogleAPIClient(){
+    private void openGoogleAPIClient() {
         GoogleApiClient googleApiClient = null;
         if (googleApiClient == null) {
             googleApiClient = new GoogleApiClient.Builder(getContext())
@@ -682,15 +634,17 @@ public class NewMainPageFragment extends BaseFragment implements LanguageChangeL
     }
 
 
-    @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1000) {
-            if(resultCode == Activity.RESULT_OK){
-                String result=data.getStringExtra("result");
-                Log.e("Google api", resultCode+"");
+            if (resultCode == Activity.RESULT_OK) {
+                String result = data.getStringExtra("result");
+                Log.e("Google api", resultCode + "");
                 replaceFragment(new NavFindNearOutletFragment());
 
-            } if (resultCode == Activity.RESULT_CANCELED) {
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
             }
         }

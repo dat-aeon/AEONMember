@@ -3,21 +3,33 @@
     android:id="@+id/relativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="left|center_vertical"
+    android:gravity="center"
+    android:elevation="@dimen/margin_tiny"
     android:background="@drawable/grid_layout_border"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:backgroundTint="@color/register_color"
     android:padding="3dp">
 
-    <ImageView
-        android:layout_height="50dp"
+    <!--<ImageView
+        android:layout_height="@dimen/category_ic_side"
         android:id="@+id/imageView1"
-        android:layout_width="50dp"
+        android:layout_width="@dimen/category_ic_side"
         android:src="@drawable/register_512"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="2dp">
-    </ImageView>
+        android:layout_marginRight="2dp"/>-->
+
+    <ImageView
+        android:layout_height="@dimen/category_ic_side"
+        android:id="@+id/imageView1"
+        android:layout_width="@dimen/category_ic_side"
+        android:src="@drawable/gd_ic_register"
+        android:backgroundTint="@color/grayLight"
+        android:padding="@dimen/margin_medium"
+        android:background="@drawable/messaging_container_frame"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="2dp"/>
 
     <TextView
         android:text="@string/home_register_button"
@@ -26,10 +38,11 @@
         android:layout_width="wrap_content"
         android:layout_marginTop="12dp"
         android:textSize="6pt"
-        android:layout_marginRight="3dp"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/imageView1"
-        android:fontFamily="@font/pyidaungsu_regular"
+        android:fontFamily="@font/vcsm_labels_font"
         android:textColor="@color/white"
         android:ellipsize="marquee"/>
 

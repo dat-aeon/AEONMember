@@ -1,14 +1,17 @@
 package mm.com.aeon.vcsaeon.adapters;
 
 import android.app.Dialog;
+import android.app.UiAutomation;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.ArraySet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +31,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import mm.com.aeon.vcsaeon.R;
 import mm.com.aeon.vcsaeon.beans.PromotionsInfoResBean;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
+import mm.com.aeon.vcsaeon.common_utils.UiUtils;
 import mm.com.aeon.vcsaeon.views.customviews.MyMapView;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
 
@@ -46,7 +51,9 @@ public class AnnouncementListAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<PromotionsInfoResBean> promotionsInfoResBeanList;
     private Bundle savedInstanceState;
-    private int imgViewHeight=0;
+    private int imgViewHeight = 0;
+
+    private Set<Integer> visitedItems = new ArraySet<>();
 
     MyMapView mMapView;
     private GoogleMap mMap;
@@ -54,7 +61,7 @@ public class AnnouncementListAdapter extends RecyclerView.Adapter {
     public AnnouncementListAdapter(Context context, List<PromotionsInfoResBean> promotionsInfoResBeanList, Bundle savedInstanceState) {
         this.context = context;
         this.promotionsInfoResBeanList = promotionsInfoResBeanList;
-        this.savedInstanceState=savedInstanceState;
+        this.savedInstanceState = savedInstanceState;
         imgViewHeight = (int) context.getResources().getDimension(R.dimen.image_detail_height);
     }
 
@@ -79,14 +86,14 @@ public class AnnouncementListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         PromotionsInfoResBean promotionsInfoResBean = promotionsInfoResBeanList.get(i);
-        ((PromotionsInfoDataRowHolder) viewHolder).bind(promotionsInfoResBean);
+        ((PromotionsInfoDataRowHolder) viewHolder).bind(promotionsInfoResBean, i);
     }
 
-    public String getReadMoreText(String language){
+    public String getReadMoreText(String language) {
         return CommonUtils.getLocaleString(new Locale(language), R.string.read_more, context);
     }
 
-    private class PromotionsInfoDataRowHolder extends RecyclerView.ViewHolder{
+    private class PromotionsInfoDataRowHolder extends RecyclerView.ViewHolder {
 
         TextView textTitle;
         TextView textPublishedDate;
@@ -94,38 +101,44 @@ public class AnnouncementListAdapter extends RecyclerView.Adapter {
         TextView textReadMore;
         ImageView promotionsImage;
 
-        PromotionsInfoDataRowHolder(final View itemView){
+        PromotionsInfoDataRowHolder(final View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.promotions_title);
             textPublishedDate = itemView.findViewById(R.id.promotions_published_date);
             textContent = itemView.findViewById(R.id.promotions_content);
             textReadMore = itemView.findViewById(R.id.promotions_read_more);
             promotionsImage = itemView.findViewById(R.id.promotions_img);
-
         }
 
-        void bind(final PromotionsInfoResBean promotionsInfoResBean){
+        void bind(final PromotionsInfoResBean promotionsInfoResBean, int index) {
 
-            final SharedPreferences mPreferences= PreferencesManager.getApplicationPreference(context);
-            final String curLang = PreferencesManager.getStringEntryFromPreferences(mPreferences, "lang");
-
-            String mContent = promotionsInfoResBean.getContentEng();
-
-            if(curLang.equals(LANG_MM)){
-                mContent = promotionsInfoResBean.getContentMyn();
-                textTitle.setText(promotionsInfoResBean.getTitleMyn());
-                textReadMore.setText(getReadMoreText(curLang));
+            if (visitedItems.contains(promotionsInfoResBean.getPromotionsInfoId())) {
+                itemView.clearAnimation();
             } else {
-                textTitle.setText(promotionsInfoResBean.getTitleEng());
-                textReadMore.setText(getReadMoreText(curLang));
+                if (index > 5) index = index / 5;
+                itemView.setAnimation(UiUtils.rvAnimSlideToLeft(context, (++index * 100) + 100)); //Anim.
+                visitedItems.add(promotionsInfoResBean.getPromotionsInfoId());
             }
 
-            textPublishedDate.setText(CommonUtils.getStringFromDateDisplay(promotionsInfoResBean.getDisplayDate()));
-            textContent.setText(mContent);
+            final SharedPreferences mPreferences = PreferencesManager.getApplicationPreference(context);
+            final String curLang = PreferencesManager.getStringEntryFromPreferences(mPreferences, "lang");
+
+            if (curLang.equals(LANG_MM)) {
+                textTitle.setText(promotionsInfoResBean.getTitleMyn());
+                textContent.setText(promotionsInfoResBean.getContentMyn());
+            } else {
+                textTitle.setText(promotionsInfoResBean.getTitleEng());
+                textContent.setText(promotionsInfoResBean.getContentEng());
+            }
+
+            textReadMore.setText(getReadMoreText(curLang));
+            if (promotionsInfoResBean.getDisplayDate() != null) {
+                textPublishedDate.setText(CommonUtils.getStringFromDateDisplay(promotionsInfoResBean.getDisplayDate()));
+            }
 
             //Coupon Img.
-            final String imagePath = PROMOTIONS_URL+promotionsInfoResBean.getImagePath();
-            if(imagePath==null || imagePath==BLANK) {
+            final String imagePath = PROMOTIONS_URL + promotionsInfoResBean.getImagePath();
+            if (imagePath == null || imagePath == BLANK) {
                 //do something.
             } else {
                 Picasso.get().load(imagePath).into(promotionsImage, new com.squareup.picasso.Callback() {
@@ -133,6 +146,7 @@ public class AnnouncementListAdapter extends RecyclerView.Adapter {
                     public void onSuccess() {
                         Picasso.get().load(imagePath).into(promotionsImage);
                     }
+
                     @Override
                     public void onError(Exception e) {
                         e.printStackTrace();
@@ -160,24 +174,33 @@ public class AnnouncementListAdapter extends RecyclerView.Adapter {
                     });
 
                     TextView textDetailTitle = dialog.findViewById(R.id.promotions_detail_title);
-                    TextView textDetailPublishedDate = dialog.findViewById(R.id.promotions_detail_published_date);
-                    TextView textDetailContent = dialog.findViewById(R.id.promotions_detail_content);
-                    TextView textAnnouncementLink = dialog.findViewById(R.id.announcements_link);
-                    final ImageView promotionsDetailImage = dialog.findViewById(R.id.promotions_detail_image);
+                    textDetailTitle.setAnimation(UiUtils.animSlideToRight(context));
 
-                    if(promotionsInfoResBean.getAnnouncementUrl() != null){
+                    TextView textDetailPublishedDate = dialog.findViewById(R.id.promotions_detail_published_date);
+                    textDetailPublishedDate.setAnimation(UiUtils.animSlideToRight(context));
+
+                    TextView textDetailContent = dialog.findViewById(R.id.promotions_detail_content);
+                    textDetailContent.setAnimation(UiUtils.animSlideToRight(context));
+
+                    TextView textAnnouncementLink = dialog.findViewById(R.id.announcements_link);
+                    textAnnouncementLink.setAnimation(UiUtils.animSlideToRight(context));
+
+                    final ImageView promotionsDetailImage = dialog.findViewById(R.id.promotions_detail_image);
+                    promotionsDetailImage.setAnimation(UiUtils.animSlideToRight(context));
+
+                    if (promotionsInfoResBean.getAnnouncementUrl() != null) {
                         //textAnnouncementLink.setText(Html.fromHtml(stringToHtmlUrl(promotionsInfoResBean.getAnnouncementUrl())));
                         textAnnouncementLink.setText(promotionsInfoResBean.getAnnouncementUrl());
                     } else {
                         textAnnouncementLink.setVisibility(View.GONE);
                     }
 
-                    final SharedPreferences mPreferences= PreferencesManager.getApplicationPreference(context);
+                    final SharedPreferences mPreferences = PreferencesManager.getApplicationPreference(context);
                     final String curLang = PreferencesManager.getStringEntryFromPreferences(mPreferences, "lang");
 
                     textDetailPublishedDate.setText(CommonUtils.getStringFromDateDisplay(promotionsInfoResBean.getDisplayDate()));
 
-                    if(curLang.equals(LANG_MM)){
+                    if (curLang.equals(LANG_MM)) {
                         textDetailTitle.setText(promotionsInfoResBean.getTitleMyn());
                         textDetailContent.setText(promotionsInfoResBean.getContentMyn());
                     } else {
@@ -187,19 +210,20 @@ public class AnnouncementListAdapter extends RecyclerView.Adapter {
 
 
                     //Coupon Img.
-                    final String imagePath = PROMOTIONS_URL+promotionsInfoResBean.getImagePath();
-                    if(imagePath==null || imagePath==BLANK) {
+                    final String imagePath = PROMOTIONS_URL + promotionsInfoResBean.getImagePath();
+                    if (imagePath == null || imagePath == BLANK) {
                         promotionsDetailImage.setMinimumHeight(imgViewHeight);
                     } else {
                         Picasso.get().load(imagePath).into(promotionsDetailImage, new com.squareup.picasso.Callback() {
                             @Override
                             public void onSuccess() {
-                                try{
+                                try {
                                     Picasso.get().load(imagePath).into(promotionsDetailImage);
-                                } catch (Exception e){
+                                } catch (Exception e) {
                                     promotionsDetailImage.setMinimumHeight(imgViewHeight);
                                 }
                             }
+
                             @Override
                             public void onError(Exception e) {
                                 promotionsDetailImage.setMinimumHeight(imgViewHeight);
@@ -208,6 +232,7 @@ public class AnnouncementListAdapter extends RecyclerView.Adapter {
                     }
 
                     mMapView = dialog.findViewById(R.id.promotionsMapView);
+                    mMapView.setAnimation(UiUtils.animSlideToRight(context));
                     mMapView.onCreate(savedInstanceState);
                     mMapView.onResume(); // needed to get the map to display immediately
 
@@ -217,7 +242,7 @@ public class AnnouncementListAdapter extends RecyclerView.Adapter {
                         e.printStackTrace();
                     }
 
-                    if(isLatLongValid(promotionsInfoResBean.getLatitude(),promotionsInfoResBean.getLongitude())){
+                    if (isLatLongValid(promotionsInfoResBean.getLatitude(), promotionsInfoResBean.getLongitude())) {
 
                         //location(x,y)
                         final double latitude = Double.valueOf(promotionsInfoResBean.getLatitude());
@@ -229,7 +254,7 @@ public class AnnouncementListAdapter extends RecyclerView.Adapter {
                                 mMap = googleMap;
 
                                 // Add a marker in Sydney and move the camera
-                                LatLng position = new LatLng(latitude,longitude);
+                                LatLng position = new LatLng(latitude, longitude);
                                 mMap.addMarker(new MarkerOptions().position(position));
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
 
@@ -250,6 +275,7 @@ public class AnnouncementListAdapter extends RecyclerView.Adapter {
                     dialog.show();
                 }
             });
+
         }
     }
 }

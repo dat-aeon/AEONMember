@@ -1,12 +1,9 @@
 package mm.com.aeon.vcsaeon.activities;
 
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -22,20 +19,18 @@ import com.google.gson.Gson;
 import java.util.Locale;
 
 import mm.com.aeon.vcsaeon.R;
-import mm.com.aeon.vcsaeon.beans.FreeMessageUserReqBean;
-import mm.com.aeon.vcsaeon.beans.FreeMessageUserResBean;
 import mm.com.aeon.vcsaeon.beans.HowToUseVideoResBean;
 import mm.com.aeon.vcsaeon.beans.UserInformationFormBean;
 import mm.com.aeon.vcsaeon.common_utils.CommonUtils;
 import mm.com.aeon.vcsaeon.common_utils.PreferencesManager;
 import mm.com.aeon.vcsaeon.networking.APIClient;
 import mm.com.aeon.vcsaeon.networking.BaseResponse;
+import mm.com.aeon.vcsaeon.networking.NetworkingConstants;
 import mm.com.aeon.vcsaeon.networking.Service;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.BLANK;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_EN;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.LANG_MM;
 import static mm.com.aeon.vcsaeon.common_utils.CommonConstants.SUCCESS;
@@ -51,7 +46,7 @@ public class VideoPlayActivity extends BaseActivity {
     TextView menuBarDate;
     TextView menuBarPhoneNo;
     TextView menuBarName;
-    LinearLayout menuBackbtn;
+    LinearLayout menuBackBtn;
 
     TextView txtTitle;
     TextView warningTitle;
@@ -60,7 +55,6 @@ public class VideoPlayActivity extends BaseActivity {
     RelativeLayout layoutLoading;
     ImageView imgLoading;
 
-    VideoView view;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +68,8 @@ public class VideoPlayActivity extends BaseActivity {
         toolbar.setTitleTextColor(getColor(R.color.white));
         setSupportActionBar(toolbar);
 
-        menuBackbtn = toolbar.findViewById(R.id.menu_back_btn_view);
-        menuBackbtn.setVisibility(View.VISIBLE);
+        menuBackBtn = toolbar.findViewById(R.id.menu_back_btn_view);
+        menuBackBtn.setVisibility(View.VISIBLE);
 
         menuBarName = toolbar.findViewById(R.id.menu_bar_name);
         menuBarLevelInfo = toolbar.findViewById(R.id.menu_bar_level);
@@ -92,6 +86,7 @@ public class VideoPlayActivity extends BaseActivity {
             menuBarPhoneNo.setText(installPhone);
 
         } else {
+
             UserInformationFormBean userInformationFormBean = new UserInformationFormBean();
             final String userInfoFormJson = PreferencesManager.getCurrentUserInfo(this);
             userInformationFormBean = new Gson().fromJson(userInfoFormJson, UserInformationFormBean.class);
@@ -102,9 +97,7 @@ public class VideoPlayActivity extends BaseActivity {
             //get logged in phone number from fragment.
             String lastLoggedInPhone = PreferencesManager.getCurrentLoginPhoneNo(getApplicationContext()).trim();
             menuBarPhoneNo.setText(lastLoggedInPhone);
-
         }
-
 
         myTitleBtn = toolbar.findViewById(R.id.my_flag);
         engTitleBtn = toolbar.findViewById(R.id.en_flag);
@@ -123,7 +116,7 @@ public class VideoPlayActivity extends BaseActivity {
             }
         });
 
-        menuBackbtn.setOnClickListener(new View.OnClickListener() {
+        menuBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -135,26 +128,30 @@ public class VideoPlayActivity extends BaseActivity {
         warningContent = findViewById(R.id.biometric_warning_text);
 
         final String curLang = PreferencesManager.getCurrentLanguage(getApplicationContext());
-        if(curLang.equals(LANG_MM)){
+        if (curLang.equals(LANG_MM)) {
             changeLabel(LANG_MM);
         } else {
             changeLabel(LANG_EN);
         }
-       videoView = (VideoView)findViewById(R.id.video_view);
+        videoView = (VideoView) findViewById(R.id.video_view);
         setVideoLink();
     }
 
-    public void changeLabel(String language){
+    public void changeLabel(String language) {
         txtTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.video_play_title, getApplicationContext()));
         warningTitle.setText(CommonUtils.getLocaleString(new Locale(language), R.string.video_play_warning_title, getApplicationContext()));
         warningContent.setText(CommonUtils.getLocaleString(new Locale(language), R.string.video_play_warning, getApplicationContext()));
+        addValueToPreference(language);
+    }
+
+    public void addValueToPreference(String lang) {
+        PreferencesManager.setCurrentLanguage(getApplicationContext(), lang);
     }
 
     private void setVideoLink() {
 
         if (!CommonUtils.isNetworkAvailable(getApplicationContext())) {
             showNetworkErrorDialog(getApplicationContext(), getNetErrMsg());
-
         } else {
 
             Service howToUseService = APIClient.getUserService();
@@ -163,35 +160,25 @@ public class VideoPlayActivity extends BaseActivity {
             req.enqueue(new Callback<BaseResponse<HowToUseVideoResBean>>() {
                 @Override
                 public void onResponse(Call<BaseResponse<HowToUseVideoResBean>> call, Response<BaseResponse<HowToUseVideoResBean>> response) {
-
                     if (response.isSuccessful()) {
                         BaseResponse baseResponse = response.body();
-
                         if (baseResponse != null) {
                             if (baseResponse.getStatus().equals(SUCCESS)) {
                                 try {
-                                    //closeLoading();
                                     HowToUseVideoResBean resBean = (HowToUseVideoResBean) baseResponse.getData();
-
-                                    //String path = "android.resource://" + getPackageName() + "/" + R.raw.aeon_sample_video;
-                                    Log.e("video get", SUCCESS);
-                                    String path = "https://ass.aeoncredit.com.mm/daso/how-to-use-video/" + resBean.getFileName();
-
+                                    String path = NetworkingConstants.URL_VIDEO_PLAY + resBean.getFileName();
                                     videoView.setVideoURI(Uri.parse(path));
                                     videoView.start();
                                     videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                                         @Override
                                         public void onPrepared(MediaPlayer mediaPlayer) {
-                                            Log.e("video", "prepare");
                                             closeLoading();
                                         }
                                     });
-
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                     closeLoading();
                                 }
-
                             } else {
                                 closeLoading();
                             }
@@ -209,14 +196,12 @@ public class VideoPlayActivity extends BaseActivity {
                 }
             });
         }
-
     }
 
-    private String getNetErrMsg(){
+    private String getNetErrMsg() {
         final String language = PreferencesManager.getCurrentLanguage(getApplicationContext());
         return CommonUtils.getLocaleString(new Locale(language), R.string.network_connection_err, getApplicationContext());
     }
-
 
     private void closeLoading() {
         layoutLoading.setVisibility(View.GONE);
